@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('pretty'),b=require('perfectionist'),c=require('postcss');_exports=(d,e,f)=>{let{fileType:g}=e,h;h='css'===g?c([b({indentSize:2,cascade:!1,trimTrailingZeros:!1,trimLeadingZero:!1,zeroLengthNoUnit:!1})]).process(d).css:a(d),f(null,h)}}init(),module.exports=_exports;

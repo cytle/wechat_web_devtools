@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>title</title>
+	<link rel="stylesheet" href="./css/sensor.css">
+</head>
+<body>
+ <div class="group">
+	<div class="label">
+		 Geolocation
+	 </div>
+	 <div class="form">
+		 <div class="form-control">
+			 <label for="enableGeo">
+				 <input type="checkbox" id="enableGeo"> enable
+			 </label>
+		 </div>
+		 <div class="form-control">
+			 <input  value="0" id="latitude" type="number" min="-90" max="90"> Latitude
+		 </div>
+		 <div class="form-control">
+			 <input  value="0" id="longitude" type="number" min="-180" max="180"> Longitude
+		 </div>
+	 </div>
+ </div>
+ <div class="group">
+	 <div class="label">
+		 Orientation
+	 </div>
+	 <div class="form">
+		<div class="form-control">
+			 <input type="text" disabled id="x"> X
+		 </div>
+		 <div class="form-control">
+			 <input type="text" disabled id="y"> Y
+		 </div>
+		 <div class="form-control">
+			 <input type="text" disabled id="z"> Z
+		 </div>
+     	<button class="reset" id="reset">Reset</button>
+	 </div>
+	 <div class="controller">
+		 <iframe id="controller" ></iframe>
+	 </div>
+ </div>
+ <script src="../js/sensor.index.min.js"></script>
+</body>
+</html>

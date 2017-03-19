@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={showToast:function(c,d){a.sendASSDK('showToast',c,d)},hideToast:function(c,d){a.sendASSDK('hideToast',c,d)},showActionSheet:function(c,d){a.sendASSDK('showActionSheet',c,d)},showModal:function(c,d){a.sendASSDK('showModal',c,d)}}}init(),module.exports=_exports;

@@ -1,0 +1,1 @@
+"use strict";var _exports;function init(){function a(c,d,e){return d?{errMsg:`${c}:ok`}:{errMsg:`${c}:${b.failWroding}`}}const b=require("./sdkConfig.js");_exports={exec:(c,d,e,f)=>{let g=d.sdkName,h=a(g,c,d.args);f(h)}}}init(),module.exports=_exports;

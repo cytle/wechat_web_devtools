@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){function a(c,d){if(c){let e={errMsg:'scanQRCode:ok'};return 0!==d.needResult&&(e.resultStr='{"scan_code": {"scan_result":"scan resultStr is here"}}'),e}return{errMsg:`scanQRCode:${b.failWroding}`}}const b=require('./sdkConfig.js');_exports={exec:(c,d,e,f)=>{d.sdkName;let g=a(c,d.args);f(g)}}}init(),module.exports=_exports;

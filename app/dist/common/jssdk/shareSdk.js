@@ -1,0 +1,1 @@
+"use strict";const exec=(a,b,c,d)=>{let e=a&&b.args?b.args:b.ext;delete e.origin,d(e)};module.exports={exec};

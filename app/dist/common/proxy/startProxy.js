@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('./httpProxy/proxy.js'),b=require('../../utils/tools.js'),c=require('./setAppProxy.js');_exports=d=>{b.getAvailablePort(e=>{global._port=e,c.set(()=>{d(e)}),new a.proxyServer({port:e,hostname:'127.0.0.1',rule:require('./proxyRule.js')})},1)}}init(),module.exports=_exports;

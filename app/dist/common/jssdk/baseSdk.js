@@ -1,0 +1,1 @@
+"use strict";var _exports;function init(){_exports={exec:(a,b,c,d)=>{let e=b.args,f=e.jsApiList,g=c.purviewFromPreVerify||{},h={};f.forEach(i=>{g[i]&&(h[i]=!0)}),d({errMsg:"checkJsApi:ok",checkResult:h})}}}init(),module.exports=_exports;

@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../../actions/windowActions.js');_exports={getMusicPlayerState:function(c,d){c.args,a.getMusicPlayerState(function(e){e.errMsg='getMusicPlayerState:ok',d(e)})},operateMusicPlayer:function(c,d){let e=c.args;a.operateMusicPlayer(e),d({errMsg:'operateMusicPlayer:ok'})}}}init(),module.exports=_exports;

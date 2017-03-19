@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../lib/flux.js').Dispatcher,b=new a,c=require('./webviewDispatcher.js'),d=require('./leftviewDispatcher.js'),e=require('./windowDispatcher.js'),f=require('./projectDispatcher.js');let g=c(b);d(b,g),e(b),f(b),_exports=b}init(),module.exports=_exports;

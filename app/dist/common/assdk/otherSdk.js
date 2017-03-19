@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={stopPullDownRefresh:function(c,d){a.stopPullDownRefresh(c,d),d({errMsg:'stopPullDownRefresh:ok'})}}}init(),module.exports=_exports;

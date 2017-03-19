@@ -1,0 +1,1 @@
+'use strict';function init(){const a=require('../stores/projectStores.js');module.exports=b=>{b.register(c=>{switch(c.actionType){case'ADD_PROJECT':a.add(c.project,c.needInitQuickStart);break;case'DELETE_PROJECT':a.del(c.projectid);break;case'CLOSE_PROJECT':a.close();break;case'RESTART_PROJECT':a.restart(c.project);break;default:}})}}init();

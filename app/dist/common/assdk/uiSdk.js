@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={setNavigationBarTitle:function(c,d){a.sendASSDK('setNavigationBarTitle',c,d)},showNavigationBarLoading:function(c,d){a.sendASSDK('showNavigationBarLoading',c,d)},hideNavigationBarLoading:function(c,d){a.sendASSDK('hideNavigationBarLoading',c,d)}}}init(),module.exports=_exports;
