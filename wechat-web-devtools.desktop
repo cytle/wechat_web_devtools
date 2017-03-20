@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=WeChat Web DevTools
+Comment=The development tools for wechat web develop
+Exec=wechat-web-devtools
+Icon=./icon.ico
+Categories=Application;WeChat
+Version=0.14.140900
+Type=Application
+Terminal=0
