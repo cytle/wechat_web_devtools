@@ -1,1 +1,23 @@
-{"main":"app/html/index.html","name":"微信web开发者工具","appname":"wechatwebdevtools","version":"0.14.140900","window":{"title":"微信web开发者工具 v0.14.140900","icon":"app/images/logo2.png","toolbar":true,"width":600,"height":480,"frame":false},"inject_js_start":"app/dist/inject/jweixindebug.js","inject_js_end":"app/dist/inject/devtools.js","chromium-args":"--disable-devtools -ignore-certificate-errors -load-extension=./package.nw/app/dist/extensions/","node-remote":"http://*.appservice.open.weixin.qq.com/*","webview":{"partitions":[{"name":"trusted","accessible_resources":["<all_urls>"]},{"name":"devtools","accessible_resources":["<all_urls>"]},{"name":"editor","accessible_resources":["<all_urls>"]}]},"devDependencies":{}}
+{
+  "name": "wechat_web_devtools",
+  "version": "0.0.1",
+  "description": "凌晨三点终于搞定了linux下开发者工具的使用,已经完美使用,之后上完整安装教程和npm包.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cytle/wechat_web_devtools.git"
+  },
+  "keywords": [
+    "微信开发者工具",
+    "微信小程序"
+  ],
+  "author": "xsp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cytle/wechat_web_devtools/issues"
+  },
+  "homepage": "https://github.com/cytle/wechat_web_devtools#readme"
+}
