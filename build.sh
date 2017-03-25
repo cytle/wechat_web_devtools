@@ -11,7 +11,7 @@ nwjs_file="$tmp_dir/nwjs-v$nwjs_v.tar.gz"
 nwjs_dir="$tmp_dir/nwjs-sdk-v${nwjs_v}-linux-x64"
 nwjs_download="https://dl.nwjs.io/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-x64.tar.gz"
 
-dist_wechat_dir="$tmp_dir/wechat-dev-tools"
+dist_wechat_dir="wechat-dev-tools-xsp"
 dist_wechat_package="$tmp_dir/wechat-v${wechat_v}-nwjs-v${nwjs_v}.tar.gz"
 
 mkdir -p $tmp_dir
@@ -25,11 +25,11 @@ if [ ! -d "$nwjs_dir" ]; then
   $? -ne 0 && exit "$?"
 fi
 
-rm -rf $dist_wechat_dir
-mkdir -p $dist_wechat_dir
-cp -rl "$nwjs_dir"/* "$dist_wechat_dir" &&
-cp -rl "$package_dir" "$dist_wechat_dir" &&
-tar -zcvf "$dist_wechat_package" "$dist_wechat_dir"
+rm -rf $tmp_dir/$dist_wechat_dir
+mkdir -p $tmp_dir/$dist_wechat_dir
+cp -rl "$nwjs_dir"/* "$tmp_dir/$dist_wechat_dir" &&
+cp -rl "$package_dir" "$tmp_dir/$dist_wechat_dir" &&
+tar -zcvf "$dist_wechat_package" -C "$tmp_dir" "$dist_wechat_dir"
 
 mkdir -p $build_dir
 mv -f "$dist_wechat_package" "$build_dir"
