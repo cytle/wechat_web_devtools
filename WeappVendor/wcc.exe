@@ -1,0 +1,4 @@
+#! /bin/sh
+
+cur_dir=${dirname $0}
+wine ${cur_dir}/s/wcc.exe

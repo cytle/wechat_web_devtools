@@ -14,6 +14,7 @@ nwjs_download="https://dl.nwjs.io/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-x64.tar.gz"
 dist_wechat_dir="wechat-dev-tools-xsp"
 dist_wechat_package="$tmp_dir/wechat-v${wechat_v}-nwjs-v${nwjs_v}.tar.gz"
 
+
 mkdir -p $tmp_dir
 if [ ! -d "$nwjs_dir" ]; then
   if [ ! -f "$nwjs_file" ]; then
@@ -29,6 +30,7 @@ rm -rf $tmp_dir/$dist_wechat_dir
 mkdir -p $tmp_dir/$dist_wechat_dir
 cp -rl "$nwjs_dir"/* "$tmp_dir/$dist_wechat_dir" &&
 cp -rl "$package_dir" "$tmp_dir/$dist_wechat_dir" &&
+cp -rl "$cur_dir/WeappVendor" "$tmp_dir/$dist_wechat_dir" &&
 tar -zcvf "$dist_wechat_package" -C "$tmp_dir" "$dist_wechat_dir"
 
 mkdir -p $build_dir
