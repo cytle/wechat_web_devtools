@@ -31,6 +31,7 @@ mkdir -p $tmp_dir/$dist_wechat_dir
 cp -rl "$nwjs_dir"/* "$tmp_dir/$dist_wechat_dir" &&
 cp -rl "$package_dir" "$tmp_dir/$dist_wechat_dir" &&
 cp -rl "$cur_dir/WeappVendor" "$tmp_dir/$dist_wechat_dir" &&
+cp -rl "$cur_dir/bin/install.sh" "$tmp_dir/$dist_wechat_dir" &&
 tar -zcvf "$dist_wechat_package" -C "$tmp_dir" "$dist_wechat_dir"
 
 mkdir -p $build_dir
