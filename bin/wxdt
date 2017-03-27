@@ -1,1 +1,4 @@
-../dist/nw
+#! /bin/sh
+
+$("`dirname $0`/../dist/nw")
+

@@ -19,8 +19,10 @@ dist_wechat_dir="wechat-dev-tools-xsp"
 dist_wechat_package="wechat-v${wechat_v}-nwjs-v${nwjs_v}.tar.gz"
 
 if [ $param1 = "install" ]; then
+  echo "asd"
   # rm -rf $tmp_dir
 fi
+
 mkdir -p $tmp_dir
 if [ ! -d "$nwjs_dir" ]; then
   if [ ! -f "$nwjs_file" ]; then
