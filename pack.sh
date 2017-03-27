@@ -1,8 +1,10 @@
 #! /bin/sh
 # tar wechat-dev-tools
 
-cur_dir=`dirname $0`
+cd `dirname $0`
+cur_dir=$(pwd)
 . "$cur_dir/build.conf"
+
 package_dir="$cur_dir/package.nw"
 tmp_dir="$cur_dir/.tmp"
 build_dir="$cur_dir/dist"
@@ -24,6 +26,9 @@ if [ ! -d "$nwjs_dir" ]; then
 
   tar -xf $nwjs_file -C $tmp_dir
   $? -ne 0 && exit "$?"
+  cd "$nwjs_dir/locales" || exit "$?"
+  rm $(ls -I "zh*" -I "en*" )
+  cd "$cur_dir"
 fi
 
 rm -rf $tmp_dir/$dist_wechat_dir
