@@ -1,4 +1,7 @@
 #! /bin/sh
 
-cur_dir=${dirname $0}
+cd `dirname $0`
+cur_dir=$(pwd)
+
+WINEPREFIX=~/.wine32
 wine ${cur_dir}/s/wcc.exe
