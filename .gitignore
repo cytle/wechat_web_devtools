@@ -1,3 +1,4 @@
 /.tmp
 /.build
 /dist
+npm-debug.log

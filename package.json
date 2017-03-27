@@ -1,5 +1,5 @@
 {
-  "name": "wechat_web_devtools",
+  "name": "wxdt",
   "version": "0.0.1",
   "description": "凌晨三点终于搞定了linux下开发者工具的使用,已经完美使用,之后上完整安装教程和npm包.",
   "main": "index.js",
@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "sh ./bin/pack.sh",
     "install": "sh ./bin/pack.sh install"
+  },
+  "bin": {
+    "wxdt": "./bin/wxdt"
   },
   "repository": {
     "type": "git",

@@ -24,7 +24,9 @@ fi
 mkdir -p $tmp_dir
 if [ ! -d "$nwjs_dir" ]; then
   if [ ! -f "$nwjs_file" ]; then
+    echo "================================="
     echo "[注意]需要下载nwjs.请耐心等待下载完成"
+    echo "================================="
     wget "$nwjs_download" -O $nwjs_file
     $? -ne 0 && exit "$?"
   fi
