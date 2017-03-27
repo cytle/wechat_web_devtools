@@ -33,20 +33,14 @@ sudo apt install wine
 WINEARCH=win32 WINEPREFIX=~/win32 winecfg
 ```
 
-3. 下载个版本
-
-
-4. 解压下载的文件,并且安装
+3. 安装
 ```console
-tar -xzfv wechat-v0.14.140900-nwjs-v0.19.4.tar.gz
-cd wechat-v0.14.140900-nwjs-v0.19.4/dist && sh ./srcipt/install.sh
+git clone git@github.com:cytle/wechat_web_devtools.git
+cd wechat_web_devtools && sh ./bin/pack.sh install
 ```
 
-5. 启动
+4. 启动
 ```console
-./nw
+cd dist && ./nw
 ```
-
-
-
 
