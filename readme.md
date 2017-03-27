@@ -1,19 +1,8 @@
 # Linux微信web开发者工具
-
 凌晨三点终于搞定了linux下开发者工具的使用,已经完美使用.
 
 ![wx-dev-tools v-0.14.140900](https://img.shields.io/badge/wx_dev_tools-0.14.1409-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
-
-
-![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BA.png)
-
-
-![编辑界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-43-56%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
-
-![调试界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-44-34%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
 
 ## Description
 **Linux微信web开发者工具** 可在linux桌面环境跑起微信开发者工具,原理是微信开发者
@@ -21,7 +10,6 @@
 其他功能)的wcc和wcsc,利用wine来跑皆可.
 
 ## Installation
-
 1. 用下面的命令安装wine(ubuntu下)
 
 ```console
@@ -43,4 +31,14 @@ cd wechat_web_devtools && sh ./bin/pack.sh install
 ```console
 cd dist && ./nw
 ```
+
+## 截图
+![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BA.png)
+
+
+![编辑界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-43-56%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
+
+![调试界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-44-34%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
 
