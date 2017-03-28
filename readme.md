@@ -41,4 +41,8 @@ cd dist && ./nw
 
 ![调试界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-44-34%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
 
+Create/create => create/create
 
+./main.js => ./Main.js
+
+config/appServiceConfig.js => config/appserviceConfig.js
