@@ -318,10 +318,6 @@ var _toFastProperties = require("to-fast-properties");
 
 var _toFastProperties2 = _interopRequireDefault(_toFastProperties);
 
-var _compact = require("lodash/compact");
-
-var _compact2 = _interopRequireDefault(_compact);
-
 var _clone = require("lodash/clone");
 
 var _clone2 = _interopRequireDefault(_clone);
@@ -673,7 +669,7 @@ function inheritInnerComments(child, parent) {
 
 function _inheritComments(key, child, parent) {
   if (child && parent) {
-    child[key] = (0, _uniq2.default)((0, _compact2.default)([].concat(child[key], parent[key])));
+    child[key] = (0, _uniq2.default)([].concat(child[key], parent[key]).filter(Boolean));
   }
 }
 

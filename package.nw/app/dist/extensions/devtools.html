@@ -55,6 +55,15 @@ function addAppserviceDevtools(){
       }
     )
 
+    // 暂时不做，留待之后补充
+    // chrome.devtools.panels.create("Bluetooth",
+    //   "",
+    //   "Bluetooth/index.html",
+    //   function(panel) {
+    //     //console.log(panel)
+    //   }
+    // )
+
     window.addEventListener('message', (event)=>{
       let data = event.data
       if(typeof data === 'object' && data.command === 'securityDetails') {

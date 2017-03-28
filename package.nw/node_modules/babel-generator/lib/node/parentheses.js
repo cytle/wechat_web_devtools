@@ -174,15 +174,7 @@ function FunctionExpression(node, parent, printStack) {
 }
 
 function ArrowFunctionExpression(node, parent) {
-  if (t.isExportDeclaration(parent)) {
-    return true;
-  }
-
-  if (t.isBinaryExpression(parent) || t.isLogicalExpression(parent)) {
-    return true;
-  }
-
-  if (t.isUnaryExpression(parent)) {
+  if (t.isExportDeclaration(parent) || t.isBinaryExpression(parent) || t.isLogicalExpression(parent) || t.isUnaryExpression(parent) || t.isTaggedTemplateExpression(parent)) {
     return true;
   }
 
@@ -199,6 +191,10 @@ function ConditionalExpression(node, parent) {
   }
 
   if (t.isConditionalExpression(parent, { test: node })) {
+    return true;
+  }
+
+  if (t.isAwaitExpression(parent)) {
     return true;
   }
 
@@ -226,6 +222,10 @@ function isFirstInStatement(printStack) {
   var parent = printStack[i];
   while (i > 0) {
     if (t.isExpressionStatement(parent, { expression: node })) {
+      return true;
+    }
+
+    if (t.isTaggedTemplateExpression(parent)) {
       return true;
     }
 

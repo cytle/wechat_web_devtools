@@ -23,7 +23,7 @@ function get(name) {
 }
 
 var list = exports.list = (0, _keys2.default)(_helpers2.default).map(function (name) {
-  return name[0] === "_" ? name.slice(1) : name;
+  return name.replace(/^_/, "");
 }).filter(function (name) {
   return name !== "__esModule";
 });

@@ -30,10 +30,12 @@ var FILENAME = process.env.BABEL_CACHE_PATH || _path2.default.join(_homeOrTmp2.d
 var data = {};
 
 function save() {
-  var serialised = {};
+  var serialised = "{}";
+
   try {
     serialised = (0, _stringify2.default)(data, null, "  ");
   } catch (err) {
+
     if (err.message === "Invalid string length") {
       err.message = "Cache too large so it's been cleared.";
       console.error(err.stack);
@@ -41,6 +43,7 @@ function save() {
       throw err;
     }
   }
+
   (0, _mkdirp.sync)(_path2.default.dirname(FILENAME));
   _fs2.default.writeFileSync(FILENAME, serialised);
 }

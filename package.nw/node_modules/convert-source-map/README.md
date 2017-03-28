@@ -50,13 +50,9 @@ Returns source map converter from given `filename` by parsing `//# sourceMapping
 `filename` must point to a file that is found inside the `mapFileDir`. Most tools store this file right next to the
 generated file, i.e. the one containing the source map.
 
-### fromSource(source[, largeSource])
+### fromSource(source)
 
 Finds last sourcemap comment in file and returns source map converter or returns null if no source map comment was found.
-
-If `largeSource` is set to `true`, an algorithm that does not use regex is applied to find the source map. This is faster and especially useful if you're running into "call stack size exceeded" errors with the default algorithm.
-
-However, it is less accurate and may match content that isn't a source map comment.
 
 ### fromMapFileSource(source, mapFileDir)
 

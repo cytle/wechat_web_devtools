@@ -509,7 +509,7 @@ var File = function (_Store) {
           if (parser) {
             parseCode = require(parser).parse;
           } else {
-            throw new Error("Couldn't find parser " + parserOpts.parser + " with \"parse\" method relative to directory " + dirname);
+            throw new Error("Couldn't find parser " + parserOpts.parser + " with \"parse\" method " + ("relative to directory " + dirname));
           }
         } else {
           parseCode = parserOpts.parser;
@@ -708,7 +708,7 @@ var File = function (_Store) {
         if (generator) {
           gen = require(generator).print;
         } else {
-          throw new Error("Couldn't find generator " + gen + " with \"print\" method relative to directory " + dirname);
+          throw new Error("Couldn't find generator " + gen + " with \"print\" method relative " + ("to directory " + dirname));
         }
       }
     }

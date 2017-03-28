@@ -1,1 +1,1 @@
-"use strict";var _exports;function init(){function a(c,d,e){return d?{errMsg:`${c}:ok`}:{errMsg:`${c}:${b.failWroding}`}}const b=require("./sdkConfig.js");_exports={exec:(c,d,e,f)=>{let g=d.sdkName,h=a(g,c,d.args);f(h)}}}init(),module.exports=_exports;
+"use strict";function init(){function r(r,i,s){return i?{errMsg:r+":ok"}:{errMsg:r+":"+e.failWroding}}var e=require("./sdkConfig.js"),i=function(e,i,s,t){var n=i.sdkName,o=r(n,e,i.args);t(o)};_exports={exec:i}}var _exports;init(),module.exports=_exports;

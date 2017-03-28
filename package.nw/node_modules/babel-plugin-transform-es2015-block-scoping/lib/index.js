@@ -146,8 +146,18 @@ function isVar(node) {
 }
 
 var letReferenceBlockVisitor = _babelTraverse2.default.visitors.merge([{
+  Loop: {
+    enter: function enter(path, state) {
+      state.loopDepth++;
+    },
+    exit: function exit(path, state) {
+      state.loopDepth--;
+    }
+  },
   Function: function Function(path, state) {
-    path.traverse(letReferenceFunctionVisitor, state);
+    if (state.loopDepth > 0) {
+      path.traverse(letReferenceFunctionVisitor, state);
+    }
     return path.skip();
   }
 }, _tdz.visitor]);
@@ -373,6 +383,9 @@ var BlockScoping = function () {
   };
 
   BlockScoping.prototype.wrapClosure = function wrapClosure() {
+    if (this.file.opts.throwIfClosureRequired) {
+      throw this.blockPath.buildCodeFrameError("Compiling let/const in this block would add a closure " + "(throwIfClosureRequired).");
+    }
     var block = this.block;
 
     var outsideRefs = this.outsideLetReferences;
@@ -524,8 +537,16 @@ var BlockScoping = function () {
     var state = {
       letReferences: this.letReferences,
       closurify: false,
-      file: this.file
+      file: this.file,
+      loopDepth: 0
     };
+
+    var loopOrFunctionParent = this.blockPath.find(function (path) {
+      return path.isLoop() || path.isFunction();
+    });
+    if (loopOrFunctionParent && loopOrFunctionParent.isLoop()) {
+      state.loopDepth++;
+    }
 
     this.blockPath.traverse(letReferenceBlockVisitor, state);
 

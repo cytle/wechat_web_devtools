@@ -1,1 +1,1 @@
-'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={stopPullDownRefresh:function(c,d){a.stopPullDownRefresh(c,d),d({errMsg:'stopPullDownRefresh:ok'})}}}init(),module.exports=_exports;
+"use strict";function init(){function e(e,t){o.stopPullDownRefresh(e,t),t({errMsg:"stopPullDownRefresh:ok"})}function t(e,t){o.sendASSDK("openSetting",e,t)}var o=require("../../actions/webviewActions.js");_exports={openSetting:t,stopPullDownRefresh:e}}var _exports;init(),module.exports=_exports;

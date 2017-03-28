@@ -6,9 +6,9 @@ var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _trimEnd = require("lodash/trimEnd");
+var _trimRight = require("trim-right");
 
-var _trimEnd2 = _interopRequireDefault(_trimEnd);
+var _trimRight2 = _interopRequireDefault(_trimRight);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40,7 +40,7 @@ var Buffer = function () {
 
     var map = this._map;
     var result = {
-      code: (0, _trimEnd2.default)(this._buf.join("")),
+      code: (0, _trimRight2.default)(this._buf.join("")),
       map: null,
       rawMappings: map && map.getRawMappings()
     };

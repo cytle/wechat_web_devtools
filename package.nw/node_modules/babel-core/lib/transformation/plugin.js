@@ -148,7 +148,7 @@ var Plugin = function (_Store) {
       var key = _ref2;
 
       if (visitor[key]) {
-        throw new Error("Plugins aren't allowed to specify catch-all enter/exit handlers. Please target individual nodes.");
+        throw new Error("Plugins aren't allowed to specify catch-all enter/exit handlers. " + "Please target individual nodes.");
       }
     }
 

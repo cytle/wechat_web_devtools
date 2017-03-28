@@ -1,0 +1,1 @@
+"use strict";module.exports={NoAllow:0,Allow:1,UserCancel:2,AuthFail:3};

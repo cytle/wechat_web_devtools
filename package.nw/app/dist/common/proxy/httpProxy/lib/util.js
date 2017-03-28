@@ -1,1 +1,1 @@
-const lower_keys=function(a){for(var b in a){var c=b.toLowerCase(),d=a[b];delete a[b],'host'===c?a.Host=d:a[c]=d}return a},merge=function(a,b){for(var c in b)a[c]=b[c];return a};module.exports={merge:merge,lower_keys:lower_keys};
+"use strict";var lower_keys=function(e){for(var r in e){var o=r.toLowerCase(),t=e[r];delete e[r],"host"!==o?e[o]=t:e.Host=t}return e},merge=function(e,r){for(var o in r)e[o]=r[o];return e};module.exports={merge:merge,lower_keys:lower_keys};

@@ -1,0 +1,1 @@
+"use strict";function init(){function r(r,e){e({errMsg:"addCard:fail 开发者工具尚未支持卡券接口，请在真机上调试"})}function e(r,e){e({errMsg:"openCard:fail 开发者工具尚未支持卡券接口，请在真机上调试"})}require("../log/log.js");_exports={addCard:r,openCard:e}}var _exports;init(),module.exports=_exports;

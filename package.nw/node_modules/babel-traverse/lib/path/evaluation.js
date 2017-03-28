@@ -164,11 +164,11 @@ function evaluate() {
         return binding.value;
       } else {
         if (node.name === "undefined") {
-          return undefined;
+          return binding ? deopt(binding.path) : undefined;
         } else if (node.name === "Infinity") {
-          return Infinity;
+          return binding ? deopt(binding.path) : Infinity;
         } else if (node.name === "NaN") {
-          return NaN;
+          return binding ? deopt(binding.path) : NaN;
         }
 
         var resolved = path.resolve();

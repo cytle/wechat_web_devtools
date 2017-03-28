@@ -392,11 +392,7 @@ var Scope = function () {
 
     if (kind === "hoisted" && local.kind === "let") return;
 
-    var duplicate = false;
-
-    if (!duplicate) duplicate = kind === "let" || local.kind === "let" || local.kind === "const" || local.kind === "module";
-
-    if (!duplicate) duplicate = local.kind === "param" && (kind === "let" || kind === "const");
+    var duplicate = kind === "let" || local.kind === "let" || local.kind === "const" || local.kind === "module" || local.kind === "param" && (kind === "let" || kind === "const");
 
     if (duplicate) {
       throw this.hub.file.buildCodeFrameError(id, messages.get("scopeDuplicateDeclaration", name), TypeError);

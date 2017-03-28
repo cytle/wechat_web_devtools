@@ -1,1 +1,1 @@
-"use strict";var _exports;function init(){_exports={exec:(a,b,c,d)=>{let e=b.args,f=e.jsApiList,g=c.purviewFromPreVerify||{},h={};f.forEach(i=>{g[i]&&(h[i]=!0)}),d({errMsg:"checkJsApi:ok",checkResult:h})}}}init(),module.exports=_exports;
+"use strict";function init(){var r=function(r,e,i,t){var s=e.args,o=s.jsApiList,c=i.purviewFromPreVerify||{},n={};o.forEach(function(r){c[r]&&(n[r]=!0)});var p={errMsg:"checkJsApi:ok",checkResult:n};t(p)};_exports={exec:r}}var _exports;init(),module.exports=_exports;
