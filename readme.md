@@ -1,7 +1,8 @@
 # Linux微信web开发者工具
-凌晨三点终于搞定了linux下开发者工具的使用,已经完美使用.
 
-![wx-dev-tools v-0.14.140900](https://img.shields.io/badge/wx_dev_tools-0.14.1409-green.svg)
+linux下使用微信web开发者工具.
+
+![wx-dev-tools v-0.15.152800](https://img.shields.io/badge/wx_dev_tools-0.14.1409-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
