@@ -9,6 +9,8 @@
 工具本质是nw.js程序,把它移植到linux下没大问题.然后,负责编译wxml和wxss(可能还有
 其他功能)的wcc和wcsc,利用wine来跑皆可.
 
+- 2017/03/28 更新:微信小程序升级到0.15.152800
+
 ## Installation
 1. 用下面的命令安装wine(ubuntu下)
 
@@ -41,8 +43,3 @@ cd dist && ./nw
 
 ![调试界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-44-34%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
 
-Create/create => create/create
-
-./main.js => ./Main.js
-
-config/appServiceConfig.js => config/appserviceConfig.js
