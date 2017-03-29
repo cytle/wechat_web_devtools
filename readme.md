@@ -21,7 +21,7 @@ sudo apt install wine
 
 2. wcc.exe和wcsc.exe是32位的,用下面命令创建32位环境
 ```console
-WINEARCH=win32 WINEPREFIX=~/win32 winecfg
+WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
 ```
 
 3. 安装
