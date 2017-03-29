@@ -1,11 +1,15 @@
-'use strict';
+// Load modules
 
-var stringify = require('./stringify');
-var parse = require('./parse');
-var formats = require('./formats');
+var Stringify = require('./stringify');
+var Parse = require('./parse');
+
+
+// Declare internals
+
+var internals = {};
+
 
 module.exports = {
-    formats: formats,
-    parse: parse,
-    stringify: stringify
+    stringify: Stringify,
+    parse: Parse
 };

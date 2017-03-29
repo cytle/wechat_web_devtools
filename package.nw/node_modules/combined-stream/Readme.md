@@ -1,12 +1,6 @@
-# combined-stream
+# combined-stream [![Build Status](https://travis-ci.org/felixge/node-combined-stream.svg?branch=master)](https://travis-ci.org/felixge/node-combined-stream)
 
 A stream that emits multiple other streams one after another.
-
-**NB** Currently `combined-stream` works with streams vesrion 1 only. There is ongoing effort to switch this library to streams version 2. Any help is welcome. :) Meanwhile you can explore other libraries that provide streams2 support with more or less compatability with `combined-stream`.
-
-- [combined-stream2](https://www.npmjs.com/package/combined-stream2): A drop-in streams2-compatible replacement for the combined-stream module.
-
-- [multistream](https://www.npmjs.com/package/multistream): A stream that emits multiple other streams one after another.
 
 ## Installation
 

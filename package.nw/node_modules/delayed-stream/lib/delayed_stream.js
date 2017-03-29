@@ -38,17 +38,9 @@ DelayedStream.create = function(source, options) {
   return delayedStream;
 };
 
-Object.defineProperty(DelayedStream.prototype, 'readable', {
-  configurable: true,
-  enumerable: true,
-  get: function() {
-    return this.source.readable;
-  }
+DelayedStream.prototype.__defineGetter__('readable', function() {
+  return this.source.readable;
 });
-
-DelayedStream.prototype.setEncoding = function() {
-  return this.source.setEncoding.apply(this.source, arguments);
-};
 
 DelayedStream.prototype.resume = function() {
   if (!this._released) {
