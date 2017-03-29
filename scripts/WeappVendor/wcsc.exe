@@ -1,5 +1,4 @@
 #! /bin/sh
 
-cd `dirname $0`
 export WINEPREFIX=$HOME/.wine32
-wine "$(pwd)/s/wcsc.exe"
+wine "$(dirname $0)/s/wcsc.exe" $@
