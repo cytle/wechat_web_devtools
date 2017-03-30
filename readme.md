@@ -15,8 +15,13 @@ linux下使用微信web开发者工具.
 
 ## Installation
 
-如果不需要小程序开发，1和2不需要执行。
+### 如果不需要小程序开发
+```console
+git clone git@github.com:cytle/wechat_web_devtools.git
+cd wechat_web_devtools/dist && ./nw
+```
 
+### 需要小程序开发
 1. 用下面的命令安装wine(ubuntu下)
 
 ```console
