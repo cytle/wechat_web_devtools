@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-0.15.152800](https://img.shields.io/badge/wx_dev_tools-0.14.1409-green.svg)
+![wx-dev-tools v-0.15.152800](https://img.shields.io/badge/wx_dev_tools-0.15.152800-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -13,6 +13,9 @@ linux下使用微信web开发者工具.
 - 2017/03/28 更新:微信小程序升级到0.15.152800
 
 ## Installation
+
+如果不需要小程序开发，1和2不需要执行。
+
 1. 用下面的命令安装wine(ubuntu下)
 
 ```console
