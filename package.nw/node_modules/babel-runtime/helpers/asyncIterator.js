@@ -10,10 +10,6 @@ var _iterator = require("../core-js/symbol/iterator");
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _asyncIterator = require("../core-js/symbol/async-iterator");
-
-var _asyncIterator2 = _interopRequireDefault(_asyncIterator);
-
 var _symbol = require("../core-js/symbol");
 
 var _symbol2 = _interopRequireDefault(_symbol);
@@ -22,8 +18,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (iterable) {
   if (typeof _symbol2.default === "function") {
-    if (_asyncIterator2.default) {
-      var method = iterable[_asyncIterator2.default];
+    if (_symbol2.default.asyncIterator) {
+      var method = iterable[_symbol2.default.asyncIterator];
       if (method != null) return method.call(iterable);
     }
 

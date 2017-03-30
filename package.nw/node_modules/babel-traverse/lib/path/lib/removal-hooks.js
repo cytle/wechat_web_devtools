@@ -2,17 +2,7 @@
 
 exports.__esModule = true;
 var hooks = exports.hooks = [function (self, parent) {
-  var removeParent = false;
-
-  removeParent = removeParent || self.key === "test" && (parent.isWhile() || parent.isSwitchCase());
-
-  removeParent = removeParent || self.key === "declaration" && parent.isExportDeclaration();
-
-  removeParent = removeParent || self.key === "body" && parent.isLabeledStatement();
-
-  removeParent = removeParent || self.listKey === "declarations" && parent.isVariableDeclaration() && parent.node.declarations.length === 1;
-
-  removeParent = removeParent || self.key === "expression" && parent.isExpressionStatement();
+  var removeParent = self.key === "test" && (parent.isWhile() || parent.isSwitchCase()) || self.key === "declaration" && parent.isExportDeclaration() || self.key === "body" && parent.isLabeledStatement() || self.listKey === "declarations" && parent.isVariableDeclaration() && parent.node.declarations.length === 1 || self.key === "expression" && parent.isExpressionStatement();
 
   if (removeParent) {
     parent.remove();

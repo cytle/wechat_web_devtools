@@ -14,6 +14,10 @@ exports.getStatementParent = getStatementParent;
 exports.getOpposite = getOpposite;
 exports.getCompletionRecords = getCompletionRecords;
 exports.getSibling = getSibling;
+exports.getPrevSibling = getPrevSibling;
+exports.getNextSibling = getNextSibling;
+exports.getAllNextSiblings = getAllNextSiblings;
+exports.getAllPrevSiblings = getAllPrevSiblings;
 exports.get = get;
 exports._getKey = _getKey;
 exports._getPattern = _getPattern;
@@ -95,6 +99,36 @@ function getSibling(key) {
     listKey: this.listKey,
     key: key
   });
+}
+
+function getPrevSibling() {
+  return this.getSibling(this.key - 1);
+}
+
+function getNextSibling() {
+  return this.getSibling(this.key + 1);
+}
+
+function getAllNextSiblings() {
+  var _key = this.key;
+  var sibling = this.getSibling(++_key);
+  var siblings = [];
+  while (sibling.node) {
+    siblings.push(sibling);
+    sibling = this.getSibling(++_key);
+  }
+  return siblings;
+}
+
+function getAllPrevSiblings() {
+  var _key = this.key;
+  var sibling = this.getSibling(--_key);
+  var siblings = [];
+  while (sibling.node) {
+    siblings.push(sibling);
+    sibling = this.getSibling(--_key);
+  }
+  return siblings;
 }
 
 function get(key, context) {

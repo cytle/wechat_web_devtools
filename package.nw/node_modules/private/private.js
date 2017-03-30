@@ -62,7 +62,7 @@ function internString(str) {
 
 // External users might find this function useful, but it is not necessary
 // for the typical use of this module.
-defProp(exports, "makeUniqueKey", makeUniqueKey);
+exports.makeUniqueKey = makeUniqueKey;
 
 // Object.getOwnPropertyNames is the only way to enumerate non-enumerable
 // properties, so if we wrap it to ignore our secret keys, there should be
@@ -126,4 +126,4 @@ function makeAccessor(secretCreatorFn) {
   return accessor;
 }
 
-defProp(exports, "makeAccessor", makeAccessor);
+exports.makeAccessor = makeAccessor;

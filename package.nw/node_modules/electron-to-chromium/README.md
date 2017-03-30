@@ -1,6 +1,8 @@
 # Electron-to-Chromium
 This repository provides a mapping of Electron versions to the Chromium version that it uses.
 
+This package is used in [Browserslist](https://github.com/ai/browserslist), so you can use e.g. `electron >= 1.4` in [Autoprefixer](https://github.com/postcss/autoprefixer), [Stylelint](https://github.com/stylelint/stylelint), [babel-present-env](https://github.com/babel/babel-preset-env) and [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat).
+
 ## Install
 Install using `npm install electron-to-chromium`.
 
@@ -59,9 +61,11 @@ var chromeVersion = e2c.electronToChromium('9000');
 // chromeVersion is undefined
 ```
 
-#### electronToBrowserList(query)
+#### electronToBrowserList(query) **DEPRECATED**
 Arguments:
 * Query: string or number, required. A major Electron version.
+
+_**Deprecated**: Browserlist already includes electron-to-chromium._
 
 A function that returns a [Browserlist](https://github.com/ai/browserslist) query that matches the given major Electron version. Returns a string.
 

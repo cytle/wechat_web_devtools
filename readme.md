@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-0.15.152800](https://img.shields.io/badge/wx_dev_tools-0.15.152800-green.svg)
+![wx-dev-tools v-0.15.152900](https://img.shields.io/badge/wx_dev_tools-0.15.152900-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -11,6 +11,7 @@ linux下使用微信web开发者工具.
 其他功能)的wcc和wcsc,利用wine来跑皆可.
 
 - 2017/03/28 更新:微信小程序升级到0.15.152800
+- 2017/03/30 更新:微信小程序升级到0.15.152900
 
 ## Installation
 
