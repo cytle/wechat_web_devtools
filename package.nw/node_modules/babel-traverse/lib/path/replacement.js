@@ -230,10 +230,16 @@ function replaceExpressionWithStatements(nodes) {
         return path.isLoop();
       });
       if (loop) {
-        var callee = this.get("callee");
+        var uid = loop.getData("expressionReplacementReturnUid");
 
-        var uid = callee.scope.generateDeclaredUidIdentifier("ret");
-        callee.get("body").pushContainer("body", t.returnStatement(uid));
+        if (!uid) {
+          var callee = this.get("callee");
+          uid = callee.scope.generateDeclaredUidIdentifier("ret");
+          callee.get("body").pushContainer("body", t.returnStatement(uid));
+          loop.setData("expressionReplacementReturnUid", uid);
+        } else {
+          uid = t.identifier(uid.name);
+        }
 
         path.get("expression").replaceWith(t.assignmentExpression("=", uid, path.node.expression));
       } else {

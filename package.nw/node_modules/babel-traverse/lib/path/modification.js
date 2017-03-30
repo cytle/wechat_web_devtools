@@ -58,7 +58,7 @@ function insertBefore(nodes) {
       if (this.node) nodes.push(this.node);
       this._replaceWith(t.blockStatement(nodes));
     } else {
-      throw new Error("We don't know what to do with this node type. We were previously a Statement but we can't fit in here?");
+      throw new Error("We don't know what to do with this node type. " + "We were previously a Statement but we can't fit in here?");
     }
   }
 
@@ -172,7 +172,7 @@ function insertAfter(nodes) {
       if (this.node) nodes.unshift(this.node);
       this._replaceWith(t.blockStatement(nodes));
     } else {
-      throw new Error("We don't know what to do with this node type. We were previously a Statement but we can't fit in here?");
+      throw new Error("We don't know what to do with this node type. " + "We were previously a Statement but we can't fit in here?");
     }
   }
 

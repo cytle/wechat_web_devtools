@@ -2,10 +2,6 @@
 
 exports.__esModule = true;
 
-var _asyncIterator = require("../core-js/symbol/async-iterator");
-
-var _asyncIterator2 = _interopRequireDefault(_asyncIterator);
-
 var _symbol = require("../core-js/symbol");
 
 var _symbol2 = _interopRequireDefault(_symbol);
@@ -99,8 +95,8 @@ exports.default = function () {
     }
   }
 
-  if (typeof _symbol2.default === "function" && _asyncIterator2.default) {
-    AsyncGenerator.prototype[_asyncIterator2.default] = function () {
+  if (typeof _symbol2.default === "function" && _symbol2.default.asyncIterator) {
+    AsyncGenerator.prototype[_symbol2.default.asyncIterator] = function () {
       return this;
     };
   }
