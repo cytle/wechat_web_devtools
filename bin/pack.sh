@@ -1,7 +1,9 @@
 #! /bin/sh
 # tar wechat-dev-tools
 
-param1=$1
+param1=${1:-"pack"}
+echo $param1
+
 cd `dirname $0`/..
 
 cur_dir=$(pwd)
@@ -19,7 +21,7 @@ dist_wechat_dir="wechat-dev-tools-xsp"
 dist_wechat_package="wechat-v${wechat_v}-nwjs-v${nwjs_v}.tar.gz"
 
 if [ $param1 = "install" ]; then
-  echo "asd"
+  echo "install"
   # rm -rf $tmp_dir
 fi
 
@@ -49,9 +51,17 @@ if [ $param1 = "install" ]; then
   cd "$cur_dir/dist"
   ln -s "$cur_dir/package.nw"
   sh scripts/install.sh
-  # rm -rf $tmp_dir
-else
+elif [ $param1 = "build" ]; then
+  cp -r "$nwjs_dir"/* "$cur_dir/scripts" "$cur_dir/dist"
+  cd "$cur_dir/dist"
+  ln -s "$cur_dir/package.nw"
+elif [ $param1 = "pack" ]; then
   cp -r "$nwjs_dir"/* "$cur_dir/package.nw" "$cur_dir/scripts" "$cur_dir/dist"
   mkdir -p $tmp_dir/build
   tar -zcvf "$tmp_dir/build/$dist_wechat_package" -C "$cur_dir" dist
+else
+  echo "不支持$param1操作"
+  exit 127
 fi
+echo "$param1 success"
+

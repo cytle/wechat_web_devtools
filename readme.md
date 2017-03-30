@@ -18,7 +18,8 @@ linux下使用微信web开发者工具.
 ### 如果不需要小程序开发
 ```console
 git clone git@github.com:cytle/wechat_web_devtools.git
-cd wechat_web_devtools/dist && ./nw
+cd wechat_web_devtools && sh ./bin/pack.sh build
+cd dist && ./nw
 ```
 
 ### 需要小程序开发

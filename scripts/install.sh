@@ -7,7 +7,6 @@ dev_tools_config_dir="$HOME/.config/微信web开发者工具"
 
 rm -rf $dev_tools_config_dir
 
-# TODO close nw
 ./nw &
 nw_pid=$!
 
