@@ -44,7 +44,15 @@
 "use strict";
 
 function find_builtins() {
-    var a = [];
+    // NaN will be included due to Number.NaN
+    var a = [
+        "null",
+        "true",
+        "false",
+        "Infinity",
+        "-Infinity",
+        "undefined",
+    ];
     [ Object, Array, Function, Number,
       String, Boolean, Error, Math,
       Date, RegExp
@@ -62,12 +70,12 @@ function find_builtins() {
 
 function mangle_properties(ast, options) {
     options = defaults(options, {
-        reserved : null,
-        cache : null,
-        only_cache : false,
-        regex : null,
-        ignore_quoted : false,
-        debug : false
+        cache: null,
+        debug: false,
+        ignore_quoted: false,
+        only_cache: false,
+        regex: null,
+        reserved: null,
     });
 
     var reserved = options.reserved;
@@ -154,7 +162,7 @@ function mangle_properties(ast, options) {
         if (options.only_cache) {
             return cache.props.has(name);
         }
-        if (/^[0-9.]+$/.test(name)) return false;
+        if (/^-?[0-9]+(\.[0-9]+)?(e[+-][0-9]+)?$/.test(name)) return false;
         return true;
     }
 

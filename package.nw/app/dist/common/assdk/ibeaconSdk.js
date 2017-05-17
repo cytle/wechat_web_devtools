@@ -1,0 +1,1 @@
+"use strict";function init(){function o(o,e){e({errMsg:"stopBeaconDiscovery:ok"})}function e(o,e){e({errMsg:"startBeaconDiscovery:fail not support"})}function t(o,e){e({errMsg:"getBeacons:ok",beacons:[]})}_exports={stopBeaconDiscovery:o,startBeaconDiscovery:e,getBeacons:t}}var _exports;init(),module.exports=_exports;

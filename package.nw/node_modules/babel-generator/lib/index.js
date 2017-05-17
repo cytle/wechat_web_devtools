@@ -43,10 +43,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Generator = function (_Printer) {
   (0, _inherits3.default)(Generator, _Printer);
 
-  function Generator(ast, opts, code) {
+  function Generator(ast) {
+    var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var code = arguments[2];
     (0, _classCallCheck3.default)(this, Generator);
-
-    opts = opts || {};
 
     var tokens = ast.tokens || [];
     var format = normalizeOptions(code, opts, tokens);
@@ -125,7 +125,7 @@ function findCommonStringDelimiter(code, tokens) {
     return DEFAULT_STRING_DELIMITER;
   }
 
-  var occurences = {
+  var occurrences = {
     single: 0,
     double: 0
   };
@@ -138,15 +138,15 @@ function findCommonStringDelimiter(code, tokens) {
 
     var raw = code.slice(token.start, token.end);
     if (raw[0] === "'") {
-      occurences.single++;
+      occurrences.single++;
     } else {
-      occurences.double++;
+      occurrences.double++;
     }
 
     checked++;
     if (checked >= 3) break;
   }
-  if (occurences.single > occurences.double) {
+  if (occurrences.single > occurrences.double) {
     return "single";
   } else {
     return "double";

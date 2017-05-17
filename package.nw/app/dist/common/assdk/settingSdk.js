@@ -1,0 +1,1 @@
+"use strict";function init(){function e(e,t){n.stopPullDownRefresh(e,t),n.sendASSDK("getSetting",e,t)}function t(e,t){n.sendASSDK("openSetting",e,t)}var n=require("../../actions/webviewActions.js");require("../../stores/projectStores.js");_exports={openSetting:t,getSetting:e}}var _exports;init(),module.exports=_exports;

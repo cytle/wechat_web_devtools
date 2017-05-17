@@ -211,3 +211,45 @@ test('return null fromSource when largeSource is true', function(t) {
   )
   t.end()
 })
+
+test('commentRegex returns new RegExp on each get', function(t) {
+  var foo = [
+      'function foo() {'
+    , ' console.log("hello I am foo");'
+    , ' console.log("who are you");'
+    , '}'
+    , ''
+    , 'foo();'
+    , ''
+    ].join('\n')
+  , map = '//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlcyI6WyJmdW5jdGlvbiBmb28oKSB7XG4gY29uc29sZS5sb2coXCJoZWxsbyBJIGFtIGZvb1wiKTtcbiBjb25zb2xlLmxvZyhcIndobyBhcmUgeW91XCIpO1xufVxuXG5mb28oKTtcbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSJ9'
+  , re = convert.commentRegex
+
+  re.exec(foo + map)
+
+  t.equal(re.lastIndex, 372, 'has an updated lastIndex')
+  t.equal(convert.commentRegex.lastIndex, 0, 'a fresh RegExp has lastIndex of 0')
+
+  t.end()
+})
+
+test('mapFileCommentRegex returns new RegExp on each get', function(t) {
+  var foo = [
+      'function foo() {'
+    , ' console.log("hello I am foo");'
+    , ' console.log("who are you");'
+    , '}'
+    , ''
+    , 'foo();'
+    , ''
+    ].join('\n')
+  , map = '//# sourceMappingURL=foo.js.map'
+  , re = convert.mapFileCommentRegex
+
+  re.exec(foo + map)
+
+  t.equal(re.lastIndex, 119, 'has an updated lastIndex')
+  t.equal(convert.mapFileCommentRegex.lastIndex, 0, 'a fresh RegExp has lastIndex of 0')
+
+  t.end()
+})

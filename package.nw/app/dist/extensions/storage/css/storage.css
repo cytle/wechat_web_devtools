@@ -1,0 +1,147 @@
+.textarea-editor{
+  display: block;
+  width: 100%;
+  height: 50px;
+  outline: 0;
+  padding: 10px;
+  border: 1px solid #d8d8d8;
+  resize: none;
+  font-size: 16px;
+  color: green;
+  padding: 1px;
+  padding-left: 2px;
+  min-height: 28px;
+  line-height: 1
+}
+
+.input-editor{
+  width: 100%;
+  border: 1px solid #d8d8d8;
+  outline: 0;
+  color: blue;
+  font-size: 16px;
+  height:28px;
+}
+
+.tree-editor-wrap{
+  width: 100%;
+  height: 250px;
+}
+
+.action-wrap {
+  width:80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px 15px;
+  background-color: rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.border-right {
+  border-right: 1px solid rgb(240, 240, 240);
+}
+
+.item-data-type{
+  width: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px 15px;
+  background-color: rgba(0,0,0,0.05);
+  cursor: pointer;
+  color: rgb(64, 97, 75)
+}
+
+.item-data-type-dropdown{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background: url(./img/downD.png);
+}
+
+.toolbar-model-content{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top:20px;
+  left: 0;
+  z-index: 8192;
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  box-shadow: 2px 2px 10px #ccc;
+}
+
+.toolbar-model-content p{
+  color: #646464;
+  font-size: 14px;
+  line-height: 1;
+  margin: 10px;
+}
+
+.toolbar-model-content-item {
+  padding: 5px 10px;
+}
+
+.toolbar-model-content-item.toolbar-model-content-item-current {
+  background-color: rgba(72,194,61,0.1);
+}
+
+.appdata-item-key{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px 15px;
+  cursor: pointer;
+  flex: 1;
+  padding: 5px 10px;
+  color: blue ;
+}
+
+.appdata-item-value{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px 15px;
+  cursor: pointer;
+  flex: 4;
+  padding: 5px 10px;
+  color: green;
+  overflow: hidden;
+}
+
+.appdata-item-value pre{
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+.appdata-item{
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.addstorage-btn {
+  display: inline-block;
+  background-color: #48c23d;
+  color: #fff;
+  padding: 4px 20px;
+  width: 35px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.delstorage-btn{
+  display: inline-block;
+  background-color: #F44336;
+  color: #fff;
+  padding: 4px 20px;
+  width: 35px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+}

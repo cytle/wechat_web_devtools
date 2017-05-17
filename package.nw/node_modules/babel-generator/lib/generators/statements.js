@@ -115,13 +115,12 @@ var buildForXStatement = function buildForXStatement(op) {
     if (op === "await") {
       this.word("await");
       this.space();
-      op = "of";
     }
     this.token("(");
 
     this.print(node.left, node);
     this.space();
-    this.word(op);
+    this.word(op === "await" ? "of" : op);
     this.space();
     this.print(node.right, node);
     this.token(")");

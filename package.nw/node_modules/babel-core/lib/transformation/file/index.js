@@ -3,10 +3,6 @@
 exports.__esModule = true;
 exports.File = undefined;
 
-var _typeof2 = require("babel-runtime/helpers/typeof");
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _getIterator2 = require("babel-runtime/core-js/get-iterator");
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
@@ -451,45 +447,39 @@ var File = function (_Store) {
     var inputMap = this.opts.inputSourceMap;
 
     if (inputMap) {
-      var _ret = function () {
-        var inputMapConsumer = new _sourceMap2.default.SourceMapConsumer(inputMap);
-        var outputMapConsumer = new _sourceMap2.default.SourceMapConsumer(map);
+      var inputMapConsumer = new _sourceMap2.default.SourceMapConsumer(inputMap);
+      var outputMapConsumer = new _sourceMap2.default.SourceMapConsumer(map);
 
-        var mergedGenerator = new _sourceMap2.default.SourceMapGenerator({
-          file: inputMapConsumer.file,
-          sourceRoot: inputMapConsumer.sourceRoot
+      var mergedGenerator = new _sourceMap2.default.SourceMapGenerator({
+        file: inputMapConsumer.file,
+        sourceRoot: inputMapConsumer.sourceRoot
+      });
+
+      var source = outputMapConsumer.sources[0];
+
+      inputMapConsumer.eachMapping(function (mapping) {
+        var generatedPosition = outputMapConsumer.generatedPositionFor({
+          line: mapping.generatedLine,
+          column: mapping.generatedColumn,
+          source: source
         });
+        if (generatedPosition.column != null) {
+          mergedGenerator.addMapping({
+            source: mapping.source,
 
-        var source = outputMapConsumer.sources[0];
+            original: mapping.source == null ? null : {
+              line: mapping.originalLine,
+              column: mapping.originalColumn
+            },
 
-        inputMapConsumer.eachMapping(function (mapping) {
-          var generatedPosition = outputMapConsumer.generatedPositionFor({
-            line: mapping.generatedLine,
-            column: mapping.generatedColumn,
-            source: source
+            generated: generatedPosition
           });
-          if (generatedPosition.column != null) {
-            mergedGenerator.addMapping({
-              source: mapping.source,
+        }
+      });
 
-              original: mapping.source == null ? null : {
-                line: mapping.originalLine,
-                column: mapping.originalColumn
-              },
-
-              generated: generatedPosition
-            });
-          }
-        });
-
-        var mergedMap = mergedGenerator.toJSON();
-        inputMap.mappings = mergedMap.mappings;
-        return {
-          v: inputMap
-        };
-      }();
-
-      if ((typeof _ret === "undefined" ? "undefined" : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+      var mergedMap = mergedGenerator.toJSON();
+      inputMap.mappings = mergedMap.mappings;
+      return inputMap;
     } else {
       return map;
     }

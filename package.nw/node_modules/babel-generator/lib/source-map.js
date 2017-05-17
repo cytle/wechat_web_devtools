@@ -31,26 +31,22 @@ var SourceMap = function () {
   }
 
   SourceMap.prototype.get = function get() {
-    var _this = this;
-
     if (!this._cachedMap) {
-      (function () {
-        var map = _this._cachedMap = new _sourceMap2.default.SourceMapGenerator({
-          file: _this._opts.sourceMapTarget,
-          sourceRoot: _this._opts.sourceRoot
+      var map = this._cachedMap = new _sourceMap2.default.SourceMapGenerator({
+        file: this._opts.sourceMapTarget,
+        sourceRoot: this._opts.sourceRoot
+      });
+
+      var code = this._code;
+      if (typeof code === "string") {
+        map.setSourceContent(this._opts.sourceFileName, code);
+      } else if ((typeof code === "undefined" ? "undefined" : (0, _typeof3.default)(code)) === "object") {
+        (0, _keys2.default)(code).forEach(function (sourceFileName) {
+          map.setSourceContent(sourceFileName, code[sourceFileName]);
         });
+      }
 
-        var code = _this._code;
-        if (typeof code === "string") {
-          map.setSourceContent(_this._opts.sourceFileName, code);
-        } else if ((typeof code === "undefined" ? "undefined" : (0, _typeof3.default)(code)) === "object") {
-          (0, _keys2.default)(code).forEach(function (sourceFileName) {
-            map.setSourceContent(sourceFileName, code[sourceFileName]);
-          });
-        }
-
-        _this._rawMappings.forEach(map.addMapping, map);
-      })();
+      this._rawMappings.forEach(map.addMapping, map);
     }
 
     return this._cachedMap.toJSON();

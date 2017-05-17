@@ -12,6 +12,10 @@ var _hoist = require("./hoist");
 
 var _emit = require("./emit");
 
+var _replaceShorthandObjectMethod = require("./replaceShorthandObjectMethod");
+
+var _replaceShorthandObjectMethod2 = _interopRequireDefault(_replaceShorthandObjectMethod);
+
 var _util = require("./util");
 
 var util = _interopRequireWildcard(_util);
@@ -20,15 +24,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getMarkInfo = require("private").makeAccessor(); /**
-                                                      * Copyright (c) 2014, Facebook, Inc.
-                                                      * All rights reserved.
-                                                      *
-                                                      * This source code is licensed under the BSD-style license found in the
-                                                      * https://raw.github.com/facebook/regenerator/master/LICENSE file. An
-                                                      * additional grant of patent rights can be found in the PATENTS file in
-                                                      * the same directory.
-                                                      */
+/**
+ * Copyright (c) 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * https://raw.github.com/facebook/regenerator/master/LICENSE file. An
+ * additional grant of patent rights can be found in the PATENTS file in
+ * the same directory.
+ */
+
+var getMarkInfo = require("private").makeAccessor();
 
 exports.visitor = {
   Function: {
@@ -50,6 +56,10 @@ exports.visitor = {
         // Not a generator or async function.
         return;
       }
+
+      // if this is an ObjectMethod, we need to convert it to an ObjectProperty
+      path = (0, _replaceShorthandObjectMethod2.default)(path);
+      node = path.node;
 
       var contextId = path.scope.generateUidIdentifier("context");
       var argsId = path.scope.generateUidIdentifier("args");
@@ -104,7 +114,10 @@ exports.visitor = {
       var didRenameArguments = renameArguments(path, argsId);
       if (didRenameArguments) {
         vars = vars || t.variableDeclaration("var", []);
-        vars.declarations.push(t.variableDeclarator(argsId, t.identifier("arguments")));
+        var argumentIdentifier = t.identifier("arguments");
+        // we need to do this as otherwise arguments in arrow functions gets hoisted
+        argumentIdentifier._shadowedFunctionLiteral = path;
+        vars.declarations.push(t.variableDeclarator(argsId, argumentIdentifier));
       }
 
       var emitter = new _emit.Emitter(contextId);

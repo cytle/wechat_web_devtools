@@ -3,10 +3,6 @@
 exports.__esModule = true;
 exports.is = undefined;
 
-var _typeof2 = require("babel-runtime/helpers/typeof");
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _getIterator2 = require("babel-runtime/core-js/get-iterator");
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
@@ -319,8 +315,6 @@ function resolve(dangerous, resolved) {
 }
 
 function _resolve(dangerous, resolved) {
-  var _this = this;
-
   if (resolved && resolved.indexOf(this) >= 0) return;
 
   resolved = resolved || [];
@@ -339,20 +333,12 @@ function _resolve(dangerous, resolved) {
     if (binding.kind === "module") return;
 
     if (binding.path !== this) {
-      var _ret = function () {
-        var ret = binding.path.resolve(dangerous, resolved);
+      var ret = binding.path.resolve(dangerous, resolved);
 
-        if (_this.find(function (parent) {
-          return parent.node === ret.node;
-        })) return {
-            v: void 0
-          };
-        return {
-          v: ret
-        };
-      }();
-
-      if ((typeof _ret === "undefined" ? "undefined" : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+      if (this.find(function (parent) {
+        return parent.node === ret.node;
+      })) return;
+      return ret;
     }
   } else if (this.isTypeCastExpression()) {
     return this.get("expression").resolve(dangerous, resolved);

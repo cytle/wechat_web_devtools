@@ -1,0 +1,1 @@
+"use strict";function init(){var t=require("../../lib/react.js");return t.createClass({render:function(){if(!this.props.show)return null;var e={position:"fixed",top:0,bottom:0,left:0,right:0,zIndex:this.props.hasOwnProperty("zIndex")?this.props.zIndex:99999};return t.createElement("div",{style:e,onClick:this.props.onClick})}})}module.exports=init();

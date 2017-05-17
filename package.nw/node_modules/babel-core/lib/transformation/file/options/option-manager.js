@@ -314,7 +314,7 @@ var OptionManager = function () {
           throw new Error("Options " + (0, _stringify2.default)(options) + " passed to " + (presetLoc || "a preset") + " which does not accept options.");
         }
 
-        if (typeof val === "function") val = val(context, options);
+        if (typeof val === "function") val = val(context, options, { dirname: dirname });
 
         if ((typeof val === "undefined" ? "undefined" : (0, _typeof3.default)(val)) !== "object") {
           throw new Error("Unsupported preset format: " + val + ".");

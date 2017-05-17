@@ -12,6 +12,7 @@ import assert from "assert";
 import * as t from "babel-types";
 import { hoist } from "./hoist";
 import { Emitter } from "./emit";
+import replaceShorthandObjectMethod from "./replaceShorthandObjectMethod";
 import * as util from "./util";
 
 let getMarkInfo = require("private").makeAccessor();
@@ -36,6 +37,10 @@ exports.visitor = {
         // Not a generator or async function.
         return;
       }
+
+      // if this is an ObjectMethod, we need to convert it to an ObjectProperty
+      path = replaceShorthandObjectMethod(path);
+      node = path.node;
 
       let contextId = path.scope.generateUidIdentifier("context");
       let argsId = path.scope.generateUidIdentifier("args");
@@ -91,8 +96,11 @@ exports.visitor = {
       let didRenameArguments = renameArguments(path, argsId);
       if (didRenameArguments) {
         vars = vars || t.variableDeclaration("var", []);
+        const argumentIdentifier = t.identifier("arguments");
+        // we need to do this as otherwise arguments in arrow functions gets hoisted
+        argumentIdentifier._shadowedFunctionLiteral = path;
         vars.declarations.push(t.variableDeclarator(
-          argsId, t.identifier("arguments")
+          argsId, argumentIdentifier
         ));
       }
 

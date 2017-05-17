@@ -140,7 +140,7 @@ compiled.js.map:
   "file": "compiled.js",
   "sources": ["original.js"],
   "names": [],
-  "mappings": ";;;AAAA,MAAM,IAAI"
+  "mappings": ";;AAAA,MAAM,IAAI"
 }
 ```
 

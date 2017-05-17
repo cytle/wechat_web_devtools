@@ -1,0 +1,1 @@
+"use strict";function init(){var e=require("../../../lib/react.js"),t=e.createClass({displayName:"Input",getInitialState:function(e){return{}},render:function(){var t=this.props;t.title,t.desc,t.placeholder,t.defaultValue,t.footnote,t.submit;return e.createElement("input",{className:"ui-input",type:"number"})}});_exports=t}var _exports;init(),module.exports=_exports;

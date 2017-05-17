@@ -8,12 +8,12 @@ Converts a source-map from/to  different formats and allows adding/changing prop
 var convert = require('convert-source-map');
 
 var json = convert
-  .fromComment('//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vLmpzIiwic291cmNlcyI6WyJjb25zb2xlLmxvZyhcImhpXCIpOyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')
+  .fromComment('//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnVpbGQvZm9vLm1pbi5qcyIsInNvdXJjZXMiOlsic3JjL2Zvby5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')
   .toJSON();
 
 var modified = convert
-  .fromComment('//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vLmpzIiwic291cmNlcyI6WyJjb25zb2xlLmxvZyhcImhpXCIpOyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')
-  .setProperty('sources', [ 'CONSOLE.LOG("HI");' ])
+  .fromComment('//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnVpbGQvZm9vLm1pbi5qcyIsInNvdXJjZXMiOlsic3JjL2Zvby5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')
+  .setProperty('sources', [ 'SRC/FOO.JS' ])
   .toJSON();
 
 console.log(json);
@@ -21,8 +21,8 @@ console.log(modified);
 ```
 
 ```json
-{"version":3,"file":"foo.js","sources":["console.log(\"hi\");"],"names":[],"mappings":"AAAA","sourceRoot":"/"}
-{"version":3,"file":"foo.js","sources":["CONSOLE.LOG(\"HI\");"],"names":[],"mappings":"AAAA","sourceRoot":"/"}
+{"version":3,"file":"build/foo.min.js","sources":["src/foo.js"],"names":[],"mappings":"AAAA","sourceRoot":"/"}
+{"version":3,"file":"build/foo.min.js","sources":["SRC/FOO.JS"],"names":[],"mappings":"AAAA","sourceRoot":"/"}
 ```
 
 ## API
@@ -107,11 +107,11 @@ Returns `src` with all source map comments pointing to map files removed.
 
 ### commentRegex
 
-Returns the regex used to find source map comments.
+Provides __a fresh__ RegExp each time it is accessed. Can be used to find source map comments.
 
 ### mapFileCommentRegex
 
-Returns the regex used to find source map comments pointing to map files.
+Provides __a fresh__ RegExp each time it is accessed. Can be used to find source map comments pointing to map files.
 
 ### generateMapFileComment(file, [options])
 

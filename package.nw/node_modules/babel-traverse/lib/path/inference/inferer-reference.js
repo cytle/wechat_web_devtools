@@ -44,15 +44,13 @@ function getTypeAnnotationBindingConstantViolations(path, name) {
 
   var testType = getConditionalAnnotation(path, name);
   if (testType) {
-    (function () {
-      var testConstantViolations = getConstantViolationsBefore(binding, testType.ifStatement);
+    var testConstantViolations = getConstantViolationsBefore(binding, testType.ifStatement);
 
-      constantViolations = constantViolations.filter(function (path) {
-        return testConstantViolations.indexOf(path) < 0;
-      });
+    constantViolations = constantViolations.filter(function (path) {
+      return testConstantViolations.indexOf(path) < 0;
+    });
 
-      types.push(testType.typeAnnotation);
-    })();
+    types.push(testType.typeAnnotation);
   }
 
   if (constantViolations.length) {

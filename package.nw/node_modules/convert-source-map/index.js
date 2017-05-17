@@ -2,11 +2,20 @@
 var fs = require('fs');
 var path = require('path');
 
-var commentRx = /^\s*\/(?:\/|\*)[@#]\s+sourceMappingURL=data:(?:application|text)\/json;(?:charset[:=]\S+?;)?base64,(?:.*)$/mg;
-var mapFileCommentRx =
-  //Example (Extra space between slashes added to solve Safari bug. Exclude space in production):
-  //     / /# sourceMappingURL=foo.js.map           /*# sourceMappingURL=foo.js.map */
-  /(?:\/\/[@#][ \t]+sourceMappingURL=([^\s'"]+?)[ \t]*$)|(?:\/\*[@#][ \t]+sourceMappingURL=([^\*]+?)[ \t]*(?:\*\/){1}[ \t]*$)/mg
+Object.defineProperty(exports, 'commentRegex', {
+  get: function getCommentRegex () {
+    return /^\s*\/(?:\/|\*)[@#]\s+sourceMappingURL=data:(?:application|text)\/json;(?:charset[:=]\S+?;)?base64,(?:.*)$/mg;
+  }
+});
+
+Object.defineProperty(exports, 'mapFileCommentRegex', {
+  get: function getMapFileCommentRegex () {
+    //Example (Extra space between slashes added to solve Safari bug. Exclude space in production):
+    //     / /# sourceMappingURL=foo.js.map           /*# sourceMappingURL=foo.js.map */
+    return /(?:\/\/[@#][ \t]+sourceMappingURL=([^\s'"]+?)[ \t]*$)|(?:\/\*[@#][ \t]+sourceMappingURL=([^\*]+?)[ \t]*(?:\*\/){1}[ \t]*$)/mg;
+  }
+});
+
 
 function decodeBase64(base64) {
   return new Buffer(base64, 'base64').toString();
@@ -19,8 +28,7 @@ function stripComment(sm) {
 function readFromFileMap(sm, dir) {
   // NOTE: this will only work on the server since it attempts to read the map file
 
-  mapFileCommentRx.lastIndex = 0;
-  var r = mapFileCommentRx.exec(sm);
+  var r = exports.mapFileCommentRegex.exec(sm);
 
   // for some odd reason //# .. captures in 1 and /* .. */ in 2
   var filename = r[1] || r[2];
@@ -104,37 +112,25 @@ exports.fromMapFileComment = function (comment, dir) {
 
 // Finds last sourcemap comment in file or returns null if none was found
 exports.fromSource = function (content) {
-  var m = content.match(commentRx);
+  var m = content.match(exports.commentRegex);
   return m ? exports.fromComment(m.pop()) : null;
 };
 
 // Finds last sourcemap comment in file or returns null if none was found
 exports.fromMapFileSource = function (content, dir) {
-  var m = content.match(mapFileCommentRx);
+  var m = content.match(exports.mapFileCommentRegex);
   return m ? exports.fromMapFileComment(m.pop(), dir) : null;
 };
 
 exports.removeComments = function (src) {
-  return src.replace(commentRx, '');
+  return src.replace(exports.commentRegex, '');
 };
 
 exports.removeMapFileComments = function (src) {
-  return src.replace(mapFileCommentRx, '');
+  return src.replace(exports.mapFileCommentRegex, '');
 };
 
 exports.generateMapFileComment = function (file, options) {
   var data = 'sourceMappingURL=' + file;
   return options && options.multiline ? '/*# ' + data + ' */' : '//# ' + data;
 };
-
-Object.defineProperty(exports, 'commentRegex', {
-  get: function getCommentRegex () {
-    return commentRx;
-  }
-});
-
-Object.defineProperty(exports, 'mapFileCommentRegex', {
-  get: function getMapFileCommentRegex () {
-    return mapFileCommentRx;
-  }
-});

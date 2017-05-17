@@ -5,6 +5,7 @@ exports.AwaitExpression = exports.FunctionTypeAnnotation = undefined;
 exports.NullableTypeAnnotation = NullableTypeAnnotation;
 exports.UpdateExpression = UpdateExpression;
 exports.ObjectExpression = ObjectExpression;
+exports.DoExpression = DoExpression;
 exports.Binary = Binary;
 exports.BinaryExpression = BinaryExpression;
 exports.SequenceExpression = SequenceExpression;
@@ -55,27 +56,19 @@ function NullableTypeAnnotation(node, parent) {
 
 exports.FunctionTypeAnnotation = NullableTypeAnnotation;
 function UpdateExpression(node, parent) {
-  if (t.isMemberExpression(parent) && parent.object === node) {
-    return true;
-  }
-
-  return false;
+  return t.isMemberExpression(parent) && parent.object === node;
 }
 
 function ObjectExpression(node, parent, printStack) {
   return isFirstInStatement(printStack, { considerArrow: true });
 }
 
+function DoExpression(node, parent, printStack) {
+  return isFirstInStatement(printStack);
+}
+
 function Binary(node, parent) {
-  if ((t.isCallExpression(parent) || t.isNewExpression(parent)) && parent.callee === node) {
-    return true;
-  }
-
-  if (t.isUnaryLike(parent)) {
-    return true;
-  }
-
-  if (t.isMemberExpression(parent) && parent.object === node) {
+  if ((t.isCallExpression(parent) || t.isNewExpression(parent)) && parent.callee === node || t.isUnaryLike(parent) || t.isMemberExpression(parent) && parent.object === node || t.isAwaitExpression(parent)) {
     return true;
   }
 
@@ -86,11 +79,7 @@ function Binary(node, parent) {
     var nodeOp = node.operator;
     var nodePos = PRECEDENCE[nodeOp];
 
-    if (parentPos > nodePos) {
-      return true;
-    }
-
-    if (parentPos === nodePos && parent.right === node && !t.isLogicalExpression(parent)) {
+    if (parentPos === nodePos && parent.right === node && !t.isLogicalExpression(parent) || parentPos > nodePos) {
       return true;
     }
   }
@@ -99,49 +88,12 @@ function Binary(node, parent) {
 }
 
 function BinaryExpression(node, parent) {
-  if (node.operator === "in") {
-    if (t.isVariableDeclarator(parent)) {
-      return true;
-    }
-
-    if (t.isFor(parent)) {
-      return true;
-    }
-  }
-
-  return false;
+  return node.operator === "in" && (t.isVariableDeclarator(parent) || t.isFor(parent));
 }
 
 function SequenceExpression(node, parent) {
-  if (t.isForStatement(parent)) {
-    return false;
-  }
 
-  if (t.isExpressionStatement(parent) && parent.expression === node) {
-    return false;
-  }
-
-  if (t.isReturnStatement(parent)) {
-    return false;
-  }
-
-  if (t.isThrowStatement(parent)) {
-    return false;
-  }
-
-  if (t.isSwitchStatement(parent) && parent.discriminant === node) {
-    return false;
-  }
-
-  if (t.isWhileStatement(parent) && parent.test === node) {
-    return false;
-  }
-
-  if (t.isIfStatement(parent) && parent.test === node) {
-    return false;
-  }
-
-  if (t.isForInStatement(parent) && parent.right === node) {
+  if (t.isForStatement(parent) || t.isThrowStatement(parent) || t.isReturnStatement(parent) || t.isIfStatement(parent) && parent.test === node || t.isWhileStatement(parent) && parent.test === node || t.isForInStatement(parent) && parent.right === node || t.isSwitchStatement(parent) && parent.discriminant === node || t.isExpressionStatement(parent) && parent.expression === node) {
     return false;
   }
 
@@ -158,15 +110,7 @@ function ClassExpression(node, parent, printStack) {
 }
 
 function UnaryLike(node, parent) {
-  if (t.isMemberExpression(parent, { object: node })) {
-    return true;
-  }
-
-  if (t.isCallExpression(parent, { callee: node }) || t.isNewExpression(parent, { callee: node })) {
-    return true;
-  }
-
-  return false;
+  return t.isMemberExpression(parent, { object: node }) || t.isCallExpression(parent, { callee: node }) || t.isNewExpression(parent, { callee: node });
 }
 
 function FunctionExpression(node, parent, printStack) {
@@ -182,19 +126,7 @@ function ArrowFunctionExpression(node, parent) {
 }
 
 function ConditionalExpression(node, parent) {
-  if (t.isUnaryLike(parent)) {
-    return true;
-  }
-
-  if (t.isBinary(parent)) {
-    return true;
-  }
-
-  if (t.isConditionalExpression(parent, { test: node })) {
-    return true;
-  }
-
-  if (t.isAwaitExpression(parent)) {
+  if (t.isUnaryLike(parent) || t.isBinary(parent) || t.isConditionalExpression(parent, { test: node }) || t.isAwaitExpression(parent)) {
     return true;
   }
 
@@ -221,19 +153,7 @@ function isFirstInStatement(printStack) {
   i--;
   var parent = printStack[i];
   while (i > 0) {
-    if (t.isExpressionStatement(parent, { expression: node })) {
-      return true;
-    }
-
-    if (t.isTaggedTemplateExpression(parent)) {
-      return true;
-    }
-
-    if (considerDefaultExports && t.isExportDefaultDeclaration(parent, { declaration: node })) {
-      return true;
-    }
-
-    if (considerArrow && t.isArrowFunctionExpression(parent, { body: node })) {
+    if (t.isExpressionStatement(parent, { expression: node }) || t.isTaggedTemplateExpression(parent) || considerDefaultExports && t.isExportDefaultDeclaration(parent, { declaration: node }) || considerArrow && t.isArrowFunctionExpression(parent, { body: node })) {
       return true;
     }
 
