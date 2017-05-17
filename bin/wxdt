@@ -1,9 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
-cd `dirname $0`/..
-
-root_dir=$(pwd)
-
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+echo $root_dir
 . "$root_dir/bin/build.conf"
 
 cur_nwjs_v=""
@@ -12,7 +10,7 @@ if [ -f "$root_dir/dist/nwjs_version" ]; then
     cur_nwjs_v=`cat "$root_dir/dist/nwjs_version"`
 fi
 
-if [ "$cur_nwjs_v" != $nwjs_v ]; then
+if [ "$cur_nwjs_v" != "$nwjs_v" ]; then
     echo "安装微信开发者工具对应nwjs版本：$nwjs_v"
     sh "$root_dir/bin/update_nwjs.sh"
 fi
@@ -22,6 +20,8 @@ if [ $want = "replace" ]; then
   sh "$root_dir/bin/replace_weapp_vendor.sh"
 elif [ $want = "start" ]; then
   `$root_dir/dist/nw`
+elif [ $want = "install" ]; then
+  echo "安装完成"
 else
   echo "不支持$want操作"
   exit 127

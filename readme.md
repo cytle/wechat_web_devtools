@@ -17,6 +17,8 @@ linux下使用微信web开发者工具.
 ## Installation
 
 ```console
+git clone git@github.com:cytle/wechat_web_devtools.git
+cd wechat_web_devtools
 ./bin/wxdt
 ```
 

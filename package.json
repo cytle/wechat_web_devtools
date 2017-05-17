@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "sh ./bin/wxdt.sh replace"
+    "install": "sh bin/wxdt install"
   },
   "bin": {
-    "wxdt": "./bin/wxdt"
+    "wxdt": "bin/wxdt"
   },
   "repository": {
     "type": "git",

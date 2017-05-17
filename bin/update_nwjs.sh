@@ -1,13 +1,12 @@
 #! /bin/bash
 # 下载nwjs，构建项目
-#
-cd `dirname $0`/..
 
-root_dir=$(pwd)
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 . "$root_dir/bin/build.conf"
 
-tmp_dir="/tmp/wcwd_xsp"
+tmp_dir="/tmp/wxdt_xsp"
 
 nwjs_file="$tmp_dir/nwjs-v$nwjs_v.tar.gz"
 nwjs_dir="$tmp_dir/nwjs-sdk-v${nwjs_v}-linux-x64"
