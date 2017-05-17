@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "sh ./bin/pack.sh",
-    "install": "sh ./bin/pack.sh install"
+    "install": "sh ./bin/wxdt.sh replace"
   },
   "bin": {
     "wxdt": "./bin/wxdt"
