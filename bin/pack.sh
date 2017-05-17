@@ -56,7 +56,7 @@ if [ $want = "pack" ]; then
   mkdir -p "$tmp_dir/build"
   tar -zcvf "$tmp_dir/build/$dist_wechat_package" -C "$root_dir" dist
 else
-  ln -s "$root_dir/package.nw"
+  ln -sf "$root_dir/package.nw" "$dist_dir/package.nw"
   if [ $want = "install" ]; then
     sh "$dist_dir/scripts/replace_weapp_vendor.sh"
   fi
