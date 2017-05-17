@@ -2,7 +2,7 @@
 
 cd `dirname $0`/..
 
-cur_dir=$(pwd)
+root_dir=$(pwd)
 dev_tools_config_dir="$HOME/.config/微信web开发者工具"
 
 rm -rf $dev_tools_config_dir
@@ -27,13 +27,9 @@ if [ -d "$dev_tools_config_dir" ]; then
   cd $dev_tools_config_dir/WeappVendor
   mkdir -p s
   mv wc* s
-  echo "cp $cur_dir/scripts/WeappVendor/* $(pwd)"
-  cp $cur_dir/scripts/WeappVendor/* ./
-  echo "install success!"
+  echo "cp $root_dir/WeappVendor/* $(pwd)"
+  cp $root_dir/WeappVendor/* ./
+  echo "Success"
 else
-  echo "install faile! please reinstll"
+  echo "Fail! Please reinstall"
 fi
-
-
-
-

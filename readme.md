@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-0.15.152900](https://img.shields.io/badge/wx_dev_tools-0.15.152900-green.svg)
+![wx-dev-tools v-0.17.170900](https://img.shields.io/badge/wx_dev_tools-0.17.170900-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -12,14 +12,12 @@ linux下使用微信web开发者工具.
 
 - 2017/03/28 更新:微信小程序升级到0.15.152800
 - 2017/03/30 更新:微信小程序升级到0.15.152900
+- 2017/05/18 更新:微信小程序升级到0.17.170900
 
 ## Installation
 
-### 如果不需要小程序开发
 ```console
-git clone git@github.com:cytle/wechat_web_devtools.git
-cd wechat_web_devtools && sh ./bin/pack.sh build
-cd dist && ./nw
+./bin/wxdt
 ```
 
 ### 需要小程序开发
@@ -34,15 +32,28 @@ sudo apt install wine
 WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
 ```
 
-3. 安装
+3. 替换WeappVendor
 ```console
-git clone git@github.com:cytle/wechat_web_devtools.git
-cd wechat_web_devtools && sh ./bin/pack.sh install
+./bin/wxdt replace
 ```
 
 4. 启动
 ```console
-cd dist && ./nw
+./bin/wxdt
+```
+
+## 更新
+
+直接pull就好了
+
+```console
+git pull origin
+```
+
+如果wcc和wcsc编译有问题，执行以下，让工具重新生成wcc和wcsc，**会删除开发者工具配置文件,所有工程和登录信息会消失**
+
+```console
+./bin/wxdt replace
 ```
 
 ## 截图

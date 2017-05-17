@@ -6,7 +6,7 @@ root_dir=$(pwd)
 
 . "$root_dir/bin/build.conf"
 
-tmp_dir="$root_dir/.tmp"
+tmp_dir="/tmp/wcwd_xsp"
 dist_dir="$root_dir/dist"
 
 wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
