@@ -15,7 +15,7 @@ linux下使用微信web开发者工具.
 - 2017/05/18 更新:微信小程序升级到0.17.170900
 - 2017/05/19 更新:微信小程序升级到0.17.171900
 
-## Installation
+## Usage
 
 ```console
 git clone git@github.com:cytle/wechat_web_devtools.git
@@ -37,7 +37,7 @@ WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
 
 3. 替换WeappVendor
 ```console
-./bin/wxdt replace
+./bin/wxdt install
 ```
 
 4. 启动
@@ -56,7 +56,8 @@ git pull origin
 如果wcc和wcsc编译有问题，执行以下，让工具重新生成wcc和wcsc，**会删除开发者工具配置文件,所有工程和登录信息会消失**
 
 ```console
-./bin/wxdt replace
+rm -rf "$HOME/.config/微信web开发者工具"
+./bin/wxdt install
 ```
 
 ## 截图

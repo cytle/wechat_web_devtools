@@ -15,6 +15,7 @@ wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
 wcwd_download="https://dldir1.qq.com/WechatWebDev/${wechat_v//./}/wechat_web_devtools_${wechat_v}_x64.exe"
 
 wcwd_package_dir="$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具/package.nw"
+onlineverdor_dir="$root_dir/package.nw/app/dist/weapp/onlinevendor"
 
 mkdir -p $tmp_dir
 
@@ -32,3 +33,6 @@ wine $wcwd_file
 
 rm -rf "$root_dir/package.nw"
 cp -r "$wcwd_package_dir" "$root_dir"
+
+# 链接wcc.exe wcsc.exe
+ln "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"

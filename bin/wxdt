@@ -16,11 +16,10 @@ if [ "$cur_nwjs_v" != "$nwjs_v" ]; then
 fi
 
 want=${1:-"start"}
-if [ $want = "replace" ]; then
-  sh "$root_dir/bin/replace_weapp_vendor.sh"
-elif [ $want = "start" ]; then
+if [ $want = "start" ]; then
   `$root_dir/dist/nw`
 elif [ $want = "install" ]; then
+  sh "$root_dir/bin/replace_weapp_vendor.sh"
   echo "安装完成"
 else
   echo "不支持$want操作"

@@ -4,33 +4,24 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 dev_tools_config_dir="$HOME/.config/微信web开发者工具"
 
-rm -rf $dev_tools_config_dir
+if [ ! -d "$dev_tools_config_dir" ]; then
+  cd $root_dir/dist;
+  ./nw &
 
-cd $root_dir/dist;
+  nw_pid=$!
 
-./nw &
+  echo "please wait 5s!"
+  for k in $( seq 1 5 ); do
+    sleep 1s && echo "${k}s"
+  done
+  echo "kill nw"
 
-nw_pid=$!
+  kill -9 $nw_pid
+fi
 
-echo "please wait 5s!"
-sleep 1s
-echo "4s"
-sleep 1s
-echo "3s"
-sleep 1s
-echo "2s"
-sleep 1s
-echo "1s"
-sleep 1s
-echo "after 5s"
-
-kill -9 $nw_pid
 if [ -d "$dev_tools_config_dir" ]; then
-  cd $dev_tools_config_dir/WeappVendor
-  mkdir -p s
-  mv wc* s
-  echo "cp $root_dir/bin/WeappVendor/* $(pwd)"
-  cp $root_dir/bin/WeappVendor/* ./
+  echo "cp -rfu $root_dir/bin/WeappVendor/* $dev_tools_config_dir/WeappVendor"
+  cp -rf $root_dir/bin/WeappVendor/* "$dev_tools_config_dir/WeappVendor" 2> /dev/null
   echo "Success"
 else
   echo "Fail! Please reinstall"
