@@ -1,4 +1,8 @@
 #! /bin/bash
+# 更新微信开发者工具版本
+#   1. 根据build.conf下载指定版本
+#   2. 使用wine安装
+#   3. 拷贝到package.nw
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
@@ -21,7 +25,6 @@ if [ ! -f "$wcwd_file" ]; then
   echo $wcwd_download
   echo "================================="
   wget "$wcwd_download" -O $wcwd_file
-  $? -ne 0 && exit "$?"
 fi
 
 # 安装
