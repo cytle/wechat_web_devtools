@@ -35,4 +35,4 @@ rm -rf "$root_dir/package.nw"
 cp -r "$wcwd_package_dir" "$root_dir"
 
 # 链接wcc.exe wcsc.exe
-ln "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"
+ln -f "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"
