@@ -21,6 +21,10 @@ if [ $want = "start" ]; then
 elif [ $want = "install" ]; then
   sh "$root_dir/bin/replace_weapp_vendor.sh"
   echo "安装完成"
+elif [ $want = "debug" ]; then
+  port=9222
+  `$root_dir/dist/nw --remote-debugging-port=$port`
+  echo "remote-debugging-port:$port"
 else
   echo "不支持$want操作"
   exit 127
