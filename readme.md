@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-0.17.170900](https://img.shields.io/badge/wx_dev_tools-0.17.170900-green.svg)
+![wx-dev-tools v-0.17.172600](https://img.shields.io/badge/wx_dev_tools-0.17.172600-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
