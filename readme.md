@@ -67,13 +67,13 @@ git pull origin
 
 ## 截图
 
-![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/新建项目界面.png)
+![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/新建项目界面.png)
 
 
-![设置界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/设置界面.png)
+![设置界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/设置界面.png)
 
 
-![调试界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/调试界面.png)
+![调试界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/调试界面.png)
 
 上面项目来自https://github.com/jectychen/wechat-v2ex
 
