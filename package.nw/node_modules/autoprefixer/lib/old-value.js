@@ -1,30 +1,32 @@
-(function() {
-  var OldValue, utils;
+'use strict';
 
-  utils = require('./utils');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  OldValue = (function() {
+var utils = require('./utils');
+
+var OldValue = function () {
     function OldValue(unprefixed, prefixed, string, regexp) {
-      this.unprefixed = unprefixed;
-      this.prefixed = prefixed;
-      this.string = string;
-      this.regexp = regexp;
-      this.regexp || (this.regexp = utils.regexp(this.prefixed));
-      this.string || (this.string = this.prefixed);
+        _classCallCheck(this, OldValue);
+
+        this.unprefixed = unprefixed;
+        this.prefixed = prefixed;
+        this.string = string || prefixed;
+        this.regexp = regexp || utils.regexp(prefixed);
     }
 
-    OldValue.prototype.check = function(value) {
-      if (value.indexOf(this.string) !== -1) {
-        return !!value.match(this.regexp);
-      } else {
+    /**
+     * Check, that value contain old value
+     */
+
+
+    OldValue.prototype.check = function check(value) {
+        if (value.indexOf(this.string) !== -1) {
+            return !!value.match(this.regexp);
+        }
         return false;
-      }
     };
 
     return OldValue;
+}();
 
-  })();
-
-  module.exports = OldValue;
-
-}).call(this);
+module.exports = OldValue;

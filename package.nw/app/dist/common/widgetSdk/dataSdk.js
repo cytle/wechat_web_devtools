@@ -1,0 +1,1 @@
+"use strict";function init(){var t=require("../../actions/webviewActions.js"),e=function(e,i){t.triggerGettingWidgetData(e),i({errMsg:"triggerGettingWidgetData:ok"})};_exports={triggerGettingWidgetData:e}}var _exports;init(),module.exports=_exports;

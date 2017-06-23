@@ -1,0 +1,1 @@
+"use strict";function init(){var r=require("../../actions/webviewActions.js"),s=function(s,t){r.drawWidgetCanvas(s),t({errMsg:"drawCanvas:ok"})};_exports={drawCanvas:s}}var _exports;init(),module.exports=_exports;

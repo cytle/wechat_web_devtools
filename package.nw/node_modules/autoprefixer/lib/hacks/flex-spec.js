@@ -1,11 +1,21 @@
-(function() {
-  module.exports = function(prefix) {
-    var spec;
-    spec = prefix === '-webkit- 2009' || prefix === '-moz-' ? 2009 : prefix === '-ms-' ? 2012 : prefix === '-webkit-' ? 'final' : void 0;
-    if (prefix === '-webkit- 2009') {
-      prefix = '-webkit-';
-    }
-    return [spec, prefix];
-  };
+'use strict';
 
-}).call(this);
+/**
+ * Return flexbox spec versions by prefix
+ */
+module.exports = function (prefix) {
+    var spec = void 0;
+    if (prefix === '-webkit- 2009' || prefix === '-moz-') {
+        spec = 2009;
+    } else if (prefix === '-ms-') {
+        spec = 2012;
+    } else if (prefix === '-webkit-') {
+        spec = 'final';
+    }
+
+    if (prefix === '-webkit- 2009') {
+        prefix = '-webkit-';
+    }
+
+    return [spec, prefix];
+};
