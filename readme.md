@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-0.17.172600](https://img.shields.io/badge/wx_dev_tools-0.17.172600-green.svg)
+![wx-dev-tools v-0.18.182200](https://img.shields.io/badge/wx_dev_tools-0.18.182200-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -15,6 +15,7 @@ linux下使用微信web开发者工具.
 - 2017/05/18 更新:微信小程序升级到0.17.170900
 - 2017/05/19 更新:微信小程序升级到0.17.171900
 - 2017/05/29 更新:微信小程序升级到0.17.172600
+- 2017/06/23 更新:微信小程序升级到0.18.182200
 
 ## Usage
 
