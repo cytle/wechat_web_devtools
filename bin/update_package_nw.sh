@@ -9,7 +9,7 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 tmp_dir="/tmp/wxdt_xsp"
 dist_dir="$root_dir/dist"
-cur_wechat_v=`cat $root_dir/bin/wechat_v`
+cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
 
@@ -54,7 +54,7 @@ cp -r "$wcwd_package_dir" "$root_dir"
 # 链接wcc.exe wcsc.exe
 ln -f "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"
 
-echo $wechat_v > $root_dir/bin/wechat_v
+echo $wechat_v > $root_dir/wechat_v
 
 echo '安装完成'
-echo "wechat_v: $(cat $root_dir/bin/wechat_v)"
+echo "wechat_v: $(cat $root_dir/wechat_v)"

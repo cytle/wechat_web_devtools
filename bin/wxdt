@@ -1,9 +1,8 @@
 #! /bin/bash
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-echo $root_dir
 
-nwjs_v=`cat $root_dir/bin/nwjs_v`
+nwjs_v=`cat $root_dir/nwjs_v`
 
 cur_nwjs_v=""
 
@@ -13,19 +12,25 @@ fi
 
 if [ "$cur_nwjs_v" != "$nwjs_v" ]; then
     echo "安装微信开发者工具对应nwjs版本：$nwjs_v"
-    sh "$root_dir/bin/update_nwjs.sh"
+    bash "$root_dir/bin/update_nwjs.sh"
 fi
+
+cd "$root_dir/dist"
 
 want=${1:-"start"}
 if [ $want = "start" ]; then
-  `$root_dir/dist/nw`
+  `./nw`
 elif [ $want = "install" ]; then
-  sh "$root_dir/bin/replace_weapp_vendor.sh"
+  bash "$root_dir/bin/replace_weapp_vendor.sh"
+  bash "$root_dir/bin/install_desktop.sh"
   echo "安装完成"
 elif [ $want = "debug" ]; then
   port=9222
-  `$root_dir/dist/nw --remote-debugging-port=$port`
+  `./nw --remote-debugging-port=$port`
   echo "remote-debugging-port:$port"
+elif [ $want = "uninstall" ]; then
+  bash "$root_dir/bin/uninstall.sh"
+  echo "卸载完成,请在退出开发者工具后手动删除此项目目录"
 else
   echo "不支持$want操作"
   exit 127

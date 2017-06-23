@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/cytle/wechat_web_devtools/issues"
   },
-  "homepage": "https://github.com/cytle/wechat_web_devtools#readme"
+  "homepage": "https://github.com/cytle/wechat_web_devtools#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.6.1"
+  }
 }
