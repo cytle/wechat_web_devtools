@@ -33,16 +33,19 @@ sudo apt install wine
 ```
 
 2. wcc.exe和wcsc.exe是32位的,用下面命令创建32位环境
+
 ```console
 WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
 ```
 
-3. 替换WeappVendor
+3. 安装
+
 ```console
 ./bin/wxdt install
 ```
 
 4. 启动
+
 ```console
 ./bin/wxdt
 ```
@@ -58,23 +61,27 @@ git pull origin
 如果wcc和wcsc编译有问题，执行以下，让工具重新生成wcc和wcsc，**会删除开发者工具配置文件,所有工程和登录信息会消失**
 
 ```console
-rm -rf "$HOME/.config/微信web开发者工具"
+./bin/wxdt uninstall
 ./bin/wxdt install
 ```
 
 ## 截图
-![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BA.png)
+
+![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/新建项目界面.png)
 
 
-![编辑界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-43-56%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+![设置界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/设置界面.png)
 
 
-![调试界面](https://github.com/cytle/wechat_web_devtools/raw/87d19c36f6931e05bd565c48cf0467f60e74ffde/images/2017-03-27%2011-44-34%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+![调试界面](https://github.com/cytle/wechat_web_devtools/raw/e238020a59d5841172aef843c1f3713edf853bd1/images/调试界面.png)
+
+上面项目来自https://github.com/jectychen/wechat-v2ex
 
 ## 卸载
 
-  - 1. 删除项目文件夹
-  - 2. 删除微信web开发者工具配置目录`rm "$HOME/.config/微信web开发者工具"`
+1. 关闭微信web开发者工具
+2. 项目文件夹下运行`./bin/wxdt uninstall`(删除桌面图标、微信web开发者工具配置目录)
+3. 删除项目文件夹
 
 
 ## 其它
