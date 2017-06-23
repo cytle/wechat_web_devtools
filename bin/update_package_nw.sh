@@ -6,16 +6,32 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-. "$root_dir/bin/build.conf"
 
 tmp_dir="/tmp/wxdt_xsp"
 dist_dir="$root_dir/dist"
+cur_wechat_v=`cat $root_dir/bin/wechat_v`
+echo "当前wechat_v: $cur_wechat_v"
 
-wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
-wcwd_download="https://dldir1.qq.com/WechatWebDev/${wechat_v//./}/wechat_web_devtools_${wechat_v}_x64.exe"
 
 wcwd_package_dir="$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具/package.nw"
 onlineverdor_dir="$root_dir/package.nw/app/dist/weapp/onlinevendor"
+wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
+wechat_v=$(http --headers $wcwd_download | grep -oP --color=never '(?<=wechat_web_devtools_)[\d\.]+(?=_x64\.exe)')
+
+
+if [ -z "$wechat_v" ]; then
+  echo "下载版本为空"
+  exit 1
+fi
+
+echo "最新wechat_v: $wechat_v"
+
+if [ "$wechat_v" = "$cur_wechat_v" ]; then
+  echo "当前已经是最新版本"
+  exit 0
+fi
+
+wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
 
 mkdir -p $tmp_dir
 
@@ -32,7 +48,13 @@ fi
 wine $wcwd_file
 
 rm -rf "$root_dir/package.nw"
+echo "$wcwd_package_dir"
 cp -r "$wcwd_package_dir" "$root_dir"
 
 # 链接wcc.exe wcsc.exe
 ln -f "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"
+
+echo $wechat_v > $root_dir/bin/wechat_v
+
+echo '安装完成'
+echo "wechat_v: $(cat $root_dir/bin/wechat_v)"

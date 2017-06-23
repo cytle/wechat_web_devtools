@@ -2,7 +2,8 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 echo $root_dir
-. "$root_dir/bin/build.conf"
+
+nwjs_v=`cat $root_dir/bin/nwjs_v`
 
 cur_nwjs_v=""
 

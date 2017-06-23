@@ -4,8 +4,7 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-. "$root_dir/bin/build.conf"
-
+nwjs_v=`cat $root_dir/bin/nwjs_v`
 tmp_dir="/tmp/wxdt_xsp"
 
 nwjs_file="$tmp_dir/nwjs-v$nwjs_v.tar.gz"
