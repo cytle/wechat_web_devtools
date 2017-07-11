@@ -1,6 +1,6 @@
 {
   "name": "wxdt",
-  "version": "v0.17.170900",
+  "version": "v0.19.191100",
   "description": "凌晨三点终于搞定了linux下开发者工具的使用,已经完美使用,之后上完整安装教程和npm包.",
   "main": "index.js",
   "scripts": {

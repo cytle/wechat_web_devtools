@@ -55,6 +55,14 @@ function addAppserviceDevtools(){
       }
     )
 
+    chrome.devtools.panels.create("Trace",
+      "",
+      "trace/index.html",
+      function(panel) {
+        //console.log(panel)
+      }
+    )
+
     // 暂时不做，留待之后补充
     // chrome.devtools.panels.create("Bluetooth",
     //   "",

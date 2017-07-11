@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tracer</title>
+  <link href="css/index.css" rel="stylesheet" type="text/css">
+  <link href="css/modal.css" rel="stylesheet" type="text/css">
+  <link href="css/list.css" rel="stylesheet" type="text/css">
+  <link href="css/loader.css" rel="stylesheet" type="text/css">
+  <link rel="import" href="trace-viewer.html">
+</head>
+<body style="width:100%;height:100%;margin:0px;position: absolute;">
+
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+
+            <div class="modal-header">
+              <slot name="header">
+              </slot>
+            </div>
+
+            <div class="modal-loader">
+              <slot name="loader">
+              </slot>
+            </div>
+
+            <div class="modal-body">
+              <slot name="body">
+              </slot>
+            </div>
+
+            <div class="modal-footer">
+              <slot name="footer">
+              </slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </script>
+
+  <script type="text/x-template" id="loader-template">
+    <div class="loading"></div>
+  </script>
+
+  <!-- app -->
+  <div id="app">
+    <button id="open-trace-file" @click="showModal = true">Choose Device</button>
+
+    <modal v-if="showModal" @close="showModal = false">
+
+      <template v-if="step === 0">
+        <h3 slot="header">请选择 Android 设备</h3>
+        <div slot="body">
+          <div v-if="deviceList.length == 0">
+            <loader></loader>
+            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+              正在搜索设备<br>
+            </div>
+            <div>
+              1. 请确认 PC 上已安装 Android 调试工具 ADB<br>
+              2. 请确认 PC 上已经安装 Android 手机的驱动<br>
+              3. 请确认 Android 手机已打开 USB 调试并已授权当前 <br>
+              4. 请确认 Android 手机上已安装微信 6.5.10 以上客户端版本<br>
+            </div>
+            <div style="text-align: center;margin-top: 10px;">
+              <!-- <a href="#TODO 链到文档">查看帮助</a> -->
+            </div>
+          </div>
+          <ul v-else class="select-list" @mouseover.stop>
+            <li v-for="device in deviceList" @click="chooseDevice(device)">
+              <img src="img/android.png"/>
+              <span>{{ device.id }}</span>
+            </li>
+          </ul>
+        </div>
+        <div slot="footer" style="text-align: right;">
+
+          <button class="modal-button" @click="showModal = false">
+            取消
+          </button>
+        </div>
+      </template>
+
+      <template v-if="step === 1">
+        <h3 slot="header">请选择 Trace 文件</h3>
+        <div slot="body">
+          <div v-if="traceList.length == 0">
+            <loader></loader>
+            <div>
+              1. 请先确认已经安装微信 6.5.10 以上版本；<br>
+              2. 打开开发版小程序，通过右上角菜单开启性能监控窗口；<br>
+              3. 重启小程序，然后触发你想要分析的页面动作；<br>
+              4. 通过右上角菜单「导出 Trace 数据」将当前数据导出；<br>
+              5. 在接下来的页面选择你要分析的 Trace 文件。
+            </div>
+          </div>
+          <ul v-else class="select-list" @mouseover.stop>
+            <li class="trace-item" v-for="trace in traceList" @click="chooseTrace(trace)">
+              <div style="width: 250px;">
+                <img src="img/file.png"/>
+                <div class="trace-item-desc">
+                  <span>AppId: {{ trace.appId }}</span>
+                  <span>启动时间: {{ trace.startUp }}</span>
+                  <span>更新时间: {{ trace.updatedAt }}</span>
+                </div>
+              </div>
+              <div style="width: 50px; text-align: right;line-height: 50px;">
+                <button @click.stop="deleteTrace(trace)">删除</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div slot="footer">
+          <button class="modal-button" @click="backToDeviceList()">
+            &lt;选择设备
+          </button>
+          <button class="modal-button" style="float: right;" @click="showModal = false">
+            取消
+          </button>
+        </div>
+      </template>
+
+    </modal>
+
+    <modal v-if="showLoader" @close="hideLoading()">
+      <div slot="body">
+        <div v-if="errMsg" style="text-align: center;">
+          出错了，错误信息：<br>
+          {{ errMsg }}
+        </div>
+        <loader></loader>
+      </div>
+      <div slot="footer" style="text-align: center;">
+        <button class="modal-button" @click="hideLoading()">
+          {{ errMsg ? 'OK' : '取消' }}
+        </button>
+      </div>
+
+    </modal>
+
+  </div>
+
+</body>
+<script src="../js/trace.index.min.js"></script>
+</html>

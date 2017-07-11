@@ -51,8 +51,11 @@ rm -rf "$root_dir/package.nw"
 echo "$wcwd_package_dir"
 cp -r "$wcwd_package_dir" "$root_dir"
 
+sh "$root_dir/bin/replace_package_nw.sh"
+
 # 链接wcc.exe wcsc.exe
-ln -f "$onlineverdor_dir/*.exe" "$root_dir/bin/WeappVendor/s"
+ln -f "$onlineverdor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
+ln -f "$onlineverdor_dir/wcsc.exe" "$root_dir/bin/WeappVendor/s"
 
 echo $wechat_v > $root_dir/wechat_v
 
