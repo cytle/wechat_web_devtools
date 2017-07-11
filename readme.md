@@ -66,6 +66,23 @@ git pull origin
 ./bin/wxdt install
 ```
 
+### 更新到最新版
+
+可以在本项目未更新情况下使用，可能伴随一些bug
+
+1. 执行脚本会自动下载安装最新开发者工具（window x64）
+
+```console
+./bin/replace_package_nw.sh
+```
+
+2. 安装过程中确认安装到`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具`路径下
+
+3. 最后完成去掉打开开发者工具的钩
+
+然后执行`./bin/wxdt`，如果没有问题欢迎提PR~
+
+
 ## 截图
 
 ![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/新建项目界面.png)
