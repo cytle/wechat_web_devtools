@@ -1,51 +1,61 @@
 {
-  "configVersion": 1499688090893,
-  "currentLibVersion": "1.4.0",
+  "configVersion": 1499688090897,
+  "currentLibVersion": "1.4.2",
   "libs": {
-    "1.0.0": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.0/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.0/WAService.js"
+    "1.4.2": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.2/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.2/WAService.js",
+      "WAWidget.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.2/WAWidget.js"
     },
-    "1.0.1": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.1/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.1/WAService.js"
-    },
-    "1.1.0": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.0/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.0/WAService.js"
-    },
-    "1.1.1": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.1/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.1/WAService.js"
-    },
-    "1.2.1": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.1/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.1/WAService.js"
-    },
-    "1.2.2": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.2/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.2/WAService.js"
-    },
-    "1.2.3": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.3/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.3/WAService.js"
-    },
-    "1.2.4": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.4/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.4/WAService.js"
-    },
-    "1.2.5": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.5/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.5/WAService.js"
-    },
-    "1.3.0": {
-      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.3.0/WAWebview.js",
-      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.3.0/WAService.js"
+    "1.4.1": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.1/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.1/WAService.js",
+      "WAWidget.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.1/WAWidget.js"
     },
     "1.4.0": {
       "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.0/WAWebview.js",
       "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.0/WAService.js",
       "WAWidget.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.4.0/WAWidget.js"
+    },
+    "1.3.0": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.3.0/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.3.0/WAService.js"
+    },
+    "1.2.5": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.5/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.5/WAService.js"
+    },
+    "1.2.4": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.4/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.4/WAService.js"
+    },
+    "1.2.3": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.3/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.3/WAService.js"
+    },
+    "1.2.2": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.2/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.2/WAService.js"
+    },
+    "1.2.1": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.1/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.2.1/WAService.js"
+    },
+    "1.1.1": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.1/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.1/WAService.js"
+    },
+    "1.1.0": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.0/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.1.0/WAService.js"
+    },
+    "1.0.1": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.1/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.1/WAService.js"
+    },
+    "1.0.0": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.0/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.0.0/WAService.js"
     }
   }
 }
