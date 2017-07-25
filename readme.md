@@ -73,7 +73,7 @@ git pull origin
 1. 执行脚本会自动下载安装最新开发者工具（window x64）
 
 ```console
-./bin/replace_package_nw.sh
+./bin/update_package_nw.sh
 ```
 
 2. 安装过程中确认安装到`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具`路径下

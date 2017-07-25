@@ -26,8 +26,8 @@ elif [ $want = "install" ]; then
   echo "安装完成"
 elif [ $want = "debug" ]; then
   port=9222
-  `./nw --remote-debugging-port=$port`
   echo "remote-debugging-port:$port"
+  `./nw --remote-debugging-port=$port`
 elif [ $want = "uninstall" ]; then
   bash "$root_dir/bin/uninstall.sh"
   echo "卸载完成,请在退出开发者工具后手动删除此项目目录"
