@@ -27,7 +27,7 @@ module.exports = function parse (modules, opts) {
     return duplexer(concat(function (buf) {
         try {
             body = buf.toString('utf8').replace(/^#!/, '//#!');
-            falafel(body, { ecmaVersion: 6 }, walk);
+            falafel(body, { ecmaVersion: 8 }, walk);
         }
         catch (err) { return error(err) }
         finish(body);
@@ -295,6 +295,23 @@ module.exports = function parse (modules, opts) {
                     offset: cur.end - cur.start,
                     stream: isStream(res) ? wrapStream(res) : st(String(res))
                 });
+            }
+        }
+        else if (node.parent.type === 'UnaryExpression') {
+            var xvars = copy(vars);
+            xvars[node.name] = val;
+
+            var res = evaluate(node.parent, xvars);
+            if (res !== undefined) {
+                updates.push({
+                    start: node.parent.start,
+                    offset: node.parent.end - node.parent.start,
+                    stream: isStream(res) ? wrapStream(res) : st(String(res))
+                });
+            } else {
+                output.emit('error', new Error(
+                    'unsupported unary operator: ' + node.parent.operator
+                ));
             }
         }
         else {

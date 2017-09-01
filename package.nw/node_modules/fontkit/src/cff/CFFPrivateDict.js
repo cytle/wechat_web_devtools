@@ -2,6 +2,18 @@ import CFFDict from './CFFDict';
 import CFFIndex from './CFFIndex';
 import CFFPointer from './CFFPointer';
 
+class CFFBlendOp {
+  static decode(stream, parent, operands) {
+    let numBlends = operands.pop();
+
+    // TODO: actually blend. For now just consume the deltas
+    // since we don't use any of the values anyway.
+    while (operands.length > numBlends) {
+      operands.pop();
+    }
+  }
+}
+
 export default new CFFDict([
   // key       name                    type                                          default
   [6,         'BlueValues',           'delta',                                       null],
@@ -21,5 +33,7 @@ export default new CFFDict([
   [[12, 19],  'initialRandomSeed',    'number',                                      0],
   [20,        'defaultWidthX',        'number',                                      0],
   [21,        'nominalWidthX',        'number',                                      0],
+  [22,        'vsindex',              'number',                                      0],
+  [23,        'blend',                CFFBlendOp,                                    null],
   [19,        'Subrs',                new CFFPointer(new CFFIndex, {type: 'local'}), null]
 ]);

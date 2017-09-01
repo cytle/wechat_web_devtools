@@ -238,7 +238,7 @@ it('native function', function() {
   ], [
     'Error: 1',
     /[/\\].original\.js/,
-    /at Array\.map \(native\)/
+    /at Array\.map \((native|<anonymous>)\)/
   ]);
 });
 

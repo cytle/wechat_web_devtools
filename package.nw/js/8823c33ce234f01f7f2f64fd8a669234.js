@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const{connect:a}=require('react-redux'),b=require('./e98c60a262d8d98e69e574a9d12a21df.js'),c=require('./a24e61fd00c4be43ba1516b3f568e8f8.js');module.exports=a(()=>({}),(a)=>({updateIDESetting(){a(b.updateIDESetting.apply(this,arguments))}}))(c)}(require('lazyload'),require);

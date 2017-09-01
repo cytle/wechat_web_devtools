@@ -7,6 +7,7 @@ import CFFPrivateDict from './CFFPrivateDict';
 import StandardStrings from './CFFStandardStrings';
 import { StandardEncoding, ExpertEncoding } from './CFFEncodings';
 import { ISOAdobeCharset, ExpertCharset, ExpertSubsetCharset } from './CFFCharsets';
+import { ItemVariationStore } from '../tables/variations';
 
 // Checks if an operand is an index of a predefined value,
 // otherwise delegates to the provided type.
@@ -108,9 +109,14 @@ let CFFCustomCharset = new r.VersionedStruct(r.uint8, {
 
 let CFFCharset = new PredefinedOp([ ISOAdobeCharset, ExpertCharset, ExpertSubsetCharset ], new CFFPointer(CFFCustomCharset, {lazy: true}));
 
-let FDRange = new r.Struct({
+let FDRange3 = new r.Struct({
   first: r.uint16,
   fd: r.uint8
+});
+
+let FDRange4 = new r.Struct({
+  first: r.uint32,
+  fd: r.uint16
 });
 
 let FDSelect = new r.VersionedStruct(r.uint8, {
@@ -120,8 +126,14 @@ let FDSelect = new r.VersionedStruct(r.uint8, {
 
   3: {
     nRanges: r.uint16,
-    ranges: new r.Array(FDRange, 'nRanges'),
+    ranges: new r.Array(FDRange3, 'nRanges'),
     sentinel: r.uint16
+  },
+
+  4: {
+    nRanges: r.uint32,
+    ranges: new r.Array(FDRange4, 'nRanges'),
+    sentinel: r.uint32
   }
 });
 
@@ -188,19 +200,36 @@ let CFFTopDict = new CFFDict([
   [[12, 38],  'FontName',             'sid',                                  null]
 ]);
 
-let CFFHeader = new r.Struct({
-  majorVersion:   r.uint8,
-  minorVersion:   r.uint8,
-  hdrSize:        r.uint8,
-  offSize:        r.uint8
-});
+let VariationStore = new r.Struct({
+  length: r.uint16,
+  itemVariationStore: ItemVariationStore
+})
 
-let CFFTop = new r.Struct({
-  header:             CFFHeader,
-  nameIndex:          new CFFIndex(new r.String('length')),
-  topDictIndex:       new CFFIndex(CFFTopDict),
-  stringIndex:        new CFFIndex(new r.String('length')),
-  globalSubrIndex:    new CFFIndex()
+let CFF2TopDict = new CFFDict([
+  [[12, 7],   'FontMatrix',           'array',                                [0.001, 0, 0, 0.001, 0, 0]],
+  [17,        'CharStrings',          new CFFPointer(new CFFIndex),           null],
+  [[12, 37],  'FDSelect',             new CFFPointer(FDSelect),               null],
+  [[12, 36],  'FDArray',              new CFFPointer(new CFFIndex(FontDict)), null],
+  [24,        'vstore',               new CFFPointer(VariationStore),         null],
+  [25,        'maxstack',             'number',                               193]
+]);
+
+let CFFTop = new r.VersionedStruct(r.fixed16, {
+  1: {
+    hdrSize:            r.uint8,
+    offSize:            r.uint8,
+    nameIndex:          new CFFIndex(new r.String('length')),
+    topDictIndex:       new CFFIndex(CFFTopDict),
+    stringIndex:        new CFFIndex(new r.String('length')),
+    globalSubrIndex:    new CFFIndex
+  },
+
+  2: {
+    hdrSize:            r.uint8,
+    length:             r.uint16,
+    topDict:            CFF2TopDict,
+    globalSubrIndex:    new CFFIndex
+  }
 });
 
 export default CFFTop;

@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){module.exports={weapp:'weapp',conversation:'conversation',search:'search',game:'game'}}(require('lazyload'),require);

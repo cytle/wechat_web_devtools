@@ -67,7 +67,7 @@ export default class CFFDict {
 
     while (stream.pos < end) {
       let b = stream.readUInt8();
-      if (b <= 21) {
+      if (b < 28) {
         if (b === 12) {
           b = (b << 8) | stream.readUInt8();
         }

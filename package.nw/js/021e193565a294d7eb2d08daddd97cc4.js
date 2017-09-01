@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const{connect:a}=require('react-redux'),b=require('./2dba3da3f9fb5ee64049d4556bb9519d.js');module.exports=a((a)=>{return{user:a.user}},(a)=>{return{appQuit:()=>{a({type:'APP_QUIT'}),nw.App.quit()}}})(b)}(require('lazyload'),require);

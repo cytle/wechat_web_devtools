@@ -1,6 +1,5 @@
+'use strict';
 
-require('./foreach');
 require('./isArguments');
 
 require('./shim');
-

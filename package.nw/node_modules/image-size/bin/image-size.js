@@ -22,10 +22,12 @@ files.forEach(function (image) {
   try {
     if (fs.existsSync(path.resolve(image))) {
       var size = imageSize(image);
-      var label = green[0] + size.width + green[1] +
-                  grey[0] + 'x' + grey[1] +
-                  green[0] + size.height + green[1];
-      console.info(label, '-', grey[0] + image + grey[1]);
+      (size.images || [size]).forEach(function (size) {
+        var label = green[0] + size.width + green[1] +
+            grey[0] + 'x' + grey[1] +
+            green[0] + size.height + green[1];
+        console.info(label, '-', grey[0] + image + grey[1]);
+      });
     } else {
       console.error('file doesn\'t exist - ', image);
     }

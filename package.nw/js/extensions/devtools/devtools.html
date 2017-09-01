@@ -1,0 +1,143 @@
+<html><head></head><body><script>"use strict"
+
+const ua = navigator.userAgent
+const isAppserviceDevtools = ua.indexOf('appservicedevtools') !== -1
+
+function addAppserviceDevtools(){
+  if (isAppserviceDevtools) {
+    // 添加appdata pannel
+    chrome.devtools.panels.create("Storage",
+      "",
+      "storage/index.html",
+      function(panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function(win){
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function(win){
+          panelWindow.onHidden()
+        })
+      }
+    )
+
+    chrome.devtools.panels.create("AppData",
+      "",
+      "appdata/index.html",
+      function(panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function(win){
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function(win){
+          panelWindow.onHidden()
+        })
+        panel.onSearch.addListener(function(win){
+          panelWindow.onSearch()
+        })
+      }
+    )
+
+    chrome.devtools.panels.create("Wxml",
+      "",
+      "wxml/index.html",
+      function(panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function(win){
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function(win){
+          panelWindow.onHidden()
+        })
+        panel.onSearch.addListener(function(win){
+          panelWindow.onSearch()
+        })
+      }
+    )
+
+    chrome.devtools.panels.create("Sensor",
+      "",
+      "sensor/index.html",
+      function(panel) {
+        //console.log(panel)
+      }
+    )
+
+    chrome.devtools.panels.create("Trace",
+      "",
+      "trace/index.html",
+      function(panel) {
+        //console.log(panel)
+      }
+    )
+
+    // 暂时不做，留待之后补充
+    // chrome.devtools.panels.create("Bluetooth",
+    //   "",
+    //   "Bluetooth/index.html",
+    //   function(panel) {
+    //     //console.log(panel)
+    //   }
+    // )
+
+    window.addEventListener('message', (event)=>{
+      let data = event.data
+      if(typeof data === 'object' && data.command === 'securityDetails') {
+        chrome.devtools.inspectedWindow.eval(`window.setSecurityDetails('${data.url}', '${JSON.stringify(data)}')`, (res, isErr) => {
+        })
+      }
+      //console.log(event)
+    })
+
+    // 在选择器旁边加自定义属性
+    /*
+    var page_getProperties = function() {
+      return {
+        name: 'linchao',
+        team: {
+          "shangyou"
+        }
+      }
+    }
+
+    chrome.devtools.panels.elements.createSidebarPane(
+      "weApp Properties",
+      function(sidebar) {
+        function updateElementProperties() {
+          sidebar.setExpression("(" + page_getProperties.toString() + ")()")
+        }
+        updateElementProperties()
+        chrome.devtools.panels.elements.onSelectionChanged.addListener(
+          updateElementProperties)
+      })
+
+
+    // 执行脚本获取内容
+    chrome.devtools.inspectedWindow.eval(`console.log(123)`, (res, isErr) => {
+      console.log(res, isErr)
+    })
+
+    // 获取资源
+    chrome.devtools.inspectedWindow.getResources((res)=>{
+      console.log(res)
+      res.forEach((r) => {
+        // 获取 当前页面加载的资源内容
+        // r.getContent((data) => {
+        //   console.log(data)
+        // })
+        console.log(r.url)
+      })
+    })
+
+    // 打开脚本文件，并定位到XX行
+    chrome.devtools.panels.openResource("http://appservice.open.weixin.qq.com/asdebug.js", 10)
+    */
+  }
+}
+
+addAppserviceDevtools()</script></body></html>

@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=require('js-beautify').html,b=require('perfectionist'),c=require('postcss');module.exports=(d,e)=>{let f,g=d.code,h=d.fileType;return f='css'===h?c([b({indentSize:e,cascade:!1,trimTrailingZeros:!1,trimLeadingZero:!1,zeroLengthNoUnit:!1})]).process(g).css:a(g,{indent_size:e}),f}}(require('lazyload'),require);

@@ -45,20 +45,24 @@ export default class BBox {
   }
 
   addPoint(x, y) {
-    if (x < this.minX) {
-      this.minX = x;
+    if (Math.abs(x) !== Infinity) {
+      if (x < this.minX) {
+        this.minX = x;
+      }
+
+      if (x > this.maxX) {
+        this.maxX = x;
+      }
     }
 
-    if (y < this.minY) {
-      this.minY = y;
-    }
+    if (Math.abs(y) !== Infinity) {
+      if (y < this.minY) {
+        this.minY = y;
+      }
 
-    if (x > this.maxX) {
-      this.maxX = x;
-    }
-
-    if (y > this.maxY) {
-      this.maxY = y;
+      if (y > this.maxY) {
+        this.maxY = y;
+      }
     }
   }
 

@@ -1,1 +1,0 @@
-"use strict";function init(){var e=require("../lib/flux.js").Dispatcher,r=new e,i=require("./webviewDispatcher.js"),s=require("./leftviewDispatcher.js"),t=require("./windowDispatcher.js"),u=require("./projectDispatcher.js"),p=require("./backgroundAudioDispatcher.js"),c=i(r);s(r,c),t(r),u(r),p(r),_exports=r}var _exports;init(),module.exports=_exports;

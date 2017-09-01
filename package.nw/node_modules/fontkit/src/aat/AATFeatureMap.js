@@ -478,14 +478,14 @@ for (let ot in OTMapping) {
 // in the form of {featureType:{featureSetting:true}}
 export function mapOTToAAT(features) {
   let res = {};
-  for (let k = 0; k < features.length; k++) {
+  for (let k in features) {
     let r;
-    if (r = OTMapping[features[k]]) {
+    if (r = OTMapping[k]) {
       if (res[r[0]] == null) {
         res[r[0]] = {};
       }
 
-      res[r[0]][r[1]] = true;
+      res[r[0]][r[1]] = features[k];
     }
   }
 

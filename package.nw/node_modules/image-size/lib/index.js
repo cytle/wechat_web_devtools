@@ -13,9 +13,9 @@ types.forEach(function (type) {
   handlers[type] = require('./types/' + type);
 });
 
-// Maximum buffer size, with a default of 128 kilobytes.
+// Maximum buffer size, with a default of 512 kilobytes.
 // TO-DO: make this adaptive based on the initial signature of the image
-var MaxBufferSize = 128*1024;
+var MaxBufferSize = 512*1024;
 
 function lookup (buffer, filepath) {
   // detect the file type.. don't rely on the extension

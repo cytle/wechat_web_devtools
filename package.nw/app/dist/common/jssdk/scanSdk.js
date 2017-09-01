@@ -1,1 +1,0 @@
-"use strict";function init(){function r(r,s){if(r){var t={errMsg:"scanQRCode:ok"};return 0!==s.needResult&&(t.resultStr='{"scan_code": {"scan_result":"scan resultStr is here"}}'),t}return{errMsg:"scanQRCode:"+e.failWroding}}var e=require("./sdkConfig.js"),s=function(e,s,t,n){var i=(s.sdkName,r(e,s.args));n(i)};_exports={exec:s}}var _exports;init(),module.exports=_exports;

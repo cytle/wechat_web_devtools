@@ -84,7 +84,7 @@ const UNICODE_SCRIPTS = {
   Ogham: 'ogam',
   Ol_Chiki: 'olck',
   Old_Turkic: 'orkh',
-  Oriya: 'orya',
+  Oriya: ['ory2', 'orya'],
   Osmanya: 'osma',
   Palmyrene: 'palm',
   Pau_Cin_Hau: 'pauc',
@@ -113,7 +113,7 @@ const UNICODE_SCRIPTS = {
   Takri: 'takr',
   Tai_Le: 'tale',
   New_Tai_Lue: 'talu',
-  Tamil: 'taml',
+  Tamil: ['tml2', 'taml'],
   Tai_Viet: 'tavt',
   Telugu: ['tel2', 'telu'],
   Tifinagh: 'tfng',
@@ -133,8 +133,24 @@ const UNICODE_SCRIPTS = {
   Unknown: 'zzzz'
 };
 
+const OPENTYPE_SCRIPTS = {};
+for (let script in UNICODE_SCRIPTS) {
+  let tag = UNICODE_SCRIPTS[script];
+  if (Array.isArray(tag)) {
+    for (let t of tag) {
+      OPENTYPE_SCRIPTS[t] = script;
+    }
+  } else {
+    OPENTYPE_SCRIPTS[tag] = script;
+  }
+}
+
 export function fromUnicode(script) {
   return UNICODE_SCRIPTS[script];
+}
+
+export function fromOpenType(tag) {
+  return OPENTYPE_SCRIPTS[tag];
 }
 
 export function forString(string) {

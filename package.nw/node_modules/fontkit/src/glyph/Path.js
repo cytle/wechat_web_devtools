@@ -171,6 +171,61 @@ export default class Path {
 
     return this._bbox = Object.freeze(bbox);
   }
+
+  /**
+   * Applies a mapping function to each point in the path.
+   * @param {function} fn
+   * @return {Path}
+   */
+  mapPoints(fn) {
+    let path = new Path;
+
+    for (let c of this.commands) {
+      let args = [];
+      for (let i = 0; i < c.args.length; i += 2) {
+        let [x, y] = fn(c.args[i], c.args[i + 1]);
+        args.push(x, y);
+      }
+
+      path[c.command](...args);
+    }
+
+    return path;
+  }
+
+  /**
+   * Transforms the path by the given matrix.
+   */
+  transform(m0, m1, m2, m3, m4, m5) {
+    return this.mapPoints((x, y) => {
+      x = m0 * x + m2 * y + m4;
+      y = m1 * x + m3 * y + m5;
+      return [x, y];
+    });
+  }
+
+  /**
+   * Translates the path by the given offset.
+   */
+  translate(x, y) {
+    return this.transform(1, 0, 0, 1, x, y);
+  }
+
+  /**
+   * Rotates the path by the given angle (in radians).
+   */
+  rotate(angle) {
+    let cos = Math.cos(angle);
+    let sin = Math.sin(angle);
+    return this.transform(cos, sin, -sin, cos, 0, 0);
+  }
+
+  /**
+   * Scales the path.
+   */
+  scale(scaleX, scaleY = scaleX) {
+    return this.transform(scaleX, 0, 0, scaleY, 0, 0);
+  }
 }
 
 for (let command of ['moveTo', 'lineTo', 'quadraticCurveTo', 'bezierCurveTo', 'closePath']) {

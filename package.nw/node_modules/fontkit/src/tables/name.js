@@ -12,12 +12,12 @@ let NameRecord = new r.Struct({
     { type: 'parent', relativeTo: 'parent.stringOffset', allowNull: false }
   )
 });
-  
+
 let LangTagRecord = new r.Struct({
   length:  r.uint16,
   tag:     new r.Pointer(r.uint16, new r.String('length', 'utf16be'), {type: 'parent', relativeTo: 'stringOffset'})
 });
-  
+
 var NameTable = new r.VersionedStruct(r.uint16, {
   0: {
     count:          r.uint16,
@@ -61,46 +61,48 @@ const NAMES = [
   'wwsSubfamilyName'
 ];
 
-NameTable.process = function(stream) {  
+NameTable.process = function(stream) {
   var records = {};
   for (let record of this.records) {
     // find out what language this is for
     let language = LANGUAGES[record.platformID][record.languageID];
-    
+
     if (language == null && this.langTags != null && record.languageID >= 0x8000) {
       language = this.langTags[record.languageID - 0x8000].tag;
     }
-    
+
     if (language == null) {
       language = record.platformID + '-' + record.languageID;
     }
-    
+
     // if the nameID is >= 256, it is a font feature record (AAT)
     let key = record.nameID >= 256 ? 'fontFeatures' : (NAMES[record.nameID] || record.nameID);
     if (records[key] == null) {
       records[key] = {};
     }
-    
+
     let obj = records[key];
     if (record.nameID >= 256) {
       obj = obj[record.nameID] || (obj[record.nameID] = {});
     }
-    
-    obj[language] = record.string;
+
+    if (typeof record.string === 'string' || typeof obj[language] !== 'string') {
+      obj[language] = record.string;
+    }
   }
-  
+
   this.records = records;
 };
 
 NameTable.preEncode = function() {
   if (Array.isArray(this.records)) return;
   this.version = 0;
-  
+
   let records = [];
   for (let key in this.records) {
     let val = this.records[key];
     if (key === 'fontFeatures') continue;
-    
+
     records.push({
       platformID: 3,
       encodingID: 1,
@@ -109,7 +111,7 @@ NameTable.preEncode = function() {
       length: Buffer.byteLength(val.en, 'utf16le'),
       string: val.en
     });
-      
+
     if (key === 'postscriptName') {
       records.push({
         platformID: 1,
@@ -121,7 +123,7 @@ NameTable.preEncode = function() {
       });
     }
   }
-      
+
   this.records = records;
   this.count = records.length;
   this.stringOffset = NameTable.size(this, null, false);

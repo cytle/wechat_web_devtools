@@ -1,5 +1,6 @@
 import r from 'restructure';
-import { ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device } from './opentype';
+import {ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device} from './opentype';
+import {ItemVariationStore} from './variations';
 
 let BaseCoord = new r.VersionedStruct(r.uint16, {
   1: { // Design units only
@@ -64,8 +65,14 @@ let Axis = new r.Struct({
   baseScriptList: new r.Pointer(r.uint16, BaseScriptList)
 });
 
-export default new r.Struct({
-  version:      r.uint32,                        // Version of the BASE table-initially 0x00010000
-  horizAxis:    new r.Pointer(r.uint16, Axis),   // May be NULL
-  vertAxis:     new r.Pointer(r.uint16, Axis)    // May be NULL
+export default new r.VersionedStruct(r.uint32, {
+  header: {
+    horizAxis:    new r.Pointer(r.uint16, Axis),   // May be NULL
+    vertAxis:     new r.Pointer(r.uint16, Axis)    // May be NULL
+  },
+
+  0x00010000: {},
+  0x00010001: {
+    itemVariationStore: new r.Pointer(r.uint32, ItemVariationStore)
+  }
 });

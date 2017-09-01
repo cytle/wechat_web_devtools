@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('WIDGET');b.ready=!0,b.__proto__.toService=function(a){this.transfer('WIDGETSERVICE',a)},module.exports=b}(require('lazyload'),require);

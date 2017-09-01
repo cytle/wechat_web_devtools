@@ -39,6 +39,7 @@ export default class GSUBProcessor extends OTProcessor {
             glyph.isLigated = curGlyph.isLigated;
             glyph.ligatureComponent = i + 1;
             glyph.substituted = true;
+            glyph.isMultiplied = true;
             return glyph;
           });
 

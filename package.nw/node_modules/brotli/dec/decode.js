@@ -23,35 +23,35 @@ var Context = require('./context');
 var Prefix = require('./prefix');
 var Transform = require('./transform');
 
-const kDefaultCodeLength = 8;
-const kCodeLengthRepeatCode = 16;
-const kNumLiteralCodes = 256;
-const kNumInsertAndCopyCodes = 704;
-const kNumBlockLengthCodes = 26;
-const kLiteralContextBits = 6;
-const kDistanceContextBits = 2;
+var kDefaultCodeLength = 8;
+var kCodeLengthRepeatCode = 16;
+var kNumLiteralCodes = 256;
+var kNumInsertAndCopyCodes = 704;
+var kNumBlockLengthCodes = 26;
+var kLiteralContextBits = 6;
+var kDistanceContextBits = 2;
 
-const HUFFMAN_TABLE_BITS = 8;
-const HUFFMAN_TABLE_MASK = 0xff;
+var HUFFMAN_TABLE_BITS = 8;
+var HUFFMAN_TABLE_MASK = 0xff;
 /* Maximum possible Huffman table size for an alphabet size of 704, max code
  * length 15 and root table bits 8. */
-const HUFFMAN_MAX_TABLE_SIZE = 1080;
+var HUFFMAN_MAX_TABLE_SIZE = 1080;
 
-const CODE_LENGTH_CODES = 18;
-const kCodeLengthCodeOrder = new Uint8Array([
+var CODE_LENGTH_CODES = 18;
+var kCodeLengthCodeOrder = new Uint8Array([
   1, 2, 3, 4, 0, 5, 17, 6, 16, 7, 8, 9, 10, 11, 12, 13, 14, 15,
 ]);
 
-const NUM_DISTANCE_SHORT_CODES = 16;
-const kDistanceShortCodeIndexOffset = new Uint8Array([
+var NUM_DISTANCE_SHORT_CODES = 16;
+var kDistanceShortCodeIndexOffset = new Uint8Array([
   3, 2, 1, 0, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2
 ]);
 
-const kDistanceShortCodeValueOffset = new Int8Array([
+var kDistanceShortCodeValueOffset = new Int8Array([
   0, 0, 0, 0, -1, 1, -2, 2, -3, 3, -1, 1, -2, 2, -3, 3
 ]);
 
-const kMaxHuffmanTableSize = new Uint16Array([
+var kMaxHuffmanTableSize = new Uint16Array([
   256, 402, 436, 468, 500, 534, 566, 598, 630, 662, 694, 726, 758, 790, 822,
   854, 886, 920, 952, 984, 1016, 1048, 1080
 ]);
@@ -618,7 +618,7 @@ function BrotliDecompress(input, output) {
        - always doing two 8-byte copies for fast backward copying
        - transforms
        - flushing the input ringbuffer when decoding uncompressed blocks */
-  const kRingBufferWriteAheadSlack = 128 + BrotliBitReader.READ_SIZE;
+  var kRingBufferWriteAheadSlack = 128 + BrotliBitReader.READ_SIZE;
 
   br = new BrotliBitReader(input);
 

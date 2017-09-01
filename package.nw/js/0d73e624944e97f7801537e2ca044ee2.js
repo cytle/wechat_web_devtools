@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){module.exports={getClipboardData:async function(a,b){let c=nw.Clipboard.get(),d=c.get('text');return{errMsg:`${b.api}:ok`,data:d}},setClipboardData:async function(a,b){var c=nw.Clipboard.get();return c.set(b.args.data,'text'),{errMsg:`${b.api}:ok`}}}}(require('lazyload'),require);
