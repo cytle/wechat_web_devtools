@@ -14,7 +14,7 @@ echo "当前wechat_v: $cur_wechat_v"
 
 
 wcwd_package_dir="$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具/package.nw"
-onlineverdor_dir="$root_dir/package.nw/app/dist/weapp/onlinevendor"
+vendor_dir="$root_dir/package.nw/js/vendor"
 wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
 wechat_v=$(http --headers $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
 
@@ -54,8 +54,8 @@ cp -r "$wcwd_package_dir" "$root_dir"
 # sh "$root_dir/bin/replace_package_nw.sh"
 
 # 链接wcc.exe wcsc.exe
-ln -f "$onlineverdor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
-ln -f "$onlineverdor_dir/wcsc.exe" "$root_dir/bin/WeappVendor/s"
+ln -f "$vendor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
+ln -f "$vendor_dir/wcsc.exe" "$root_dir/bin/WeappVendor/s"
 
 echo $wechat_v > $root_dir/wechat_v
 
