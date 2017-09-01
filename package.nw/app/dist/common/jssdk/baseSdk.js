@@ -1,1 +1,0 @@
-"use strict";function init(){var r=function(r,e,i,t){var s=e.args,o=s.jsApiList,c=i.purviewFromPreVerify||{},n={};o.forEach(function(r){c[r]&&(n[r]=!0)});var p={errMsg:"checkJsApi:ok",checkResult:n};t(p)};_exports={exec:r}}var _exports;init(),module.exports=_exports;

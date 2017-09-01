@@ -1,1 +1,0 @@
-"use strict";module.exports={MsgType:{tips:1,cmdTips:2,systemMsg:3},TipsType:{toast:1,info:2,link:3},CmdTipsType:{showNewFeature:1,visitBBS:2}};

@@ -1,1 +1,0 @@
-"use strict";function init(){function r(r,i,s){return i?{errMsg:r+":ok"}:{errMsg:r+":"+e.failWroding}}var e=require("./sdkConfig.js"),i=function(e,i,s,t){var n=i.sdkName,o=r(n,e,i.args);t(o)};_exports={exec:i}}var _exports;init(),module.exports=_exports;

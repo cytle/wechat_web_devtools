@@ -1,1 +1,0 @@
-'use strict';!function(require,directRequire){module.exports={USER_INFO:'userInfo',PROJECT_LIST:'projectLists'}}(require('lazyload'),require);

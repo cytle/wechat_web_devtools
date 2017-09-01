@@ -1,1 +1,0 @@
-"use strict";!function(require,directRequire){module.exports=function(){return{drawMinInterval:32,timerEnabled:!1,drawLock:!0}}}(require("lazyload"),require);
