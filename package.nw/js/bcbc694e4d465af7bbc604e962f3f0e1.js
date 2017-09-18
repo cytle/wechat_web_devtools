@@ -37,4 +37,4 @@
 // 这个不能删除 因为webview.executeScript 没有一个好的时机调用
 alert('DOCUMENT_READY')
 </script>
-`,f=require('./ebfcad0a5e72b6e693634486564b1394.js');module.exports={htmlBegin:d,htmlEnd:e,vendorList:['WAWidget.js'],devVendorList:['webnode.js','reporter-sdk.js','widget-sdk.js','widget-engine.js'],asDebug:f.asDebug,noBrowser:f.noBrowser,wxConfigPlaceholder:a,devtoolsConfigPlaceholder:b,widgetConfigPlaceholder:c}}(require('lazyload'),require);
+`,f=require('./ebfcad0a5e72b6e693634486564b1394.js');module.exports={htmlBegin:d,htmlEnd:e,vendorList:['WAWidget.js'],devVendorList:['webnode.js','reporter-sdk.js','widget-timer-sdk.js','widget-sdk.js','widget-engine.js'],asDebug:f.asDebug,noBrowser:f.noBrowser,wxConfigPlaceholder:a,devtoolsConfigPlaceholder:b,widgetConfigPlaceholder:c}}(require('lazyload'),require);

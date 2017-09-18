@@ -158,8 +158,20 @@ class FileUtils extends EventEmitter {
     return res
   }
 
-  getAllFileInfo() {
-    return this._cache.fileInfo
+  getAllFileInfo(filter = '') {
+    if(!filter) {
+      return this._cache.fileInfo
+    }
+
+    let res = {}
+
+    for(let item in this._cache.fileInfo) {
+      if(item.indexOf(filter) === 0) {
+        res[path.posix.relative(filter, item)] = this._cache.fileInfo[item]
+      }
+    }
+
+    return res
   }
 
   getAllFileWithDir(filter = '') {
@@ -202,6 +214,11 @@ class FileUtils extends EventEmitter {
     let cacheKey = encode === null? 'null': encode
 
     filePath = path.posix.join(this.dirPath, filePath.replace(/\\/g, '/'))
+    if (this.dirPath.startsWith('//') && !filePath.startsWith('//')) {
+      // windows style shared directory
+      // leading double slash missed
+      filePath = '/' + filePath
+    }
 
     let fileData = this._cache.fileData
 
@@ -225,7 +242,34 @@ class FileUtils extends EventEmitter {
       return false
 
     filePath = path.posix.join(this.dirPath, filePath)
+    if (this.dirPath.startsWith('//') && !filePath.startsWith('//')) {
+      // windows style shared directory
+      // leading double slash missed
+      filePath = '/' + filePath
+    }
     return fs.existsSync(filePath)
+  }
+
+  writeFileSync(filePath, data, encode = 'utf8') {
+    // writeFileSync 之后， watcher 的事件通知异步比较慢，导致这时候去getFile 会有问题
+    if (!filePath) {
+      return
+    }
+    filePath = path.posix.join(this.dirPath, filePath)
+    if (this.dirPath.startsWith('//') && !filePath.startsWith('//')) {
+      // windows style shared directory
+      // leading double slash missed
+      filePath = '/' + filePath
+    }
+
+    // 清掉cache
+    let cache = this._cache
+    let fileData = cache.fileData || {}
+    if (fileData[filePath]) {
+      delete fileData[filePath]
+    }
+
+    return fs.writeFileSync(filePath, data, encode)
   }
 }
 

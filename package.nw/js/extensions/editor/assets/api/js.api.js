@@ -445,7 +445,7 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
-          "name": "captureScreen",
+          "name": "checkIsSupportSoterAuthentication",
           "parameters": [
             {
               "type": "object",
@@ -462,14 +462,14 @@ window.API.JSAPI = {
                       "name": "result",
                       "members": [
                         {
-                          "name": "tempFilePath",
-                          "type": "string",
-                          "desc": "截屏产生图片的本地文件路径"
+                          "name": "supportMode",
+                          "type": "string[]",
+                          "desc": "该设备支持的可被SOTER识别的生物识别方式"
                         },
                         {
                           "name": "errMsg",
                           "type": "string",
-                          "desc": "调用结果"
+                          "desc": "接口调用结果"
                         }
                       ]
                     }
@@ -492,7 +492,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "截取当前屏幕内容"
+          "desc": "获取本机支持的 SOTER 生物认证方式"
         },
         {
           "type": "function",
@@ -731,6 +731,87 @@ window.API.JSAPI = {
             }
           ],
           "desc": "从本地相册选择图片或使用相机拍照。"
+        },
+        {
+          "type": "function",
+          "name": "chooseInvoiceTitle",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "type",
+                          "type": "string",
+                          "desc": "抬头类型（0：单位，1：个人）"
+                        },
+                        {
+                          "name": "title",
+                          "type": "string",
+                          "desc": "抬头名称"
+                        },
+                        {
+                          "name": "taxNumber",
+                          "type": "string",
+                          "desc": "抬头税号"
+                        },
+                        {
+                          "name": "companyAddress",
+                          "type": "string",
+                          "desc": "单位地址"
+                        },
+                        {
+                          "name": "telephone",
+                          "type": "string",
+                          "desc": "手机号码"
+                        },
+                        {
+                          "name": "bankName",
+                          "type": "string",
+                          "desc": "银行名称"
+                        },
+                        {
+                          "name": "bankAccount",
+                          "type": "string",
+                          "desc": "银行账号"
+                        },
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "接口调用结果"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "选择用户的发票抬头"
         },
         {
           "type": "function",
@@ -1049,7 +1130,7 @@ window.API.JSAPI = {
                   "name": "method",
                   "type": "string",
                   "must": false,
-                  "desc": "默认是GET，有效值： OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT"
+                  "desc": "默认是GET，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT"
                 },
                 {
                   "name": "protocols",
@@ -1081,7 +1162,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "创建一个 [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket) 连接；**一个微信小程序同时只能有一个 WebSocket 连接，如果当前已存在一个 WebSocket 连接，会自动关闭该连接，并重新创建一个 WebSocket 连接。**"
+          "desc": "创建一个 [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket) 连接。**使用前请先阅读[说明](./api-network.md)**。"
         },
         {
           "type": "function",
@@ -1270,7 +1351,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "下载文件资源到本地。客户端直接发起一个 HTTP GET 请求，返回文件的本地临时路径。"
+          "desc": "下载文件资源到本地，客户端直接发起一个 HTTP GET 请求，返回文件的本地临时路径。**使用前请先阅读[说明](./api-network.md)**。"
         },
         {
           "type": "function",
@@ -2055,7 +2136,7 @@ window.API.JSAPI = {
                         {
                           "name": "height",
                           "type": "number",
-                          "desc": "图片高度 单位px"
+                          "desc": "图片高度，单位px"
                         },
                         {
                           "name": "path",
@@ -2204,6 +2285,62 @@ window.API.JSAPI = {
             }
           ],
           "desc": "获取网络类型。"
+        },
+        {
+          "type": "function",
+          "name": "getOpenDeviceId",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "接口调用结果"
+                        },
+                        {
+                          "name": "encryptedData",
+                          "type": "string",
+                          "desc": "包括敏感数据在内的完整用户信息的加密数据，详细见[加密数据解密算法](./signature.md#加密数据解密算法)"
+                        },
+                        {
+                          "name": "iv",
+                          "type": "string",
+                          "desc": "加密算法的初始向量，详细见[加密数据解密算法](./signature.md#加密数据解密算法)"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "获取微信替设备生成的唯一标识，用于判断设备是否更换。获取的数据为AES加密数据，需要自行解密。"
         },
         {
           "type": "function",
@@ -2617,6 +2754,10 @@ window.API.JSAPI = {
                       "name": "result",
                       "members": [
                         {
+                          "name": "brand",
+                          "desc": "手机品牌"
+                        },
+                        {
                           "name": "model",
                           "desc": "手机型号"
                         },
@@ -2657,6 +2798,10 @@ window.API.JSAPI = {
                           "desc": "客户端平台"
                         },
                         {
+                          "name": "fontSizeSetting",
+                          "desc": "用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位：px"
+                        },
+                        {
                           "name": "SDKVersion",
                           "desc": "客户端基础库版本"
                         }
@@ -2692,6 +2837,10 @@ window.API.JSAPI = {
             "type": "object",
             "name": "object",
             "members": [
+              {
+                "name": "brand",
+                "desc": "手机品牌"
+              },
               {
                 "name": "model",
                 "desc": "手机型号"
@@ -2733,6 +2882,10 @@ window.API.JSAPI = {
                 "desc": "客户端平台"
               },
               {
+                "name": "fontSizeSetting",
+                "desc": "用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位：px"
+              },
+              {
                 "name": "SDKVersion",
                 "desc": "客户端基础库版本"
               }
@@ -2757,7 +2910,7 @@ window.API.JSAPI = {
                   "name": "lang",
                   "type": "string",
                   "must": false,
-                  "desc": "指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文"
+                  "desc": "指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。默认为en。"
                 },
                 {
                   "name": "success",
@@ -2815,7 +2968,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "获取用户信息，需要先调用 [wx.login](./api-login.md#wxloginobject) 接口。"
+          "desc": "获取用户信息，withCredentials 为 true 时需要先调用 [wx.login](./api-login.md#wxloginobject) 接口。"
         },
         {
           "type": "function",
@@ -2951,7 +3104,7 @@ window.API.JSAPI = {
                         {
                           "name": "code",
                           "type": "string",
-                          "desc": "用户允许登录后，回调内容会带上 code（有效期五分钟），开发者需要将 code 发送到开发者服务器后台，使用`code 换取 session_key` api，将 code 换成 openid 和 session_key"
+                          "desc": "用户登录凭证（有效期五分钟）。开发者需要在开发者服务器后台调用 api，使用 code 换取 openid 和 session_key 等信息"
                         }
                       ]
                     }
@@ -2974,7 +3127,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "调用接口获取**登录凭证（code）**进而换取用户登录态信息，包括用户的**唯一标识（openid）** 及本次登录的 **会话密钥（session_key）**。**用户数据的加解密通讯**需要依赖会话密钥完成。"
+          "desc": "调用接口获取**登录凭证（code）**进而换取用户登录态信息，包括用户的**唯一标识（openid）** 及本次登录的 **会话密钥（session_key）**等。**用户数据的加解密通讯**需要依赖会话密钥完成。"
         },
         {
           "type": "function",
@@ -3015,6 +3168,71 @@ window.API.JSAPI = {
             }
           ],
           "desc": "wx.makePhoneCall({"
+        },
+        {
+          "type": "function",
+          "name": "makeVoIPCall",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "allowBackCamera",
+                  "type": "boolean",
+                  "default": "false",
+                  "must": false,
+                  "desc": "是否展示切换按钮以允许用户转换到后置摄像头"
+                },
+                {
+                  "name": "showOther",
+                  "type": "boolean",
+                  "default": "false",
+                  "must": false,
+                  "desc": "是否显示对端视频流"
+                },
+                {
+                  "name": "avatarUrl",
+                  "type": "string",
+                  "default": "",
+                  "must": false,
+                  "desc": "客服头像的图像链接"
+                },
+                {
+                  "name": "context",
+                  "type": "string",
+                  "default": "",
+                  "must": false,
+                  "desc": "用于区分业务上下文的透传值"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "default": "",
+                  "must": false,
+                  "desc": "返回用户选择的收货地址信息",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "default": "",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "default": "",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "调起 VoIP 音视频通话界面。"
         },
         {
           "type": "function",
@@ -3901,7 +4119,7 @@ window.API.JSAPI = {
                   "name": "dataUrl",
                   "type": "string",
                   "must": true,
-                  "desc": "音乐链接"
+                  "desc": "音乐链接，目前支持的格式有 m4a, aac, mp3, wav"
                 },
                 {
                   "name": "title",
@@ -4295,37 +4513,43 @@ window.API.JSAPI = {
                   "name": "url",
                   "type": "string",
                   "must": true,
+                  "default": "",
                   "desc": "开发者服务器接口地址"
                 },
                 {
                   "name": "data",
                   "type": "object|string",
                   "must": false,
+                  "default": "",
                   "desc": "请求的参数"
                 },
                 {
                   "name": "header",
                   "type": "object",
                   "must": false,
-                  "desc": "设置请求的 header , header 中不能设置 Referer"
+                  "default": "",
+                  "desc": "设置请求的 header，header 中不能设置 Referer。"
                 },
                 {
                   "name": "method",
                   "type": "string",
                   "must": false,
-                  "desc": "默认为 GET，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT"
+                  "default": "GET",
+                  "desc": "有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT（需大写）"
                 },
                 {
                   "name": "dataType",
                   "type": "string",
                   "must": false,
-                  "desc": "默认为 json。如果设置了 dataType 为 json，则会尝试对响应的数据做一次 JSON.parse"
+                  "default": "json",
+                  "desc": "如果设为json，会尝试对返回的数据做一次 JSON.parse"
                 },
                 {
                   "name": "success",
                   "type": "function",
                   "must": false,
-                  "desc": "收到开发者服务成功返回的回调函数，res = {data: '开发者服务器返回的内容'}",
+                  "default": "",
+                  "desc": "收到开发者服务成功返回的回调函数",
                   "parameters": [
                     {
                       "type": "object",
@@ -4333,14 +4557,17 @@ window.API.JSAPI = {
                       "members": [
                         {
                           "name": "data",
+                          "type": "object|string",
                           "desc": "开发者服务器返回的数据"
                         },
                         {
                           "name": "statusCode",
-                          "desc": "开发者服务器返回的状态码"
+                          "type": "number",
+                          "desc": "开发者服务器返回的 HTTP 状态码"
                         },
                         {
                           "name": "header",
+                          "type": "object",
                           "desc": "开发者服务器返回的 HTTP Response Header"
                         }
                       ]
@@ -4351,6 +4578,7 @@ window.API.JSAPI = {
                   "name": "fail",
                   "type": "function",
                   "must": false,
+                  "default": "",
                   "desc": "接口调用失败的回调函数",
                   "parameters": []
                 },
@@ -4358,13 +4586,14 @@ window.API.JSAPI = {
                   "name": "complete",
                   "type": "function",
                   "must": false,
+                  "default": "",
                   "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
                   "parameters": []
                 }
               ]
             }
           ],
-          "desc": "最终发送给服务器的数据是 String 类型，如果传入的 data 不是 String 类型，会被转换成 String 。转换规则如下："
+          "desc": "发起网络请求。**使用前请先阅读[说明](./api-network.md)**。"
         },
         {
           "type": "function",
@@ -5081,6 +5310,46 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "setTopBarText",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "text",
+                  "type": "string",
+                  "must": true,
+                  "desc": "置顶栏文字内容"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "动态设置置顶栏文字内容，只有当前小程序被置顶时能生效，如果当前小程序没有被置顶，也能调用成功，但是不会立即生效，只有在用户将这个小程序置顶后才换上设置的文字内容。**注意：调用成功后，需间隔 5s 才能再次调用此接口，如果在 5s 内再次调用此接口，会回调 fail，errMsg：\"setTopBarText: fail invoke too frequently\"**"
+        },
+        {
+          "type": "function",
           "name": "showActionSheet",
           "parameters": [
             {
@@ -5577,6 +5846,52 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "startPullDownRefresh",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "接口调用结果"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "开始下拉刷新，调用后触发下拉刷新动画，效果与用户手动下拉刷新一致"
+        },
+        {
+          "type": "function",
           "name": "startRecord",
           "parameters": [
             {
@@ -5619,6 +5934,90 @@ window.API.JSAPI = {
             }
           ],
           "desc": "开始录音。当主动调用`wx.stopRecord`，或者录音超过1分钟时自动结束录音，返回录音文件的临时文件路径。当用户离开小程序时，此接口无法调用。"
+        },
+        {
+          "type": "function",
+          "name": "startSoterAuthentication",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "requestAuthModes",
+                  "type": "string[]",
+                  "must": true,
+                  "desc": "请求使用的可接受的生物认证方式"
+                },
+                {
+                  "name": "challenge",
+                  "type": "string",
+                  "must": true,
+                  "desc": "挑战因子。挑战因子为调用者为此次生物鉴权准备的用于签名的字符串关键是别信息，将作为result_json的一部分，供调用者识别本次请求。例如：如果场景为请求用户对某订单进行授权确认，则可以将订单号填入此参数。"
+                },
+                {
+                  "name": "authContent",
+                  "type": "string",
+                  "must": false,
+                  "desc": "验证描述，即识别过程中显示在界面上的对话框提示内容"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
+                        },
+                        {
+                          "name": "authMode",
+                          "type": "string",
+                          "desc": "生物认证方式"
+                        },
+                        {
+                          "name": "resultJSON",
+                          "type": "string",
+                          "desc": "在设备安全区域（TEE）内获得的本机安全信息（如TEE名称版本号等以及防重放参数）以及本次认证信息（仅Android支持，本次认证的指纹ID）（仅Android支持，本次认证的指纹ID）"
+                        },
+                        {
+                          "name": "resultJSONSignature",
+                          "type": "string",
+                          "desc": "用SOTER安全密钥对result_json的签名(SHA256withRSA/PSS, saltlen=20)"
+                        },
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "接口调用结果"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "开始 SOTER 生物认证"
         },
         {
           "type": "function",
@@ -5914,7 +6313,7 @@ window.API.JSAPI = {
                   "name": "header",
                   "type": "object",
                   "must": false,
-                  "desc": "HTTP 请求 Header , header 中不能设置 Referer"
+                  "desc": "HTTP 请求 Header, header 中不能设置 Referer"
                 },
                 {
                   "name": "formData",
@@ -5940,7 +6339,7 @@ window.API.JSAPI = {
                         {
                           "name": "statusCode",
                           "type": "number",
-                          "desc": "HTTP状态码"
+                          "desc": "开发者服务器返回的 HTTP 状态码"
                         }
                       ]
                     }
@@ -5963,7 +6362,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "将本地资源上传到开发者服务器。如页面通过 [wx.chooseImage](./media-picture.md#wxchooseimageobject) 等接口获取到一个本地资源的临时文件路径后，可通过此接口将本地资源上传到指定服务器。客户端发起一个 HTTPS POST 请求，其中 `content-type` 为 `multipart/form-data` 。"
+          "desc": "将本地资源上传到开发者服务器，客户端发起一个 HTTPS POST 请求，其中 `content-type` 为 `multipart/form-data` 。**使用前请先阅读[说明](./api-network.md)**。"
         },
         {
           "type": "function",

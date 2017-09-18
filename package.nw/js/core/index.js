@@ -15,6 +15,9 @@ global.contentWindow = window
 global.windowMap = new Map
 global.windowMap.set('LOGIN', global.Win)
 
+// 记录工具开始运行的时间
+global.beginTime = Date.now()
+
 global.reload = () => {
   for (key in require.cache) {
     require.cache[key] = undefined
@@ -63,8 +66,8 @@ function init() {
       win.close()
     })
     global.windowMap.clear()
-    nw.App.quit()
-    //process.exit()
+
+    tools.quit()
   })
 }
 

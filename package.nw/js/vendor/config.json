@@ -1,6 +1,6 @@
 {
-  "configVersion": 1504157683222,
-  "currentLibVersion": "1.5.2",
+  "configVersion": 1505130944432,
+  "currentLibVersion": "1.5.3",
   "libs": {
     "1.0.0": {
       "WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -60,6 +60,11 @@
       "WAService.js": "b1438c832b9aea1742857ad08c530e5a",
       "WAWebview.js": "c926cf85988f2a492d11cdcaaa477a57",
       "WAWidget.js": "be4318eea6cf10c396161a6a9d1f3952"
+    },
+    "1.5.3": {
+      "WAService.js": "7b545101ca2ad971646fb230009cfd61",
+      "WAWebview.js": "647ce031ab35efd4a07c37661f76be42",
+      "WAWidget.js": "c69ebc5658bb718e429d32fd2ef0ad3b"
     }
   }
 }

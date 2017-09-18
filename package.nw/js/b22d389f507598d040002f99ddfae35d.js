@@ -37,7 +37,7 @@ const limitLogFileNumber = () => {
     if (fileList.length >= MAX_LOG_NUM) {
       for (let i = MAX_LOG_NUM; i < fileList.length; i++) {
         let fileInfo = fileList[i]
-        fs.unlink(fileInfo.filePath)
+        fs.unlink(fileInfo.filePath, () => {})
       }
     }
   } catch (e) { }

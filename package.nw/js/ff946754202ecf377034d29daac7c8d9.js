@@ -80,6 +80,10 @@ const start = (port) => {
     ws.on('pong', function () {
       this.isAlive = true
     })
+
+    ws.on('close', function() {
+      removeClient(this)
+    })
   })
 
   pingpongTimer = setInterval(() => {
@@ -172,5 +176,9 @@ module.exports = {
     _events[protocol] = _events[protocol].filter((item) => {
       return item !== func
     })
+
+    if (_events[protocol].length == 0) {
+      delete _events[protocol]
+    }
   }
 }

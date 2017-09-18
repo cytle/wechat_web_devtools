@@ -80,7 +80,11 @@ retrieveFileHandlers.push(function(path) {
     }
   } else if (fs.existsSync(path)) {
     // Otherwise, use the filesystem
-    contents = fs.readFileSync(path, 'utf8');
+    try {
+      contents = fs.readFileSync(path, 'utf8');
+    } catch (er) {
+      contents = '';
+    }
   }
 
   return fileContentsCache[path] = contents;
@@ -388,7 +392,11 @@ function getErrorSource(error) {
 
     // Support files on disk
     if (!contents && fs && fs.existsSync(source)) {
-      contents = fs.readFileSync(source, 'utf8');
+      try {
+        contents = fs.readFileSync(source, 'utf8');
+      } catch (er) {
+        contents = '';
+      }
     }
 
     // Format the line from the original source code like node does

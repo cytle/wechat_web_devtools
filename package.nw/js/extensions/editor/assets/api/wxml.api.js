@@ -78,7 +78,7 @@ window.WXMLAPI = {
       "controls": {
         "doc": "是否显示默认控件",
         "type": "Boolean",
-        "default": true,
+        "default": false,
         "valid": [
           {
             "value": true
@@ -285,6 +285,19 @@ window.WXMLAPI = {
         "type": "String",
         "default": "button-hover"
       },
+      "hover-stop-propagation": {
+        "doc": "指定是否阻止本节点的祖先节点出现点击态",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "hover-start-time": {
         "doc": "按住后多久出现点击态，单位毫秒",
         "type": "Number",
@@ -295,9 +308,54 @@ window.WXMLAPI = {
         "type": "Number",
         "default": 70
       },
+      "bindgetuserinfo": {
+        "doc": "用户点击该按钮时，会返回获取到的用户信息，从返回参数的detail中获取到的值同[wx.getUserInfo](../api/open.md#wxgetuserinfoobject)",
+        "type": "Handler"
+      },
+      "lang": {
+        "doc": "指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。",
+        "type": "String",
+        "default": "en"
+      },
       "session-from": {
-        "doc": "open-type=\"contact\"时有效：用户从该按钮进入会话时，开发者将收到带上本参数的事件推送。本参数可用于区分用户进入客服会话的来源。",
+        "doc": "会话来源",
         "type": "String"
+      },
+      "send-message-title": {
+        "doc": "会话内消息卡片标题",
+        "type": "String",
+        "default": "当前标题"
+      },
+      "send-message-path": {
+        "doc": "会话内消息卡片点击跳转小程序路径",
+        "type": "String",
+        "default": "当前分享路径"
+      },
+      "send-message-img": {
+        "doc": "会话内消息卡片图片",
+        "type": "String",
+        "default": "截图"
+      },
+      "show-message-card": {
+        "doc": "显示会话内消息卡片",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "bindcontact": {
+        "doc": "客服消息回调",
+        "type": "Handler"
+      },
+      "bindgetphonenumber": {
+        "doc": "获取用户手机号回调",
+        "type": "Handler"
       }
     }
   },
@@ -1041,6 +1099,19 @@ window.WXMLAPI = {
           }
         ]
       },
+      "lazy-load": {
+        "doc": "图片懒加载。只针对page与scroll-view下的image有效",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "binderror": {
         "doc": "当错误发生时，发布到 AppService 的事件名，事件对象event.detail = {errMsg: 'something wrong'}",
         "type": "HandleEvent"
@@ -1212,8 +1283,12 @@ window.WXMLAPI = {
           }
         ]
       },
+      "cursor": {
+        "doc": "指定focus时的光标位置",
+        "type": "Number"
+      },
       "bindinput": {
-        "doc": "当键盘输入时，触发input事件，event.detail = {value: value}，处理函数可以直接 return 一个字符串，将替换输入框的内容。",
+        "doc": "当键盘输入时，触发input事件，event.detail = {value, cursor}，处理函数可以直接 return 一个字符串，将替换输入框的内容。",
         "type": "EventHandle"
       },
       "bindfocus": {
@@ -1741,6 +1816,19 @@ window.WXMLAPI = {
         "type": "String",
         "default": "navigator-hover"
       },
+      "hover-stop-propagation": {
+        "doc": "指定是否阻止本节点的祖先节点出现点击态",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "hover-start-time": {
         "doc": "按住后多久出现点击态，单位毫秒",
         "type": "Number",
@@ -1900,6 +1988,16 @@ window.WXMLAPI = {
         "doc": "{% version('1.1.0') %}",
         "type": "String",
         "default": "设置选择器中间选中框的类名"
+      },
+      "mask-style": {
+        "doc": "{% version('1.5.0') %}",
+        "type": "String",
+        "default": "设置蒙层的样式"
+      },
+      "mask-class": {
+        "doc": "{% version('1.5.0') %}",
+        "type": "String",
+        "default": "设置蒙层的类名"
       },
       "bindchange": {
         "doc": "",
@@ -3100,6 +3198,10 @@ window.WXMLAPI = {
         "type": "Number",
         "default": 0
       },
+      "cursor": {
+        "doc": "指定focus时的光标位置",
+        "type": "Number"
+      },
       "bindfocus": {
         "doc": "输入框聚焦时触发，event.detail = {value: value}",
         "type": "EventHandle"
@@ -3113,7 +3215,7 @@ window.WXMLAPI = {
         "type": "EventHandle"
       },
       "bindinput": {
-        "doc": "当键盘输入时，触发 input 事件，event.detail = {value: value}，** bindinput 处理函数的返回值并不会反映到 textarea 上 **",
+        "doc": "当键盘输入时，触发 input 事件，event.detail = {value, cursor}，** bindinput 处理函数的返回值并不会反映到 textarea 上 **",
         "type": "EventHandle"
       },
       "bindconfirm": {
@@ -3365,6 +3467,19 @@ window.WXMLAPI = {
         "doc": "指定按下去的样式类。当 `hover-class=\"none\"` 时，没有点击态效果",
         "type": "String",
         "default": "none"
+      },
+      "hover-stop-propagation": {
+        "doc": "指定是否阻止本节点的祖先节点出现点击态",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
       },
       "hover-start-time": {
         "doc": "按住后多久出现点击态，单位毫秒",

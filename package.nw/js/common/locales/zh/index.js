@@ -187,8 +187,13 @@ module.exports = {
   CGI_ERR_NO_PERMISSION: '没有权限',
   CGI_ERR_SYSTEM_ERROR: '系统错误，错误码：%s',
   CGI_ERR_DEV_INVALID_APPID: 'AppID 不合法',
+  CGI_ERR_DEV_CLOUD_CALLBACK_ERR: '%s，通知腾讯云发生错误',
+  CGI_ERR_DEV_CLOUD_INVALID_ACTION: '腾讯云非法操作请求',
+  CGI_ERR_DEV_CLOUD_EVENT_EXPIRED: '操作腾讯云请求超时',
   CGI_ERR_DEV_CLOUD_NO_PERMISSION: '没有权限操作腾讯云',
   CGI_ERR_DEV_CLOUD_NO_PRODUCT_ENV: '未开通腾讯现网环境，请先开通',
+  CGI_ERR_DEV_CLOUD_NO_CLOUD_ACCOUNT: '未开通腾讯云帐号',
+  CGI_ERR_DEV_CLOUD_INVALID_RESP_DATA: '腾讯云返回非法数据',
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',

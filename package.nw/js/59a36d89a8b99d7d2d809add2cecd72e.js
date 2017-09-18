@@ -29,5 +29,4 @@ alert('DOCUMENT_READY')
 </script>
 `,f=`
   <p>{{error}}</p>
-  <script>console.error(\`{{msgForConsole}}\`)</script>
 `,g=global.appConfig.isDev?a.join(__dirname,'../../../extensions/pageframe/index.js'):a.join(__dirname,'./extensions/pageframe/index.js'),h=b.readFileSync(g,'utf8');module.exports={jsDebug:h,htmlBegin:c,htmlEnd:d,htmlReady:e,errorTpl:f,devVendorList:['reporter-sdk.js','webview-sdk.js','exparser.min.js','wx-components.js','virtual_dom.js','webview-engine.js','hls.js','wx-components.css'],vendorList:['WAWebview.js','hls.js']}}(require('lazyload'),require);
