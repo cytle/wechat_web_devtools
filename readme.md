@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-1.01.170831](https://img.shields.io/badge/wx_dev_tools-1.01.170831-green.svg)
+![wx-dev-tools v-1.01.170913](https://img.shields.io/badge/wx_dev_tools-1.01.170913-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -24,6 +24,7 @@ linux下使用微信web开发者工具.
 ### version_1
 
 - 2017/09/01 更新:微信小程序升级到1.01.170831
+- 2017/09/18 更新:微信小程序升级到1.01.170913
 
 升级步骤: 代码在分支: version_1，切来后，直接./bin/wxdt
 有问题可以到此[issue](https://github.com/cytle/wechat_web_devtools/issues/25)提。
