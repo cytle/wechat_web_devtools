@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=require('path'),b=require('./e73500972c89345054b507a25d8ccf0b.js'),c=require('./60e94018e5c42875e658435ea04a006d.js');module.exports=async function(a){let d=await b(a);return await c(a.projectpath,d.client)}}(require('lazyload'),require);

@@ -1,7 +1,17 @@
 {
-  "configVersion": 1500604217367,
-  "currentLibVersion": "1.5.0",
+  "configVersion": 1500604217368,
+  "currentLibVersion": "1.5.2",
   "libs": {
+    "1.5.2": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.2/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.2/WAService.js",
+      "WAWidget.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.2/WAWidget.js"
+    },
+    "1.5.1": {
+      "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.1/WAWebview.js",
+      "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.1/WAService.js",
+      "WAWidget.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.1/WAWidget.js"
+    },
     "1.5.0": {
       "WAWebview.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.0/WAWebview.js",
       "WAService.js": "https://dldir1.qq.com/WechatWebDev/vendor/1.5.0/WAService.js",

@@ -1,0 +1,1 @@
+"use strict";!function(require,directRequire){module.exports={bufToUTF8:function(a){let b=a.toString();return 0===Buffer.compare(new Buffer(b,"utf8"),a)?b:void 0}}}(require("lazyload"),require);

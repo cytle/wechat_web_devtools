@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('WIDGETSERVICE');b.ready=!0,b.__proto__.toWebview=function(a){this.transfer('WIDGET',a)},b.__proto__.invokeCallback=function(a,b){this.send({command:'APPSERVICE_INVOKE_CALLBACK',data:{callbackID:a,res:b}})},module.exports=b}(require('lazyload'),require);

@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js');module.exports=new class extends a{constructor(a){super(a),this.ready=!0}remoteEmit(a,b){this.send({type:'EMIT',eventType:a,payload:b})}}('EDITOR')}(require('lazyload'),require);

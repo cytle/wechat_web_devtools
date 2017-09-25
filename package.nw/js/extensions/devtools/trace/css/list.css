@@ -1,0 +1,50 @@
+.select-list {
+  list-style-type: none;
+  width: 100%;
+  padding-left: 0;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.select-list li img {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 25px;
+  height: 25px;
+}
+
+.select-list li span {
+  line-height: 25px;
+}
+
+.select-list li {
+  border-top: solid 1px #d2d2d2;
+  padding: 8px 5px;
+  overflow: auto;
+}
+
+.select-list li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.trace-item img {
+  width: 54px !important;
+  height: 54px !important;
+}
+
+.trace-item div {
+  float: left;
+}
+
+.trace-item div span {
+  line-height: 18px !important;
+  display: block;
+}
+
+.trace-item-desc span:first-child {
+}
+
+.trace-item-desc span:not(:first-child) {
+  color: #909090;
+}
