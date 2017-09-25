@@ -3,6 +3,14 @@
 #   1. 根据build.conf下载指定版本
 #   2. 使用wine安装
 #   3. 拷贝到package.nw
+#
+# 开发者工具地址
+# version 0
+# https://servicewechat.com/wxa-dev-logic/download_redirect?type=old_x64&from=mpwiki
+# https://dldir1.qq.com/WechatWebDev/old/20170831/wechat_web_devtools_0.22.203100_x64.exe
+# version 1
+# https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki
+# https://dldir1.qq.com/WechatWebDev/1.0.0/20170925/wechat_devtools_1.01.170925_x64.exe
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
@@ -12,10 +20,9 @@ dist_dir="$root_dir/dist"
 cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
-
 wcwd_package_dir="$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具/package.nw"
 onlineverdor_dir="$root_dir/package.nw/app/dist/weapp/onlinevendor"
-wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
+wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=old_x64&from=mpwiki'
 wechat_v=$(http --headers $wcwd_download | grep -oP --color=never '(?<=wechat_web_devtools_)[\d\.]+(?=_x64\.exe)')
 
 
