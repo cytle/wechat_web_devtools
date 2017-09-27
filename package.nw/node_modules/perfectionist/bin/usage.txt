@@ -1,0 +1,14 @@
+Usage: perfectionist [input] [output] {OPTIONS}
+
+Options:
+
+    --format      -f    Choose how the CSS should be formatted:
+                        expanded (default), compact, compressed
+
+    --syntax      -t    Pass scss to beautify scss source.
+
+    --sourcemap   -s    Output a sourcemap with the CSS.
+
+    --version,    -v    Outputs the version number.
+
+    --help,       -h    Outputs this help screen.

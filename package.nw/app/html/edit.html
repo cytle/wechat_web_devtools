@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset=utf-8><title>微信web开发者工具</title><link rel=stylesheet href=../dist/editor/css/font-awesome.min.css></head><body><div id=container tabindex=-1></div><script src=../dist/editor/index.min.js></script><script>window.onload = function() {
+      var s = document.createElement('script')
+      s.onload = function() {
+        var maxTries = 50
+        var loop = () => {
+          if (maxTries-- < 0) return
+          if (window.hasOwnProperty('monaco')) {
+            window.monaco = monaco
+            var ev = document.createEvent('UIEvent')
+            ev.initEvent('MonacoReady', false, false)
+            document.dispatchEvent(ev)
+          } else setTimeout(loop, 300)
+        }
+        setTimeout(loop, 300)
+
+        require.config({
+          paths: {
+            'vs': '../dist/lib/monaco-editor/min/vs'
+          },
+          'vs/nls' : {
+			      availableLanguages: {
+				      '*': 'zh-cn'
+			    }
+		    }})
+        require(['../dist/lib/monaco-editor/min/vs/editor/editor.main'], function(monaco) {
+          //setTimeout( () => {
+            window.monaco = monaco
+            let ev = document.createEvent('UIEvent')
+            ev.initEvent('MonacoReady', false, false)
+            document.dispatchEvent(ev)
+         // }, 3000)
+        })
+      }
+      s.src = "../dist/lib/monaco-editor/min/vs/loader.js"
+      document.head.appendChild(s)
+    }</script></body></html>

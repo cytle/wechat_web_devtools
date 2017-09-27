@@ -1,6 +1,6 @@
 {
-  "configVersion": 1505130944432,
-  "currentLibVersion": "1.5.3",
+  "configVersion": 1505975657072,
+  "currentLibVersion": "1.5.4",
   "libs": {
     "1.0.0": {
       "WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -26,9 +26,25 @@
       "WAService.js": "e996baeab6e9995ffee56d988123df76",
       "WAWebview.js": "c8b1173040ce3715149e0a1b58bac309"
     },
+    "1.2.3": {
+      "WAService.js": "369a71db995a4268853b0107665e3751",
+      "WAWebview.js": "9df663fb8d4373071b86633b9e09d50a"
+    },
+    "1.2.4": {
+      "WAService.js": "1ca5bc85c348baf01cfc00a25e9433cb",
+      "WAWebview.js": "2df156a16b2c7638652a0667116cec8f"
+    },
+    "1.2.5": {
+      "WAService.js": "933820cbb32dba4db8eeb95c8fd55248",
+      "WAWebview.js": "b6eace282beb85fbd77875ab8a145c5b"
+    },
+    "1.3.0": {
+      "WAService.js": "438e2556764b1c6570091710434142e4",
+      "WAWebview.js": "b789668ad6a435476c923dcd792554b4"
+    },
     "1.4.0": {
-      "WAService.js": "e83d58b70d387e4f33c243098eca600c",
-      "WAWebview.js": "9f3c8a6a75d395c4516b9ea26eb13f15",
+      "WAService.js": "55b7a32f97a96e6c6b74dc86d7df24f1",
+      "WAWebview.js": "6c36c4d33486d83576a887f8c6b7e5c7",
       "WAWidget.js": "f2bf6f921128de890cd75c705a9d33bc"
     },
     "1.4.1": {
@@ -45,6 +61,11 @@
       "WAService.js": "2be136ad42e9d052fe539e33026c0aab",
       "WAWebview.js": "771a3bfd90b5f22332d2ab3d0fc2902e",
       "WAWidget.js": "904597086b9aa960f0497b24f05c6f5b"
+    },
+    "1.4.4": {
+      "WAService.js": "4a2b101d2f1498c35488079708108e50",
+      "WAWebview.js": "1c02cab8d2f3cf66e4ba5024c53470c4",
+      "WAWidget.js": "4125659e3abe22757330799ef93d994b"
     },
     "1.5.0": {
       "WAService.js": "36fe923fd1aa950936898820bfd0beba",
@@ -65,6 +86,11 @@
       "WAService.js": "7b545101ca2ad971646fb230009cfd61",
       "WAWebview.js": "647ce031ab35efd4a07c37661f76be42",
       "WAWidget.js": "c69ebc5658bb718e429d32fd2ef0ad3b"
+    },
+    "1.5.4": {
+      "WAService.js": "57fd278e66dd9993a69cc491abac7bdf",
+      "WAWebview.js": "625e8badd3ab94297db71aa9c354799b",
+      "WAWidget.js": "daeb536d1ca9f45e9c145f956db01e0f"
     }
   }
 }

@@ -1,0 +1,43 @@
+{
+  "_from": "git+http://git.code.oa.com/devtools/lazyload.git",
+  "_id": "lazyload@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-y3tVt6/MDjiTBDbY2KNCAOyuMOo=",
+  "_location": "/lazyload",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "lazyload@git+http://git.code.oa.com/devtools/lazyload.git",
+    "name": "lazyload",
+    "escapedName": "lazyload",
+    "rawSpec": "git+http://git.code.oa.com/devtools/lazyload.git",
+    "saveSpec": "git+http://git.code.oa.com/devtools/lazyload.git",
+    "fetchSpec": "http://git.code.oa.com/devtools/lazyload.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+http://git.code.oa.com/devtools/lazyload.git#e25e415508123374e931ac77380566621e6a7dc8",
+  "_spec": "lazyload@git+http://git.code.oa.com/devtools/lazyload.git",
+  "_where": "F:\\jenkins\\workspace\\wechat-web-devtools-main\\src",
+  "author": {
+    "name": "WeChat"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "lazy load modules in Node.js",
+  "devDependencies": {
+    "mocha": "^3.4.1"
+  },
+  "main": "lazy-require.js",
+  "name": "lazyload",
+  "repository": {
+    "type": "git",
+    "url": "https://git.code.oa.com/devtools/lazyload.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "version": "1.0.0"
+}

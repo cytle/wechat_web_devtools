@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-1.01.170913](https://img.shields.io/badge/wx_dev_tools-1.01.170913-green.svg)
+![wx-dev-tools v-1.01.170925](https://img.shields.io/badge/wx_dev_tools-1.01.170925-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -20,18 +20,11 @@ linux下使用微信web开发者工具.
 - 2017/07/26 更新:微信小程序升级到0.20.191900
 - 2017/08/20 更新:微信小程序升级到0.21.201800
 - 2017/09/25 更新:微信小程序升级到0.22.203100
-
-### version_1
-
 - 2017/09/01 更新:微信小程序升级到1.01.170831
 - 2017/09/18 更新:微信小程序升级到1.01.170913
-
-升级步骤: 代码在分支: version_1，切来后，直接./bin/wxdt
-有问题可以到此[issue](https://github.com/cytle/wechat_web_devtools/issues/25)提。
+- 2017/09/27 更新:微信小程序升级到1.01.170925
 
 ### 更新到最新版
-
-可以在本项目未更新情况下使用，可能伴随一些bug
 
 1. 执行脚本会自动下载安装最新开发者工具（window x64）
 
@@ -39,13 +32,11 @@ linux下使用微信web开发者工具.
 ./bin/update_package_nw.sh
 ```
 
-2. 安装过程中确认安装到`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具`路径下(现在旧版本默认为`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具_old`需要注意)
+2. 安装过程中确认安装到`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具`路径下
 
 3. 最后完成去掉打开开发者工具的钩
 
 然后执行`./bin/wxdt`，如果没有问题欢迎提PR~
-
-
 
 ## Usage
 
@@ -99,9 +90,7 @@ git pull origin
 
 ![新建项目界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/新建项目界面.png)
 
-
 ![设置界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/设置界面.png)
-
 
 ![调试界面](https://github.com/cytle/wechat_web_devtools/raw/a27def24bd78aa529bbab641cca83694ba6f35d0/images/调试界面.png)
 
@@ -113,9 +102,7 @@ git pull origin
 2. 项目文件夹下运行`./bin/wxdt uninstall`(删除桌面图标、微信web开发者工具配置目录)
 3. 删除项目文件夹
 
-
 ## 其它
 
 ### 免责声明
 微信开发者工具版权归腾讯公司所有，本项目指在交流学习之用，如有不当之处，请联系本人，邮箱：canyoutle@gmail.com
-

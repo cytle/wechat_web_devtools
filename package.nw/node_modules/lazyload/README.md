@@ -1,0 +1,15 @@
+### 测试
+测试前安装依赖（mocha）：
+```bash
+npm install
+```
+
+或
+```bash
+yarn
+```
+
+自动测试：
+```bash
+npm test
+```

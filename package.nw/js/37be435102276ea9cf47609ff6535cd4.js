@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){module.exports={LOCAL_PROTOCOL:'http://',USR_DIR:'usr'}}(require('lazyload'),require);

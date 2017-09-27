@@ -1,4 +1,4 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),c='<!-- wxConfig -->',d='<!-- devtoolsConfig -->',e=`
+'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),{NO_BOM_VAR:c}=require('./6242f55dbdfe53c2f07b7a51568311f2.js'),d='<!-- wxConfig -->',e='<!-- devtoolsConfig -->',f=`
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +10,9 @@
   var __wxRouteBegin
   global = {}
   </script>
-  ${c}
   ${d}
-`,f=`
+  ${e}
+`,g=`
 <style>
     body {
       overflow: hidden;
@@ -29,6 +29,14 @@
 </body>
 </html>
 <script>
-alert('DOCUMENT_READY')
+if (document.readyState == 'complete') {
+  alert('DOCUMENT_READY')
+} else {
+  var fn = function(event) {
+    alert('DOCUMENT_READY')
+    window.removeEventListener("load", fn)
+  }
+  window.addEventListener('load', fn)
+}
 </script>
-`,g=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),h=b.readFileSync(g,'utf8');module.exports={asDebug:h,htmlBegin:e,htmlEnd:f,vendorList:['WAService.js'],devVendorList:['reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],noBrowser:'window,document,frames,self,location,navigator,localStorage,history,Caches,screen,alert,confirm,prompt,fetch,XMLHttpRequest,WebSocket,webkit,WeixinJSCore,WeixinJSBridge,Reporter,print',devtoolsConfigPlaceholder:d,wxConfigPlaceholder:c}}(require('lazyload'),require);
+`,h=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),i=b.readFileSync(h,'utf8'),j=c.join(',');module.exports={asDebug:i,htmlBegin:f,htmlEnd:g,vendorList:['WAService.js'],devVendorList:['wx-config.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],noBrowser:j,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d}}(require('lazyload'),require);
