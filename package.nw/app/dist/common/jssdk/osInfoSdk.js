@@ -1,1 +1,0 @@
-"use strict";function init(){function e(e,t){return e?{errMsg:"getNetworkType:ok",subtype:localStorage["webview-network-type"]||"wifi"}:{errMsg:"getNetworkType:"+r.failWroding}}var r=require("./sdkConfig.js"),t=function(r,t,o,i){var s=t.sdkName,n=void 0;"getNetworkType"===s&&(n=e(r,t.args)),i(n)};_exports={exec:t}}var _exports;init(),module.exports=_exports;

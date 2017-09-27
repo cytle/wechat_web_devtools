@@ -5,8 +5,20 @@ export default class CFFIndex {
     this.type = type;
   }
 
+  getCFFVersion(ctx) {
+    while (ctx && !ctx.hdrSize) {
+      ctx = ctx.parent;
+    }
+
+    return ctx ? ctx.version : -1;
+  }
+
   decode(stream, parent) {
-    let count = stream.readUInt16BE();
+    let version = this.getCFFVersion(parent);
+    let count = version >= 2
+      ? stream.readUInt32BE()
+      : stream.readUInt16BE();
+
     if (count === 0) {
       return [];
     }

@@ -78,8 +78,8 @@ export default class WOFF2Font extends TTFFont {
 
         for (let i = 0; i < nContours; i++) {
           let r = read255UInt16(table.nPoints);
-          nPoints.push(r);
           totalPoints += r;
+          nPoints.push(totalPoints);
         }
 
         glyph.points = decodeTriplet(table.flags, table.glyphs, totalPoints);

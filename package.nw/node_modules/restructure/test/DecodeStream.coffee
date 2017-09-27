@@ -77,3 +77,7 @@ describe 'DecodeStream', ->
       buf = new Buffer [0x8a, 0x63, 0x63, 0x65, 0x6e, 0x74, 0x65, 0x64, 0x20, 0x63, 0x68, 0x87, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73]
       stream = new DecodeStream buf
       stream.readString(buf.length, 'mac').should.equal 'äccented cháracters'
+
+    it 'should return a buffer for unsupported encodings', ->
+      stream = new DecodeStream new Buffer [1, 2, 3]
+      stream.readString(3, 'unsupported').should.deep.equal new Buffer [1, 2, 3]

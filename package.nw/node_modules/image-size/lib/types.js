@@ -2,7 +2,9 @@
 
 module.exports = [
   'bmp',
+  'cur',
   'gif',
+  'ico',
   'jpg',
   'png',
   'psd',

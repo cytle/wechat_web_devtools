@@ -5,7 +5,7 @@ function HuffmanCode(bits, value) {
 
 exports.HuffmanCode = HuffmanCode;
 
-const MAX_LENGTH = 15;
+var MAX_LENGTH = 15;
 
 /* Returns reverse(reverse(key, len) + 1, len), where reverse(key, len) is the
    bit-wise reversal of the len least significant bits of key. */

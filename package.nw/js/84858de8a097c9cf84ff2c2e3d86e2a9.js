@@ -215,7 +215,7 @@
     get syncKey() {
       if (!this._syncKey) {
         try {
-          var data = JSON.parse(getItem(config.SYNC_KEY));
+          var data = JSON.parse(getItem(config.SYNC_KEY)) || {};
           if (data.hasOwnProperty('sync_id') && data.hasOwnProperty('sync_seq')) {
             this._syncKey = data;
             return this._syncKey;
@@ -240,7 +240,7 @@
     get batchSyncKey() {
       if (!this._batchSyncKey) {
         try {
-          var data = JSON.stringify(getItem(config.BATCH_SYNC_KEY));
+          var data = JSON.stringify(getItem(config.BATCH_SYNC_KEY)) || {};
           if (data.hasOwnProperty('sync_id') && data.hasOwnProperty('sync_seq')) {
             this._batchSyncKey = data;
             return this._batchSyncKey;
@@ -297,7 +297,7 @@
     get settings() {
       var setting = {};
       try {
-        setting = JSON.parse(getItem(config.SETTINGS));
+        setting = JSON.parse(getItem(config.SETTINGS)) || {};
       } catch (e) {
         setting = {};
       }
@@ -313,7 +313,7 @@
     get qcloudFileInfo() {
       var fileinfo = {};
       try {
-        fileinfo = JSON.parse(getItem(config.QCLOUD_FILEINFO));
+        fileinfo = JSON.parse(getItem(config.QCLOUD_FILEINFO)) || {};
       } catch (e) {
         fileinfo = {};
       }

@@ -1,1 +1,0 @@
-"use strict";function init(){var e=["sendGoldenRedPacket","openGoldenRedPacketDetail","sendBizRedPacket","addPhoneContact","vibrateShort","vibrateLong","navigateBackApplication"],t=function(e,t){var a=e.sdkName;t({errMsg:a+":fail 开发者工具暂时不支持此 API 调试，请使用真机进行开发"})},a={};e.forEach(function(e){a[e]=t}),_exports=a}var _exports;init(),module.exports=_exports;

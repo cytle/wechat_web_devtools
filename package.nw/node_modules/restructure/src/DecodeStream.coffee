@@ -44,8 +44,9 @@ class DecodeStream
       else
         buf = @readBuffer length
         if iconv
-          return iconv.decode(buf, encoding)
-          
+          try
+            return iconv.decode(buf, encoding)
+
         return buf
 
   readBuffer: (length) ->

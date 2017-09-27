@@ -1,5 +1,6 @@
 import r from 'restructure';
-import { ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device } from './opentype';
+import {ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device} from './opentype';
+import {ItemVariationStore} from './variations';
 
 let AttachPoint = new r.Array(r.uint16, r.uint16);
 let AttachList = new r.Struct({
@@ -38,17 +39,19 @@ let MarkGlyphSetsDef = new r.Struct({
 });
 
 export default new r.VersionedStruct(r.uint32, {
-  0x00010000: {
-    glyphClassDef:      new r.Pointer(r.uint16, ClassDef),       // 1: base glyph, 2: ligature, 3: mark, 4: component
+  header: {
+    glyphClassDef:      new r.Pointer(r.uint16, ClassDef),
     attachList:         new r.Pointer(r.uint16, AttachList),
     ligCaretList:       new r.Pointer(r.uint16, LigCaretList),
     markAttachClassDef: new r.Pointer(r.uint16, ClassDef)
   },
+
+  0x00010000: {},
   0x00010002: {
-    glyphClassDef:      new r.Pointer(r.uint16, ClassDef),
-    attachList:         new r.Pointer(r.uint16, AttachList),
-    ligCaretList:       new r.Pointer(r.uint16, LigCaretList),
-    markAttachClassDef: new r.Pointer(r.uint16, ClassDef),
     markGlyphSetsDef:   new r.Pointer(r.uint16, MarkGlyphSetsDef)
+  },
+  0x00010003: {
+    markGlyphSetsDef:   new r.Pointer(r.uint16, MarkGlyphSetsDef),
+    itemVariationStore: new r.Pointer(r.uint32, ItemVariationStore)
   }
 });

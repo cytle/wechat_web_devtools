@@ -1,27 +1,30 @@
 export default class GlyphIterator {
-  constructor(glyphs, flags) {
+  constructor(glyphs, options) {
     this.glyphs = glyphs;
-    this.reset(flags);
+    this.reset(options);
   }
 
-  reset(flags = {}) {
-    this.flags = flags;
-    this.index = 0;
+  reset(options = {}, index = 0) {
+    this.options = options;
+    this.flags = options.flags || {};
+    this.markAttachmentType = options.markAttachmentType || 0;
+    this.index = index;
   }
 
   get cur() {
     return this.glyphs[this.index] || null;
   }
 
-  shouldIgnore(glyph, flags) {
-    return ((flags.ignoreMarks && glyph.isMark) ||
-           (flags.ignoreBaseGlyphs && !glyph.isMark) ||
-           (flags.ignoreLigatures && glyph.isLigature));
+  shouldIgnore(glyph) {
+    return (this.flags.ignoreMarks && glyph.isMark) ||
+           (this.flags.ignoreBaseGlyphs && glyph.isBase) ||
+           (this.flags.ignoreLigatures && glyph.isLigature) ||
+           (this.markAttachmentType && glyph.isMark && glyph.markAttachmentType !== this.markAttachmentType);
   }
 
   move(dir) {
     this.index += dir;
-    while (0 <= this.index && this.index < this.glyphs.length && this.shouldIgnore(this.glyphs[this.index], this.flags)) {
+    while (0 <= this.index && this.index < this.glyphs.length && this.shouldIgnore(this.glyphs[this.index])) {
       this.index += dir;
     }
 

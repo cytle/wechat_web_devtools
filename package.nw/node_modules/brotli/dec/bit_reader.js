@@ -15,11 +15,11 @@
    Bit reading helpers
 */
 
-const BROTLI_READ_SIZE = 4096;
-const BROTLI_IBUF_SIZE =  (2 * BROTLI_READ_SIZE + 32);
-const BROTLI_IBUF_MASK =  (2 * BROTLI_READ_SIZE - 1);
+var BROTLI_READ_SIZE = 4096;
+var BROTLI_IBUF_SIZE =  (2 * BROTLI_READ_SIZE + 32);
+var BROTLI_IBUF_MASK =  (2 * BROTLI_READ_SIZE - 1);
 
-const kBitMask = new Uint32Array([
+var kBitMask = new Uint32Array([
   0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767,
   65535, 131071, 262143, 524287, 1048575, 2097151, 4194303, 8388607, 16777215
 ]);

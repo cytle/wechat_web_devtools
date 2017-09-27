@@ -104,10 +104,10 @@
    where offset1 and offset2 are dependent on the context mode.
 */
 
-const CONTEXT_LSB6         = 0;
-const CONTEXT_MSB6         = 1;
-const CONTEXT_UTF8         = 2;
-const CONTEXT_SIGNED       = 3;
+var CONTEXT_LSB6         = 0;
+var CONTEXT_MSB6         = 1;
+var CONTEXT_UTF8         = 2;
+var CONTEXT_SIGNED       = 3;
 
 /* Common context lookup table for all context modes. */
 exports.lookup = new Uint8Array([

@@ -1,5 +1,6 @@
 import r from 'restructure';
-import { ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device, Context, ChainingContext } from './opentype';
+import {ScriptList, FeatureList, LookupList, Coverage, ClassDef, Device, Context, ChainingContext} from './opentype';
+import {FeatureVariations} from './variations';
 
 let Sequence = new r.Array(r.uint16, r.uint16);
 let AlternateSet = Sequence;
@@ -69,9 +70,15 @@ let GSUBLookup = new r.VersionedStruct('lookupType', {
 // Fix circular reference
 GSUBLookup.versions[7].extension.type = GSUBLookup;
 
-export default new r.Struct({
-  version:        r.int32,
-  scriptList:     new r.Pointer(r.uint16, ScriptList),
-  featureList:    new r.Pointer(r.uint16, FeatureList),
-  lookupList:     new r.Pointer(r.uint16, new LookupList(GSUBLookup))
+export default new r.VersionedStruct(r.uint32, {
+  header: {
+    scriptList:     new r.Pointer(r.uint16, ScriptList),
+    featureList:    new r.Pointer(r.uint16, FeatureList),
+    lookupList:     new r.Pointer(r.uint16, new LookupList(GSUBLookup))
+  },
+
+  0x00010000: {},
+  0x00010001: {
+    featureVariations: new r.Pointer(r.uint32, FeatureVariations)
+  }
 });

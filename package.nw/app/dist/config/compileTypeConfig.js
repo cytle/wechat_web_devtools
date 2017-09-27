@@ -1,1 +1,0 @@
-"use strict";module.exports={weapp:"weapp",widget:"widget",search:"search"};
