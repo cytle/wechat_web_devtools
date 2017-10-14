@@ -1,4 +1,11 @@
-'use strict';!function(require,directRequire){const a=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),b={[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
+'use strict';!function(require,directRequire){const a=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),b={[a.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,c)=>{let{url:d,domains:e}=c,f=c.type,g=`
+    (function() {
+    console.group(\`${new Date} ${f} 合法域名校验出错\`)
+    console.info(\`如若已在管理后台更新域名配置，请刷新项目配置后重新编译项目，操作路径：“项目-域名信息”\`)
+    console.error(\` ${d} 不在以下 ${f} 合法域名列表中，请参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html\`)
+    console.table(${JSON.stringify(e)})
+    console.groupEnd()
+    })()`;a.executeScript({code:g})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
     (function() {
 
     console.group(\`\${new Date()} 自定义分析 配置拉取成功\`)
@@ -41,7 +48,7 @@
     } catch (e) {
       // pass
     }
-    console.groupEnd() 
+    console.groupEnd()
 
     })()
     `.replace('$config',c.config);a.executeScript({code:d})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_ON_APP_CONFIG]:(a,b,c)=>{let d=`
@@ -75,12 +82,12 @@
         let actionDataTable = []
         for (const key in target.data) {
           actionDataTable.push({
-            '字段值': target.data[key] 
+            '字段值': target.data[key]
           })
         }
 
         console.info('上报数据：')
-        console.table(actionDataTable)        
+        console.table(actionDataTable)
 
         console.groupEnd()
       }
@@ -121,7 +128,7 @@
 
       console.groupEnd()
     } else if (type === 'Array') {
-      
+
       // config
       let idMap = {}
       try {

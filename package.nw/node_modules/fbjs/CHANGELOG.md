@@ -1,6 +1,12 @@
 ## [Unreleased]
 
 
+## [0.8.16] - 2017-09-25
+
+### Changed
+- Relicense to MIT as part of React relicense.
+
+
 ## [0.8.15] - 2017-09-07
 
 ### Fixed

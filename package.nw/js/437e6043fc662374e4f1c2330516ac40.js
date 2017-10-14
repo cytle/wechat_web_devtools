@@ -10,8 +10,7 @@ function trasnlateReqToUrlParse(req) {
   let protocol = (!!req.connection.encrypted && !/^http:/.test(req.url)) ? "https" : "http"
   let fullUrl = protocol === "http" ? req.url : (protocol + '://' + host + req.url)
   let res = URL.parse(fullUrl)
-  res.pureHref = res.href.replace(/\?.*/, '').replace(/\#.*/, '')
-  return res
+  return protocol + '://' + host + res.path
 }
 
 async function startProxyServer(options) {
@@ -28,8 +27,10 @@ async function startProxyServer(options) {
     proxyLocal.makeProxyLocal(port, rule.forceLocalProxy)
     var forceLocalProxy = rule.forceLocalProxy
     rule.shouldUseLocalResponse = (req, reqData) => {
-      let urlPattern = trasnlateReqToUrlParse(req)
-      let pureHref = urlPattern.pureHref
+      var pureHref = trasnlateReqToUrlParse(req)
+      if (pureHref.indexOf(`http://127.0.0.1:${port}`) === 0) {
+        return true
+      }
 
       let result = false
       for (let i = 0, len = forceLocalProxy.length; i < len; i++) {

@@ -32,7 +32,7 @@
       console.groupEnd()`})}async function p(a,b){let{type:c,url:d}=b,e='image'===c&&-1<d.indexOf('do-not-use-local-path-'),f='',g='',h='',i=w.getCurrent();if(e){let b=d.replace(/.*do-not-use-local-path-/,''),c=b.split('&'),e=c[0].replace('./',''),f=parseInt(c[1]),h=parseInt(c[2]);try{const b=await x(i.projectpath);let c=b.getFile(e);c=c.toString(),g=`${e} 中的本地资源图片无法通过 WXSS 获取，可以使用网络图片，或者 base64，或者使用<image/>标签。请参考文档：
   https://mp.weixin.qq.com/debug/wxadoc/dev/qa.html#%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87-css-%E8%8E%B7%E5%8F%96`;let d=u(c,f,h);a.executeScript({code:`console.group("${new Date} 渲染层网络层错误")
             console.error(\`${g}\n${d}\`)
-          console.groupEnd()`})}catch(a){return void y.error(`showconsole.js showWebviewNetworkError ${error.toString()}`)}}else{let c=`http://${i.hash}.debug.open.weixin.qq.com`;f=b.error||`the server responded with a status of ${b.statusCode} (${b.statusLine})`,g=`Failed to load ${b.type} ${b.url.replace(c,'')} : ${f} `,h=b.ip?`From server ${b.ip}`:'',a.executeScript({code:`console.group("${new Date} 渲染层网络层错误")
+          console.groupEnd()`})}catch(a){return void y.error(`showconsole.js showWebviewNetworkError ${error.toString()}`)}}else{let c=`http://127.0.0.1:${global.proxyPort}/__pageframe__`;f=b.error||`the server responded with a status of ${b.statusCode} (${b.statusLine})`,g=`Failed to load ${b.type} ${b.url.replace(c,'')} : ${f} `,h=b.ip?`From server ${b.ip}`:'',a.executeScript({code:`console.group("${new Date} 渲染层网络层错误")
           console.error(\`${g}\n${h}\`)
         console.groupEnd()`})}}function q(a,b){console.log(b);let c=`因为网络代理软件或者 VPN 影响，工具无法加载本地模拟开发服务 ${b.url} 请尝试以下任一解决方案
 1.关闭相关网络代理软件，重新编译成功后，再启动相关网络代理软件；

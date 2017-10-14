@@ -41,6 +41,8 @@ module.exports = {
   JSON_CONTENT_ERROR: '%s 文件内容错误',
   CLEAN_USER_AUTH_SUCCESS: '清除工具及手机授权数据成功',
   CLEAN_USER_AUTH_ERROR: '清除工具及手机授权数据失败 %s',
+  CLEAN_USER_SESSION_SUCCESS: '清除登录状态成功',
+  CLEAN_USER_SESSION_ERROR: '清除登录状态失败 %s',
   CLEAN_FILE_CACHE_SUCCESS: '清除文件存储成功',
   CLEAN_DATA_CACHE_SUCCESS: '清除数据存储成功',
   EXT_JSON_PARSE_ERR: 'ext.json 解析错误',
@@ -119,6 +121,10 @@ module.exports = {
   MENU_CLEAR_FILE_CACHE: '清除文件缓存',
   MENU_CLEAR_AUTH_CACHE: '清除授权数据',
   MENU_CLEAR_STORAGE_CACHE: '清除数据缓存',
+  MENU_CLEAR_SESSION: '清除登录状态',
+  MENU_CLEAR_WEBVIEW_CACHE: '清除网络缓存',
+  MENU_CLEAR_ALL: '全部清除',
+
   MENU_PREVIEW: '预览',
   MENU_UPLOAD: '上传',
   MENU_CUSTOM_ANALYSIS: '自定义分析',
@@ -174,7 +180,7 @@ module.exports = {
   CGI_ERR_NEED_RELOGIN: '需要重新登录',
   CGI_ERR_NOT_BAND: '登录用户不是该小程序的开发者',
   CGI_ERR_NEED_ADMIN: '需要管理员权限才能操作',
-  CGI_ERR_NEED_UPDATE: '需要升级工具',
+  CGI_ERR_NEED_UPDATE: '当前版本太旧，请升级工具',
   CGI_ERR_NEED_SCAN_CODE: '需要扫码确认',
   CGI_ERR_EMPTY_SOURCE: '上传的源码包为空',
   CGI_ERR_SOURCE_MAX_LIMIT: '源码包超出最大限制',
@@ -298,5 +304,7 @@ module.exports = {
   NO_NETWORK_TIPS_TITLE: '无网络状态模拟',
   NO_NETWORK_TIPS_CONTENT: '已开启无网络状态模拟，网络请求 %s 已被阻止；在模拟器工具栏切换网络状态，可恢复网络请求。',
 
-  FILE_NOT_UTF8: '%s 文件不是 UTF-8 格式'
+  FILE_NOT_UTF8: '%s 文件不是 UTF-8 格式',
+
+  PROJECT_JSON_VALUE_NO_FOUND: 'project.config.json 未找到 %s 字段'
 }

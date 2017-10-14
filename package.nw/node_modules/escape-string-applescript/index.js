@@ -1,4 +1,2 @@
 'use strict';
-module.exports = function (str) {
-	return typeof str === 'string' ? str.replace(/[\\"]/g, '\\$&') : str;
-};
+module.exports = x => typeof x === 'string' ? x.replace(/[\\"]/g, '\\$&') : x;
