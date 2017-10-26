@@ -15,7 +15,11 @@
       script.setAttribute('async', true)
       script.src = `http://127.0.0.1:${proxyPort}/editor/${assetsList[i]}`
       document.head.appendChild(script)
-    }</script><!-- API --><script>window.API={}</script><script>var jsMaxTries = 200
+    }
+
+    window.addEventListener('error', function(e) {
+      console.error(e)
+    })</script><!-- API --><script>window.API={}</script><script>var jsMaxTries = 200
     var jsLoop = () => {
       if (jsMaxTries-- < 0) return
       if (window.API.hasOwnProperty('JSAPIMonaco')) {
