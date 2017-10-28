@@ -1,4 +1,4 @@
 #! /bin/sh
 
 export WINEPREFIX=$HOME/.wine32
-wine "$(dirname $0)/s/wcsc.exe" $@
+env LC_ALL=zh_CN.UTF-8 wine "$(dirname $0)/s/wcsc.exe" $@
