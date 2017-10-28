@@ -2,7 +2,7 @@
 
 linux下使用微信web开发者工具.
 
-![wx-dev-tools v-1.01.171013](https://img.shields.io/badge/wx_dev_tools-1.01.171013-green.svg)
+![wx-dev-tools v-1.01.171019](https://img.shields.io/badge/wx_dev_tools-1.01.171019-green.svg)
 ![nw.js v-0.19.4](https://img.shields.io/badge/nw.js-v0.19.4-blue.svg)
 
 ## Description
@@ -24,6 +24,7 @@ linux下使用微信web开发者工具.
 - 2017/09/18 更新:微信小程序升级到1.01.170913
 - 2017/09/27 更新:微信小程序升级到1.01.170925
 - 2017/10/14 更新:微信小程序升级到1.01.171013
+- 2017/10/28 更新:微信小程序升级到1.01.171019
 
 ### 更新到最新版
 
@@ -50,6 +51,7 @@ cd wechat_web_devtools
 ### 需要小程序开发
 1. 用下面的命令安装wine(ubuntu下)
 
+推荐安装1.8或1.6版本的wine
 ```console
 sudo apt install wine
 ```
