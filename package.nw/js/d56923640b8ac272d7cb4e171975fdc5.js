@@ -17,6 +17,7 @@
     NEW_VERSION: 'new-version',
     WEB_DEBUGGER: 'WEB_DEBUGGER',
     SETTINGS: 'reduxPersist:settings',
-    QCLOUD_FILEINFO: 'qcloud:fileinfo'
+    QCLOUD_FILEINFO: 'qcloud:fileinfo',
+    FORCE_UPDATE_VERSION: 'forceUpdateVersion'
   };
 })();

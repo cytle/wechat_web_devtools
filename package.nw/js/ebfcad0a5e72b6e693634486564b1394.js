@@ -1,4 +1,4 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),{NO_BOM_VAR:c}=require('./6242f55dbdfe53c2f07b7a51568311f2.js'),d='<!-- wxConfig -->',e='<!-- devtoolsConfig -->',f=`
+'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),{NO_BOM_VAR:c}=require('./6242f55dbdfe53c2f07b7a51568311f2.js'),d='<!-- wxConfig -->',e='<!-- devtoolsConfig -->',f='<!- wxmlxcjs -->',g='<!- wxappcode -->',h=`
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +8,18 @@
   var __wxAppData = {}
   var __wxRoute
   var __wxRouteBegin
+  var __wxAppCode__ = {}
+  var __wxAppCurrentFile__
+  var Component = function() {}
+  var Behavior = function() {}
   global = {}
+  var $gwx
   </script>
   ${d}
   ${e}
-`,g=`
+  ${f}
+  ${g}
+`,i=`
 <style>
     body {
       overflow: hidden;
@@ -39,4 +46,4 @@ if (document.readyState == 'complete') {
   window.addEventListener('load', fn)
 }
 </script>
-`,h=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),i=b.readFileSync(h,'utf8'),j=c.join(',');module.exports={asDebug:i,htmlBegin:f,htmlEnd:g,vendorList:['WAService.js'],devVendorList:['wx-config.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],noBrowser:j,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d}}(require('lazyload'),require);
+`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=b.readFileSync(j,'utf8'),l=c.join(',');module.exports={asDebug:k,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],noBrowser:l,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g}}(require('lazyload'),require);

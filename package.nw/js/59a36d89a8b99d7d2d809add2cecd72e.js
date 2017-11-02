@@ -5,8 +5,12 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' *.qq.com 'unsafe-inline' 'unsafe-eval'">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-  <script>var __webviewId__;</script>
-  <script>var __wxConfig = {};</script>
+  <script>
+    var __webviewId__;
+    var __wxConfig = {};
+    var __wxAppCode__ = {};
+    var __WXML_GLOBAL__ = {entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0};
+  </script>
 `,d=`
   </head>
 <body>

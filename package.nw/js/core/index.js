@@ -1,5 +1,6 @@
 const path = require('path')
 const tools = require('../js/84b183688a46c9e2626d3e6f83365e13.js')
+
 // nw & foreground variables
 const Win = nw.Window.get()
 global.Win = Win
@@ -71,6 +72,8 @@ function init() {
   })
 }
 
+const checkUpdate = require('../js/e5184416014aff2809a9dee32cc447c8.js')
+checkUpdate.loop()
 
 // 检查是否需要更新
 tools.checkUpdateApp()

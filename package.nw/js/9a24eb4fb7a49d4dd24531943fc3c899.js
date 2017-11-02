@@ -1,1 +1,1 @@
-'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('APPSERVICE_DEVTOOLS');b.ready=!0,window.devtoolsMessager=b,module.exports=b}(require('lazyload'),require);
+'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('APPSERVICEDEVTOOLS');b.ready=!0,window.devtoolsMessager=b,module.exports=b}(require('lazyload'),require);

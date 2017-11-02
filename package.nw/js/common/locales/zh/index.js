@@ -36,6 +36,7 @@ module.exports = {
   JSON_WIDGETS_TYPE_NOT_FOUND: 'app.json 的 widgets 字段缺少 type=%s 的项目',
   JSON_WIDGETS_PATH_NOT_FOUND: 'app.json 的 widgets[%s].path 找不到对应的路径',
   JSON_WIDGETS_PATH_SHOULD_BE_DIR: 'app.json 的 widgets[%s].path 需为目录',
+  JSON_WIDGETS_JS_NOT_FOUND: 'app.json 的 widgets[%s].path 下未找到 %s',
   JSON_SUBPACKAGE_EXIST: 'app.json 中 %s 已经存在',
   JSON_CONTENT_SHOULD_BE: '%s 字段需为 %s',
   JSON_CONTENT_ERROR: '%s 文件内容错误',
@@ -208,6 +209,10 @@ module.exports = {
   CGI_ERR_DEV_CLOUD_NO_PRODUCT_ENV: '未开通腾讯现网环境，请先开通',
   CGI_ERR_DEV_CLOUD_NO_CLOUD_ACCOUNT: '未开通腾讯云帐号',
   CGI_ERR_DEV_CLOUD_INVALID_RESP_DATA: '腾讯云返回非法数据',
+  CGI_ERR_USER_CAN_NOT_ACCESS_APP: '插件未授权使用',
+  CGI_ERR_APP_NOT_EXIST: '插件 provider 不存在',
+  CGI_ERR_APP_VERSION_NOT_EXIST: '插件 provider 不存在',
+
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',

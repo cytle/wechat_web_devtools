@@ -8,13 +8,14 @@
       'assets/api/js.api.js',
       'assets/api/js.api.monaco.js',
       'assets/api/component.api.js',
-      'assets/api/wxml.api.js'
+      'assets/api/wxml.api.js',
+      'assets/api/lib.wa.es6.js'
     ]
     for (var i = 0, len = assetsList.length; i < len; i++) {
       var script = document.createElement('script')
       script.setAttribute('async', true)
       script.src = `http://127.0.0.1:${proxyPort}/editor/${assetsList[i]}`
-      document.head.appendChild(script)
+      // document.head.appendChild(script) TODO
     }
 
     window.addEventListener('error', function(e) {

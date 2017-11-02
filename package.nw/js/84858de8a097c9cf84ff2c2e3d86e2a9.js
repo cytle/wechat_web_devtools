@@ -324,6 +324,23 @@
       try {
         setItem(config.QCLOUD_FILEINFO, JSON.stringify(value));
       } catch (e) {}
+    },
+
+    get forceUpdateVersion() {
+      if (!this._forceUpdateVersion) {
+        try {
+          this._forceUpdateVersion = getItem(config.FORCE_UPDATE_VERSION);
+          return this._forceUpdateVersion;
+        } catch (e) {}
+        this._forceUpdateVersion = 0;
+      }
+      return this._forceUpdateVersion;
+    },
+
+    set forceUpdateVersion(value) {
+      value = value + '';
+      setItem(config.FORCE_UPDATE_VERSION, value);
+      this.FORCE_UPDATE_VERSION = value;
     }
   };
 })();

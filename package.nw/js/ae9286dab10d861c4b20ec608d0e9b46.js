@@ -1,1 +1,1 @@
-"use strict";!function(require,directRequire){module.exports=function(){return{drawMinInterval:32,timerEnabled:!1,drawLock:!0}}}(require("lazyload"),require);
+"use strict";!function(require,directRequire){const a=require('./9fdd4ac31a05c27355910f0d74accd4c.js');module.exports=function(b){let c={drawMinInterval:32,timerEnabled:!0,drawLock:b.compileType==a.conversation};return c}}(require("lazyload"),require);
