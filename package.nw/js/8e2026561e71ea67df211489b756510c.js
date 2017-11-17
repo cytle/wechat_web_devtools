@@ -38,17 +38,28 @@ class FileUtils extends EventEmitter {
 
   _getAllFile() {
     let dirPath = this.dirPath
+    const ignoreds = [
+      'node_modules/**/*',
+      '**/node_modules/**',
+      '**/.git/**',
+      '.git/**/*',
+      '**/.svn/**',
+      '.svn/**/*',
+      '.DS_Store',
+      '**/.DS_Store',
+    ]
 
     try {
       const completeFileList = glob.sync('**', {
         nodir: false,
-        ignore: ['node_modules/**/*', '**/node_modules/**'],
+        ignore: ignoreds,
         nosort: true,
         strict: false,
         silent: true,
         cwd: dirPath,
         absolute: false,
         mark: true,
+        dot: true,
       })
 
       // Though windows uses either / or \ as its path separator, only / characters are used

@@ -65,4 +65,32 @@ Page({
   }
 })`,b=`/* {{page}}.wxss */`,c=`<!--{{page}}.wxml-->
 <text>{{page}}.wxml</text>
-`;module.exports={pageJS:a,pageJSON:"{}",pageWXML:c,pageWXSS:b}}(require("lazyload"),require);
+`,d=`// {{component}}.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+
+  }
+})
+`,e=`{
+  "component": true,
+  "usingComponents": {}
+}`,f=`<!--{{component}}.wxml-->
+<text>{{component}}.wxml</text>
+`,g=`/* {{component}}.wxss */`;module.exports={pageJS:a,pageJSON:"{}",pageWXML:c,pageWXSS:b,componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:g}}(require("lazyload"),require);

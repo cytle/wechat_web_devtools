@@ -211,7 +211,7 @@ module.exports = {
   CGI_ERR_DEV_CLOUD_INVALID_RESP_DATA: '腾讯云返回非法数据',
   CGI_ERR_USER_CAN_NOT_ACCESS_APP: '插件未授权使用',
   CGI_ERR_APP_NOT_EXIST: '插件 provider 不存在',
-  CGI_ERR_APP_VERSION_NOT_EXIST: '插件 provider 不存在',
+  CGI_ERR_APP_VERSION_NOT_EXIST: '插件版本不存在',
 
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
@@ -294,6 +294,24 @@ module.exports = {
   QCLOUD_SUCCESS_TIP_DEPLOY: '%s 环境部署成功',
   QCLOUD_SUCCESS_TIP_INSTALL: '%s 依赖安装成功',
   QCLOUD_SUCCESS_TIP_RESTART: '%s 重启成功',
+
+  // CLI
+  CLI_BAD_REQUEST: '请求错误',
+  CLI_BAD_NETWORK: '网络错误，请检查网络设置',
+  CLI_NEED_LOGIN: '需要重新登录',
+  CLI_NEED_PROJECTPATH: '需要提供项目路径',
+  CLI_NEED_VERSION: '需要版本号',
+  CLI_FORMAT_NOT_SUPPORT: '二维码不支持输出 %s 格式',
+  CLI_QR_PATH_NOT_VALID_OR_NOT_EXIST: '二维码输出路径无效或不存在 %s',
+  CLI_PROJECT_CONFIG_JSON_NOT_VALID_OR_NOT_EXIST: '请检查是否 project.config.json 是否存在及是否有效',
+  CLI_NOT_FOUND_IN_PROJECT_CONFIG_JSON: 'project.config.json 中缺少了 %s',
+  CLI_APPID_NOT_BOUND: '当前开发者未绑定此 AppID ，请到小程序管理后台操作后重试',
+  CLI_INVALID_APPID: '不存在此 AppID 请检查后重新输入',
+  CLI_GET_APP_INFO_ERROR: '获取应用信息错误，错误码 %s',
+  CLI_QR_OUTDATED: '二维码超时，请重试',
+  CLI_LOGIN_RETRY: '登录错误，请重试',
+  CLI_DUPLICATE_PROJECT_ID: '工具已有此 AppID 和 projectname 的项目，请修改后重试',
+  CLI_GENERIC_ERROR: '错误 %s',
 
 
   WIDGET_SERVER_DEBUG: '服务器调试信息',

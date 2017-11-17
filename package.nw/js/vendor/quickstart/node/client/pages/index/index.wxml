@@ -1,0 +1,59 @@
+<!--index.wxml-->
+<view class="container">
+    <!-- 用户登录测试 -->
+    <view class="userinfo" bindtap="login">
+        <image
+            class="userinfo-avatar"
+            src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
+            background-size="cover"
+        ></image>
+        <view>
+            <text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击测试登录接口'}}</text>
+            <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
+        </view>
+    </view>
+
+    <!-- 信道连接测试 -->
+    <view class="tunnel">
+        <view class="tunnel-text uploader-text">
+            <text bindtap="doRequest">请求（是否带有登陆态）</text>
+            <switch class="tunnel-switch" bindchange="switchRequestMode" color="#007AFF"/>
+        </view>
+        <view class="tunnel-text" wx:if="{{requestResult}}">
+            <text class="request-text">{{'请求结果：' + requestResult}}</text>
+        </view>
+    </view>
+
+    <!-- 上传图片测试 -->
+    <view class="uploader">
+        <view class="uploader-text" bindtap="doUpload">
+            <text>上传图片</text>
+        </view>
+        <view class="uploader-container" wx:if="{{imgUrl}}">
+            <image
+                class="uploader-image"
+                src="{{imgUrl}}"
+                mode="aspectFit"
+                bindtap="previewImg"
+            ></image>
+        </view>
+    </view>
+
+    <!-- 信道连接测试 -->
+    <view class="tunnel">
+        <view class="tunnel-text">
+            <text>信道</text>
+            <switch class="tunnel-switch" bindchange="switchChange" color="#007AFF"/>
+        </view>
+        <view class="tunnel-text {{ tunnelStatus && tunnelStatus === 'connected' ? 'active' : 'disable' }}" bindtap="sendMessage">
+            <text>发送消息</text>
+        </view>
+    </view>
+
+    <!-- 上传图片测试 -->
+    <view class="uploader">
+        <navigator url="../addCgi/addCgi" open-type="navigate" class="uploader-text">
+            <text>快速增加 CGI</text>
+        </navigator>
+    </view>
+</view>

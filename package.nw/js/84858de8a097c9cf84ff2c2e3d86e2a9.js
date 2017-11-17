@@ -1,15 +1,68 @@
 'use strict';
 
 (function () {
-  var uuidv4 = require('uuid/v4');
+  // 这里不再使用 localStorage 而是存储文件，避免 nw 升级后数据丢失
+  var fs = require('fs');
+  var path = require('path');
+  var mkdir = require('mkdir-p');
+
   var config = require('./d56923640b8ac272d7cb4e171975fdc5.js');
+  var dataPath = path.join(nw.App.getDataPath(), '..');
+  var WeappLocalData = path.join(dataPath, 'WeappLocalData');
+  var localDataPath = path.join(WeappLocalData, './localstorage.json');
+
+  var localData = {};
+
+  function updateLocalData() {
+    try {
+      fs.writeFileSync(localDataPath, JSON.stringify(localData));
+    } catch (e) {}
+  }
+
+  function initLocalData() {
+    mkdir.sync(WeappLocalData);
+    if (!fs.existsSync(localDataPath)) {
+      localData = {};
+      for (var key in localStorage) {
+        localData[key] = localStorage[key];
+      }
+      updateLocalData();
+    } else {
+      try {
+        localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
+      } catch (e) {
+        localData = {};
+        updateLocalData();
+      }
+    }
+  }
+  initLocalData();
+
+  var getItem = function getItem(key) {
+    if (localData[key]) {
+      return localData[key];
+    }
+    return localStorage.getItem(key);
+  };
+
+  var setItem = function setItem(key, item) {
+    localData[key] = item;
+    updateLocalData();
+    localStorage.setItem(key, item);
+  };
+
+  var removeItem = function removeItem(key) {
+    delete localData[key];
+    updateLocalData();
+    localStorage.removeItem(key);
+  };
 
   var getType = function getType(value) {
     return Object.prototype.toString.call(value).slice(8, -1);
   };
 
   var getProjectListFromOldVersion = function getProjectListFromOldVersion() {
-    var projectList = localStorage.getItem(config.OLD_PROJECT_LIST);
+    var projectList = getItem(config.OLD_PROJECT_LIST);
     if (projectList) {
       // 项目列表是比较重要的数据，是不能丢的
       try {
@@ -35,34 +88,22 @@
     } else {
       projectList = {};
     }
-    localStorage.removeItem(config.OLD_PROJECT_LIST);
+    removeItem(config.OLD_PROJECT_LIST);
     return projectList;
   };
 
-  var getItem = function getItem(key) {
-    return localStorage.getItem(key);
-  };
-
-  var setItem = function setItem(key, item) {
-    localStorage.setItem(key, item);
-  };
-
-  var removeItem = function removeItem(key) {
-    localStorage.removeItem(key);
-  };
-
   var checkVersion = function checkVersion(current) {
-    var version = localStorage.getItem(config.VERSION);
+    var version = getItem(config.VERSION);
     if (!version) {
       // 重构前的旧版本 或者 卸载后重装
       var projectList = getProjectListFromOldVersion();
 
       for (var id in projectList) {
-        localStorage.setItem('' + config.PROJECT_PREFIX + id, JSON.stringify(projectList[id]));
+        setItem('' + config.PROJECT_PREFIX + id, JSON.stringify(projectList[id]));
       }
       // localStorage.setItem(config.PROJECT_LIST, JSON.stringify(projectList))
     }
-    localStorage.setItem(config.VERSION, current + '');
+    setItem(config.VERSION, current + '');
   };
   checkVersion(config.CURRENT_VERSION);
 
@@ -71,14 +112,14 @@
       if (!this._projectList) {
         try {
           var list = {};
-          for (var key in localStorage) {
+          for (var key in localData) {
             try {
               if (key.startsWith(config.PROJECT_PREFIX)) {
-                var project = JSON.parse(localStorage.getItem(key));
+                var project = JSON.parse(getItem(key));
                 list[project.projectid] = project;
               }
             } catch (e) {
-              localStorage.removeItem(key);
+              removeItem(key);
             }
           }
           this._projectList = list;
@@ -101,27 +142,42 @@
     updateProject: function updateProject(id, newData) {
       if (!id || !newData) return;
       this._projectList[id] = newData;
-      localStorage.setItem('' + config.PROJECT_PREFIX + id, JSON.stringify(newData));
+      setItem('' + config.PROJECT_PREFIX + id, JSON.stringify(newData));
+    },
+    getProjectCover: function getProjectCover(id) {
+      if (!id) return null;
+      try {
+        return fs.readFileSync(path.join(WeappLocalData, '' + config.PROJECT_COVER_PREFIX + id));
+      } catch (err) {
+        return null;
+      }
+    },
+    setProjectCover: function setProjectCover(id, base64image) {
+      if (!id || !base64image) return;
+      fs.writeFile(path.join(WeappLocalData, '' + config.PROJECT_COVER_PREFIX + id), base64image, function (err) {
+        // fail to write project cover, no need to handle this
+      });
     },
     removeProject: function removeProject(id) {
       delete this._projectList[id];
       this._recentProjects = null;
-      localStorage.removeItem('' + config.PROJECT_PREFIX + id);
+      removeItem('' + config.PROJECT_PREFIX + id);
     },
     clearProjectList: function clearProjectList() {
       this._projectList = {};
-      for (var key in localStorage) {
+      for (var key in localData) {
         if (key.startsWith(config.PROJECT_PREFIX)) {
-          localStorage.removeItem(key);
+          removeItem(key);
         }
       }
     },
 
 
     get lastSelect() {
-      if (localStorage[config.LAST_SELECT]) {
-        if (localStorage[config.LAST_SELECT] !== config.WEB_DEBUGGER) {
-          return localStorage[config.LAST_SELECT].substr(config.PROJECT_PREFIX.length);
+      var lastSelect = getItem(config.LAST_SELECT);
+      if (lastSelect) {
+        if (lastSelect !== config.WEB_DEBUGGER) {
+          return lastSelect.substr(config.PROJECT_PREFIX.length);
         } else {
           return config.WEB_DEBUGGER;
         }
@@ -131,12 +187,12 @@
     set lastSelect(projectid) {
 
       if (!projectid) {
-        localStorage.setItem(config.LAST_SELECT, null);
+        setItem(config.LAST_SELECT, null);
         return;
       }
 
       if (projectid !== config.WEB_DEBUGGER) {
-        localStorage.setItem(config.LAST_SELECT, '' + config.PROJECT_PREFIX + projectid);
+        setItem(config.LAST_SELECT, '' + config.PROJECT_PREFIX + projectid);
 
         var ind = this._recentProjects.findIndex(function (id) {
           return projectid === id;
@@ -149,17 +205,17 @@
             this._recentProjects = this._recentProjects.slice(0, 11);
           }
 
-          localStorage.setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
+          setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
         } else if (ind > 0) {
           for (var i = ind - 1; i >= 0; i--) {
             this._recentProjects[i + 1] = this._recentProjects[i];
           }
           this._recentProjects[0] = projectid;
 
-          localStorage.setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
+          setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
         }
       } else {
-        localStorage.setItem(config.LAST_SELECT, projectid);
+        setItem(config.LAST_SELECT, projectid);
       }
     },
 
@@ -167,13 +223,13 @@
       var _this = this;
 
       if (!this._recentProjects) {
-        var recentProjects = JSON.parse(localStorage[config.RECENT_PROJECTS] || '[]');
+        var recentProjects = JSON.parse(getItem(config.RECENT_PROJECTS) || '[]');
         var updated = recentProjects.filter(function (id) {
           return _this.projectList[id];
         });
 
         if (recentProjects.length !== updated.length) {
-          localStorage.setItem(config.RECENT_PROJECTS, JSON.stringify(updated));
+          setItem(config.RECENT_PROJECTS, JSON.stringify(updated));
         }
 
         this._recentProjects = updated;
@@ -190,7 +246,7 @@
 
     removeNewVersion: function removeNewVersion() {
       this._newVersion = undefined;
-      localStorage.removeItem(confog.NEW_VERSION);
+      removeItem(confog.NEW_VERSION);
     },
 
 
@@ -340,7 +396,12 @@
     set forceUpdateVersion(value) {
       value = value + '';
       setItem(config.FORCE_UPDATE_VERSION, value);
-      this.FORCE_UPDATE_VERSION = value;
+      this._forceUpdateVersion = value;
+    },
+
+    removeForceUpdateVersion: function removeForceUpdateVersion() {
+      this._forceUpdateVersion = undefined;
+      removeItem(config.FORCE_UPDATE_VERSION);
     }
   };
 })();

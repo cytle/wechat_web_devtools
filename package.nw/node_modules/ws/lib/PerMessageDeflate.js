@@ -1,8 +1,8 @@
 'use strict';
 
 const safeBuffer = require('safe-buffer');
-const zlib = require('zlib');
 const Limiter = require('async-limiter');
+const zlib = require('zlib');
 
 const bufferUtil = require('./BufferUtil');
 
@@ -10,6 +10,14 @@ const Buffer = safeBuffer.Buffer;
 
 const TRAILER = Buffer.from([0x00, 0x00, 0xff, 0xff]);
 const EMPTY_BLOCK = Buffer.from([0x00]);
+
+const kWriteInProgress = Symbol('write-in-progress');
+const kPendingClose = Symbol('pending-close');
+const kTotalLength = Symbol('total-length');
+const kCallback = Symbol('callback');
+const kBuffers = Symbol('buffers');
+const kError = Symbol('error');
+const kOwner = Symbol('owner');
 
 // We limit zlib concurrency, which prevents severe memory fragmentation
 // as documented in https://github.com/nodejs/node/issues/8871#issuecomment-250915913
@@ -102,16 +110,16 @@ class PerMessageDeflate {
    */
   cleanup () {
     if (this._inflate) {
-      if (this._inflate.writeInProgress) {
-        this._inflate.pendingClose = true;
+      if (this._inflate[kWriteInProgress]) {
+        this._inflate[kPendingClose] = true;
       } else {
         this._inflate.close();
         this._inflate = null;
       }
     }
     if (this._deflate) {
-      if (this._deflate.writeInProgress) {
-        this._deflate.pendingClose = true;
+      if (this._deflate[kWriteInProgress]) {
+        this._deflate[kPendingClose] = true;
       } else {
         this._deflate.close();
         this._deflate = null;
@@ -316,53 +324,47 @@ class PerMessageDeflate {
         : this.params[key];
 
       this._inflate = zlib.createInflateRaw({ windowBits });
+      this._inflate[kTotalLength] = 0;
+      this._inflate[kBuffers] = [];
+      this._inflate[kOwner] = this;
+      this._inflate.on('error', inflateOnError);
+      this._inflate.on('data', inflateOnData);
     }
-    this._inflate.writeInProgress = true;
 
-    var totalLength = 0;
-    const buffers = [];
-    var err;
+    this._inflate[kCallback] = callback;
+    this._inflate[kWriteInProgress] = true;
 
-    const onData = (data) => {
-      totalLength += data.length;
-      if (this._maxPayload < 1 || totalLength <= this._maxPayload) {
-        return buffers.push(data);
-      }
-
-      err = new Error('max payload size exceeded');
-      err.closeCode = 1009;
-      this._inflate.reset();
-    };
-
-    const onError = (err) => {
-      cleanup();
-      callback(err);
-    };
-
-    const cleanup = () => {
-      if (!this._inflate) return;
-
-      this._inflate.removeListener('error', onError);
-      this._inflate.removeListener('data', onData);
-      this._inflate.writeInProgress = false;
-
-      if (
-        (fin && this.params[`${endpoint}_no_context_takeover`]) ||
-        this._inflate.pendingClose
-      ) {
-        this._inflate.close();
-        this._inflate = null;
-      }
-    };
-
-    this._inflate.on('error', onError).on('data', onData);
     this._inflate.write(data);
     if (fin) this._inflate.write(TRAILER);
 
     this._inflate.flush(() => {
-      cleanup();
-      if (err) callback(err);
-      else callback(null, bufferUtil.concat(buffers, totalLength));
+      const err = this._inflate[kError];
+
+      if (err) {
+        this._inflate.close();
+        this._inflate = null;
+        callback(err);
+        return;
+      }
+
+      const data = bufferUtil.concat(
+        this._inflate[kBuffers],
+        this._inflate[kTotalLength]
+      );
+
+      if (
+        (fin && this.params[`${endpoint}_no_context_takeover`]) ||
+        this._inflate[kPendingClose]
+      ) {
+        this._inflate.close();
+        this._inflate = null;
+      } else {
+        this._inflate[kWriteInProgress] = false;
+        this._inflate[kTotalLength] = 0;
+        this._inflate[kBuffers] = [];
+      }
+
+      callback(null, data);
     });
   }
 
@@ -394,47 +396,93 @@ class PerMessageDeflate {
         flush: zlib.Z_SYNC_FLUSH,
         windowBits
       });
+
+      this._deflate[kTotalLength] = 0;
+      this._deflate[kBuffers] = [];
+
+      //
+      // `zlib.DeflateRaw` emits an `'error'` event only when an attempt to use
+      // it is made after it has already been closed. This cannot happen here,
+      // so we only add a listener for the `'data'` event.
+      //
+      this._deflate.on('data', deflateOnData);
     }
-    this._deflate.writeInProgress = true;
 
-    var totalLength = 0;
-    const buffers = [];
+    this._deflate[kWriteInProgress] = true;
 
-    const onData = (data) => {
-      totalLength += data.length;
-      buffers.push(data);
-    };
+    this._deflate.write(data);
+    this._deflate.flush(zlib.Z_SYNC_FLUSH, () => {
+      var data = bufferUtil.concat(
+        this._deflate[kBuffers],
+        this._deflate[kTotalLength]
+      );
 
-    const onError = (err) => {
-      cleanup();
-      callback(err);
-    };
-
-    const cleanup = () => {
-      if (!this._deflate) return;
-
-      this._deflate.removeListener('error', onError);
-      this._deflate.removeListener('data', onData);
-      this._deflate.writeInProgress = false;
+      if (fin) data = data.slice(0, data.length - 4);
 
       if (
         (fin && this.params[`${endpoint}_no_context_takeover`]) ||
-        this._deflate.pendingClose
+        this._deflate[kPendingClose]
       ) {
         this._deflate.close();
         this._deflate = null;
+      } else {
+        this._deflate[kWriteInProgress] = false;
+        this._deflate[kTotalLength] = 0;
+        this._deflate[kBuffers] = [];
       }
-    };
 
-    this._deflate.on('error', onError).on('data', onData);
-    this._deflate.write(data);
-    this._deflate.flush(zlib.Z_SYNC_FLUSH, () => {
-      cleanup();
-      var data = bufferUtil.concat(buffers, totalLength);
-      if (fin) data = data.slice(0, data.length - 4);
       callback(null, data);
     });
   }
 }
 
 module.exports = PerMessageDeflate;
+
+/**
+ * The listener of the `zlib.DeflateRaw` stream `'data'` event.
+ *
+ * @param {Buffer} chunk A chunk of data
+ * @private
+ */
+function deflateOnData (chunk) {
+  this[kBuffers].push(chunk);
+  this[kTotalLength] += chunk.length;
+}
+
+/**
+ * The listener of the `zlib.InflateRaw` stream `'data'` event.
+ *
+ * @param {Buffer} chunk A chunk of data
+ * @private
+ */
+function inflateOnData (chunk) {
+  this[kTotalLength] += chunk.length;
+
+  if (
+    this[kOwner]._maxPayload < 1 ||
+    this[kTotalLength] <= this[kOwner]._maxPayload
+  ) {
+    this[kBuffers].push(chunk);
+    return;
+  }
+
+  this[kError] = new Error('max payload size exceeded');
+  this[kError].closeCode = 1009;
+  this.removeListener('data', inflateOnData);
+  this.reset();
+}
+
+/**
+ * The listener of the `zlib.InflateRaw` stream `'error'` event.
+ *
+ * @param {Error} err The emitted error
+ * @private
+ */
+function inflateOnError (err) {
+  //
+  // There is no need to call `Zlib#close()` as the handle is automatically
+  // closed when an error is emitted.
+  //
+  this[kOwner]._inflate = null;
+  this[kCallback](err);
+}

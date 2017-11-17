@@ -1,1 +1,1 @@
-'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('WEBDEBUGGER');b.ready=!0,module.exports=b}(require('lazyload'),require);
+'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=require('./ff946754202ecf377034d29daac7c8d9.js'),c='WEBDEBUGGER',d=new a(c);d.ready=!0,d.send=function(a){this.broadcast(c,a)},d.directSend=function(a,d){b.sendMessage(`${c}_${d}`,JSON.stringify(a))},module.exports=d}(require('lazyload'),require);

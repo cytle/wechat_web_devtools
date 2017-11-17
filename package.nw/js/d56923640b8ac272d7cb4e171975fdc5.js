@@ -12,6 +12,7 @@
     MAX_RECENT_PROJECTS: 10,
     SYNC_KEY: 'sync_key',
     PROJECT_PREFIX: 'project_',
+    PROJECT_COVER_PREFIX: 'project_cover_',
     BATCH_SYNC_KEY: 'batch_sync_key',
     LAST_VERSION: 'last-version',
     NEW_VERSION: 'new-version',

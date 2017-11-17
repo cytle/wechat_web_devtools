@@ -36,6 +36,11 @@ var agents = exports.agents = Object.keys(agentsData).reduce(function (map, key)
             data.prefix_exceptions = unpackBrowserVersions(versionsData[entry]);
         } else if (entry === 'E') {
             data.browser = versionsData[entry];
+        } else if (entry === 'F') {
+            data.release_date = Object.keys(versionsData[entry]).reduce(function (map, key) {
+                map[_browserVersions.browserVersions[key]] = versionsData[entry][key];
+                return map;
+            }, {});
         } else {
             // entry is B
             data.prefix = versionsData[entry];

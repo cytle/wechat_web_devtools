@@ -2,7 +2,7 @@
 const log = require('./72653d4b93cdd7443296229431a7aa9a.js')
 const WebSocket = require('ws');
 const WebsocketServer = WebSocket.Server
-const PING_PONG_INTERVAL = 60 * 1000
+const PING_PONG_INTERVAL = 3000
 
 let wss, pingpongTimer
 let clientMap = {}
@@ -12,12 +12,6 @@ let _events = {}
 
 const pushQueue = (protocol, msg) => {
   if (!msgQueue[protocol]) {
-    msgQueue[protocol] = []
-  }
-
-  // 这里是一个非常容易内存泄露的地方
-  if (msgQueue[protocol].length > 100) {
-    // 直接清掉了。
     msgQueue[protocol] = []
   }
   msgQueue[protocol].push(msg)
@@ -36,12 +30,23 @@ const sendQueue = (protocol) => {
 }
 
 const _onMessage = (protocol, data) => {
+  let [mainProtocol, subProtocol] = getProtocol(protocol)
+
   let handlers = _events[protocol]
   if (handlers) {
-
     handlers.forEach((cb) => {
       cb(data)
     })
+  }
+
+  // 可以只监听主协议
+  if (mainProtocol != protocol) {
+    handlers = _events[mainProtocol]
+    if (handlers) {
+      handlers.forEach((cb) => {
+        cb(data)
+      })
+    }
   }
 }
 
