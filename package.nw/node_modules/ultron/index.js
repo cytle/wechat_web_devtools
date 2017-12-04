@@ -104,10 +104,8 @@ Ultron.prototype.remove = function remove() {
       //
       if (event.listener) {
         if (event.listener.__ultron !== this.id) continue;
-        delete event.listener.__ultron;
-      } else {
-        if (event.__ultron !== this.id) continue;
-        delete event.__ultron;
+      } else if (event.__ultron !== this.id) {
+        continue;
       }
 
       ee.removeListener(args[i], event);

@@ -5,7 +5,29 @@
     console.error(\` ${d} 不在以下 ${f} 合法域名列表中，请参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html\`)
     console.table(${JSON.stringify(e)})
     console.groupEnd()
-    })()`;a.executeScript({code:g})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
+    })()`;a.executeScript({code:g})},RECORD_FORMAT_INFO:(a)=>{let b=`
+    (function() {
+    console.group(\`${new Date} 录音文件格式说明\`)
+    console.warn(\`开发者工具上的录音文件与移动端格式不同，暂时只可在工具上进行播放调试，无法直接播放或者在客户端上播放\`)
+    console.groupEnd()
+    })()`;a.executeScript({code:b})},[a.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
+    (function() {
+      try {
+        if (!window.hasOwnProperty('__disPlayURLCheckWarning')) {
+          window.__disPlayURLCheckWarning = true
+        }
+
+        if (window.__disPlayURLCheckWarning) {
+          console.group(\`${new Date} 配置中关闭 请求域名、业务域名、TLS 版本以及 HTTPS 证书检查\`)
+          console.warn(\`工具未校验请求域名、业务域名、TLS 版本以及 HTTPS 证书。\`)
+          console.groupEnd()
+          window.__disPlayURLCheckWarning = false
+        }
+      } catch (err) {
+        console.warn('error', err)
+      }
+    })()
+    `;a.executeScript({code:b})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
     (function() {
 
     console.group(\`\${new Date()} 自定义分析 配置拉取成功\`)

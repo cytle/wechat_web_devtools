@@ -196,6 +196,7 @@ module.exports = {
   CGI_ERR_PLATFORM_NOT_BAND: '未绑定为第三方平台的开发小程序',
   CGI_ERR_NOT_LIMITS: '未绑定网页开发者',
   CGI_ERR_NOT_LIMITS_QY: '未绑定企业号开发者',
+  CGI_ERR_NOT_DEV_LIMIT: '操作过于频繁，请一小时后再试',
   CGI_ERR_PLATFORM_INVALID_EXT_APPID: '不合法的 extAppid',
   CGI_ERR_PLATFORM_EXT_APPID_NOT_AUTH: 'extAppid 没有授权',
   CGI_ERR_OAUTH_NOT_SUPPORT: '暂不支持当前 URL 的 Oauth 调试支持',
