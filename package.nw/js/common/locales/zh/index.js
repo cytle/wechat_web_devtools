@@ -218,7 +218,7 @@ module.exports = {
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',
   API_USER_CANCEL: '用户拒绝授权',
-  CODE_SIZE_EXCEED: '代码包大小为 %s kb，超出限制 %s kb，请删除文件后重试',
+  CODE_SIZE_EXCEED: '代码包大小为 %s kb，上限为 %s kb，请删除文件后重试',
   GET_GEO_LOCATION_ERROR: '获取地理位置失败',
   CREATE_PROJECT_TIP_NO_NAME: '请填写 项目名称',
   CREATE_PROJECT_TIP_NO_DIR: '请选择 项目目录',
