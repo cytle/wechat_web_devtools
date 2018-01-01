@@ -1,4 +1,4 @@
-/** @license React v16.1.1
+/** @license React v16.2.0
  * react-dom-unstable-native-dependencies.development.js
  *
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -74,7 +74,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
   }
 }
 
-var invariant_1$1 = invariant;
+var invariant_1 = invariant;
 
 {
   // In DEV mode, we swap out invokeGuardedCallback for a special version
@@ -201,7 +201,7 @@ var warning = emptyFunction_1;
   };
 }
 
-var warning_1$1 = warning;
+var warning_1 = warning;
 
 var getFiberCurrentPropsFromNode = null;
 var getInstanceFromNode = null;
@@ -214,7 +214,7 @@ var injection = {
     getNodeFromInstance = Injected.getNodeFromInstance;
 
     {
-      warning_1$1(getNodeFromInstance && getInstanceFromNode, 'EventPluginUtils.injection.injectComponentTree(...): Injected ' + 'module is missing getNodeFromInstance or getInstanceFromNode.');
+      warning_1(getNodeFromInstance && getInstanceFromNode, 'EventPluginUtils.injection.injectComponentTree(...): Injected ' + 'module is missing getNodeFromInstance or getInstanceFromNode.');
     }
   }
 };
@@ -242,7 +242,7 @@ var validateEventDispatches;
     var instancesIsArr = Array.isArray(dispatchInstances);
     var instancesLen = instancesIsArr ? dispatchInstances.length : dispatchInstances ? 1 : 0;
 
-    warning_1$1(instancesIsArr === listenersIsArr && instancesLen === listenersLen, 'EventPluginUtils: Invalid `event`.');
+    warning_1(instancesIsArr === listenersIsArr && instancesLen === listenersLen, 'EventPluginUtils: Invalid `event`.');
   };
 }
 
@@ -307,7 +307,7 @@ function executeDirectDispatch(event) {
   }
   var dispatchListener = event._dispatchListeners;
   var dispatchInstance = event._dispatchInstances;
-  !!Array.isArray(dispatchListener) ? invariant_1$1(false, 'executeDirectDispatch(...): Invalid `event`.') : void 0;
+  !!Array.isArray(dispatchListener) ? invariant_1(false, 'executeDirectDispatch(...): Invalid `event`.') : void 0;
   event.currentTarget = dispatchListener ? getNodeFromInstance(dispatchInstance) : null;
   var res = dispatchListener ? dispatchListener(event) : null;
   event.currentTarget = null;
@@ -501,7 +501,7 @@ function traverseTwoPhase(inst, fn, arg) {
  */
 
 function accumulateInto(current, next) {
-  !(next != null) ? invariant_1$1(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : void 0;
+  !(next != null) ? invariant_1(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : void 0;
 
   if (current == null) {
     return next;
@@ -617,7 +617,7 @@ function getListener(inst, registrationName) {
   if (shouldPreventMouseEvent(registrationName, inst.type, props)) {
     return null;
   }
-  !(!listener || typeof listener === 'function') ? invariant_1$1(false, 'Expected `%s` listener to be a function, instead got a value of `%s` type.', registrationName, typeof listener) : void 0;
+  !(!listener || typeof listener === 'function') ? invariant_1(false, 'Expected `%s` listener to be a function, instead got a value of `%s` type.', registrationName, typeof listener) : void 0;
   return listener;
 }
 
@@ -672,7 +672,7 @@ function listenerAtPhase(inst, event, propagationPhase) {
  */
 function accumulateDirectionalDispatches(inst, phase, event) {
   {
-    warning_1$1(inst, 'Dispatching inst must not be null');
+    warning_1(inst, 'Dispatching inst must not be null');
   }
   var listener = listenerAtPhase(inst, event, phase);
   if (listener) {
@@ -949,7 +949,7 @@ SyntheticEvent.augmentClass = function (Class, Interface) {
         return new Proxy(constructor.apply(that, args), {
           set: function (target, prop, value) {
             if (prop !== 'isPersistent' && !target.constructor.Interface.hasOwnProperty(prop) && shouldBeReleasedProperties.indexOf(prop) === -1) {
-              warning_1$1(didWarnForAddedNewProperty || target.isPersistent(), "This synthetic event is reused for performance reasons. If you're " + "seeing this, you're adding a new property in the synthetic event object. " + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.');
+              warning_1(didWarnForAddedNewProperty || target.isPersistent(), "This synthetic event is reused for performance reasons. If you're " + "seeing this, you're adding a new property in the synthetic event object. " + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.');
               didWarnForAddedNewProperty = true;
             }
             target[prop] = value;
@@ -994,7 +994,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
   function warn(action, result) {
     var warningCondition = false;
-    warning_1$1(warningCondition, "This synthetic event is reused for performance reasons. If you're seeing this, " + "you're %s `%s` on a released/nullified synthetic event. %s. " + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result);
+    warning_1(warningCondition, "This synthetic event is reused for performance reasons. If you're seeing this, " + "you're %s `%s` on a released/nullified synthetic event. %s. " + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result);
   }
 }
 
@@ -1010,7 +1010,7 @@ function getPooledEvent(dispatchConfig, targetInst, nativeEvent, nativeInst) {
 
 function releasePooledEvent(event) {
   var EventConstructor = this;
-  !(event instanceof EventConstructor) ? invariant_1$1(false, 'Trying to release an event instance  into a pool of a different type.') : void 0;
+  !(event instanceof EventConstructor) ? invariant_1(false, 'Trying to release an event instance  into a pool of a different type.') : void 0;
   event.destructor();
   if (EventConstructor.eventPool.length < EVENT_POOL_SIZE) {
     EventConstructor.eventPool.push(event);
@@ -1109,9 +1109,9 @@ function resetTouchRecord(touchRecord, touch) {
 function getTouchIdentifier(_ref) {
   var identifier = _ref.identifier;
 
-  !(identifier != null) ? invariant_1$1(false, 'Touch object is missing identifier.') : void 0;
+  !(identifier != null) ? invariant_1(false, 'Touch object is missing identifier.') : void 0;
   {
-    warning_1$1(identifier <= MAX_TOUCH_BANK, 'Touch identifier %s is greater than maximum supported %s which causes ' + 'performance issues backfilling array locations for all of the indices.', identifier, MAX_TOUCH_BANK);
+    warning_1(identifier <= MAX_TOUCH_BANK, 'Touch identifier %s is greater than maximum supported %s which causes ' + 'performance issues backfilling array locations for all of the indices.', identifier, MAX_TOUCH_BANK);
   }
   return identifier;
 }
@@ -1199,7 +1199,7 @@ var ResponderTouchHistoryStore = {
         }
         {
           var activeRecord = touchBank[touchHistory.indexOfSingleActiveTouch];
-          warning_1$1(activeRecord != null && activeRecord.touchActive, 'Cannot find single active touch.');
+          warning_1(activeRecord != null && activeRecord.touchActive, 'Cannot find single active touch.');
         }
       }
     }
@@ -1217,7 +1217,7 @@ var ResponderTouchHistoryStore = {
  * @return {*|array<*>} An accumulation of items.
  */
 function accumulate(current, next) {
-  !(next != null) ? invariant_1$1(false, 'accumulate(...): Accumulated items must be not be null or undefined.') : void 0;
+  !(next != null) ? invariant_1(false, 'accumulate(...): Accumulated items must be not be null or undefined.') : void 0;
 
   if (current == null) {
     return next;

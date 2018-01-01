@@ -224,7 +224,7 @@ module.exports = {
   CREATE_PROJECT_TIP_NO_DIR: '请选择 项目目录',
   CREATE_PROJECT_TIP_NO_APPID: '请填写 appid ',
   CREATE_PROJECT_TIP_HASH_EXIST: '已存在 %s %s 项目，请重新输入',
-  CREATE_PROJECT_TIP_MUST_USE_EMPTY_FOLDER: '请选择空白目录创建项目',
+  CREATE_PROJECT_TIP_MUST_USE_EMPTY_FOLDER: '请选择空目录或含 app.json / project.config.json 的目录创建项目',
   // ===== QCLOUD =====
 
   CLOUD_ACTION_UPLOAD: '上传测试代码',

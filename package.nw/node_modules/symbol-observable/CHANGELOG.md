@@ -1,3 +1,19 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/blesh/symbol-observable/compare/1.0.4...v1.1.0) (2017-11-28)
+
+
+### Bug Fixes
+
+* **TypeScript:** update TS to 2.0, fix typings ([e08474e](https://github.com/blesh/symbol-observable/commit/e08474e)), closes [#27](https://github.com/blesh/symbol-observable/issues/27)
+
+
+### Features
+
+* **browser:** Fully qualified import for native esm browser support (#31) ([8ae5f8e](https://github.com/blesh/symbol-observable/commit/8ae5f8e))
+* **index.d.ts:** add type info to Symbol.observable ([e4be157](https://github.com/blesh/symbol-observable/commit/e4be157))
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/blesh/symbol-observable/compare/1.0.3...v1.0.4) (2016-10-13)
 

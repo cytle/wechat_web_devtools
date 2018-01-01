@@ -5,7 +5,7 @@
 
 ## Install
 
-```sh
+```
 $ npm install --save xdg-basedir
 ```
 
@@ -16,10 +16,10 @@ $ npm install --save xdg-basedir
 var xdgBasedir = require('xdg-basedir');
 
 xdgBasedir.data;
-//=> /home/sindresorhus/.local/share
+//=> '/home/sindresorhus/.local/share'
 
 xdgBasedir.config;
-//=> /home/sindresorhus/.config
+//=> '/home/sindresorhus/.config'
 
 xdgBasedir.dataDirs
 //=> ['/home/sindresorhus/.local/share', '/usr/local/share/', '/usr/share/']

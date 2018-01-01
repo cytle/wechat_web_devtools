@@ -78,6 +78,11 @@ const getProxyForURL = (url) => {
   let urlProxyCache = proxyCache[url]
   if (typeof urlProxyCache == 'undefined') {
     let proxy = nw.App.getProxyForURL(url)
+    // http://agent.smartproxy.oa.com:12669;DIRECT
+    try {
+      let proxySp = proxy.split(';')
+      proxy = proxySp.length > 1? proxySp[1]: proxySp[0]
+    } catch(e){}
     if (proxy === 'DIRECT') {
       proxy = null
     } else {

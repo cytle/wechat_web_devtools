@@ -1,4 +1,6 @@
-;(window.API = window.API || {}).LibWaEs6 = `/*! *****************************************************************************
+; (function (window) {
+  const str = `
+/*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved. 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
@@ -5811,4 +5813,12 @@ declare var Console: {
 };
 
 declare var console: Console;
-`
+`;
+  window.API = window.API || {};
+  const API = window.API;
+  if (API.LibWaEs6) {
+    API.LibWaEs6 += str;
+  } else {
+    API.LibWaEs6 = str;
+  }
+})(window);

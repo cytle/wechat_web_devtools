@@ -186,32 +186,12 @@ window.WXMLAPI = {
       "size": {
         "doc": "按钮的大小",
         "type": "String",
-        "default": "default",
-        "valid": [
-          {
-            "value": "default",
-            "doc": ""
-          },
-          {
-            "value": "mini",
-            "doc": ""
-          }
-        ]
+        "default": "default"
       },
       "type": {
         "doc": "按钮的样式类型",
         "type": "String",
-        "default": "default",
-        "valid": [
-          {
-            "value": "default",
-            "doc": ""
-          },
-          {
-            "value": "mini",
-            "doc": ""
-          }
-        ]
+        "default": "default"
       },
       "plain": {
         "doc": "按钮是否镂空，背景色透明",
@@ -254,31 +234,11 @@ window.WXMLAPI = {
       },
       "form-type": {
         "doc": "用于 `<form/>` 组件，点击分别会触发 `<form/>` 组件的 submit/reset 事件",
-        "type": "String",
-        "valid": [
-          {
-            "value": "default",
-            "doc": ""
-          },
-          {
-            "value": "mini",
-            "doc": ""
-          }
-        ]
+        "type": "String"
       },
       "open-type": {
         "doc": "微信开放能力",
-        "type": "String",
-        "valid": [
-          {
-            "value": "default",
-            "doc": ""
-          },
-          {
-            "value": "mini",
-            "doc": ""
-          }
-        ]
+        "type": "String"
       },
       "hover-class": {
         "doc": "指定按钮按下去的样式类。当 `hover-class=\"none\"` 时，没有点击态效果",
@@ -356,6 +316,85 @@ window.WXMLAPI = {
       "bindgetphonenumber": {
         "doc": "获取用户手机号回调",
         "type": "Handler"
+      }
+    }
+  },
+  "camera": {
+    "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/camera.html#camera",
+    "attributes": {
+      "id": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "class": {
+        "type": "String",
+        "doc": "组件的样式类"
+      },
+      "style": {
+        "type": "String",
+        "doc": "组件的内联样式"
+      },
+      "hidden": {
+        "type": "Boolean",
+        "doc": "组件是否显示"
+      },
+      "data-": {
+        "type": "Any",
+        "doc": "自定义属性"
+      },
+      "bindtap": {
+        "doc": "tap事件绑定，不阻止冒泡"
+      },
+      "catchtap": {
+        "doc": "tap事件绑定，阻止冒泡"
+      },
+      "bindlongtap": {
+        "doc": "longtap事件绑定，不阻止冒泡"
+      },
+      "catchlongtap": {
+        "doc": "longtap事件绑定，阻止冒泡"
+      },
+      "bindtouchstart": {
+        "doc": "touchstart事件绑定，不阻止冒泡"
+      },
+      "catchtouchstart": {
+        "doc": "touchstart事件绑定，阻止冒泡"
+      },
+      "bindtouchmove": {
+        "doc": "touchmove事件绑定，不阻止冒泡"
+      },
+      "catchtouchmove": {
+        "doc": "touchmove事件绑定，阻止冒泡"
+      },
+      "bindtouchend": {
+        "doc": "touchend事件绑定，不阻止冒泡"
+      },
+      "catchtouchend": {
+        "doc": "touchend事件绑定，阻止冒泡"
+      },
+      "bindtouchcancel": {
+        "doc": "touchcancel事件绑定，不阻止冒泡"
+      },
+      "catchtouchcancel": {
+        "doc": "touchcancel事件绑定，阻止冒泡"
+      },
+      "device-position": {
+        "doc": "前置或后置，值为front, back",
+        "type": "String",
+        "default": "back"
+      },
+      "flash": {
+        "doc": "闪光灯，值为auto, on, off",
+        "type": "String",
+        "default": "auto"
+      },
+      "bindstop": {
+        "doc": "摄像头在非正常终止时触发，如退出后台等情况",
+        "type": "EventHandle"
+      },
+      "binderror": {
+        "doc": "用户不允许使用摄像头时触发",
+        "type": "EventHandle"
       }
     }
   },
@@ -815,7 +854,7 @@ window.WXMLAPI = {
         "doc": "touchcancel事件绑定，阻止冒泡"
       },
       "src": {
-        "doc": "图标路径，支持临时路径。暂不支持base64与网络地址。",
+        "doc": "图标路径，支持临时路径、网络地址（1.6.0起支持）。暂不支持base64格式。",
         "type": "String"
       }
     }
@@ -1370,6 +1409,320 @@ window.WXMLAPI = {
       }
     }
   },
+  "live-player": {
+    "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/live.html#live-player",
+    "attributes": {
+      "id": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "class": {
+        "type": "String",
+        "doc": "组件的样式类"
+      },
+      "style": {
+        "type": "String",
+        "doc": "组件的内联样式"
+      },
+      "hidden": {
+        "type": "Boolean",
+        "doc": "组件是否显示"
+      },
+      "data-": {
+        "type": "Any",
+        "doc": "自定义属性"
+      },
+      "bindtap": {
+        "doc": "tap事件绑定，不阻止冒泡"
+      },
+      "catchtap": {
+        "doc": "tap事件绑定，阻止冒泡"
+      },
+      "bindlongtap": {
+        "doc": "longtap事件绑定，不阻止冒泡"
+      },
+      "catchlongtap": {
+        "doc": "longtap事件绑定，阻止冒泡"
+      },
+      "bindtouchstart": {
+        "doc": "touchstart事件绑定，不阻止冒泡"
+      },
+      "catchtouchstart": {
+        "doc": "touchstart事件绑定，阻止冒泡"
+      },
+      "bindtouchmove": {
+        "doc": "touchmove事件绑定，不阻止冒泡"
+      },
+      "catchtouchmove": {
+        "doc": "touchmove事件绑定，阻止冒泡"
+      },
+      "bindtouchend": {
+        "doc": "touchend事件绑定，不阻止冒泡"
+      },
+      "catchtouchend": {
+        "doc": "touchend事件绑定，阻止冒泡"
+      },
+      "bindtouchcancel": {
+        "doc": "touchcancel事件绑定，不阻止冒泡"
+      },
+      "catchtouchcancel": {
+        "doc": "touchcancel事件绑定，阻止冒泡"
+      },
+      "src": {
+        "doc": "直播地址",
+        "type": "String"
+      },
+      "mode": {
+        "doc": "live（直播），RTC（实时通话）",
+        "type": "String",
+        "default": "live"
+      },
+      "autoplay": {
+        "doc": "自动播放",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "muted": {
+        "doc": "是否静音",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "orientation": {
+        "doc": "画面方向，可选值有 vertical，horizontal",
+        "type": "String",
+        "default": "vertical"
+      },
+      "object-fit": {
+        "doc": "填充模式，可选值有 contain，fillCrop",
+        "type": "String",
+        "default": "contain"
+      },
+      "background-mute": {
+        "doc": "进入后台时是否静音",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "min-cache": {
+        "doc": "最小缓冲区，单位s",
+        "type": "Number",
+        "default": 1
+      },
+      "max-cache": {
+        "doc": "最大缓冲区，单位s",
+        "type": "Number",
+        "default": 3
+      },
+      "bindstatechange": {
+        "doc": "播放状态变化事件，detail = {errCode}",
+        "type": "EventHandle"
+      },
+      "bindfullscreenchange": {
+        "doc": "全屏变化事件，detail = {direction, fullScreen}",
+        "type": "EventHandle"
+      }
+    }
+  },
+  "live-pusher": {
+    "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/live.html#live-pusher",
+    "attributes": {
+      "id": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "class": {
+        "type": "String",
+        "doc": "组件的样式类"
+      },
+      "style": {
+        "type": "String",
+        "doc": "组件的内联样式"
+      },
+      "hidden": {
+        "type": "Boolean",
+        "doc": "组件是否显示"
+      },
+      "data-": {
+        "type": "Any",
+        "doc": "自定义属性"
+      },
+      "bindtap": {
+        "doc": "tap事件绑定，不阻止冒泡"
+      },
+      "catchtap": {
+        "doc": "tap事件绑定，阻止冒泡"
+      },
+      "bindlongtap": {
+        "doc": "longtap事件绑定，不阻止冒泡"
+      },
+      "catchlongtap": {
+        "doc": "longtap事件绑定，阻止冒泡"
+      },
+      "bindtouchstart": {
+        "doc": "touchstart事件绑定，不阻止冒泡"
+      },
+      "catchtouchstart": {
+        "doc": "touchstart事件绑定，阻止冒泡"
+      },
+      "bindtouchmove": {
+        "doc": "touchmove事件绑定，不阻止冒泡"
+      },
+      "catchtouchmove": {
+        "doc": "touchmove事件绑定，阻止冒泡"
+      },
+      "bindtouchend": {
+        "doc": "touchend事件绑定，不阻止冒泡"
+      },
+      "catchtouchend": {
+        "doc": "touchend事件绑定，阻止冒泡"
+      },
+      "bindtouchcancel": {
+        "doc": "touchcancel事件绑定，不阻止冒泡"
+      },
+      "catchtouchcancel": {
+        "doc": "touchcancel事件绑定，阻止冒泡"
+      },
+      "url": {
+        "doc": "推流地址",
+        "type": "String"
+      },
+      "mode": {
+        "doc": "SD（标清）, HD（高清）, FHD（超清）, RTC（实时通话）",
+        "type": "String",
+        "default": "RTC"
+      },
+      "autopush": {
+        "doc": "自动推流",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "muted": {
+        "doc": "是否静音",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "enable-camera": {
+        "doc": "开启摄像头",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "auto-focus": {
+        "doc": "自动聚集",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "orientation": {
+        "doc": "vertical，horizontal",
+        "type": "String",
+        "default": "vertical"
+      },
+      "beauty": {
+        "doc": "美颜",
+        "type": "Number",
+        "default": 0
+      },
+      "whiteness": {
+        "doc": "美白",
+        "type": "Number",
+        "default": 0
+      },
+      "aspect": {
+        "doc": "宽高比，可选值有 3:4, 9:16",
+        "type": "String",
+        "default": "9:16"
+      },
+      "min-bitrate": {
+        "doc": "最小码率",
+        "type": "Number",
+        "default": 200
+      },
+      "max-bitrate": {
+        "doc": "最大码率",
+        "type": "Number",
+        "default": 1000
+      },
+      "waiting-image": {
+        "doc": "进入后台时推流的等待画面",
+        "type": "String"
+      },
+      "waiting-image-md5": {
+        "doc": "等待画面资源的MD5值",
+        "type": "String"
+      },
+      "background-mute": {
+        "doc": "进入后台时是否静音",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "bindstatechange": {
+        "doc": "状态变化事件，detail = {errCode}",
+        "type": "EventHandle"
+      }
+    }
+  },
   "map": {
     "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/map.html#map",
     "attributes": {
@@ -1493,6 +1846,10 @@ window.WXMLAPI = {
       },
       "bindregionchange": {
         "doc": "视野发生变化时触发",
+        "type": "EventHandle"
+      },
+      "bindupdated": {
+        "doc": "在地图渲染更新完成时触发",
         "type": "EventHandle"
       }
     }
@@ -2205,6 +2562,11 @@ window.WXMLAPI = {
             "value": false
           }
         ]
+      },
+      "active-mode": {
+        "doc": "backwards: 动画从头播；forwards：动画从上次结束点接着播",
+        "type": "String",
+        "default": "backwards"
       }
     }
   },
@@ -2709,6 +3071,10 @@ window.WXMLAPI = {
       "bindchange": {
         "doc": "完成一次拖动后触发的事件，event.detail = {value: value}",
         "type": "EventHandle"
+      },
+      "bindchanging": {
+        "doc": "拖动过程中触发的事件，event.detail = {value: value}",
+        "type": "EventHandle"
       }
     }
   },
@@ -3202,12 +3568,25 @@ window.WXMLAPI = {
         "doc": "指定focus时的光标位置",
         "type": "Number"
       },
+      "show-confirm-bar": {
+        "doc": "是否显示键盘上方带有”完成“按钮那一栏",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "bindfocus": {
         "doc": "输入框聚焦时触发，event.detail = {value: value}",
         "type": "EventHandle"
       },
       "bindblur": {
-        "doc": "输入框失去焦点时触发，event.detail = {value: value}",
+        "doc": "输入框失去焦点时触发，event.detail = {value, cursor}",
         "type": "EventHandle"
       },
       "bindlinechange": {
@@ -3286,6 +3665,10 @@ window.WXMLAPI = {
       "src": {
         "doc": "要播放视频的资源地址",
         "type": "String"
+      },
+      "initial-time": {
+        "doc": "指定视频初始播放位置",
+        "type": "Number"
       },
       "duration": {
         "doc": "指定视频时长",
@@ -3373,6 +3756,23 @@ window.WXMLAPI = {
           }
         ]
       },
+      "page-gesture": {
+        "doc": "在非全屏模式下，是否开启亮度与音量调节手势",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "direction": {
+        "doc": "设置全屏时视频的方向，不指定则根据宽高比自动判断。有效值为 0（正常竖向）, 90（屏幕逆时针90度）, -90（屏幕顺时针90度）",
+        "type": "Number"
+      },
       "bindplay": {
         "doc": "当开始/继续播放时触发play事件",
         "type": "EventHandle"
@@ -3386,11 +3786,11 @@ window.WXMLAPI = {
         "type": "EventHandle"
       },
       "bindtimeupdate": {
-        "doc": "播放进度变化时触发，event.detail = {currentTime: '当前播放时间'} 。触发频率应该在 250ms 一次",
+        "doc": "播放进度变化时触发，event.detail = {currentTime, duration} 。触发频率 250ms 一次",
         "type": "EventHandle"
       },
       "bindfullscreenchange": {
-        "doc": "当视频进入和退出全屏是触发，event.detail = {fullScreen: '当前全屏状态'}",
+        "doc": "当视频进入和退出全屏是触发，event.detail = {fullScreen, direction}，direction取为 vertical 或 horizontal",
         "type": "EventHandle"
       },
       "objectFit": {
@@ -3399,7 +3799,7 @@ window.WXMLAPI = {
         "default": "contain"
       },
       "poster": {
-        "doc": "默认控件上的音频封面的图片资源地址，如果 controls 属性值为 false 则设置 poster 无效",
+        "doc": "视频封面的图片网络资源地址，如果 controls 属性值为 false 则设置 poster 无效",
         "type": "String"
       }
     }
@@ -3490,6 +3890,72 @@ window.WXMLAPI = {
         "doc": "手指松开后点击态保留时间，单位毫秒",
         "type": "Number",
         "default": 400
+      }
+    }
+  },
+  "web-view": {
+    "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/web.html#web-view",
+    "attributes": {
+      "id": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "class": {
+        "type": "String",
+        "doc": "组件的样式类"
+      },
+      "style": {
+        "type": "String",
+        "doc": "组件的内联样式"
+      },
+      "hidden": {
+        "type": "Boolean",
+        "doc": "组件是否显示"
+      },
+      "data-": {
+        "type": "Any",
+        "doc": "自定义属性"
+      },
+      "bindtap": {
+        "doc": "tap事件绑定，不阻止冒泡"
+      },
+      "catchtap": {
+        "doc": "tap事件绑定，阻止冒泡"
+      },
+      "bindlongtap": {
+        "doc": "longtap事件绑定，不阻止冒泡"
+      },
+      "catchlongtap": {
+        "doc": "longtap事件绑定，阻止冒泡"
+      },
+      "bindtouchstart": {
+        "doc": "touchstart事件绑定，不阻止冒泡"
+      },
+      "catchtouchstart": {
+        "doc": "touchstart事件绑定，阻止冒泡"
+      },
+      "bindtouchmove": {
+        "doc": "touchmove事件绑定，不阻止冒泡"
+      },
+      "catchtouchmove": {
+        "doc": "touchmove事件绑定，阻止冒泡"
+      },
+      "bindtouchend": {
+        "doc": "touchend事件绑定，不阻止冒泡"
+      },
+      "catchtouchend": {
+        "doc": "touchend事件绑定，阻止冒泡"
+      },
+      "bindtouchcancel": {
+        "doc": "touchcancel事件绑定，不阻止冒泡"
+      },
+      "catchtouchcancel": {
+        "doc": "touchcancel事件绑定，阻止冒泡"
+      },
+      "src": {
+        "doc": "webview 指向网页的链接。需登录[小程序管理后台](https://mp.weixin.qq.com/)配置域名白名单。",
+        "type": "String",
+        "default": "none"
       }
     }
   }

@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save xdg-trashdir
+$ npm install xdg-trashdir
 ```
 
 
@@ -36,7 +36,7 @@ xdgTrashdir.all().then(dirs => {
 
 ### xdgTrashdir([file])
 
-Returns a promise that resolves the path to the trash.
+Returns a `Promise` that resolves the path to the trash.
 
 #### file
 
@@ -46,7 +46,7 @@ Get the trash path for a specific file.
 
 ### xdgTrashdir.all()
 
-Returns a promise that resolves to an array with all possible trash paths.
+Returns a `Promise` that resolves to an array with all possible trash paths.
 
 
 ## License

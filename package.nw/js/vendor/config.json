@@ -1,6 +1,6 @@
 {
-	"configVersion": 1512614832505,
-	"currentLibVersion": "1.7.0",
+	"configVersion": 1513307835489,
+	"currentLibVersion": "1.7.2",
 	"libs": {
 		"1.0.0": {
 			"WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -56,10 +56,25 @@
 			"WAWebview.js": "e357841256d35caeb3b9811afea250d7",
 			"WAWidget.js": "34ad0476332111f011836eae684b0f4c"
 		},
+		"1.6.7": {
+			"WAService.js": "a324e14dbaa275738e93ff4e647b2028",
+			"WAWebview.js": "06ab87b42eb35515560a1c386f8dc8b2",
+			"WAWidget.js": "570fdde618d370ec64573381280edf6f"
+		},
 		"1.7.0": {
 			"WAService.js": "4f4a07c6003a6aef49ad6855f753e07d",
 			"WAWebview.js": "4de4e5a34ad6302fab96961b702d28df",
 			"WAWidget.js": "6c0c21d5a0377efa7236853267a8810f"
+		},
+		"1.7.1": {
+			"WAService.js": "8842ee2c3a8d8c756fb118fce7b27404",
+			"WAWebview.js": "0f2e746419035871aaf265e103fac53a",
+			"WAWidget.js": "5f5deac9b039d5dc5cb8aff9e617fa87"
+		},
+		"1.7.2": {
+			"WAService.js": "cc4e582160206df1bf436e2b3a67a898",
+			"WAWebview.js": "40161c13778e0c6dd28f8b8483d07e7b",
+			"WAWidget.js": "6e0cbb35f0d5b538545c5000d79bbd59"
 		}
 	}
 }

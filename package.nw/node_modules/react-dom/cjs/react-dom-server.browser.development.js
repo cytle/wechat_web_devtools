@@ -1,4 +1,4 @@
-/** @license React v16.1.1
+/** @license React v16.2.0
  * react-dom-server.browser.development.js
  *
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8,6 +8,8 @@
  */
 
 'use strict';
+
+
 
 if (process.env.NODE_ENV !== "production") {
   (function() {
@@ -398,7 +400,7 @@ injection.injectDOMPropertyConfig(SVGDOMPropertyConfig);
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.1.1';
+var ReactVersion = '16.2.0';
 
 var describeComponentFrame = function (name, source, ownerName) {
   return '\n    in ' + (name || 'Unknown') + (source ? ' (at ' + source.fileName.replace(/^.*[\\\/]/, '') + ':' + source.lineNumber + ')' : ownerName ? ' (created by ' + ownerName + ')' : '');
@@ -406,8 +408,18 @@ var describeComponentFrame = function (name, source, ownerName) {
 
 var ReactInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
-
+var ReactCurrentOwner = ReactInternals.ReactCurrentOwner;
 var ReactDebugCurrentFrame = ReactInternals.ReactDebugCurrentFrame;
+
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var hasSymbol = typeof Symbol === 'function' && Symbol['for'];
+
+
+
+
+
+var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol['for']('react.fragment') : 0xeacb;
 
 // code copied and modified from escape-html
 /**
@@ -418,9 +430,9 @@ var ReactDebugCurrentFrame = ReactInternals.ReactDebugCurrentFrame;
 var matchHtmlRegExp = /["'&<>]/;
 
 /**
- * Escape special characters in the given string of html.
+ * Escapes special characters and HTML entities in a given html string.
  *
- * @param  {string} string The string to escape for inserting into HTML
+ * @param  {string} string HTML string to escape for later insertion
  * @return {string}
  * @public
  */
@@ -482,7 +494,7 @@ function escapeHtml(string) {
  * @param {*} text Text value to escape.
  * @return {string} An escaped string.
  */
-function escapeTextContentForBrowser(text) {
+function escapeTextForBrowser(text) {
   if (typeof text === 'boolean' || typeof text === 'number') {
     // this shortcircuit helps perf for types that we know will never have
     // special characters, especially given that this function is used often
@@ -499,7 +511,7 @@ function escapeTextContentForBrowser(text) {
  * @return {string} An escaped string.
  */
 function quoteAttributeValueForBrowser(value) {
-  return '"' + escapeTextContentForBrowser(value) + '"';
+  return '"' + escapeTextForBrowser(value) + '"';
 }
 
 // isAttributeNameSafe() is currently duplicated in DOMPropertyOperations.
@@ -1089,7 +1101,7 @@ function validateProperties$1(type, props) {
 /**
  * Ordered list of injected plugins.
  */
-var plugins = [];
+
 
 /**
  * Mapping from event name to dispatch config
@@ -1633,48 +1645,52 @@ function getStackAddendum$3() {
 {
   var warnedProperties$1 = {};
   var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
-  var EVENT_NAME_REGEX = /^on[A-Z]/;
+  var EVENT_NAME_REGEX = /^on./;
+  var INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/;
   var rARIA$1 = new RegExp('^(aria)-[' + ATTRIBUTE_NAME_CHAR + ']*$');
   var rARIACamel$1 = new RegExp('^(aria)[A-Z][' + ATTRIBUTE_NAME_CHAR + ']*$');
 
-  var validateProperty$1 = function (tagName, name, value) {
+  var validateProperty$1 = function (tagName, name, value, canUseEventSystem) {
     if (hasOwnProperty$1.call(warnedProperties$1, name) && warnedProperties$1[name]) {
       return true;
     }
 
-    if (registrationNameModules.hasOwnProperty(name)) {
-      return true;
-    }
-
-    if (plugins.length === 0 && EVENT_NAME_REGEX.test(name)) {
-      // If no event plugins have been injected, we might be in a server environment.
-      // Don't check events in this case.
-      return true;
-    }
-
     var lowerCasedName = name.toLowerCase();
-    var registrationName = possibleRegistrationNames.hasOwnProperty(lowerCasedName) ? possibleRegistrationNames[lowerCasedName] : null;
-
-    if (registrationName != null) {
-      warning(false, 'Invalid event handler property `%s`. Did you mean `%s`?%s', name, registrationName, getStackAddendum$3());
+    if (lowerCasedName === 'onfocusin' || lowerCasedName === 'onfocusout') {
+      warning(false, 'React uses onFocus and onBlur instead of onFocusIn and onFocusOut. ' + 'All React events are normalized to bubble, so onFocusIn and onFocusOut ' + 'are not needed/supported by React.');
       warnedProperties$1[name] = true;
       return true;
     }
 
-    if (lowerCasedName.indexOf('on') === 0 && lowerCasedName.length > 2) {
-      warning(false, 'Unknown event handler property `%s`. It will be ignored.%s', name, getStackAddendum$3());
+    // We can't rely on the event system being injected on the server.
+    if (canUseEventSystem) {
+      if (registrationNameModules.hasOwnProperty(name)) {
+        return true;
+      }
+      var registrationName = possibleRegistrationNames.hasOwnProperty(lowerCasedName) ? possibleRegistrationNames[lowerCasedName] : null;
+      if (registrationName != null) {
+        warning(false, 'Invalid event handler property `%s`. Did you mean `%s`?%s', name, registrationName, getStackAddendum$3());
+        warnedProperties$1[name] = true;
+        return true;
+      }
+      if (EVENT_NAME_REGEX.test(name)) {
+        warning(false, 'Unknown event handler property `%s`. It will be ignored.%s', name, getStackAddendum$3());
+        warnedProperties$1[name] = true;
+        return true;
+      }
+    } else if (EVENT_NAME_REGEX.test(name)) {
+      // If no event plugins have been injected, we are in a server environment.
+      // So we can't tell if the event name is correct for sure, but we can filter
+      // out known bad ones like `onclick`. We can't suggest a specific replacement though.
+      if (INVALID_EVENT_NAME_REGEX.test(name)) {
+        warning(false, 'Invalid event handler property `%s`. ' + 'React events use the camelCase naming convention, for example `onClick`.%s', name, getStackAddendum$3());
+      }
       warnedProperties$1[name] = true;
       return true;
     }
 
     // Let the ARIA attribute hook validate ARIA attributes
     if (rARIA$1.test(name) || rARIACamel$1.test(name)) {
-      return true;
-    }
-
-    if (lowerCasedName === 'onfocusin' || lowerCasedName === 'onfocusout') {
-      warning(false, 'React uses onFocus and onBlur instead of onFocusIn and onFocusOut. ' + 'All React events are normalized to bubble, so onFocusIn and onFocusOut ' + 'are not needed/supported by React.');
-      warnedProperties$1[name] = true;
       return true;
     }
 
@@ -1746,10 +1762,10 @@ function getStackAddendum$3() {
   };
 }
 
-var warnUnknownProperties = function (type, props) {
+var warnUnknownProperties = function (type, props, canUseEventSystem) {
   var unknownProps = [];
   for (var key in props) {
-    var isValid = validateProperty$1(type, key, props[key]);
+    var isValid = validateProperty$1(type, key, props[key], canUseEventSystem);
     if (!isValid) {
       unknownProps.push(key);
     }
@@ -1765,16 +1781,14 @@ var warnUnknownProperties = function (type, props) {
   }
 };
 
-function validateProperties$2(type, props) {
+function validateProperties$2(type, props, canUseEventSystem) {
   if (isCustomComponent(type, props)) {
     return;
   }
-  warnUnknownProperties(type, props);
+  warnUnknownProperties(type, props, canUseEventSystem);
 }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var REACT_FRAGMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol['for']('react.fragment') || 0xeacb;
 
 // Based on reading the React.Children implementation. TODO: type this somewhere?
 
@@ -1786,7 +1800,7 @@ var getStackAddendum = emptyFunction.thatReturns('');
   var validatePropertiesInDevelopment = function (type, props) {
     validateProperties(type, props);
     validateProperties$1(type, props);
-    validateProperties$2(type, props);
+    validateProperties$2(type, props, /* canUseEventSystem */false);
   };
 
   var describeStackFrame = function (element) {
@@ -1918,7 +1932,7 @@ function getNonChildrenInnerMarkup(props) {
   } else {
     var content = props.children;
     if (typeof content === 'string' || typeof content === 'number') {
-      return escapeTextContentForBrowser(content);
+      return escapeTextForBrowser(content);
     }
   }
   return null;
@@ -2145,10 +2159,13 @@ function resolve(child, context) {
     var childContext;
     if (typeof inst.getChildContext === 'function') {
       var childContextTypes = Component.childContextTypes;
-      !(typeof childContextTypes === 'object') ? invariant(false, '%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().', getComponentName(Component) || 'Unknown') : void 0;
-      childContext = inst.getChildContext();
-      for (var contextKey in childContext) {
-        !(contextKey in childContextTypes) ? invariant(false, '%s.getChildContext(): key "%s" is not defined in childContextTypes.', getComponentName(Component) || 'Unknown', contextKey) : void 0;
+      if (typeof childContextTypes === 'object') {
+        childContext = inst.getChildContext();
+        for (var contextKey in childContext) {
+          !(contextKey in childContextTypes) ? invariant(false, '%s.getChildContext(): key "%s" is not defined in childContextTypes.', getComponentName(Component) || 'Unknown', contextKey) : void 0;
+        }
+      } else {
+        warning(false, '%s.getChildContext(): childContextTypes must be defined in order to ' + 'use getChildContext().', getComponentName(Component) || 'Unknown');
       }
     }
     if (childContext) {
@@ -2158,7 +2175,7 @@ function resolve(child, context) {
   return { child: child, context: context };
 }
 
-var ReactDOMServerRenderer$1 = function () {
+var ReactDOMServerRenderer = function () {
   function ReactDOMServerRenderer(children, makeStaticMarkup) {
     _classCallCheck(this, ReactDOMServerRenderer);
 
@@ -2229,13 +2246,13 @@ var ReactDOMServerRenderer$1 = function () {
         return '';
       }
       if (this.makeStaticMarkup) {
-        return escapeTextContentForBrowser(text);
+        return escapeTextForBrowser(text);
       }
       if (this.previousWasTextNode) {
-        return '<!-- -->' + escapeTextContentForBrowser(text);
+        return '<!-- -->' + escapeTextForBrowser(text);
       }
       this.previousWasTextNode = true;
-      return escapeTextContentForBrowser(text);
+      return escapeTextForBrowser(text);
     } else {
       var nextChild;
 
@@ -2479,7 +2496,7 @@ var ReactDOMServerRenderer$1 = function () {
  * See https://reactjs.org/docs/react-dom-server.html#rendertostring
  */
 function renderToString(element) {
-  var renderer = new ReactDOMServerRenderer$1(element, false);
+  var renderer = new ReactDOMServerRenderer(element, false);
   var markup = renderer.read(Infinity);
   return markup;
 }
@@ -2490,7 +2507,7 @@ function renderToString(element) {
  * See https://reactjs.org/docs/react-dom-server.html#rendertostaticmarkup
  */
 function renderToStaticMarkup(element) {
-  var renderer = new ReactDOMServerRenderer$1(element, true);
+  var renderer = new ReactDOMServerRenderer(element, true);
   var markup = renderer.read(Infinity);
   return markup;
 }

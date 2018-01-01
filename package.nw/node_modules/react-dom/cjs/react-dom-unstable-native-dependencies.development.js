@@ -1,4 +1,4 @@
-/** @license React v16.1.1
+/** @license React v16.2.0
  * react-dom-unstable-native-dependencies.development.js
  *
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8,6 +8,8 @@
  */
 
 'use strict';
+
+
 
 if (process.env.NODE_ENV !== "production") {
   (function() {

@@ -16,6 +16,8 @@ global.contentWindow = window
 global.windowMap = new Map
 global.windowMap.set('LOGIN', global.Win)
 
+global.CLI = {}
+
 // 记录工具开始运行的时间
 global.beginTime = Date.now()
 

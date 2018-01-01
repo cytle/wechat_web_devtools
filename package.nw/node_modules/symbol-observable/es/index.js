@@ -1,5 +1,5 @@
 /* global window */
-import ponyfill from './ponyfill';
+import ponyfill from './ponyfill.js';
 
 var root;
 

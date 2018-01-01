@@ -305,7 +305,7 @@ window.API.JSAPI = {
                   "name": "scope",
                   "type": "string",
                   "must": true,
-                  "desc": "需要获取权限的scope，详见 [scope 列表](./authorize.md#scope-列表)"
+                  "desc": "需要获取权限的scope，详见 [scope 列表](./authorize-index.md#scope-列表)"
                 },
                 {
                   "name": "success",
@@ -343,7 +343,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "部分接口需要获得同意后才能调用。此类接口调用时，如果用户未授权过，会弹窗询问用户，用户点击同意后方可调用接口。如果用户点了拒绝，则短期内调用不会出现弹窗，而是直接进入 fail 回调。用户可以在小程序设置界面中修改对该小程序的授权信息。本接口用于提前向用户发起授权，调用后会立刻弹窗询问用户是否同意小程序使用某项功能或获取用户的某些数据，但不会实际调用接口。如果用户之前已经同意，则不会出现弹窗，直接返回成功。"
+          "desc": "提前向用户发起授权请求。调用后会立刻弹窗询问用户是否同意授权小程序使用某项功能或获取用户的某些数据，但不会实际调用对应接口。如果用户之前已经同意授权，则不会出现弹窗，直接返回成功。"
         },
         {
           "type": "function",
@@ -418,6 +418,18 @@ window.API.JSAPI = {
                   "desc": "画布标识，传入 [`<canvas/>`](../../component/canvas.md) 的 cavas-id"
                 },
                 {
+                  "name": "fileType",
+                  "type": "string",
+                  "must": false,
+                  "desc": "目标文件的类型，只支持 'jpg' 或 'png'。默认为 'png'"
+                },
+                {
+                  "name": "quality",
+                  "type": "number",
+                  "must": false,
+                  "desc": "图片的质量，取值范围为 (0, 1]，不在范围内时当作1.0处理"
+                },
+                {
                   "name": "success",
                   "type": "function",
                   "must": false,
@@ -442,6 +454,63 @@ window.API.JSAPI = {
             }
           ],
           "desc": "把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路径。"
+        },
+        {
+          "type": "function",
+          "name": "checkIsSoterEnrolledInDevice",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "checkAuthMode",
+                  "type": "string",
+                  "must": true,
+                  "desc": "认证方式"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "isEnrolled",
+                          "type": "boolean",
+                          "desc": "是否已录入信息"
+                        },
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "接口调用结果"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "获取设备内是否录入如指纹等生物信息的接口"
         },
         {
           "type": "function",
@@ -811,7 +880,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "选择用户的发票抬头"
+          "desc": "选择用户的发票抬头。"
         },
         {
           "type": "function",
@@ -852,13 +921,6 @@ window.API.JSAPI = {
                   ]
                 },
                 {
-                  "name": "cancel",
-                  "type": "function",
-                  "must": false,
-                  "desc": "用户取消时调用",
-                  "parameters": []
-                },
-                {
                   "name": "fail",
                   "type": "function",
                   "must": false,
@@ -875,7 +937,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "打开地图选择位置"
+          "desc": "打开地图选择位置。"
         },
         {
           "type": "function",
@@ -890,6 +952,12 @@ window.API.JSAPI = {
                   "type": "string[]",
                   "must": false,
                   "desc": "album 从相册选视频，camera 使用相机拍摄，默认为：['album', 'camera']"
+                },
+                {
+                  "name": "compressed",
+                  "type": "boolead",
+                  "must": false,
+                  "desc": "是否压缩所选的视频源文件，默认值为true，需要压缩"
                 },
                 {
                   "name": "maxDuration",
@@ -1052,7 +1120,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "关闭蓝牙模块。调用该方法将断开所有已建立的链接并释放系统资源"
+          "desc": "关闭蓝牙模块，使其进入未初始化状态。调用该方法将断开所有已建立的链接并释放系统资源。建议在使用小程序蓝牙流程后调用，与`wx.openBluetoothAdapter`成对调用。"
         },
         {
           "type": "function",
@@ -1098,7 +1166,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "关闭WebSocket连接。"
+          "desc": "关闭 WebSocket 连接。"
         },
         {
           "type": "function",
@@ -1113,12 +1181,6 @@ window.API.JSAPI = {
                   "type": "string",
                   "must": true,
                   "desc": "开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名"
-                },
-                {
-                  "name": "data",
-                  "type": "object",
-                  "must": false,
-                  "desc": "请求的数据"
                 },
                 {
                   "name": "header",
@@ -1212,9 +1274,13 @@ window.API.JSAPI = {
             {
               "type": "string",
               "name": "audioid"
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
-          "desc": "创建并返回 audio 上下文 `audioContext` 对象"
+          "desc": "创建并返回 audio 上下文 `audioContext` 对象。在自定义组件下，第二个参数传入组件实例this，以操作组件内 `<audio/>` 组件"
         },
         {
           "type": "function",
@@ -1266,7 +1332,18 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "连接低功耗蓝牙设备"
+          "desc": "连接低功耗蓝牙设备。"
+        },
+        {
+          "type": "function",
+          "name": "createCameraContext",
+          "parameters": [
+            {
+              "type": "string",
+              "name": "this"
+            }
+          ],
+          "desc": "创建并返回 camera 上下文 `cameraContext` 对象，`cameraContext` 与页面的 `camera` 组件绑定，一个页面只能有一个camera，通过它可以操作对应的 `<camera/>` 组件。"
         },
         {
           "type": "function",
@@ -1275,9 +1352,13 @@ window.API.JSAPI = {
             {
               "type": "string",
               "name": "canvasid"
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
-          "desc": "创建 canvas 绘图上下文（指定 canvasId）"
+          "desc": "创建 canvas 绘图上下文（指定 canvasId）。在自定义组件下，第二个参数传入组件实例this，以操作组件内 `<canvas/>` 组件"
         },
         {
           "type": "function",
@@ -1287,14 +1368,41 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "createInnerAudioContext",
+          "parameters": [],
+          "desc": "创建并返回内部 audio 上下文 `innerAudioContext` 对象。*本接口是 `wx.createAudioContext` 升级版。*"
+        },
+        {
+          "type": "function",
+          "name": "createLivePlayerContext",
+          "parameters": [
+            {
+              "type": "string",
+              "name": "domid"
+            }
+          ],
+          "desc": "操作对应的 `<live-player/>` 组件。"
+        },
+        {
+          "type": "function",
+          "name": "createLivePusherContext",
+          "parameters": [],
+          "desc": "操作对应的 `<live-pusher/>` 组件。"
+        },
+        {
+          "type": "function",
           "name": "createMapContext",
           "parameters": [
             {
               "type": "string",
               "name": "mapid"
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
-          "desc": "创建并返回 map 上下文 `mapContext` 对象"
+          "desc": "创建并返回 map 上下文 `mapContext` 对象。在自定义组件下，第二个参数传入组件实例this，以操作组件内 `<map/>` 组件"
         },
         {
           "type": "function",
@@ -1308,9 +1416,13 @@ window.API.JSAPI = {
             {
               "type": "string",
               "name": "videoid"
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
-          "desc": "创建并返回 video 上下文 `videoContext` 对象\r"
+          "desc": "创建并返回 video 上下文 `videoContext` 对象。在自定义组件下，第二个参数传入组件实例this，以操作组件内 `<video/>` 组件\r"
         },
         {
           "type": "function",
@@ -1334,7 +1446,24 @@ window.API.JSAPI = {
                   "name": "success",
                   "type": "function",
                   "must": false,
-                  "parameters": []
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "tempFilePath",
+                          "type": "string",
+                          "desc": "临时文件路径，下载后的文件会存储到一个临时文件"
+                        },
+                        {
+                          "name": "statusCode",
+                          "type": "number",
+                          "desc": "开发者服务器返回的 HTTP 状态码"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "fail",
@@ -1477,7 +1606,7 @@ window.API.JSAPI = {
           "type": "function",
           "name": "getBackgroundAudioManager",
           "parameters": [],
-          "desc": "获取**全局唯一**的背景音频管理器 `backgroundAudioManager`",
+          "desc": "获取**全局唯一**的背景音频管理器 `backgroundAudioManager`。",
           "return": {
             "type": "object",
             "name": "backgroundAudioManager",
@@ -1863,7 +1992,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "获取所有已发现的蓝牙设备，包括已经和本机处于连接状态的设备"
+          "desc": "获取在小程序蓝牙模块生效期间所有已发现的蓝牙设备，包括已经和本机处于连接状态的设备。"
         },
         {
           "type": "function",
@@ -2106,6 +2235,52 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "getHCEState",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "查询 NFC 状态。仅在安卓系统下有效。"
+        },
+        {
+          "type": "function",
           "name": "getImageInfo",
           "parameters": [
             {
@@ -2179,6 +2354,12 @@ window.API.JSAPI = {
                   "type": "string",
                   "must": false,
                   "desc": "默认为 wgs84 返回 gps 坐标，gcj02 返回可用于`wx.openLocation`的坐标"
+                },
+                {
+                  "name": "altitude",
+                  "type": "boolean",
+                  "must": false,
+                  "desc": "传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度"
                 },
                 {
                   "name": "success",
@@ -2344,6 +2525,12 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "getRecorderManager",
+          "parameters": [],
+          "desc": "获取**全局唯一**的录音管理器 `recorderManager`。"
+        },
+        {
+          "type": "function",
           "name": "getSavedFileInfo",
           "parameters": [
             {
@@ -2379,7 +2566,7 @@ window.API.JSAPI = {
                         {
                           "name": "createTime",
                           "type": "number",
-                          "desc": "文件的保存是的时间戳，从1970/01/01 08:00:00 到当前时间的秒数"
+                          "desc": "文件保存时的时间戳，从1970/01/01 08:00:00 到该时刻的秒数"
                         }
                       ]
                     }
@@ -2522,7 +2709,7 @@ window.API.JSAPI = {
                         {
                           "name": "authSetting",
                           "type": "object",
-                          "desc": "用户授权结果，其中 key 为 scope 值，value 为 Bool 值，表示用户是否允许授权，详见 [scope 列表](./authorize.md#scope-列表)"
+                          "desc": "用户授权结果，其中 key 为 scope 值，value 为 Bool 值，表示用户是否允许授权，详见 [scope 列表](./authorize-index.md#scope-列表)"
                         }
                       ]
                     }
@@ -2545,7 +2732,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "获取用户的当前设置"
+          "desc": "获取用户的当前设置。"
         },
         {
           "type": "function",
@@ -3413,7 +3600,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "打开同一公众号下关联的另一个小程序。"
+          "desc": "打开同一公众号下关联的另一个小程序。**（注：必须是同一公众号下，而非同个 open 账号下）**"
         },
         {
           "type": "function",
@@ -3483,7 +3670,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "启用低功耗蓝牙设备特征值变化时的 notify 功能。注意：必须设备的特征值支持`notify`才可以成功调用，具体参照 characteristic 的 properties 属性"
+          "desc": "启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值。注意：必须设备的特征值支持`notify`或者`indicate`才可以成功调用，具体参照 characteristic 的 properties 属性 "
         },
         {
           "type": "function",
@@ -3549,7 +3736,7 @@ window.API.JSAPI = {
                     {
                       "name": "value",
                       "type": "string[]",
-                      "desc": "特征值最新的值**（注意：vConsole 无法打印出 ArrayBuffer 类型数据）**"
+                      "desc": "特征值最新的值 **（注意：vConsole 无法打印出 ArrayBuffer 类型数据）**"
                     }
                   ]
                 }
@@ -3752,6 +3939,52 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "onHCEMessage",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "data",
+                          "type": "string[]",
+                          "desc": "客户端接收到的 ndef 消息，二进制数据"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "监听 NFC 模块的 NdefMessage。如果未在300ms内调用 `sendHCEMessage` 接口，则会执行客户端的超时逻辑。仅在安卓系统下有效。"
+        },
+        {
+          "type": "function",
           "name": "onNetworkStatusChange",
           "parameters": [
             {
@@ -3886,7 +4119,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "初始化蓝牙适配器"
+          "desc": "初始化小程序蓝牙模块，生效周期为调用`wx.openBluetoothAdapter`至调用`wx.closeBluetoothAdapter`或小程序被销毁为止。"
         },
         {
           "type": "function",
@@ -4028,7 +4261,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "​\t使用微信内置地图查看位置"
+          "desc": "​使用微信内置地图查看位置。"
         },
         {
           "type": "function",
@@ -4051,7 +4284,7 @@ window.API.JSAPI = {
                         {
                           "name": "authSetting",
                           "type": "object",
-                          "desc": "用户授权结果，其中 key 为 scope 值，value 为 Bool 值，表示用户是否允许授权，详见 [scope 列表](./authorize.md#scope-列表)"
+                          "desc": "用户授权结果，其中 key 为 scope 值，value 为 Bool 值，表示用户是否允许授权，详见 [scope 列表](./authorize-index.md#scope-列表)"
                         }
                       ]
                     }
@@ -4074,7 +4307,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "调起客户端小程序设置界面，返回用户设置的操作结果"
+          "desc": "调起客户端小程序设置界面，返回用户设置的操作结果。"
         },
         {
           "type": "function",
@@ -4172,6 +4405,12 @@ window.API.JSAPI = {
                   "type": "string",
                   "must": true,
                   "desc": "需要播放的语音文件的文件路径"
+                },
+                {
+                  "name": "duration",
+                  "type": "number",
+                  "must": false,
+                  "desc": "指定录音时长，到达指定的录音时长后会自动停止录音，单位：秒，默认值：60"
                 },
                 {
                   "name": "success",
@@ -4322,9 +4561,9 @@ window.API.JSAPI = {
                       "name": "result",
                       "members": [
                         {
-                          "name": "characteristic",
-                          "type": "object",
-                          "desc": "设备特征值信息"
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
                         },
                         {
                           "name": "errMsg",
@@ -4518,7 +4757,7 @@ window.API.JSAPI = {
                 },
                 {
                   "name": "data",
-                  "type": "object|string",
+                  "type": "string[]",
                   "must": false,
                   "default": "",
                   "desc": "请求的参数"
@@ -4535,7 +4774,7 @@ window.API.JSAPI = {
                   "type": "string",
                   "must": false,
                   "default": "GET",
-                  "desc": "有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT（需大写）"
+                  "desc": "（需大写）有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT"
                 },
                 {
                   "name": "dataType",
@@ -4543,6 +4782,13 @@ window.API.JSAPI = {
                   "must": false,
                   "default": "json",
                   "desc": "如果设为json，会尝试对返回的数据做一次 JSON.parse"
+                },
+                {
+                  "name": "responseType",
+                  "type": "string",
+                  "must": false,
+                  "default": "text",
+                  "desc": "设置响应的数据类型。合法值：text、arraybuffer"
                 },
                 {
                   "name": "success",
@@ -4557,7 +4803,7 @@ window.API.JSAPI = {
                       "members": [
                         {
                           "name": "data",
-                          "type": "object|string",
+                          "type": "string[]",
                           "desc": "开发者服务器返回的数据"
                         },
                         {
@@ -4708,7 +4954,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "保存文件到本地。"
+          "desc": "保存文件到本地。**注意：saveFile 会把临时文件移动，因此调用成功后传入的 tempFilePath 将不可用**"
         },
         {
           "type": "function",
@@ -4760,7 +5006,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "保存图片到系统相册，需要用户授权（scope.writePhotosAlbum），详见 [用户授权](./authorize.md#wxauthorizeobject)"
+          "desc": "保存图片到系统相册。需要[用户授权](./authorize-index.md) scope.writePhotosAlbum"
         },
         {
           "type": "function",
@@ -4812,7 +5058,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "保存视频到系统相册，需要用户授权（scope.writePhotosAlbum），详见 [用户授权](./authorize.md#wxauthorizeobject)"
+          "desc": "保存视频到系统相册。需要[用户授权](./authorize-index.md) scope.writePhotosAlbum"
         },
         {
           "type": "function",
@@ -4827,6 +5073,12 @@ window.API.JSAPI = {
                   "type": "boolean",
                   "must": false,
                   "desc": "是否只能从相机扫码，不允许从相册选择图片"
+                },
+                {
+                  "name": "scanType",
+                  "type": "string[]",
+                  "must": false,
+                  "desc": "扫码类型，参数类型是数组，二维码是'qrCode'，一维码是'barCode'，DataMatrix是‘datamatrix’，pdf417是‘pdf417’。"
                 },
                 {
                   "name": "success",
@@ -4916,6 +5168,46 @@ window.API.JSAPI = {
             }
           ],
           "desc": "控制音乐播放进度。"
+        },
+        {
+          "type": "function",
+          "name": "sendHCEMessage",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "data",
+                  "type": "string[]",
+                  "must": true,
+                  "desc": "二进制数据"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "发送 NFC 消息。仅在安卓系统下有效。"
         },
         {
           "type": "function",
@@ -5763,7 +6055,7 @@ window.API.JSAPI = {
                 },
                 {
                   "name": "interval",
-                  "type": "integer",
+                  "type": "number",
                   "must": false,
                   "desc": "上报设备的间隔，默认为0，意思是找到新设备立即上报，否则根据传入的间隔上报"
                 },
@@ -5781,11 +6073,6 @@ window.API.JSAPI = {
                           "name": "errMsg",
                           "type": "string",
                           "desc": "成功：ok，错误：详细信息"
-                        },
-                        {
-                          "name": "isDiscovering",
-                          "type": "boolean",
-                          "desc": "当前蓝牙适配器是否处于搜索状态"
                         }
                       ]
                     }
@@ -5843,6 +6130,40 @@ window.API.JSAPI = {
             }
           ],
           "desc": "开始监听罗盘数据。"
+        },
+        {
+          "type": "function",
+          "name": "startHCE",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "初始化 NFC 模块。仅在安卓系统下有效。"
         },
         {
           "type": "function",
@@ -6149,7 +6470,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "停止搜寻附近的蓝牙外围设备。请在确保找到需要连接的设备后调用该方法停止搜索。"
+          "desc": "停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索。"
         },
         {
           "type": "function",
@@ -6187,6 +6508,40 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "stopHCE",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "关闭 NFC 模块。仅在安卓系统下有效。"
+        },
+        {
+          "type": "function",
           "name": "stopPullDownRefresh",
           "parameters": [],
           "desc": "停止当前页面下拉刷新。"
@@ -6195,7 +6550,7 @@ window.API.JSAPI = {
           "type": "function",
           "name": "stopRecord",
           "parameters": [],
-          "desc": "​\t主动调用停止录音。"
+          "desc": "​主动调用停止录音。"
         },
         {
           "type": "function",
@@ -6462,7 +6817,7 @@ window.API.JSAPI = {
                   "name": "value",
                   "type": "string[]",
                   "must": true,
-                  "desc": "蓝牙设备特征值对应的二进制值**（注意：vConsole 无法打印出 ArrayBuffer 类型数据）**"
+                  "desc": "蓝牙设备特征值对应的二进制值"
                 },
                 {
                   "name": "success",
@@ -6543,6 +6898,12 @@ window.API.JSAPI = {
           "name": "clearRect",
           "parameters": [],
           "desc": "清除画布上在该矩形区域内的内容。"
+        },
+        {
+          "type": "function",
+          "name": "clip",
+          "parameters": [],
+          "desc": "clip() 方法从原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内（不能访问画布上的其他区域）。可以在使用 clip() 方法前通过使用 save() 方法对当前画布区域进行保存，并在以后的任意时间对其进行恢复（通过 restore() 方法）。"
         },
         {
           "type": "function",
@@ -6657,6 +7018,12 @@ window.API.JSAPI = {
           "name": "setLineCap",
           "parameters": [],
           "desc": "设置线条的端点样式。"
+        },
+        {
+          "type": "function",
+          "name": "setLineDash",
+          "parameters": [],
+          "desc": "设置线条的宽度。"
         },
         {
           "type": "function",
