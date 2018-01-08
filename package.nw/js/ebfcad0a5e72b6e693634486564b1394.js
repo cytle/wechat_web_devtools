@@ -13,6 +13,9 @@
   var Component = function() {}
   var Behavior = function() {}
   global = {}
+  var __workerVendorCode__ = {}
+  var __workersCode__ = {}
+  var __WeixinWorker = WeixinWorker = {}
   var $gwx
   </script>
   ${d}
@@ -46,4 +49,4 @@ if (document.readyState == 'complete') {
   window.addEventListener('load', fn)
 }
 </script>
-`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=b.readFileSync(j,'utf8'),l=c.join(',');module.exports={asDebug:k,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','wx-worker.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],noBrowser:l,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g}}(require('lazyload'),require);
+`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=global.appConfig.isDev?a.join(__dirname,'../../../extensions/context/index.js'):a.join(__dirname,'./extensions/context/index.js'),l=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/index.js'):a.join(__dirname,'./extensions/worker/index.js'),m=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/weixinworker.tpl.js'):a.join(__dirname,'./extensions/worker/weixinworker.tpl.js'),n=b.readFileSync(j,'utf8'),o=b.readFileSync(k,'utf8'),p=b.readFileSync(l,'utf8'),q=b.readFileSync(m,'utf8'),r=c.join(',');module.exports={asDebug:n,subAsDebug:o,workerAsDebug:p,WeixinWorkerTpl:q,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','native-buffer.js','wx-worker.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','webnode.js'],devWorkerList:['wx-config.js','native-buffer.js','wx-console.js','wx-worker.js','webnode.js','worker-sdk.js'],workerVendorList:['WAWorker.js'],noBrowser:r,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g}}(require('lazyload'),require);

@@ -2,7 +2,9 @@
 
 var pngSignature = 'PNG\r\n\x1a\n';
 var pngImageHeaderChunkName = 'IHDR';
-var pngFriedChunkName = 'CgBI'; // Used to detect "fried" png's: http://www.jongware.com/pngdefry.html
+
+// Used to detect "fried" png's: http://www.jongware.com/pngdefry.html
+var pngFriedChunkName = 'CgBI'; 
 
 function isPNG (buffer) {
   if (pngSignature === buffer.toString('ascii', 1, 8)) {

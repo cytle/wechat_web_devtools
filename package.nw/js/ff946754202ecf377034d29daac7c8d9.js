@@ -2,7 +2,7 @@
 const log = require('./72653d4b93cdd7443296229431a7aa9a.js')
 const WebSocket = require('ws');
 const WebsocketServer = WebSocket.Server
-const PING_PONG_INTERVAL = 3000
+const PING_PONG_INTERVAL = 30000
 
 let wss, pingpongTimer
 let clientMap = {}
@@ -64,7 +64,11 @@ const addClient = (ws) => {
     clientMap[mainProtocol] = {}
   }
 
-  clientMap[mainProtocol][subProtocol] = ws
+  if (!clientMap[mainProtocol][subProtocol]) {
+    clientMap[mainProtocol][subProtocol] = []
+  }
+
+  clientMap[mainProtocol][subProtocol].push(ws)
   sendQueue(ws.protocol)
 }
 
@@ -72,7 +76,18 @@ const removeClient = (ws) => {
   let [mainProtocol, subProtocol] = getProtocol(ws.protocol)
 
   if (clientMap[mainProtocol]) {
-    delete clientMap[mainProtocol][subProtocol]
+    let wsList = clientMap[mainProtocol][subProtocol]
+    if (wsList && wsList.length > 0) {
+      wsList = wsList.filter(item => {
+        return item != ws
+      })
+
+      if (wsList.length > 0) {
+        clientMap[mainProtocol][subProtocol] = wsList
+      } else {
+        delete clientMap[mainProtocol][subProtocol]
+      }
+    }
   }
 }
 
@@ -84,6 +99,8 @@ const start = (port) => {
 
   wss.on('connection', (ws) => {
     addClient(ws)
+
+    ws.isAlive = true
     ws.on('message', function(data) {
       _onMessage(this.protocol, data)
     })
@@ -95,6 +112,10 @@ const start = (port) => {
     ws.on('close', function() {
       removeClient(this)
     })
+
+    ws.on('error', function() {
+      removeClient(this)
+    })
   })
 
   pingpongTimer = setInterval(() => {
@@ -102,7 +123,7 @@ const start = (port) => {
       wss.clients.forEach((ws) => {
         if (ws.isAlive === false) {
           removeClient(ws)
-          return ws.terminate();
+          return ws.terminate()
         }
         ws.isAlive = false;
         ws.ping('', false, true);
@@ -137,9 +158,11 @@ const send = (ws, data) => {
 
 const sendMessage = (protocol, data) => {
   let [mainProtocol, subProtocol] = getProtocol(protocol)
-  let ws = clientMap[mainProtocol] && clientMap[mainProtocol][subProtocol]
-  if (ws) {
-    send(ws, data)
+  let wsList = clientMap[mainProtocol] && clientMap[mainProtocol][subProtocol]
+  if (wsList && wsList.length > 0) {
+    wsList.forEach((ws) => {
+      send(ws, data)
+    })
   } else {
     pushQueue(protocol, data)
   }
@@ -151,7 +174,10 @@ const broadcast = (mainProtocol, data) => {
     if (mainProtocol) {
       let clients = clientMap[mainProtocol] || {}
       for (let key in clients) {
-        send(clients[key], data)
+        let wsList = clients[key] || []
+        wsList.forEach(ws => {
+          send(ws, data)
+        })
       }
     } else {
       wss.clients.forEach((ws) => {

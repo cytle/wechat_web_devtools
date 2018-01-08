@@ -43,7 +43,7 @@ function calculateExtended (buffer) {
   return {
     'width': 1 + buffer.readUIntLE(4, 3),
     'height': 1 + buffer.readUIntLE(7, 3)
-  }
+  };
 }
 
 function calculateLossless (buffer) {

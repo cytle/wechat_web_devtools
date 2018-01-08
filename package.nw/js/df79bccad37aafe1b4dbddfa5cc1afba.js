@@ -1,0 +1,1 @@
+'use strict';!function(require,directRequire){const a=require('fs'),b=require('path');let c=global.appConfig.isDev,d=c?b.join(__dirname,'../../../../../html/gameappservice.html'):b.join(__dirname,'../html/gameappservice.html');module.exports=a.readFileSync(d,'utf8')}(require('lazyload'),require);
