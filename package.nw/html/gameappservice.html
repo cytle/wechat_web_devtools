@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><!-- devtoolsConfig --><!-- wxConfig --><!-- asdebug --><script>process && process.on('uncaughtException', (event) => {})
+  var __subVendorCode__ = {}
+  var __subContextCode__ = {}
+  var __noderequire = require
+  global = {}
+  var __WeixinJSContext = WeixinJSContext = {}
+  var __workerVendorCode__ = {}
+  var __workersCode__ = {}
+  var __WeixinWorker = WeixinWorker = {}</script><style>body{position:absolute;width:100%;height:100%;margin:0;overflow:hidden}#myCanvas{height:100%;width:100%}</style></head><body><!-- Canvas --><script>(function() {
+    var hackGlobal = window.__global
+    var document = hackGlobal.document
+    var innerWidth = window.innerWidth
+    var innerHeight = window.innerHeight
+
+    var canvas = document.getElementById('myCanvas')
+
+    canvas.width = innerWidth
+    canvas.height = innerHeight
+
+    var documentCreateElement = document.createElement.bind(document)
+    var global = {
+      __wxConfig: __wxConfig,
+      EventHandler: {
+        ontouchstart: null,
+        ontouchmove: null,
+        ontouchcancel: null,
+        ontouchend: null,
+      },
+      XMLHttpRequest: hackGlobal.XMLHttpRequest,
+      WebSocket: hackGlobal.WebSocket,
+      Worker: hackGlobal.Worker,
+      requestAnimationFrame: window.requestAnimationFrame.bind(window),
+      cancelAnimationFrame: window.cancelAnimationFrame.bind(window),
+      setTimeout: window.setTimeout.bind(window),
+      clearTimeout: window.clearTimeout.bind(window),
+      setInterval: window.setInterval.bind(window),
+      clearInterval: window.clearInterval.bind(window),
+      Canvas: (function() {
+        var firstCanvas = true
+        return function() {
+          if (firstCanvas) {
+            firstCanvas = false
+            return canvas
+          }
+          var c = documentCreateElement('canvas')
+          c.width = innerWidth
+          c.height = innerHeight
+          return c
+        }
+      })(),
+      Image: hackGlobal.Image,
+      Audio: hackGlobal.Audio,
+      performanceNow: performance.now.bind(performance)
+    };;
+    ['touchstart', 'touchmove', 'touchcancel', 'touchend'].forEach((type) => {
+      document.addEventListener(type, (e) => {
+        const {
+          type
+        } = e
+        const listener = global.EventHandler['on' + type]
+        if (typeof listener === 'function') {
+          const eventObj = {
+            changedTouches: e.changedTouches,
+            currentTarget: e.currentTarget,
+            target: e.target,
+            targetTouches: e.targetTouches,
+            touches: e.touches,
+            type
+          }
+          listener.call(canvas, eventObj)
+        }
+      })
+    })
+    window.NativeGlobal = global
+
+    window.WebGLRenderingContext.prototype.wxSetContextAttributes = function() {
+      console.warn('开发者工具不支持 wxSetContextAttributes()')
+    }
+
+  })();</script><!-- subvendor --><!-- subappservicejslist --><!-- subasdebug --><!-- workervendor --><!-- workerjslist --><!-- workerasdebug --><!-- vendor --><!-- appservicejslist --><script>window.__global.alert("DOCUMENT_READY"),require("game.js"),window.__global.alert("NEED_ENTER_FOREGROUND")</script></body></html>

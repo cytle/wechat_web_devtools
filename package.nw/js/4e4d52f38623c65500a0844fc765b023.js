@@ -14,7 +14,10 @@ const isWin = process.platform === 'win32'
 function initProxy(proxySetting) {
   return new Promise((resolve, reject) => {
     if (proxySetting.AutoConfigURL) {
-      request(proxySetting.AutoConfigURL, (error, resp, body) => {
+      request({
+        url: proxySetting.AutoConfigURL,
+        proxy: null
+      }, (error, resp, body) => {
         if (!error) {
           try {
             let temppacPath = path.join(proxyCachePath, 'temppac.pac')

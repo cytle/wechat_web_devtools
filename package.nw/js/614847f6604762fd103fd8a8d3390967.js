@@ -10,7 +10,13 @@
     console.group(\`${new Date} 录音文件格式说明\`)
     console.warn(\`开发者工具上的录音文件与移动端格式不同，暂时只可在工具上进行播放调试，无法直接播放或者在客户端上播放\`)
     console.groupEnd()
-    })()`;a.executeScript({code:b})},[a.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
+    })()`;a.executeScript({code:b})},COMPILE_JS_TOO_LARGE_IGNORE:(a,b,c)=>{const d=(c.files||[]).join('\\n').replace(/\"/g,'?');let e=`
+    (function() {
+    console.group(\`${new Date} JS 文件编译\`)
+    console.warn(\`以下 JS 文件过大（超过 500K），已跳过 ES6 转 ES5 和压缩的处理：\`)
+    console.log("${d}")
+    console.groupEnd()
+    })()`;a.executeScript({code:e})},[a.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
     (function() {
       try {
         if (!window.hasOwnProperty('__disPlayURLCheckWarning')) {
@@ -18,8 +24,8 @@
         }
 
         if (window.__disPlayURLCheckWarning) {
-          console.group(\`${new Date} 配置中关闭 请求域名、业务域名、TLS 版本以及 HTTPS 证书检查\`)
-          console.warn(\`工具未校验请求域名、业务域名、TLS 版本以及 HTTPS 证书。\`)
+          console.group(\`${new Date} 配置中关闭 请求域名、业务域名、web-view 域名、TLS 版本以及 HTTPS 证书检查\`)
+          console.warn(\`工具未校验请求域名、业务域名、web-view 域名、TLS 版本以及 HTTPS 证书。\`)
           console.groupEnd()
           window.__disPlayURLCheckWarning = false
         }

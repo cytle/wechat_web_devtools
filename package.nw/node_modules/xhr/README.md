@@ -1,5 +1,9 @@
 # xhr
 
+[![Join the chat at https://gitter.im/naugtur-xhr/Lobby](https://badges.gitter.im/naugtur-xhr/Lobby.svg)](https://gitter.im/naugtur-xhr/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/naugtur/xhr.svg)](https://greenkeeper.io/)
+
 A small XMLHttpRequest wrapper. Designed for use with [browserify](http://browserify.org/), [webpack](https://webpack.github.io/) etc.
 
 API is a subset of [request](https://github.com/request/request) so you can write code that works in both node.js and the browser by using `require('request')` in your code and telling your browser bundler to load `xhr` instead of `request`.
@@ -24,12 +28,19 @@ For webpack, add a [resolve.alias](http://webpack.github.io/docs/configuration.h
 
 Browser support: IE8+ and everything else.
 
+## Installation
+
+```
+npm install xhr
+```
+
 ## Example
 
 ```js
 var xhr = require("xhr")
 
 xhr({
+    method: "post",
     body: someJSONString,
     uri: "/foo",
     headers: {
@@ -207,13 +218,13 @@ Pass an `XMLHttpRequest` object (or something that acts like one) to use instead
 - How do I add an `onprogress` listener?
   - use `beforeSend` function for non-standard things that are browser specific. In this case:
   ```js
-xhr({
-...
-  beforeSend: function(xhrObject){
-    xhrObject.onprogress = function(){}
-  }
-})
-```
+  xhr({
+    ...
+    beforeSend: function(xhrObject){
+      xhrObject.onprogress = function(){}
+    }
+  })
+  ```
 
 ## Mocking Requests
 You can override the constructor used to create new requests for testing. When you're making a new request:

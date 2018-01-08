@@ -3,6 +3,10 @@
 const ua = navigator.userAgent
 const isAppserviceDevtools = ua.indexOf('appservicedevtools') !== -1
 
+const isGameappserviceDevtools = ua.indexOf('gameservicedevtools') !== -1
+
+const isRemoteDebugDevtools = ua.indexOf('remotedebugdevtools') !== -1
+
 function addAppserviceDevtools(){
   if (isAppserviceDevtools) {
     // 添加appdata pannel
@@ -137,6 +141,40 @@ function addAppserviceDevtools(){
     // 打开脚本文件，并定位到XX行
     chrome.devtools.panels.openResource("http://appservice.open.weixin.qq.com/asdebug.js", 10)
     */
+  } else if(isGameappserviceDevtools) {
+    chrome.devtools.panels.create("Storage",
+      "",
+      "storage/index.html",
+      function(panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function(win){
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function(win){
+          panelWindow.onHidden()
+        })
+      }
+    )
+  } else if (isRemoteDebugDevtools) {
+    if (ua.indexOf('usinglocalstorage') >= 0) {
+      chrome.devtools.panels.create("Storage",
+        "",
+        "storage/index.html",
+        function (panel) {
+          window.panel = panel
+          var panelWindow
+          panel.onShown.addListener(function (win) {
+            panelWindow = win
+            win.onShown()
+          })
+          panel.onHidden.addListener(function (win) {
+            panelWindow.onHidden()
+          })
+        }
+      )
+    }
   }
 }
 
