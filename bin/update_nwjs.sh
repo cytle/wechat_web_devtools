@@ -2,9 +2,9 @@
 # 下载nwjs，构建项目
 
 if [ $(getconf WORD_BIT) = '32' ] && [ $(getconf LONG_BIT) = '64' ] ; then
-    bit=64
+    bit="x64"
 else
-    bit=32
+    bit="ia32"
 fi
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
@@ -14,7 +14,7 @@ tmp_dir="/tmp/wxdt_xsp"
 
 nwjs_file="$tmp_dir/nwjs-v$nwjs_v.tar.gz"
 nwjs_dir="$tmp_dir/nwjs-sdk-v${nwjs_v}-linux-x$bit"
-nwjs_download="https://dl.nwjs.io/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-x$bit.tar.gz"
+nwjs_download="https://dl.nwjs.io/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-$bit.tar.gz"
 
 dist_dir="$root_dir/dist"
 
