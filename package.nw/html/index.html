@@ -1,1 +1,15 @@
-<!DOCTYPE html><html lang=zh-CN style=border-radius:50px><head><meta charset=utf-8><link rel=stylesheet href=../static/app.css><link rel="shortcut icon" href="https://mmbiz.qpic.cn/mmbiz_png/icTdbqWNOwNQ1qSjicRG2Sd0tCZsjqmkmpUsZWPQ4YyuRwKibg8FeLE2x9k7OkHgu5uFc5VtcuuODGAQZZxiaR5iaiaQ/0?wx_fmt=png"></head><body><div id=container class=container></div><script src=../js/core/index.js></script></body></html>
+<!DOCTYPE html><html lang=zh-CN style=border-radius:50px><head><meta charset=utf-8><link rel=stylesheet href=../static/app.css><link rel="shortcut icon" href="https://mmbiz.qpic.cn/mmbiz_png/icTdbqWNOwNQ1qSjicRG2Sd0tCZsjqmkmpUsZWPQ4YyuRwKibg8FeLE2x9k7OkHgu5uFc5VtcuuODGAQZZxiaR5iaiaQ/0?wx_fmt=png"></head><body><section id=fakeBackground style="transform:translate3d(0,0,0);z-index:9999;display:none;flex-direction:column;position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;transition:all 1s"><header style="height:70px;border-bottom:1px solid #d3d3d3;background-color:#f0f0f0"></header><div style=flex-basis:100%;display:flex;flex-direction:row><sidebar style="position:relative;flex-basis:514px;border-right:1px solid #d3d3d3;background-color:#edece8"><div style="position:absolute;top:50px;left:50%;width:70%;height:586px;background:#fff;transform:translate3d(-50%,0,0);box-shadow:0 1px 2px 0 rgba(0,0,0,.05),0 8px 10px 0 rgba(0,0,0,.05)"></div></sidebar><div style=flex-grow:1;height:100%;display:flex;flex-direction:column><div style="flex-basis:50%;border-bottom:1px solid #d3d3d3"></div><div></div></div></div></section><script>try {
+      if (location.search) {
+        var el = document.getElementById('fakeBackground')
+        el.style.display = 'flex'
+        if (navigator.platform === 'Win32') {
+          el.firstChild.style.height = '95px'
+        }
+        setTimeout(() => {
+          var el = document.getElementById('fakeBackground')
+          if (el) {
+            el.remove()
+          }
+        }, 5000)
+      }
+    } catch (err) {}</script><div id=container class=container></div><script src=../js/core/index.js></script></body></html>

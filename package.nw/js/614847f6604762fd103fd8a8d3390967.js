@@ -1,4 +1,23 @@
-'use strict';!function(require,directRequire){const a=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),b={[a.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,c)=>{let{url:d,domains:e}=c,f=c.type,g=`
+'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c={[b.DISPLAY_TYPES.BBS_LOG_LINK]:(b,c,d)=>{let e='',f='';try{f='bbs'===d.linkType?'\u793E\u533A\u76F8\u5173\u5E16\u5B50\u63A8\u8350':'doc'===d.linkType?'\u6587\u6863\u63A8\u8350':'\u6587\u7AE0\u63A8\u8350',e=`
+      (function() {
+      try {
+        console.group(\`${new Date} ${f}\`)
+
+        console.group('原${1===d.messageLevel?'\u8B66\u544A':'\u62A5\u9519'}信息')
+        console.${1===d.messageLevel?'warn':'error'}(decodeURIComponent('${encodeURIComponent(d.message).replace(/'/g,'\\\'')}'))
+        console.groupEnd()
+
+        ${d.explanation?'console.log(decodeURIComponent(\''+encodeURIComponent(d.explanation).replace(/'/g,'\\\'')+'\'))':''}
+        console.log('关于上述${1===d.messageLevel?'\u8B66\u544A':'\u62A5\u9519'}，点击查看更多信息：${d.link}')
+
+        console.groupEnd()
+      } catch(err) {
+        // do not show error in case of error during printing
+        console.groupEnd()
+        console.groupEnd()
+      }
+      })()
+      `}catch(b){a.error(`info.display.js error while trying to display bbs information`,d)}b.executeScript({code:e})},[b.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,c)=>{let{url:d,domains:e}=c,f=c.type,g=`
     (function() {
     console.group(\`${new Date} ${f} 合法域名校验出错\`)
     console.info(\`如若已在管理后台更新域名配置，请刷新项目配置后重新编译项目，操作路径：“项目-域名信息”\`)
@@ -16,7 +35,7 @@
     console.warn(\`以下 JS 文件过大（超过 500K），已跳过 ES6 转 ES5 和压缩的处理：\`)
     console.log("${d}")
     console.groupEnd()
-    })()`;a.executeScript({code:e})},[a.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
+    })()`;a.executeScript({code:e})},[b.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
     (function() {
       try {
         if (!window.hasOwnProperty('__disPlayURLCheckWarning')) {
@@ -33,7 +52,7 @@
         console.warn('error', err)
       }
     })()
-    `;a.executeScript({code:b})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
+    `;a.executeScript({code:b})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
     (function() {
 
     console.group(\`\${new Date()} 自定义分析 配置拉取成功\`)
@@ -79,7 +98,7 @@
     console.groupEnd()
 
     })()
-    `.replace('$config',c.config);a.executeScript({code:d})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_ON_APP_CONFIG]:(a,b,c)=>{let d=`
+    `.replace('$config',c.config);a.executeScript({code:d})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_ON_APP_CONFIG]:(a,b,c)=>{let d=`
 
     (function (){
 
@@ -126,7 +145,7 @@
     console.groupEnd()
 
     })()
-    `.replace('$config',c.config);a.executeScript({code:d})},[a.DISPLAY_TYPES.CUSTOM_ANALYSIS_REPORT]:(a,b,c)=>{let d=`
+    `.replace('$config',c.config);a.executeScript({code:d})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_REPORT]:(a,b,c)=>{let d=`
 
     (function (){
 
@@ -226,4 +245,4 @@
     }
 
     })()
-    `.replace('$actionData',c.actionData).replace('$config',c.config);a.executeScript({code:d})}};module.exports=(a,c,d)=>{b[c]&&b[c](a,c,d)}}(require('lazyload'),require);
+    `.replace('$actionData',c.actionData).replace('$config',c.config);a.executeScript({code:d})}};module.exports=(a,b,d)=>{c[b]&&c[b](a,b,d)}}(require('lazyload'),require);

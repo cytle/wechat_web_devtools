@@ -158,7 +158,46 @@ function addAppserviceDevtools(){
       }
     )
   } else if (isRemoteDebugDevtools) {
+    chrome.devtools.panels.create("Wxml",
+      "",
+      "wxml/index.html",
+      function(panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function(win){
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function(win){
+          panelWindow.onHidden()
+        })
+        panel.onSearch.addListener(function(win){
+          panelWindow.onSearch()
+        })
+      }
+    )
+
+    chrome.devtools.panels.create("AppData",
+      "",
+      "appdata/index.html",
+      function (panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function (win) {
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function (win) {
+          panelWindow.onHidden()
+        })
+        panel.onSearch.addListener(function (win) {
+          panelWindow.onSearch()
+        })
+      }
+    )
+
     if (ua.indexOf('usinglocalstorage') >= 0) {
+
       chrome.devtools.panels.create("Storage",
         "",
         "storage/index.html",

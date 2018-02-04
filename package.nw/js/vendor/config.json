@@ -1,6 +1,6 @@
 {
-	"configVersion": 1515393898633,
-	"currentLibVersion": "1.9.1",
+	"configVersion": 1517469785956,
+	"currentLibVersion": "1.9.8",
 	"libs": {
 		"1.0.0": {
 			"WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -94,6 +94,36 @@
 			"WAWebview.js": "ae0b71ffdc0ca966a74abe2f1df298e8",
 			"WAWidget.js": "d854c0a074fe36089585248f163274f9"
 		},
+		"1.9.1": {
+			"WAService.js": "b8a9a490e5682f28e70c91359e6634cf",
+			"WAWebview.js": "99e4cf53f8c541f7859dbc3befb3e9b3",
+			"WAWidget.js": "aaec81f536377c7d2b75ca4e9b3c3c1f"
+		},
+		"1.9.2": {
+			"WAService.js": "2de9af8398fc76b78b56984d0034671c",
+			"WAWebview.js": "04271a6d15d950f419518d89c74e7c39",
+			"WAWidget.js": "26b7dfa8a3f70726cfae48df215ed3b0"
+		},
+		"1.9.3": {
+			"WAService.js": "71440e7f006b01e5cb69c1d2bc52d338",
+			"WAWebview.js": "ff5ac375a5bc837626c78605465c6135",
+			"WAWidget.js": "542144dc7c587cf0699c4309c1b7029c"
+		},
+		"1.9.4": {
+			"WAService.js": "3f3775356130a413d98820e84277fe90",
+			"WAWebview.js": "29266fdbb1fdca6b90918875b8003ee3",
+			"WAWidget.js": "eae781b52010883203b8ffb1b18ffb44"
+		},
+		"1.9.7": {
+			"WAService.js": "1f522492d5799190d37fd2159d93a583",
+			"WAWebview.js": "7aeef97850388ba863911e37695ebbb6",
+			"WAWidget.js": "cf98d7b67c96c81b2121a3c8e4e12854"
+		},
+		"1.9.8": {
+			"WAService.js": "0b62758bc9c05f817162b1104e800161",
+			"WAWebview.js": "5647367bf66df12ae06a8b57acd407af",
+			"WAWidget.js": "0582b531a996e37b5c07c03376e08e8c"
+		},
 		"game": {
 			"WAGame.js": "58691c4dcacad96df59a153c17b9be5f",
 			"WAGameSubContext.js": "18786086d7746adac6816cfe4f7a84d0",
@@ -101,11 +131,10 @@
 			"WAWebview.js": "938306dc1ff41e4e4bd3f90974eb9208",
 			"WAWidget.js": "bce9e589b8bc166c289eed985ee64716",
 			"WAWorker.js": "3dbf0169e3fa7f5183f5939a41fe805f"
-		},
-		"1.9.1": {
-			"WAService.js": "b8a9a490e5682f28e70c91359e6634cf",
-			"WAWebview.js": "99e4cf53f8c541f7859dbc3befb3e9b3",
-			"WAWidget.js": "aaec81f536377c7d2b75ca4e9b3c3c1f"
 		}
-	}
+	},
+	"wcc": "fce7b3082e719e69f586d9463e416cfe",
+	"wcsc": "e25f9114ff90a951b52aa81bc2d6eee2",
+	"wcc.exe": "1dc2f846816624afeba2290d41ca247b",
+	"wcsc.exe": "37b0694f119ef6cde8e08d340f76a8de"
 }

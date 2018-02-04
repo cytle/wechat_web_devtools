@@ -12,6 +12,8 @@
   var __wxAppCurrentFile__
   var Component = function() {}
   var Behavior = function() {}
+  var definePlugin = function() {}
+  var requirePlugin = function() {}
   global = {}
   var __workerVendorCode__ = {}
   var __workersCode__ = {}

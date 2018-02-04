@@ -10,8 +10,41 @@
   var dataPath = path.join(nw.App.getDataPath(), '..');
   var WeappLocalData = path.join(dataPath, 'WeappLocalData');
   var localDataPath = path.join(WeappLocalData, './localstorage.json');
+  var localDataPathPrefx = path.join(WeappLocalData, './localstorage_');
+  var localDataPathPostfix = '.json';
+  var getDataFilePath = function getDataFilePath(key) {
+    return localDataPathPrefx + key + localDataPathPostfix;
+  };
 
-  var localData = {};
+  var _localData = {};
+  var localData = void 0;
+
+  function proxify(object) {
+    return new Proxy(object, {
+      set: function set(target, prop, value) {
+        if (typeof value !== 'string') {
+          try {
+            fs.writeFileSync(getDataFilePath(prop), JSON.stringify(value));
+          } catch (e) {}
+        } else {
+          try {
+            fs.writeFileSync(getDataFilePath(prop), value);
+          } catch (e) {}
+        }
+        target[prop] = value;
+        return true;
+      },
+      deleteProperty: function deleteProperty(target, prop) {
+        if (prop in target) {
+          delete target[prop];
+          try {
+            fs.unlinkSync(getDataFilePath(prop));
+          } catch (e) {}
+        }
+        return true;
+      }
+    });
+  }
 
   function updateLocalData() {
     try {
@@ -21,20 +54,38 @@
 
   function initLocalData() {
     mkdir.sync(WeappLocalData);
-    if (!fs.existsSync(localDataPath)) {
-      localData = {};
-      for (var key in localStorage) {
-        localData[key] = localStorage[key];
+    _localData = {};
+
+    if (fs.existsSync(localDataPath)) {
+      try {
+        _localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
+      } catch (e) {}
+    }
+
+    var files = fs.readdirSync(WeappLocalData);
+    files.forEach(function (file) {
+      var m = file.match(/^localstorage_(.+)\.json$/);
+      if (m && m[1]) {
+        _localData[m[1]] = fs.readFileSync(getDataFilePath(m[1]), 'utf8');
       }
-      updateLocalData();
+    });
+
+    localData = proxify(_localData);
+
+    /*
+    if (!fs.existsSync(localDataPath)) {
+      _localData = {}
+      for (let key in localStorage) {
+        _localData[key] = localStorage[key]
+      }
+      localData = proxify(_localData)
     } else {
       try {
-        localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
-      } catch (e) {
-        localData = {};
-        updateLocalData();
+        localData = proxify(_localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8')))
+      } catch(e) {
+        localData = proxify(_localData)
       }
-    }
+    }*/
   }
   initLocalData();
 
@@ -47,13 +98,11 @@
 
   var setItem = function setItem(key, item) {
     localData[key] = item;
-    updateLocalData();
     localStorage.setItem(key, item);
   };
 
   var removeItem = function removeItem(key) {
     delete localData[key];
-    updateLocalData();
     localStorage.removeItem(key);
   };
 
@@ -160,7 +209,13 @@
     },
     removeProject: function removeProject(id) {
       delete this._projectList[id];
-      this._recentProjects = null;
+      if (!this._accessTime) {
+        this.recentProjects;
+      }
+      if (this._accessTime && this._accessTime[id]) {
+        delete this._accessTime[id];
+        setItem(config.PROJECT_ACCESS_TIME, JSON.stringify(this._accessTime));
+      }
       removeItem('' + config.PROJECT_PREFIX + id);
     },
     clearProjectList: function clearProjectList() {
@@ -194,26 +249,12 @@
       if (projectid !== config.WEB_DEBUGGER) {
         setItem(config.LAST_SELECT, '' + config.PROJECT_PREFIX + projectid);
 
-        var ind = this._recentProjects.findIndex(function (id) {
-          return projectid === id;
-        });
-
-        if (ind < 0) {
-          this._recentProjects.unshift(projectid);
-
-          if (this._recentProjects.length > 11) {
-            this._recentProjects = this._recentProjects.slice(0, 11);
-          }
-
-          setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
-        } else if (ind > 0) {
-          for (var i = ind - 1; i >= 0; i--) {
-            this._recentProjects[i + 1] = this._recentProjects[i];
-          }
-          this._recentProjects[0] = projectid;
-
-          setItem(config.RECENT_PROJECTS, JSON.stringify(this._recentProjects));
+        if (!this._accessTime) {
+          this.recentProjects;
         }
+
+        this._accessTime[projectid] = +new Date();
+        setItem(config.PROJECT_ACCESS_TIME, JSON.stringify(this._accessTime));
       } else {
         setItem(config.LAST_SELECT, projectid);
       }
@@ -222,21 +263,27 @@
     get recentProjects() {
       var _this = this;
 
-      if (!this._recentProjects) {
-        var recentProjects = JSON.parse(getItem(config.RECENT_PROJECTS) || '[]');
-        var updated = recentProjects.filter(function (id) {
-          return _this.projectList[id];
-        });
-
-        if (recentProjects.length !== updated.length) {
-          setItem(config.RECENT_PROJECTS, JSON.stringify(updated));
+      if (!this._accessTime) {
+        this._accessTime = {};
+        var accessTime = JSON.parse(getItem(config.PROJECT_ACCESS_TIME) || '{}');
+        for (var projectid in accessTime) {
+          if (this.projectList[projectid] && accessTime[projectid]) {
+            this._accessTime[projectid] = accessTime[projectid];
+          }
         }
 
-        this._recentProjects = updated;
+        setItem(config.PROJECT_ACCESS_TIME, JSON.stringify(accessTime));
 
-        return updated.length > 1 ? updated.slice(1) : [];
+        var recentProjects = Object.keys(this._accessTime).sort(function (pid1, pid2) {
+          return _this._accessTime[pid2] - _this._accessTime[pid1];
+        });
+
+        return recentProjects;
       } else {
-        return this._recentProjects.length > 1 ? this._recentProjects.slice(1) : [];
+        var _recentProjects = Object.keys(this._accessTime).sort(function (pid1, pid2) {
+          return _this._accessTime[pid2] - _this._accessTime[pid1];
+        });
+        return _recentProjects;
       }
     },
 
@@ -267,6 +314,13 @@
         this._userInfo = value;
       }
     },
+
+    refreshUserInfo: function refreshUserInfo() {
+      try {
+        this._userInfo = JSON.parse(getItem(config.USER_INFO)) || {};
+      } catch (e) {}
+    },
+
 
     get syncKey() {
       if (!this._syncKey) {

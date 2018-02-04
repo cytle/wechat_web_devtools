@@ -18,6 +18,37 @@
     canvas.height = innerHeight
 
     var documentCreateElement = document.createElement.bind(document)
+    var requestAnimationFrame = window.requestAnimationFrame.bind(window)
+    var cancelAnimationFrame = window.cancelAnimationFrame.bind(window)
+
+    var _fpsInterval, RAFIdMap = {}, _lastRAFTime
+    var wxRequestAnimationFrame = (id, cb, el) => {
+      if (typeof id !== 'string') {
+        el = cb
+        cb = id
+        id = ''
+      }
+      if (!_fpsInterval) return requestAnimationFrame(cb)
+      if (!id) {
+        id = `${+new Date()}_${Math.random()}`
+      }
+      if (!_lastRAFTime) {
+        _lastRAFTime = +new Date()
+        var nativeId = requestAnimationFrame(wxRequestAnimationFrame.bind(this, id, cb))
+        RAFIdMap[id] = nativeId
+        return id
+      }
+      var now = +new Date()
+      if (now - _lastRAFTime >= _fpsInterval) {
+        _lastRAFTime = now - (_lastRAFTime % _fpsInterval)
+        cb()
+      } else {
+        var nativeId = requestAnimationFrame(wxRequestAnimationFrame.bind(this, id, cb))
+        RAFIdMap[id] = nativeId
+        return id
+      }
+    }
+
     var global = {
       __wxConfig: __wxConfig,
       EventHandler: {
@@ -29,8 +60,25 @@
       XMLHttpRequest: hackGlobal.XMLHttpRequest,
       WebSocket: hackGlobal.WebSocket,
       Worker: hackGlobal.Worker,
-      requestAnimationFrame: window.requestAnimationFrame.bind(window),
-      cancelAnimationFrame: window.cancelAnimationFrame.bind(window),
+      setPreferredFramesPerSecond: function(fps) {
+        if (Object.prototype.toString.call(fps).slice(8, -1) === 'Number') {
+          if (fps < 1) fps = 1
+          else if (fps >= 60) fps = null
+          if (fps) {
+            _fpsInterval = 1000 / fps 
+          } else {
+            _fpsInterval = null
+          }
+        }
+      },
+      requestAnimationFrame: wxRequestAnimationFrame,
+      cancelAnimationFrame: function(id) {
+        if (RAFIdMap[id]) {
+          cancelAnimationFrame(RAFIdMap[id])
+        } else {
+          cancelAnimationFrame(id)
+        }
+      },
       setTimeout: window.setTimeout.bind(window),
       clearTimeout: window.clearTimeout.bind(window),
       setInterval: window.setInterval.bind(window),

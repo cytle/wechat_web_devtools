@@ -53,7 +53,7 @@ module.exports = {
   MENU_TITLE_APP: '微信开发者工具',
   MENU_TITLE_PROJECT: '项目',
   MENU_NEW_PROJECT: '新建项目',
-  MENU_OPEN_RECENT_PROJECT: '切换至最近项目',
+  MENU_OPEN_RECENT_PROJECT: '打开最近项目',
   MENU_TITLE_FILE: '文件',
   MENU_TITLE_SETTINGS: '设置',
   MENU_TITLE_EDIT: '编辑',
@@ -172,6 +172,10 @@ module.exports = {
   // confirm
   CONFIRM_OPEN_IN_THIS_WINDOW_TITLE: '打开项目',
   CONFIRM_OPEN_IN_THIS_WINDOW_CONTENT: '是否要在当前窗口打开项目：%s',
+  CONFIRM_OPEN_IN_NEW_WINDOW_TITLE: '打开项目',
+  CONFIRM_OPEN_IN_NEW_WINDOW_CONTENT: '如何打开项目 %s',
+  CONFIRM_OPEN_IN_NEW_WINDOW_CONFIRM: '新窗口打开',
+  CONFIRM_OPEN_IN_NEW_WINDOW_CANCEL: '本窗口打开',
 
   // alert
   ALERT_TOURIST_FORBIDDEN_TITLE: '错误',

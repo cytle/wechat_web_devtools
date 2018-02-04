@@ -4,6 +4,13 @@ const crypto = require('crypto')
 const os = require('os')
 const child_process = require('child_process')
 
+const exeList = [
+  'wcc',
+  'wcsc',
+  'wcc.exe',
+  'wcsc.exe'
+]
+
 function generate(vendorPath) {
   let dirList = fs.readdirSync(vendorPath)
 
@@ -48,6 +55,14 @@ function generate(vendorPath) {
     configVersion: Date.now(),
     currentLibVersion: oldConfig.currentLibVersion,
     libs: newLib
+  }
+
+  for (let key in exeList) {
+    let file = exeList[key]
+    let fileData = fs.readFileSync(path.join(vendorPath, file))
+    let md5sum = crypto.createHash('md5')
+    md5sum.update(fileData)
+    config[file] = md5sum.digest('hex')
   }
 
   fs.writeFileSync(path.join(vendorPath, 'config.json'), JSON.stringify(config, null, '\t'))

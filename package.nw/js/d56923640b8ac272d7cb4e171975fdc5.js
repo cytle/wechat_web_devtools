@@ -9,6 +9,7 @@
     PROJECT_LIST: 'projectList',
     LAST_SELECT: 'last_select',
     RECENT_PROJECTS: 'recent_projects',
+    PROJECT_ACCESS_TIME: 'access_time',
     MAX_RECENT_PROJECTS: 10,
     SYNC_KEY: 'sync_key',
     PROJECT_PREFIX: 'project_',
