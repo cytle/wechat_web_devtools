@@ -5,6 +5,7 @@
     CURRENT_VERSION: '1',
     VERSION: 'ls-version',
     USER_INFO: 'userInfo',
+    USER_INFO_TS: 'userInfoTS',
     OLD_PROJECT_LIST: 'projectLists',
     PROJECT_LIST: 'projectList',
     LAST_SELECT: 'last_select',

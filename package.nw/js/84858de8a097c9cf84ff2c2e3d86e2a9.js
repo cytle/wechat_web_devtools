@@ -299,11 +299,33 @@
 
     get userInfo() {
       if (!this._userInfo) {
-        try {
-          this._userInfo = JSON.parse(getItem(config.USER_INFO)) || {};
-        } catch (e) {
-          this._userInfo = {};
-        }
+        this._userInfo = new Proxy({}, {
+          get: function get(target, prop) {
+            if (typeof prop !== 'string') return localStorage[prop];
+            if (prop === 'signatureExpiredTime' || prop === 'ticketExpiredTime') {
+              return parseInt(localStorage[config.USER_INFO + '_' + prop]) || null;
+            }
+            return localStorage[config.USER_INFO + '_' + prop];
+          },
+          set: function set(target, prop, value) {
+            localStorage[config.USER_INFO + '_' + prop] = value;
+            return true;
+          },
+          ownKeys: function ownKeys(target) {
+            var lsui = {};
+            try {
+              lsui = JSON.parse(localStorage[config.USER_INFO]);
+            } catch (err) {}
+            return Object.keys(lsui);
+          },
+          getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, prop) {
+            return {
+              configurable: true,
+              enumerable: true,
+              writable: true
+            };
+          }
+        });
       }
       return this._userInfo;
     },
@@ -311,13 +333,25 @@
     set userInfo(value) {
       if (getType(value) === 'Object') {
         setItem(config.USER_INFO, JSON.stringify(value));
-        this._userInfo = value;
+        // this._userInfo = value
+        if (Object.keys(value).length === 0) {
+          for (var key in localStorage) {
+            if (key.startsWith(config.USER_INFO + '_')) {
+              delete localStorage[key];
+            }
+          }
+        } else {
+          for (var _key in value) {
+            localStorage[config.USER_INFO + '_' + _key] = value[_key];
+          }
+        }
       }
+      return true;
     },
 
     refreshUserInfo: function refreshUserInfo() {
       try {
-        this._userInfo = JSON.parse(getItem(config.USER_INFO)) || {};
+        // this._userInfo = JSON.parse(getItem(config.USER_INFO)) || {}
       } catch (e) {}
     },
 

@@ -551,28 +551,10 @@ function handleDebugEnable(data) {
 }
 function handleInitPubLib(pubMd5) {
     // use ios md5 for now
-    const configFile = path.join(vendorDir, 'config.json');
     const fileName = 'WAService.js';
-    let folder = '1.9.8'; // default publib
-    try {
-        const json = JSON.parse(fs.readFileSync(configFile, 'utf-8'));
-        const def = json.currentLibVersion;
-        folder = def;
-        for (const version in json.libs) {
-            const md5 = json.libs[version][fileName];
-            if (typeof md5 === 'string' && md5.toLowerCase() === pubMd5.toLowerCase()) {
-                folder = version;
-                break;
-            }
-        }
-    }
-    catch (e) {
-        log.e('find publib failed', e);
-        // nothing
-    }
     let ret;
     try {
-        let publibFilePath = path.join(vendorDir, folder, fileName);
+        let publibFilePath = path.join(tempDir, fileName);
         if (!fs.existsSync(publibFilePath)) {
             log.e('publibFilePath not found');
             publibFilePath = path.join(__dirname, fileName);
