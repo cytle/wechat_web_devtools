@@ -142,11 +142,6 @@ function init() {
     tools.openInspectWin()
   }
 
-  // 阻止右键打开菜单
-  !global.appConfig.isDev && !global.appConfig.isGamma && window.addEventListener('contextmenu', (event) => {
-    event.preventDefault()
-  })
-
   // 禁用滚轮缩放
   document.addEventListener('mousewheel', (event) => {
     if(event.ctrlKey)

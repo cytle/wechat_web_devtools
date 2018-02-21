@@ -240,6 +240,10 @@ window.WXMLAPI = {
         "doc": "微信开放能力",
         "type": "String"
       },
+      "app-parameter": {
+        "doc": "打开 APP 时，向 APP 传递的参数",
+        "type": "String"
+      },
       "hover-class": {
         "doc": "指定按钮按下去的样式类。当 `hover-class=\"none\"` 时，没有点击态效果",
         "type": "String",
@@ -315,6 +319,10 @@ window.WXMLAPI = {
       },
       "bindgetphonenumber": {
         "doc": "获取用户手机号回调",
+        "type": "Handler"
+      },
+      "binderrror": {
+        "doc": "当使用开放能力时，发生错误的回调",
         "type": "Handler"
       }
     }
@@ -1326,6 +1334,16 @@ window.WXMLAPI = {
         "doc": "指定focus时的光标位置",
         "type": "Number"
       },
+      "selection-start": {
+        "doc": "光标起始位置，自动聚集时有效，需与selection-end搭配使用",
+        "type": "Number",
+        "default": -1
+      },
+      "selection-end": {
+        "doc": "光标结束位置，自动聚集时有效，需与selection-start搭配使用",
+        "type": "Number",
+        "default": -1
+      },
       "bindinput": {
         "doc": "当键盘输入时，触发input事件，event.detail = {value, cursor}，处理函数可以直接 return 一个字符串，将替换输入框的内容。",
         "type": "EventHandle"
@@ -1468,81 +1486,20 @@ window.WXMLAPI = {
       "catchtouchcancel": {
         "doc": "touchcancel事件绑定，阻止冒泡"
       },
-      "src": {
-        "doc": "直播地址",
-        "type": "String"
+      "社交": {
+        "type": "直播"
       },
-      "mode": {
-        "doc": "live（直播），RTC（实时通话）",
-        "type": "String",
-        "default": "live"
+      "教育": {
+        "type": "在线教育"
       },
-      "autoplay": {
-        "doc": "自动播放",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
+      "医疗": {
+        "type": "互联网医院，公立医院"
       },
-      "muted": {
-        "doc": "是否静音",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
+      "政务民生": {
+        "type": "所有二级类目"
       },
-      "orientation": {
-        "doc": "画面方向，可选值有 vertical，horizontal",
-        "type": "String",
-        "default": "vertical"
-      },
-      "object-fit": {
-        "doc": "填充模式，可选值有 contain，fillCrop",
-        "type": "String",
-        "default": "contain"
-      },
-      "background-mute": {
-        "doc": "进入后台时是否静音",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
-      },
-      "min-cache": {
-        "doc": "最小缓冲区，单位s",
-        "type": "Number",
-        "default": 1
-      },
-      "max-cache": {
-        "doc": "最大缓冲区，单位s",
-        "type": "Number",
-        "default": 3
-      },
-      "bindstatechange": {
-        "doc": "播放状态变化事件，detail = {errCode}",
-        "type": "EventHandle"
-      },
-      "bindfullscreenchange": {
-        "doc": "全屏变化事件，detail = {direction, fullScreen}",
-        "type": "EventHandle"
+      "金融": {
+        "type": "基金、信托、保险、银行、证券/期货、非金融机构自营小额贷款、征信业务、消费金融"
       }
     }
   },
@@ -1605,121 +1562,20 @@ window.WXMLAPI = {
       "catchtouchcancel": {
         "doc": "touchcancel事件绑定，阻止冒泡"
       },
-      "url": {
-        "doc": "推流地址",
-        "type": "String"
+      "社交": {
+        "type": "直播"
       },
-      "mode": {
-        "doc": "SD（标清）, HD（高清）, FHD（超清）, RTC（实时通话）",
-        "type": "String",
-        "default": "RTC"
+      "教育": {
+        "type": "在线教育"
       },
-      "autopush": {
-        "doc": "自动推流",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
+      "医疗": {
+        "type": "互联网医院，公立医院"
       },
-      "muted": {
-        "doc": "是否静音",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
+      "政务民生": {
+        "type": "所有二级类目"
       },
-      "enable-camera": {
-        "doc": "开启摄像头",
-        "type": "Boolean",
-        "default": true,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
-      },
-      "auto-focus": {
-        "doc": "自动聚集",
-        "type": "Boolean",
-        "default": true,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
-      },
-      "orientation": {
-        "doc": "vertical，horizontal",
-        "type": "String",
-        "default": "vertical"
-      },
-      "beauty": {
-        "doc": "美颜",
-        "type": "Number",
-        "default": 0
-      },
-      "whiteness": {
-        "doc": "美白",
-        "type": "Number",
-        "default": 0
-      },
-      "aspect": {
-        "doc": "宽高比，可选值有 3:4, 9:16",
-        "type": "String",
-        "default": "9:16"
-      },
-      "min-bitrate": {
-        "doc": "最小码率",
-        "type": "Number",
-        "default": 200
-      },
-      "max-bitrate": {
-        "doc": "最大码率",
-        "type": "Number",
-        "default": 1000
-      },
-      "waiting-image": {
-        "doc": "进入后台时推流的等待画面",
-        "type": "String"
-      },
-      "waiting-image-md5": {
-        "doc": "等待画面资源的MD5值",
-        "type": "String"
-      },
-      "background-mute": {
-        "doc": "进入后台时是否静音",
-        "type": "Boolean",
-        "default": false,
-        "valid": [
-          {
-            "value": true
-          },
-          {
-            "value": false
-          }
-        ]
-      },
-      "bindstatechange": {
-        "doc": "状态变化事件，detail = {errCode}",
-        "type": "EventHandle"
+      "金融": {
+        "type": "基金、信托、保险、银行、证券/期货、非金融机构自营小额贷款、征信业务、消费金融"
       }
     }
   },
@@ -3055,6 +2911,16 @@ window.WXMLAPI = {
         "type": "Color",
         "default": "#e9e9e9"
       },
+      "block-size": {
+        "doc": "滑块的大小，取值范围为 12 - 28",
+        "type": "Number",
+        "default": 28
+      },
+      "block-color": {
+        "doc": "滑块的颜色",
+        "type": "Color",
+        "default": "#ffffff"
+      },
       "show-value": {
         "doc": "是否显示当前 value",
         "type": "Boolean",
@@ -3174,9 +3040,14 @@ window.WXMLAPI = {
         ]
       },
       "current": {
-        "doc": "当前所在页面的 index",
+        "doc": "当前所在滑块的 index",
         "type": "Number",
         "default": 0
+      },
+      "current-item-id": {
+        "doc": "当前所在滑块的 item-id ，不能与 current 被同时指定",
+        "type": "String",
+        "default": "\"\""
       },
       "interval": {
         "doc": "自动切换时间间隔",
@@ -3214,9 +3085,107 @@ window.WXMLAPI = {
           }
         ]
       },
+      "previous-margin": {
+        "doc": "前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值",
+        "type": "String",
+        "default": "\"0px\""
+      },
+      "next-margin": {
+        "doc": "后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值",
+        "type": "String",
+        "default": "\"0px\""
+      },
+      "display-multiple-items": {
+        "doc": "同时显示的滑块数量",
+        "type": "Number",
+        "default": 1
+      },
+      "skip-hidden-item-layout": {
+        "doc": "是否跳过未显示的滑块布局，设为 true 可优化复杂情况下的滑动性能，但会丢失隐藏状态滑块的布局信息",
+        "type": "Boolean",
+        "default": false,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "bindchange": {
         "doc": "current 改变时会触发 change 事件，event.detail = {current: current, source: source}",
         "type": "EventHandle"
+      },
+      "bindanimationfinish": {
+        "doc": "动画结束时会触发 animationfinish 事件，event.detail 同上",
+        "type": "EventHandle"
+      }
+    }
+  },
+  "swiper-item": {
+    "link": "https://mp.weixin.qq.com/debug/wxadoc/dev/component/swiper.html#swiper-item",
+    "attributes": {
+      "id": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "class": {
+        "type": "String",
+        "doc": "组件的样式类"
+      },
+      "style": {
+        "type": "String",
+        "doc": "组件的内联样式"
+      },
+      "hidden": {
+        "type": "Boolean",
+        "doc": "组件是否显示"
+      },
+      "data-": {
+        "type": "Any",
+        "doc": "自定义属性"
+      },
+      "bindtap": {
+        "doc": "tap事件绑定，不阻止冒泡"
+      },
+      "catchtap": {
+        "doc": "tap事件绑定，阻止冒泡"
+      },
+      "bindlongtap": {
+        "doc": "longtap事件绑定，不阻止冒泡"
+      },
+      "catchlongtap": {
+        "doc": "longtap事件绑定，阻止冒泡"
+      },
+      "bindtouchstart": {
+        "doc": "touchstart事件绑定，不阻止冒泡"
+      },
+      "catchtouchstart": {
+        "doc": "touchstart事件绑定，阻止冒泡"
+      },
+      "bindtouchmove": {
+        "doc": "touchmove事件绑定，不阻止冒泡"
+      },
+      "catchtouchmove": {
+        "doc": "touchmove事件绑定，阻止冒泡"
+      },
+      "bindtouchend": {
+        "doc": "touchend事件绑定，不阻止冒泡"
+      },
+      "catchtouchend": {
+        "doc": "touchend事件绑定，阻止冒泡"
+      },
+      "bindtouchcancel": {
+        "doc": "touchcancel事件绑定，不阻止冒泡"
+      },
+      "catchtouchcancel": {
+        "doc": "touchcancel事件绑定，阻止冒泡"
+      },
+      "item-id": {
+        "doc": "该 swiper-item 的标识符",
+        "type": "String",
+        "default": "\"\""
       }
     }
   },
@@ -3581,6 +3550,16 @@ window.WXMLAPI = {
           }
         ]
       },
+      "selection-start": {
+        "doc": "光标起始位置，自动聚集时有效，需与selection-end搭配使用",
+        "type": "Number",
+        "default": -1
+      },
+      "selection-end": {
+        "doc": "光标结束位置，自动聚集时有效，需与selection-start搭配使用",
+        "type": "Number",
+        "default": -1
+      },
       "bindfocus": {
         "doc": "输入框聚焦时触发，event.detail = {value: value}",
         "type": "EventHandle"
@@ -3773,6 +3752,71 @@ window.WXMLAPI = {
         "doc": "设置全屏时视频的方向，不指定则根据宽高比自动判断。有效值为 0（正常竖向）, 90（屏幕逆时针90度）, -90（屏幕顺时针90度）",
         "type": "Number"
       },
+      "show-progress": {
+        "doc": "若不设置，宽度大于240时才会显示",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "show-fullscreen-btn": {
+        "doc": "是否显示全屏按钮",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "show-play-btn": {
+        "doc": "是否显示视频底部控制栏的播放按钮",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "show-center-play-btn": {
+        "doc": "是否显示视频中间的播放按钮",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
+      "enable-progress-gesture": {
+        "doc": "是否开启控制进度的手势",
+        "type": "Boolean",
+        "default": true,
+        "valid": [
+          {
+            "value": true
+          },
+          {
+            "value": false
+          }
+        ]
+      },
       "bindplay": {
         "doc": "当开始/继续播放时触发play事件",
         "type": "EventHandle"
@@ -3954,8 +3998,11 @@ window.WXMLAPI = {
       },
       "src": {
         "doc": "webview 指向网页的链接。需登录[小程序管理后台](https://mp.weixin.qq.com/)配置域名白名单。",
-        "type": "String",
-        "default": "none"
+        "type": "String"
+      },
+      "bindmessage": {
+        "doc": "网页向小程序 postMessage 时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息。e.detail = { data }",
+        "type": "EventHandler"
       }
     }
   }

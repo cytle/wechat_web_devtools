@@ -369,6 +369,167 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "canvasGetImageData",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "canvasId",
+                  "type": "string",
+                  "must": true,
+                  "desc": "画布标识，传入 [`<canvas />`](../../component/canvas.md) 的 canvas-id"
+                },
+                {
+                  "name": "x",
+                  "type": "number",
+                  "must": true,
+                  "desc": "将要被提取的图像数据矩形区域的左上角 x 坐标"
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "must": true,
+                  "desc": "将要被提取的图像数据矩形区域的左上角 y 坐标"
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "must": true,
+                  "desc": "将要被提取的图像数据矩形区域的宽度"
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "must": true,
+                  "desc": "将要被提取的图像数据矩形区域的高度"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": ""
+                        },
+                        {
+                          "name": "width",
+                          "type": "number",
+                          "desc": "图像数据矩形的宽度"
+                        },
+                        {
+                          "name": "height",
+                          "type": "number",
+                          "desc": "图像数据矩形的高度"
+                        },
+                        {
+                          "name": "data",
+                          "type": "string[]",
+                          "desc": "图像像素点数据，一维数组，每四项表示一个像素点的rgba"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "返回一个数组，用来描述 canvas 区域隐含的像素数据"
+        },
+        {
+          "type": "function",
+          "name": "canvasPutImageData",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "canvasId",
+                  "type": "string",
+                  "must": true,
+                  "desc": "画布标识，传入 [`<canvas />`](../../component/canvas.md) 的 canvas-id"
+                },
+                {
+                  "name": "data",
+                  "type": "string[]",
+                  "must": true,
+                  "desc": "图像像素点数据，一维数组，每四项表示一个像素点的rgba"
+                },
+                {
+                  "name": "x",
+                  "type": "number",
+                  "must": true,
+                  "desc": "源图像数据在目标画布中的位置偏移量（x 轴方向的偏移量）"
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "must": true,
+                  "desc": "源图像数据在目标画布中的位置偏移量（y 轴方向的偏移量）"
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "must": true,
+                  "desc": "源图像数据矩形区域的宽度"
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "must": false,
+                  "desc": "源图像数据矩形区域的高度"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "将像素数据绘制到画布的方法"
+        },
+        {
+          "type": "function",
           "name": "canvasToTempFilePath",
           "parameters": [
             {
@@ -415,7 +576,7 @@ window.API.JSAPI = {
                   "name": "canvasId",
                   "type": "string",
                   "must": true,
-                  "desc": "画布标识，传入 [`<canvas/>`](../../component/canvas.md) 的 cavas-id"
+                  "desc": "画布标识，传入 [`<canvas/>`](../../component/canvas.md) 的 canvas-id"
                 },
                 {
                   "name": "fileType",
@@ -451,6 +612,10 @@ window.API.JSAPI = {
                   "parameters": []
                 }
               ]
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
           "desc": "把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路径。"
@@ -966,12 +1131,6 @@ window.API.JSAPI = {
                   "desc": "拍摄视频最长拍摄时间，单位秒。最长支持 60 秒"
                 },
                 {
-                  "name": "camera",
-                  "type": "string",
-                  "must": false,
-                  "desc": "默认调起的为前置还是后置摄像头。front: 前置，back: 后置，默认 back"
-                },
-                {
                   "name": "success",
                   "type": "function",
                   "must": false,
@@ -1228,6 +1387,58 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "connectWifi",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "SSID",
+                  "type": "string",
+                  "must": true,
+                  "desc": "Wi-Fi 设备ssid"
+                },
+                {
+                  "name": "BSSID",
+                  "type": "string",
+                  "must": true,
+                  "desc": "Wi-Fi 设备bssid"
+                },
+                {
+                  "name": "password",
+                  "type": "string",
+                  "must": false,
+                  "desc": "Wi-Fi 设备密码"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "连接 Wi-Fi。若已知 Wi-Fi 信息，可以直接利用该接口连接。仅 Android 与 iOS 11 以上版本支持。"
+        },
+        {
+          "type": "function",
           "name": "createAnimation",
           "parameters": [
             {
@@ -1379,6 +1590,10 @@ window.API.JSAPI = {
             {
               "type": "string",
               "name": "domid"
+            },
+            {
+              "type": "string",
+              "name": "this"
             }
           ],
           "desc": "操作对应的 `<live-player/>` 组件。"
@@ -1387,7 +1602,7 @@ window.API.JSAPI = {
           "type": "function",
           "name": "createLivePusherContext",
           "parameters": [],
-          "desc": "操作对应的 `<live-pusher/>` 组件。"
+          "desc": "创建并返回 `live-pusher` 上下文 `LivePusherContext` 对象，`LivePusherContext` 与页面的 `<live-pusher />` 组件绑定，一个页面只能有一个 `live-pusher`，通过它可以操作对应的 `<live-pusher/>` 组件。"
         },
         {
           "type": "function",
@@ -2099,6 +2314,52 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "getConnectedWifi",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "wifi",
+                          "type": "object",
+                          "desc": "Wi-Fi 信息"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "获取已连接中的 Wi-Fi 信息"
+        },
+        {
+          "type": "function",
           "name": "getExtConfig",
           "parameters": [
             {
@@ -2252,6 +2513,11 @@ window.API.JSAPI = {
                       "name": "result",
                       "members": [
                         {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "错误信息"
+                        },
+                        {
                           "name": "errCode",
                           "type": "number",
                           "desc": "错误码"
@@ -2277,7 +2543,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "查询 NFC 状态。仅在安卓系统下有效。"
+          "desc": "判断当前设备是否支持 HCE 能力。"
         },
         {
           "type": "function",
@@ -2969,6 +3235,10 @@ window.API.JSAPI = {
                           "desc": "可使用窗口高度"
                         },
                         {
+                          "name": "statusBarHeight",
+                          "desc": "状态栏的高度"
+                        },
+                        {
                           "name": "language",
                           "desc": "微信设置的语言"
                         },
@@ -3051,6 +3321,10 @@ window.API.JSAPI = {
               {
                 "name": "windowHeight",
                 "desc": "可使用窗口高度"
+              },
+              {
+                "name": "statusBarHeight",
+                "desc": "状态栏的高度"
               },
               {
                 "name": "language",
@@ -3215,6 +3489,40 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "getWifiList",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "请求获取 Wi-Fi 列表，在 `onGetWifiList` 注册的回调中返回 wifiList 数据。iOS 将跳转到系统的 Wi-Fi 界面，Android 不会跳转。"
+        },
+        {
+          "type": "function",
           "name": "hideLoading",
           "parameters": [],
           "desc": "隐藏 loading 提示框"
@@ -3258,6 +3566,86 @@ window.API.JSAPI = {
             }
           ],
           "desc": "隐藏转发按钮"
+        },
+        {
+          "type": "function",
+          "name": "hideTabBar",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "aniamtion",
+                  "type": "boolean",
+                  "must": false,
+                  "desc": "是否需要动画效果，默认无"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "隐藏 tabBar"
+        },
+        {
+          "type": "function",
+          "name": "hideTabBarRedDot",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "must": true,
+                  "desc": "tabBar的哪一项，从左边算起"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "隐藏 tabBar 某一项的右上角的红点"
         },
         {
           "type": "function",
@@ -3939,49 +4327,85 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
-          "name": "onHCEMessage",
+          "name": "onEvaluateWifi",
           "parameters": [
             {
-              "type": "object",
-              "name": "object",
-              "members": [
+              "type": "function",
+              "name": "callback",
+              "parameters": [
                 {
-                  "name": "success",
-                  "type": "function",
-                  "must": false,
-                  "desc": "接口调用成功的回调函数",
-                  "parameters": [
+                  "type": "object",
+                  "name": "result",
+                  "members": [
                     {
+                      "name": "wifi",
                       "type": "object",
-                      "name": "result",
-                      "members": [
-                        {
-                          "name": "data",
-                          "type": "string[]",
-                          "desc": "客户端接收到的 ndef 消息，二进制数据"
-                        }
-                      ]
+                      "desc": "Wi-Fi 信息"
                     }
                   ]
-                },
-                {
-                  "name": "fail",
-                  "type": "function",
-                  "must": false,
-                  "desc": "接口调用失败的回调函数",
-                  "parameters": []
-                },
-                {
-                  "name": "complete",
-                  "type": "function",
-                  "must": false,
-                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
-                  "parameters": []
                 }
               ]
             }
           ],
-          "desc": "监听 NFC 模块的 NdefMessage。如果未在300ms内调用 `sendHCEMessage` 接口，则会执行客户端的超时逻辑。仅在安卓系统下有效。"
+          "desc": "监听需要评估连上的 Wi-Fi 的请求，在回调里必须返回 `confidence` 字段"
+        },
+        {
+          "type": "function",
+          "name": "onGetWifiList",
+          "parameters": [
+            {
+              "type": "function",
+              "name": "callback",
+              "parameters": [
+                {
+                  "type": "object",
+                  "name": "result",
+                  "members": [
+                    {
+                      "name": "wifiList",
+                      "type": "string[]",
+                      "desc": "Wi-Fi 列表数据"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "desc": "监听在获取到 Wi-Fi 列表数据时的事件，在回调中将返回 wifiList。"
+        },
+        {
+          "type": "function",
+          "name": "onHCEMessage",
+          "parameters": [
+            {
+              "type": "function",
+              "name": "callback",
+              "parameters": [
+                {
+                  "type": "object",
+                  "name": "result",
+                  "members": [
+                    {
+                      "name": "messageType",
+                      "type": "number",
+                      "desc": "消息类型"
+                    },
+                    {
+                      "name": "data",
+                      "type": "string[]",
+                      "desc": "客户端接收到 NFC 设备的指令，此参数当且仅当 `messageType=1` 时有效"
+                    },
+                    {
+                      "name": "reason",
+                      "type": "number",
+                      "desc": "此参数当且仅当 `messageType=2` 时有效"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "desc": "监听 NFC 设备的消息回调，并在回调中处理。返回参数中 `messageType` 表示消息类型，目前有如下值："
         },
         {
           "type": "function",
@@ -4086,6 +4510,30 @@ window.API.JSAPI = {
             }
           ],
           "desc": "监听用户主动截屏事件，用户使用系统截屏按键截屏时触发此事件"
+        },
+        {
+          "type": "function",
+          "name": "onWifiConnected",
+          "parameters": [
+            {
+              "type": "function",
+              "name": "callback",
+              "parameters": [
+                {
+                  "type": "object",
+                  "name": "result",
+                  "members": [
+                    {
+                      "name": "wifi",
+                      "type": "object",
+                      "desc": "Wi-Fi 信息"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "desc": "监听连接上 Wi-Fi 的事件。"
         },
         {
           "type": "function",
@@ -4322,6 +4770,12 @@ window.API.JSAPI = {
                   "type": "number",
                   "must": true,
                   "desc": "滚动到页面的目标位置（单位px）"
+                },
+                {
+                  "name": "duration",
+                  "type": "number",
+                  "must": false,
+                  "desc": "滚动动画的时长，默认300ms，单位 ms"
                 }
               ]
             }
@@ -4724,6 +5178,46 @@ window.API.JSAPI = {
             }
           ],
           "desc": "从本地缓存中同步移除指定 key 。"
+        },
+        {
+          "type": "function",
+          "name": "removeTabBarBadge",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "must": true,
+                  "desc": "tabBar的哪一项，从左边算起"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "移除 tabBar 某一项右上角的文本"
         },
         {
           "type": "function",
@@ -5188,7 +5682,24 @@ window.API.JSAPI = {
                   "type": "function",
                   "must": false,
                   "desc": "接口调用成功的回调函数",
-                  "parameters": []
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "错误信息"
+                        },
+                        {
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "fail",
@@ -5602,6 +6113,161 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "setTabBarBadge",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "must": true,
+                  "desc": "tabBar的哪一项，从左边算起"
+                },
+                {
+                  "name": "text",
+                  "type": "string",
+                  "must": true,
+                  "desc": "显示的文本，超过 3 个字符则显示成“…”"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "为 tabBar 某一项的右上角添加文本"
+        },
+        {
+          "type": "function",
+          "name": "setTabBarItem",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "must": true,
+                  "desc": "tabBar 的哪一项，从左边算起"
+                },
+                {
+                  "name": "text",
+                  "type": "string",
+                  "must": false,
+                  "desc": "tab 上按钮文字"
+                },
+                {
+                  "name": "iconPath",
+                  "type": "string",
+                  "must": false,
+                  "desc": "图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px，当 postion 为 top 时，此参数无效，不支持网络图片"
+                },
+                {
+                  "name": "selectedIconPath",
+                  "type": "string",
+                  "must": false,
+                  "desc": "选中时的图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px ，当 postion 为 top 时，此参数无效"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "动态设置 tabBar 某一项的内容"
+        },
+        {
+          "type": "function",
+          "name": "setTabBarStyle",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "color",
+                  "type": "hexcolor",
+                  "desc": "tab 上的文字默认颜色"
+                },
+                {
+                  "name": "selectedColor",
+                  "type": "hexcolor",
+                  "desc": "tab 上的文字选中时的颜色"
+                },
+                {
+                  "name": "backgroundColor",
+                  "type": "hexcolor",
+                  "desc": "tab 的背景色"
+                },
+                {
+                  "name": "borderStyle",
+                  "type": "string",
+                  "desc": "tabbar上边框的颜色， 仅支持 black/white"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "动态设置 tabBar 的整体样式"
+        },
+        {
+          "type": "function",
           "name": "setTopBarText",
           "parameters": [
             {
@@ -5639,6 +6305,46 @@ window.API.JSAPI = {
             }
           ],
           "desc": "动态设置置顶栏文字内容，只有当前小程序被置顶时能生效，如果当前小程序没有被置顶，也能调用成功，但是不会立即生效，只有在用户将这个小程序置顶后才换上设置的文字内容。**注意：调用成功后，需间隔 5s 才能再次调用此接口，如果在 5s 内再次调用此接口，会回调 fail，errMsg：\"setTopBarText: fail invoke too frequently\"**"
+        },
+        {
+          "type": "function",
+          "name": "setWifiList",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "wifiList",
+                  "type": "string[]",
+                  "must": true,
+                  "desc": "提供预设的 Wi-Fi 信息列表"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "在 `onGetWifiList` 回调后，利用接口设置 wifiList 中 AP 的相关信息。"
         },
         {
           "type": "function",
@@ -5885,6 +6591,86 @@ window.API.JSAPI = {
         },
         {
           "type": "function",
+          "name": "showTabBar",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "aniamtion",
+                  "type": "boolean",
+                  "must": false,
+                  "desc": "是否需要动画效果，默认无"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "显示 tabBar"
+        },
+        {
+          "type": "function",
+          "name": "showTabBarRedDot",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "must": true,
+                  "desc": "tabBar的哪一项，从左边算起"
+                },
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "显示 tabBar 某一项的右上角的红点"
+        },
+        {
+          "type": "function",
           "name": "showToast",
           "parameters": [
             {
@@ -5901,7 +6687,7 @@ window.API.JSAPI = {
                   "name": "icon",
                   "type": "string",
                   "must": false,
-                  "desc": "图标，有效值 \"success\", \"loading\""
+                  "desc": "图标，有效值 \"success\", \"loading\", \"none\""
                 },
                 {
                   "name": "image",
@@ -6140,11 +6926,34 @@ window.API.JSAPI = {
               "name": "object",
               "members": [
                 {
+                  "name": "aid_list",
+                  "type": "string[]",
+                  "must": true,
+                  "desc": "需要注册到系统的 AID 列表，每个 AID 为 String 类型"
+                },
+                {
                   "name": "success",
                   "type": "function",
                   "must": false,
                   "desc": "接口调用成功的回调函数",
-                  "parameters": []
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "错误信息"
+                        },
+                        {
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "fail",
@@ -6163,7 +6972,7 @@ window.API.JSAPI = {
               ]
             }
           ],
-          "desc": "初始化 NFC 模块。仅在安卓系统下有效。"
+          "desc": "初始化 NFC 模块。"
         },
         {
           "type": "function",
@@ -6339,6 +7148,40 @@ window.API.JSAPI = {
             }
           ],
           "desc": "开始 SOTER 生物认证"
+        },
+        {
+          "type": "function",
+          "name": "startWifi",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "初始化 Wi-Fi 模块。"
         },
         {
           "type": "function",
@@ -6519,7 +7362,24 @@ window.API.JSAPI = {
                   "type": "function",
                   "must": false,
                   "desc": "接口调用成功的回调函数",
-                  "parameters": []
+                  "parameters": [
+                    {
+                      "type": "object",
+                      "name": "result",
+                      "members": [
+                        {
+                          "name": "errMsg",
+                          "type": "string",
+                          "desc": "错误信息"
+                        },
+                        {
+                          "name": "errCode",
+                          "type": "number",
+                          "desc": "错误码"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "fail",
@@ -6557,6 +7417,40 @@ window.API.JSAPI = {
           "name": "stopVoice",
           "parameters": [],
           "desc": "结束播放语音。"
+        },
+        {
+          "type": "function",
+          "name": "stopWifi",
+          "parameters": [
+            {
+              "type": "object",
+              "name": "object",
+              "members": [
+                {
+                  "name": "success",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用成功的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "fail",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用失败的回调函数",
+                  "parameters": []
+                },
+                {
+                  "name": "complete",
+                  "type": "function",
+                  "must": false,
+                  "desc": "接口调用结束的回调函数（调用成功、失败都会执行）",
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "desc": "关闭 Wi-Fi 模块。"
         },
         {
           "type": "function",
@@ -6933,7 +7827,7 @@ window.API.JSAPI = {
           "type": "function",
           "name": "drawImage",
           "parameters": [],
-          "desc": "绘制图像，图像保持原始尺寸。"
+          "desc": "绘制图像到画布。"
         },
         {
           "type": "function",

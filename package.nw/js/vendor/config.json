@@ -1,6 +1,6 @@
 {
-	"configVersion": 1517469785956,
-	"currentLibVersion": "1.9.8",
+	"configVersion": 1518089768874,
+	"currentLibVersion": "1.9.90",
 	"libs": {
 		"1.0.0": {
 			"WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -124,6 +124,16 @@
 			"WAWebview.js": "5647367bf66df12ae06a8b57acd407af",
 			"WAWidget.js": "0582b531a996e37b5c07c03376e08e8c"
 		},
+		"1.9.9": {
+			"WAService.js": "580d81c58e02c6d3a09217dabb8bd6d0",
+			"WAWebview.js": "3316bce9ece8cee3582d49ed74f42f37",
+			"WAWidget.js": "2290bca55d78d2e69b2102a84ff8e373"
+		},
+		"1.9.90": {
+			"WAService.js": "e35028ee15f8fc05b93974ede69f006a",
+			"WAWebview.js": "afbf163f8bef2dc97af3214f35798aba",
+			"WAWidget.js": "a71d7ee69dcccb8be49652ef84cf9730"
+		},
 		"game": {
 			"WAGame.js": "58691c4dcacad96df59a153c17b9be5f",
 			"WAGameSubContext.js": "18786086d7746adac6816cfe4f7a84d0",
@@ -132,9 +142,5 @@
 			"WAWidget.js": "bce9e589b8bc166c289eed985ee64716",
 			"WAWorker.js": "3dbf0169e3fa7f5183f5939a41fe805f"
 		}
-	},
-	"wcc": "fce7b3082e719e69f586d9463e416cfe",
-	"wcsc": "e25f9114ff90a951b52aa81bc2d6eee2",
-	"wcc.exe": "1dc2f846816624afeba2290d41ca247b",
-	"wcsc.exe": "37b0694f119ef6cde8e08d340f76a8de"
+	}
 }
