@@ -54,6 +54,8 @@ module.exports = {
   MENU_TITLE_PROJECT: '项目',
   MENU_NEW_PROJECT: '新建项目',
   MENU_OPEN_RECENT_PROJECT: '打开最近项目',
+  MENU_NEW_MINI_CODE: '新建小代码',
+  MENU_IMPORT_MINI_CODE: '导入小代码',
   MENU_TITLE_FILE: '文件',
   MENU_TITLE_SETTINGS: '设置',
   MENU_TITLE_EDIT: '编辑',
@@ -228,7 +230,9 @@ module.exports = {
   CREATE_PROJECT_TIP_NO_DIR: '请选择 项目目录',
   CREATE_PROJECT_TIP_NO_APPID: '请填写 appid ',
   CREATE_PROJECT_TIP_HASH_EXIST: '已存在 %s %s 项目，请重新输入',
-  CREATE_PROJECT_TIP_MUST_USE_EMPTY_FOLDER: '请选择空目录或含 app.json / project.config.json 的目录创建项目',
+  CREATE_PROJECT_TIP_MUST_USE_EMPTY_FOLDER: '请选择空目录',
+  CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_APP_FOLDER: '请选择空目录或含 app.json / project.config.json 的目录创建项目',
+  CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_GAME_FOLDER: '请选择空目录或含 game.json 的目录创建项目',
   // ===== QCLOUD =====
 
   CLOUD_ACTION_UPLOAD: '上传测试代码',

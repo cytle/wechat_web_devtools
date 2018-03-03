@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native64Bit:WindowsTargetPlatformVersion=8.1
+Release|x64|F:\jenkins\workspace\wechat-web-devtools-main\release\1.02.1802270\x64\package.nw\node_modules\node-sync-ipc\build\|
