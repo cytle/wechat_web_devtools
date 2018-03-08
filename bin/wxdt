@@ -15,6 +15,9 @@ if [ "$cur_nwjs_v" != "$nwjs_v" ]; then
   bash "$root_dir/bin/update_nwjs.sh"
 fi
 
+# fix
+bash "$root_dir/bin/fix_node_sync_ipc.sh"
+
 cd "$root_dir/dist"
 
 want=${1:-"start"}
