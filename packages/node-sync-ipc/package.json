@@ -1,0 +1,61 @@
+{
+  "_from": "git+http://git.code.oa.com/devtools/node-sync-ipc.git",
+  "_id": "node-sync-ipc@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-YOa6RbKSXaVdV31ZWCiUZ7laSdM=",
+  "_location": "/node-sync-ipc",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "node-sync-ipc@git+http://git.code.oa.com/devtools/node-sync-ipc.git",
+    "name": "node-sync-ipc",
+    "escapedName": "node-sync-ipc",
+    "rawSpec": "git+http://git.code.oa.com/devtools/node-sync-ipc.git",
+    "saveSpec": "git+http://git.code.oa.com/devtools/node-sync-ipc.git",
+    "fetchSpec": "http://git.code.oa.com/devtools/node-sync-ipc.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+http://git.code.oa.com/devtools/node-sync-ipc.git#0abfce4034c4c3a02c190dd0152cd8ab89efc763",
+  "_shasum": "057d51e16666c103b28e077bd8739e3a24b85fbf",
+  "_spec": "node-sync-ipc@git+http://git.code.oa.com/devtools/node-sync-ipc.git",
+  "_where": "F:\\jenkins\\workspace\\wechat-web-devtools-main\\src",
+  "author": {
+    "name": "mmhunter",
+    "email": "mmhunter@mmhunter.com",
+    "url": "http://mmhunter.com"
+  },
+  "bugs": {
+    "url": "https://github.com/mmhunter/node-sync-ipc/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "nan": "^2.7.0"
+  },
+  "deprecated": false,
+  "description": "node-sync-ipc is a tiny library making it possible for child node.js processes created by child_process.fork to send synchronous message to parent process. It can block the child process until the parent make a response. This use case is kind of rare but I hope it can be of some help if anyone needs.",
+  "gypfile": true,
+  "homepage": "https://github.com/mmhunter/node-sync-ipc",
+  "keywords": [
+    "child_process",
+    "sync",
+    "synchronous",
+    "ipc",
+    "message"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "node-sync-ipc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmhunter/node-sync-ipc.git"
+  },
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "index.d.ts",
+  "version": "1.0.2"
+}
