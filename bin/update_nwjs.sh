@@ -42,6 +42,8 @@ mkdir -p "$dist_dir"
 cp -r "$nwjs_dir"/* "$dist_dir"
 ln -sf "../package.nw" "$dist_dir/package.nw"
 
+sh "$root_dir/bin/fix_node_sync_ipc.sh"
+
 echo "$nwjs_v" > "$dist_dir/nwjs_version"
 
 echo "update nwjs success"
