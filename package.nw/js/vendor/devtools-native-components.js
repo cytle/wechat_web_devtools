@@ -69,7 +69,7 @@ if (query.name) {
         eventName: 'onVideoPlay',
         data: {
           timeStamp: e.timeStamp,
-          videoPlayerId: dom.id,
+          videoPlayerId: dom.videoPlayerId,
           data: dom.data || ''
         }
       })
@@ -81,7 +81,7 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoPause',
         data: {
-          videoPlayerId: dom.id,
+          videoPlayerId: dom.videoPlayerId,
           data: dom.data || ''
         }
       })
@@ -92,7 +92,7 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoEnded',
         data: {
-          videoPlayerId: dom.id,
+          videoPlayerId: dom.videoPlayerId,
           data: dom.data || ''
         }
       })
@@ -105,7 +105,7 @@ if (query.name) {
         data: {
           position: e.detail.currentTime,
           duration: e.detail.duration,
-          videoPlayerId: dom.id,
+          videoPlayerId: dom.videoPlayerId,
           data: dom.data || ''
         }
       })
@@ -118,7 +118,7 @@ if (query.name) {
         data: {
           fullScreen: e.detail.fullScreen,
           direction: dom.direction,
-          videoPlayerId: dom.id,
+          videoPlayerId: dom.videoPlayerId,
           data: dom.data || ''
         }
       })

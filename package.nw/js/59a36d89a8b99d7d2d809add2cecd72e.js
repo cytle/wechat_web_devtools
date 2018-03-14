@@ -1,4 +1,4 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),c=`
+'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),c='<!- wxappcode -->',d=`
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -11,7 +11,8 @@
     var __wxAppCode__ = {};
     var __WXML_GLOBAL__ = {entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0};
   </script>
-`,d=`
+  ${c}
+`,e=`
   </head>
 <body>
   <div></div>
@@ -31,10 +32,10 @@
     }, 100)
   })
 </script>
-`,e=`
+`,f=`
 <script>
 alert('DOCUMENT_READY')
 </script>
-`,f=`
+`,g=`
   <p>{{error}}</p>
-`,g=global.appConfig.isDev?a.join(__dirname,'../../../extensions/pageframe/index.js'):a.join(__dirname,'./extensions/pageframe/index.js'),h=b.readFileSync(g,'utf8');module.exports={jsDebug:h,htmlBegin:c,htmlEnd:d,htmlReady:e,errorTpl:f,devVendorList:['wx-config.js','wx-console.js','wx-worker.js','reporter-sdk.js','webview-sdk.js','exparser.min.js','wx-components.js','virtual_dom.js','webview-engine.js','hls.js','wx-components.css','WARemoteDebug.js'],vendorList:['WAWebview.js','hls.js','WARemoteDebug.js']}}(require('lazyload'),require);
+`,h=global.appConfig.isDev?a.join(__dirname,'../../../extensions/pageframe/index.js'):a.join(__dirname,'./extensions/pageframe/index.js'),i=b.readFileSync(h,'utf8');module.exports={jsDebug:i,htmlBegin:d,htmlEnd:e,htmlReady:f,errorTpl:g,devVendorList:['wx-config.js','wx-console.js','wx-worker.js','reporter-sdk.js','webview-sdk.js','exparser.min.js','wx-components.js','virtual_dom.js','webview-engine.js','hls.js','wx-components.css','WARemoteDebug.js'],vendorList:['WAWebview.js','hls.js','WARemoteDebug.js'],wxappcodePlaceholder:c,plugincodePlaceholder:'<!- plugincode -->'}}(require('lazyload'),require);

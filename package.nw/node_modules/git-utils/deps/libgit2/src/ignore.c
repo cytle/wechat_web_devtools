@@ -175,7 +175,7 @@ static int parse_ignore_file(
 		context = attrs->entry->path;
 
 	if (git_mutex_lock(&attrs->lock) < 0) {
-		giterr_set(GITERR_OS, "Failed to lock ignore file");
+		giterr_set(GITERR_OS, "failed to lock ignore file");
 		return -1;
 	}
 
@@ -277,8 +277,9 @@ int git_ignore__for_path(
 {
 	int error = 0;
 	const char *workdir = git_repository_workdir(repo);
+	git_buf infopath = GIT_BUF_INIT;
 
-	assert(ignores && path);
+	assert(repo && ignores && path);
 
 	memset(ignores, 0, sizeof(*ignores));
 	ignores->repo = repo;
@@ -322,10 +323,14 @@ int git_ignore__for_path(
 			goto cleanup;
 	}
 
+	if ((error = git_repository_item_path(&infopath,
+			repo, GIT_REPOSITORY_ITEM_INFO)) < 0)
+		goto cleanup;
+
 	/* load .git/info/exclude */
 	error = push_ignore_file(
 		ignores, &ignores->ign_global,
-		git_repository_path(repo), GIT_IGNORE_FILE_INREPO);
+		infopath.ptr, GIT_IGNORE_FILE_INREPO);
 	if (error < 0)
 		goto cleanup;
 
@@ -336,6 +341,7 @@ int git_ignore__for_path(
 			git_repository_attr_cache(repo)->cfg_excl_file);
 
 cleanup:
+	git_buf_free(&infopath);
 	if (error < 0)
 		git_ignore__free(ignores);
 
@@ -503,9 +509,9 @@ int git_ignore_path_is_ignored(
 	unsigned int i;
 	git_attr_file *file;
 
-	assert(ignored && pathname);
+	assert(repo && ignored && pathname);
 
-	workdir = repo ? git_repository_workdir(repo) : NULL;
+	workdir = git_repository_workdir(repo);
 
 	memset(&path, 0, sizeof(path));
 	memset(&ignores, 0, sizeof(ignores));

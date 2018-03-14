@@ -1,0 +1,34 @@
+{
+    "name": "koa-weapp-demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "pm2 start process.prod.json --no-daemon",
+        "dev": "nodemon --config nodemon.json app.js",
+        "initdb": "npm install && node tools/initdb.js"
+    },
+    "author": "Jason",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.15.3",
+        "knex": "^0.13.0",
+        "koa": "^2.0.0",
+        "koa-bodyparser": "^3.2.0",
+        "koa-log4": "^2.1.0",
+        "koa-router": "^7.0.1",
+        "lodash": "^4.17.4",
+        "mkdir-p": "0.0.7",
+        "mysql": "^2.14.1",
+        "pify": "^2.3.0",
+        "wafer-node-sdk": "^1.1.1"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.1.0",
+        "debug": "^2.6.8",
+        "eslint": "^3.9.1",
+        "eslint-config-standard": "^6.2.1",
+        "eslint-plugin-promise": "^3.3.1",
+        "eslint-plugin-standard": "^2.0.1"
+    }
+}

@@ -273,7 +273,16 @@ typedef struct {
 	 */
 	unsigned int recursion_limit;
 
-	/** Flags for handling conflicting content. */
+	/**
+	 * Default merge driver to be used when both sides of a merge have
+	 * changed.  The default is the `text` driver.
+	 */
+	const char *default_driver;
+
+	/**
+	 * Flags for handling conflicting content, to be used with the standard
+	 * (`text`) merge driver.
+	 */
 	git_merge_file_favor_t file_favor;
 
 	/** see `git_merge_file_flag_t` above */
@@ -281,7 +290,8 @@ typedef struct {
 } git_merge_options;
 
 #define GIT_MERGE_OPTIONS_VERSION 1
-#define GIT_MERGE_OPTIONS_INIT {GIT_MERGE_OPTIONS_VERSION}
+#define GIT_MERGE_OPTIONS_INIT { \
+	GIT_MERGE_OPTIONS_VERSION, GIT_MERGE_FIND_RENAMES }
 
 /**
  * Initializes a `git_merge_options` with default values. Equivalent to

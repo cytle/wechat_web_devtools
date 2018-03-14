@@ -11,10 +11,7 @@ var
 
 
 module.exports = function () {
-    var
-        tag = document.createElement('style'),
-        content = document.createTextNode(style);
-
-    tag.appendChild(content);
-    document.body.appendChild(tag);
+    console.log(style);
 };
+
+module.exports();

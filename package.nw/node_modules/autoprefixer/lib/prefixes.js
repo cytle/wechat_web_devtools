@@ -13,7 +13,7 @@ var AtRule = require('./at-rule');
 var Value = require('./value');
 var utils = require('./utils');
 
-var vendor = require('postcss/lib/vendor');
+var vendor = require('postcss').vendor;
 
 Selector.hack(require('./hacks/fullscreen'));
 Selector.hack(require('./hacks/placeholder'));

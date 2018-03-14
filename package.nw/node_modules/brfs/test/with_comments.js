@@ -15,10 +15,8 @@ test('with comment separators', function (t) {
     b.transform(path.dirname(__dirname));
     
     b.bundle(function (err, src) {
-        console.error("NOT PRESENTLY WORKING: with_comments.js");
-        t.ok(true, 'failing test');
-        // if (err) t.fail(err);
-        // vm.runInNewContext(src, { console: { log: log } });
+        if (err) t.fail(err);
+        vm.runInNewContext(src, { console: { log: log } });
     });
     
     function log (msg) {

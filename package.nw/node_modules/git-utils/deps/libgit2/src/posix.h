@@ -24,6 +24,10 @@
 #define _S_IFLNK S_IFLNK
 #endif
 
+#ifndef S_IWUSR
+#define S_IWUSR 00200
+#endif
+
 #ifndef S_IXUSR
 #define S_IXUSR 00100
 #endif
@@ -110,6 +114,12 @@ extern int p_rename(const char *from, const char *to);
 
 extern int git__page_size(size_t *page_size);
 extern int git__mmap_alignment(size_t *page_size);
+
+/* The number of times `p_fsync` has been called.  Note that this is for
+ * test code only; it it not necessarily thread-safe and should not be
+ * relied upon in production.
+ */
+extern size_t p_fsync__cnt;
 
 /**
  * Platform-dependent methods

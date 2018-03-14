@@ -18,7 +18,7 @@
       ${n.join('\n')}
       ${o};
     `;return i.window.disableScroll&&(p+=`
-      var style = document.createElement('style')
-      style.innerText = 'body{overflow-y:hidden;}'
-      document.head.appendChild(style)
-      `),p}}(require('lazyload'),require);
+    var style = document.createElement('style')
+    style.innerText = 'body{overflow-y:hidden;}'
+    document.head.appendChild(style)
+    `),p}}(require('lazyload'),require);

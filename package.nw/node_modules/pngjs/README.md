@@ -291,6 +291,10 @@ PNG.adjustGamma(png);
 Changelog
 ============
 
+### 3.3.2 - 16/02/2018
+
+- Fix for node 9
+
 ### 3.3.1 - 15/11/2017
 
 - Bugfixes and removal of es6

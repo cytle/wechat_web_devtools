@@ -11,6 +11,7 @@
 #include "git2/net.h"
 #include "git2/types.h"
 #include "git2/strarray.h"
+#include "git2/proxy.h"
 
 /**
  * @file git2/sys/transport.h
@@ -53,6 +54,7 @@ struct git_transport {
 		const char *url,
 		git_cred_acquire_cb cred_acquire_cb,
 		void *cred_acquire_payload,
+		const git_proxy_options *proxy_opts,
 		int direction,
 		int flags);
 
@@ -65,7 +67,7 @@ struct git_transport {
 		git_transport *transport);
 
 	/* Executes the push whose context is in the git_push object. */
-	int (*push)(git_transport *transport, git_push *push, const git_remote_callbacks *callbacks);
+	int(*push)(git_transport *transport, git_push *push, const git_remote_callbacks *callbacks);
 
 	/* This function may be called after a successful call to connect(), when
 	 * the direction is FETCH. The function performs a negotiation to calculate
@@ -238,6 +240,16 @@ GIT_EXTERN(int) git_transport_smart_certificate_check(git_transport *transport, 
  * @return the return value of the callback
  */
 GIT_EXTERN(int) git_transport_smart_credentials(git_cred **out, git_transport *transport, const char *user, int methods);
+
+/**
+ * Get a copy of the proxy options
+ *
+ * The url is copied and must be freed by the caller.
+ *
+ * @param out options struct to fill
+ * @param transport the transport to extract the data from.
+ */
+GIT_EXTERN(int) git_transport_smart_proxy_options(git_proxy_options *out, git_transport *transport);
 
 /*
  *** End of base transport interface ***

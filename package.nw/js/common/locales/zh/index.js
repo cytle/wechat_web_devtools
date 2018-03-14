@@ -54,8 +54,8 @@ module.exports = {
   MENU_TITLE_PROJECT: '项目',
   MENU_NEW_PROJECT: '新建项目',
   MENU_OPEN_RECENT_PROJECT: '打开最近项目',
-  MENU_NEW_MINI_CODE: '新建小代码',
-  MENU_IMPORT_MINI_CODE: '导入小代码',
+  MENU_NEW_MINI_CODE: '新建代码片段',
+  MENU_IMPORT_MINI_CODE: '导入代码片段',
   MENU_TITLE_FILE: '文件',
   MENU_TITLE_SETTINGS: '设置',
   MENU_TITLE_EDIT: '编辑',
@@ -219,7 +219,11 @@ module.exports = {
   CGI_ERR_USER_CAN_NOT_ACCESS_APP: '插件未授权使用',
   CGI_ERR_APP_NOT_EXIST: '插件 provider 不存在',
   CGI_ERR_APP_VERSION_NOT_EXIST: '插件版本不存在',
-
+  CGI_ERR_DEV_INVALID_PLUGIN_VERSION: '非法的插件版本',
+  CGI_ERR_DEV_PLUGIN_NOT_FOUND: '找不到使用的插件',
+  CGI_ERR_DEV_DEVPLUGIN_NOT_DEFINED: '开发版插件未定义在 app.json 中',
+  CGI_ERR_DEV_PLUGIN_ROOT_NOT_DEFINED: '插件目录未定义在 project.config.json 中',
+  CGI_ERR_DEV_TWO_SAME_PLUGIN_FOUND: '使用了同一个插件的不同版本',
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',
@@ -231,6 +235,7 @@ module.exports = {
   CREATE_PROJECT_TIP_NO_APPID: '请填写 appid ',
   CREATE_PROJECT_TIP_HASH_EXIST: '已存在 %s %s 项目，请重新输入',
   CREATE_PROJECT_TIP_MUST_USE_EMPTY_FOLDER: '请选择空目录',
+  CREATE_PROJECT_TIP_MUST_CHOOSE_FOLDER: '创建临时目录失败，请选择一个目录',
   CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_APP_FOLDER: '请选择空目录或含 app.json / project.config.json 的目录创建项目',
   CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_GAME_FOLDER: '请选择空目录或含 game.json 的目录创建项目',
   // ===== QCLOUD =====

@@ -29,9 +29,7 @@ static transport_definition local_transport_definition = { "file://", git_transp
 static transport_definition transports[] = {
 	{ "git://",   git_transport_smart, &git_subtransport_definition },
 	{ "http://",  git_transport_smart, &http_subtransport_definition },
-#if defined(GIT_OPENSSL) || defined(GIT_WINHTTP) || defined(GIT_SECURE_TRANSPORT)
 	{ "https://", git_transport_smart, &http_subtransport_definition },
-#endif
 	{ "file://",  git_transport_local, NULL },
 #ifdef GIT_SSH
 	{ "ssh://",   git_transport_smart, &ssh_subtransport_definition },
@@ -89,10 +87,10 @@ static int transport_find_fn(
 	/* For other systems, perform the SSH check first, to avoid going to the
 	 * filesystem if it is not necessary */
 
-	/* It could be a SSH remote path. Check to see if there's a :
-	 * SSH is an unsupported transport mechanism in this version of libgit2 */
+	/* It could be a SSH remote path. Check to see if there's a : */
 	if (!definition && strrchr(url, ':')) {
-		// re-search transports again with ssh:// as url so that we can find a third party ssh transport
+		/* re-search transports again with ssh:// as url
+		 * so that we can find a third party ssh transport */
 		definition = transport_find_by_url("ssh://");
 	}
 
@@ -123,7 +121,7 @@ int git_transport_new(git_transport **out, git_remote *owner, const char *url)
 	int error;
 
 	if ((error = transport_find_fn(&fn, url, &param)) == GIT_ENOTFOUND) {
-		giterr_set(GITERR_NET, "Unsupported URL protocol");
+		giterr_set(GITERR_NET, "unsupported URL protocol");
 		return -1;
 	} else if (error < 0)
 		return error;

@@ -25,6 +25,7 @@
 #include "odb.h"
 #include "push.h"
 #include "remote.h"
+#include "proxy.h"
 
 typedef struct {
 	git_transport parent;
@@ -199,6 +200,7 @@ static int local_connect(
 	const char *url,
 	git_cred_acquire_cb cred_acquire_cb,
 	void *cred_acquire_payload,
+	const git_proxy_options *proxy,
 	int direction, int flags)
 {
 	git_repository *repo;
@@ -209,6 +211,7 @@ static int local_connect(
 
 	GIT_UNUSED(cred_acquire_cb);
 	GIT_UNUSED(cred_acquire_payload);
+	GIT_UNUSED(proxy);
 
 	if (t->connected)
 		return 0;
@@ -249,7 +252,7 @@ static int local_ls(const git_remote_head ***out, size_t *size, git_transport *t
 	transport_local *t = (transport_local *)transport;
 
 	if (!t->have_refs) {
-		giterr_set(GITERR_NET, "The transport has not yet loaded the refs");
+		giterr_set(GITERR_NET, "the transport has not yet loaded the refs");
 		return -1;
 	}
 
@@ -368,11 +371,12 @@ static int local_push(
 	   but we forbid all pushes just in case */
 	if (!remote_repo->is_bare) {
 		error = GIT_EBAREREPO;
-		giterr_set(GITERR_INVALID, "Local push doesn't (yet) support pushing to non-bare repos.");
+		giterr_set(GITERR_INVALID, "local push doesn't (yet) support pushing to non-bare repos.");
 		goto on_error;
 	}
 
-	if ((error = git_buf_joinpath(&odb_path, git_repository_path(remote_repo), "objects/pack")) < 0)
+	if ((error = git_repository_item_path(&odb_path, remote_repo, GIT_REPOSITORY_ITEM_OBJECTS)) < 0
+		|| (error = git_buf_joinpath(&odb_path, odb_path.ptr, "pack")) < 0)
 		goto on_error;
 
 	error = git_packbuilder_write(push->pb, odb_path.ptr, 0, transfer_to_push_transfer, (void *) cbs);
@@ -439,7 +443,7 @@ static int local_push(
 
 		if (!url || t->parent.close(&t->parent) < 0 ||
 			t->parent.connect(&t->parent, url,
-			NULL, NULL, GIT_DIRECTION_PUSH, flags))
+			NULL, NULL, NULL, GIT_DIRECTION_PUSH, flags))
 			goto on_error;
 	}
 

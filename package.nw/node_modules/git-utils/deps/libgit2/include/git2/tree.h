@@ -375,6 +375,19 @@ GIT_EXTERN(void) git_treebuilder_filter(
 GIT_EXTERN(int) git_treebuilder_write(
 	git_oid *id, git_treebuilder *bld);
 
+/**
+ * Write the contents of the tree builder as a tree object
+ * using a shared git_buf.
+ *
+ * @see git_treebuilder_write
+ *
+ * @param oid Pointer to store the OID of the newly written tree
+ * @param bld Tree builder to write
+ * @param tree Shared buffer for writing the tree. Will be grown as necessary.
+ * @return 0 or an error code
+ */
+GIT_EXTERN(int) git_treebuilder_write_with_buffer(
+	git_oid *oid, git_treebuilder *bld, git_buf *tree);
 
 /** Callback for the tree traversal method */
 typedef int (*git_treewalk_cb)(
@@ -408,6 +421,61 @@ GIT_EXTERN(int) git_tree_walk(
 	git_treewalk_mode mode,
 	git_treewalk_cb callback,
 	void *payload);
+
+/**
+ * Create an in-memory copy of a tree. The copy must be explicitly
+ * free'd or it will leak.
+ *
+ * @param out Pointer to store the copy of the tree
+ * @param source Original tree to copy
+ */
+GIT_EXTERN(int) git_tree_dup(git_tree **out, git_tree *source);
+
+/**
+ * The kind of update to perform
+ */
+typedef enum {
+	/** Update or insert an entry at the specified path */
+	GIT_TREE_UPDATE_UPSERT,
+	/** Remove an entry from the specified path */
+	GIT_TREE_UPDATE_REMOVE,
+} git_tree_update_t;
+
+/**
+ * An action to perform during the update of a tree
+ */
+typedef struct {
+	/** Update action. If it's an removal, only the path is looked at */
+	git_tree_update_t action;
+	/** The entry's id */
+	git_oid id;
+	/** The filemode/kind of object */
+	git_filemode_t filemode;
+	/** The full path from the root tree */
+	const char *path;
+} git_tree_update;
+
+/**
+ * Create a tree based on another one with the specified modifications
+ *
+ * Given the `baseline` perform the changes described in the list of
+ * `updates` and create a new tree.
+ *
+ * This function is optimized for common file/directory addition, removal and
+ * replacement in trees. It is much more efficient than reading the tree into a
+ * `git_index` and modifying that, but in exchange it is not as flexible.
+ *
+ * Deleting and adding the same entry is undefined behaviour, changing
+ * a tree to a blob or viceversa is not supported.
+ *
+ * @param out id of the new tree
+ * @param repo the repository in which to create the tree, must be the
+ * same as for `baseline`
+ * @param baseline the tree to base these changes on
+ * @param nupdates the number of elements in the update list
+ * @param updates the list of updates to perform
+ */
+GIT_EXTERN(int) git_tree_create_updated(git_oid *out, git_repository *repo, git_tree *baseline, size_t nupdates, const git_tree_update *updates);
 
 /** @} */
 

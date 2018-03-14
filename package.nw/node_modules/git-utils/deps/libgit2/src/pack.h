@@ -102,6 +102,8 @@ struct git_pack_file {
 
 	git_pack_cache bases; /* delta base cache */
 
+	time_t last_freshen; /* last time the packfile was freshened */
+
 	/* something like ".git/objects/pack/xxxxx.pack" */
 	char pack_name[GIT_FLEX_ARRAY]; /* more */
 };
@@ -147,6 +149,7 @@ git_off_t get_delta_base(struct git_pack_file *p, git_mwindow **w_curs,
 		git_off_t *curpos, git_otype type,
 		git_off_t delta_obj_offset);
 
+void git_packfile_close(struct git_pack_file *p, bool unlink_packfile);
 void git_packfile_free(struct git_pack_file *p);
 int git_packfile_alloc(struct git_pack_file **pack_out, const char *path);
 

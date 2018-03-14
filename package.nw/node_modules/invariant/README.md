@@ -34,4 +34,4 @@ When used with [browserify](https://github.com/substack/node-browserify), it'll 
 
 ### Node
 
-The node version is optimized around the performance implications of accessing `process.env`. The value of `process.env.NODE_ENV` is cached, and repeatedly used instead of reading `proces.env`. See [Server rendering is slower with npm react #812](https://github.com/facebook/react/issues/812)
+The node version is optimized around the performance implications of accessing `process.env`. The value of `process.env.NODE_ENV` is cached, and repeatedly used instead of reading `process.env`. See [Server rendering is slower with npm react #812](https://github.com/facebook/react/issues/812)

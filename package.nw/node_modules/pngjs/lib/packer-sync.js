@@ -2,6 +2,9 @@
 
 var hasSyncZlib = true;
 var zlib = require('zlib');
+if (!zlib.deflateSync) {
+  hasSyncZlib = false;
+}
 var constants = require('./constants');
 var Packer = require('./packer');
 

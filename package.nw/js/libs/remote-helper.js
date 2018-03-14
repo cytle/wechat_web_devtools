@@ -563,6 +563,8 @@ function handleInitPubLib(pubMd5) {
         ret = vm.runInContext(script, jsVm, {
             filename: '[publib]',
         });
+        // restore the original console
+        vmGlobal.console = console;
     }
     catch (err) {
         // something went wrong in pub lib code

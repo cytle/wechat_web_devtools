@@ -1,6 +1,6 @@
 'use strict';
 
-var list = require('postcss/lib/list');
+var list = require('postcss').list;
 
 module.exports = {
 

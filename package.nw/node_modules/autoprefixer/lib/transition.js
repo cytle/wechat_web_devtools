@@ -3,8 +3,8 @@
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var parser = require('postcss-value-parser');
-var vendor = require('postcss/lib/vendor');
-var list = require('postcss/lib/list');
+var vendor = require('postcss').vendor;
+var list = require('postcss').list;
 
 var Transition = function () {
     function Transition(prefixes) {

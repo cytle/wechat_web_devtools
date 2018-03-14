@@ -190,7 +190,7 @@ NAN_METHOD(Repository::GetSubmodulePaths) {
   info.GetReturnValue().Set(v8Paths);
 }
 
-class HeadWorker : public Nan::AsyncWorker {
+class HeadWorker {
   git_repository *repository;
   std::string result;
 
@@ -220,25 +220,33 @@ class HeadWorker : public Nan::AsyncWorker {
     }
   }
 
-  void HandleOKCallback() {
-    auto result = Finish();
-    Local<Value> argv[] = {result.first, result.second};
-    callback->Call(2, argv);
-  }
-
-  HeadWorker(Nan::Callback *callback, git_repository *repository)
-    : Nan::AsyncWorker(callback), repository(repository) {}
+  HeadWorker(git_repository *repository) : repository(repository) {}
 };
 
 NAN_METHOD(Repository::GetHead) {
-  HeadWorker worker(NULL, GetRepository(info));
+  HeadWorker worker(GetRepository(info));
   worker.Execute();
   info.GetReturnValue().Set(worker.Finish().second);
 }
 
 NAN_METHOD(Repository::GetHeadAsync) {
+  class HeadAsyncWorker : public Nan::AsyncWorker {
+    HeadWorker worker;
+
+   public:
+    void Execute () { worker.Execute(); }
+
+    void HandleOKCallback() {
+      auto result = worker.Finish();
+      Local<Value> argv[] = {result.first, result.second};
+      callback->Call(2, argv);
+    }
+
+    HeadAsyncWorker(Nan::Callback *callback, git_repository *repository) : Nan::AsyncWorker(callback), worker(repository) {}
+  };
+
   auto callback = new Nan::Callback(Local<Function>::Cast(info[0]));
-  Nan::AsyncQueueWorker(new HeadWorker(callback, GetAsyncRepository(info)));
+  Nan::AsyncQueueWorker(new HeadAsyncWorker(callback, GetAsyncRepository(info)));
 }
 
 NAN_METHOD(Repository::RefreshIndex) {
@@ -335,7 +343,7 @@ static int StatusCallback(const char* path, unsigned int status, void* payload) 
   return GIT_OK;
 }
 
-class StatusWorker : public Nan::AsyncWorker {
+class StatusWorker {
   git_repository *repository;
   std::map<std::string, unsigned int> statuses;
   char **paths;
@@ -346,14 +354,11 @@ class StatusWorker : public Nan::AsyncWorker {
   void Execute() {
     git_status_options options = GIT_STATUS_OPTIONS_INIT;
     options.flags = GIT_STATUS_OPT_INCLUDE_UNTRACKED | GIT_STATUS_OPT_RECURSE_UNTRACKED_DIRS;
-
     if (paths) {
       options.pathspec.count = path_count;
       options.pathspec.strings = paths;
     }
-
     code = git_status_foreach_ext(repository, &options, StatusCallback, &statuses);
-
     if (paths) {
       git_strarray_free(&options.pathspec);
     }
@@ -374,16 +379,7 @@ class StatusWorker : public Nan::AsyncWorker {
     }
   }
 
-  void HandleOKCallback() {
-    auto result = Finish();
-    Local<Value> argv[] = {result.first, result.second};
-    callback->Call(2, argv);
-  }
-
-  StatusWorker(Nan::Callback *callback, git_repository *repository, Local<Value> path_filter)
-    : Nan::AsyncWorker(callback),
-      repository(repository) {
-
+  StatusWorker(git_repository *repository, Local<Value> path_filter) : repository{repository} {
     if (path_filter->IsArray()) {
       Local<Array> js_paths = Local<Array>::Cast(path_filter);
       path_count = js_paths->Length();
@@ -401,14 +397,32 @@ class StatusWorker : public Nan::AsyncWorker {
 };
 
 NAN_METHOD(Repository::GetStatusAsync) {
+  class StatusAsyncWorker : public Nan::AsyncWorker {
+    StatusWorker worker;
+
+   public:
+    void Execute() {
+      worker.Execute();
+    }
+
+    void HandleOKCallback() {
+      auto result = worker.Finish();
+      Local<Value> argv[] = {result.first, result.second};
+      callback->Call(2, argv);
+    }
+
+    StatusAsyncWorker(Nan::Callback *callback, git_repository *repository, Local<Value> path_filter)
+      : Nan::AsyncWorker(callback), worker(repository, path_filter) {}
+  };
+
   auto callback = new Nan::Callback(Local<Function>::Cast(info[0]));
   Local<Value> path_filter = info.Length() > 1 ? info[1] : Local<Value>::Cast(Nan::Null());
-  Nan::AsyncQueueWorker(new StatusWorker(callback, GetAsyncRepository(info), path_filter));
+  Nan::AsyncQueueWorker(new StatusAsyncWorker(callback, GetAsyncRepository(info), path_filter));
 }
 
 NAN_METHOD(Repository::GetStatus) {
   Local<Value> path_filter = info.Length() > 0 ? info[0] : Local<Value>::Cast(Nan::Null());
-  StatusWorker worker(NULL, GetRepository(info), path_filter);
+  StatusWorker worker(GetRepository(info), path_filter);
   worker.Execute();
   auto result = worker.Finish();
   if (result.first->IsNull()) {
@@ -668,7 +682,7 @@ unsigned GetCommitCount(git_repository *repository, git_oid *left_oid, git_oid *
   return result;
 }
 
-class CompareCommitsWorker : public Nan::AsyncWorker {
+class CompareCommitsWorker {
   git_repository *repository;
   std::string left_id;
   std::string right_id;
@@ -697,15 +711,8 @@ class CompareCommitsWorker : public Nan::AsyncWorker {
     return {Nan::Null(), result};
   }
 
-  void HandleOKCallback() {
-    auto result = Finish();
-    Local<Value> argv[] = {result.first, result.second};
-    callback->Call(2, argv);
-  }
-
-  CompareCommitsWorker(Nan::Callback *callback, git_repository *repository,
-                       Local<Value> js_left_id, Local<Value> js_right_id)
-    : Nan::AsyncWorker(callback), repository(repository) {
+  CompareCommitsWorker(git_repository *repository, Local<Value> js_left_id,
+                       Local<Value> js_right_id) : repository(repository) {
     left_id = *String::Utf8Value(js_left_id);
     right_id = *String::Utf8Value(js_right_id);
   }
@@ -717,19 +724,38 @@ NAN_METHOD(Repository::CompareCommits) {
     return;
   }
 
-  CompareCommitsWorker worker(NULL, GetRepository(info), info[0], info[1]);
+  CompareCommitsWorker worker(GetRepository(info), info[0], info[1]);
   worker.Execute();
   info.GetReturnValue().Set(worker.Finish().second);
 }
 
 NAN_METHOD(Repository::CompareCommitsAsync) {
+  class CompareCommitsAsyncWorker : public Nan::AsyncWorker {
+    CompareCommitsWorker worker;
+
+   public:
+    void Execute() {
+      worker.Execute();
+    }
+
+    void HandleOKCallback() {
+      auto result = worker.Finish();
+      Local<Value> argv[] = {result.first, result.second};
+      callback->Call(2, argv);
+    }
+
+    CompareCommitsAsyncWorker(Nan::Callback *callback, git_repository *repository,
+                         Local<Value> js_left_id, Local<Value> js_right_id)
+      : Nan::AsyncWorker(callback), worker(repository, js_left_id, js_right_id) {}
+  };
+
   if (info.Length() < 2) {
     info.GetReturnValue().Set(Nan::Null());
     return;
   }
 
   auto callback = new Nan::Callback(Local<Function>::Cast(info[0]));
-  Nan::AsyncQueueWorker(new CompareCommitsWorker(callback, GetAsyncRepository(info), info[1], info[2]));
+  Nan::AsyncQueueWorker(new CompareCommitsAsyncWorker(callback, GetAsyncRepository(info), info[1], info[2]));
 }
 
 int Repository::DiffHunkCallback(const git_diff_delta* delta,
