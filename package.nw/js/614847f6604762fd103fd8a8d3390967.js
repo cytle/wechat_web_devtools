@@ -43,8 +43,8 @@
         }
 
         if (window.__disPlayURLCheckWarning) {
-          console.group(\`${new Date} 配置中关闭 请求域名、业务域名、web-view 域名、TLS 版本以及 HTTPS 证书检查\`)
-          console.warn(\`工具未校验请求域名、业务域名、web-view 域名、TLS 版本以及 HTTPS 证书。\`)
+          console.group(\`${new Date} 配置中关闭 合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书检查\`)
+          console.warn(\`工具未校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书。\`)
           console.groupEnd()
           window.__disPlayURLCheckWarning = false
         }

@@ -1,0 +1,33 @@
+{
+    "name": "qcloud/weapp-sdk",
+    "type": "library",
+    "description": "php sdk for qcloud weapp server",
+    "keywords": ["qcloud", "sdk", "weapp"],
+    "homepage": "https://www.qcloud.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "miusuncle",
+            "email": "miusuncle@gmail.com",
+            "homepage": "http://miusuncle.github.io/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "qcloud/cos-sdk-v5": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "satooshi/php-coveralls": "~1.0"
+    },
+    "scripts": {
+        "test-server": "php -t ./tests/test-server -S 127.0.0.1:9993",
+        "test": "phpunit --configuration phpunit.xml.dist",
+        "coveralls": "coveralls --coverage_clover build/logs/clover.xml --verbose"
+    },
+    "autoload": {
+        "psr-4": {
+            "QCloud_WeApp_SDK\\": "lib/"
+        }
+    }
+}

@@ -1,3 +1,19 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/blesh/symbol-observable/compare/1.1.0...v1.2.0) (2018-01-26)
+
+
+### Bug Fixes
+
+* **TypeScript:** Remove global Symbol declaration ([427c3d7](https://github.com/blesh/symbol-observable/commit/427c3d7))
+* common js usage example (#30) ([42c2ffa](https://github.com/blesh/symbol-observable/commit/42c2ffa))
+
+
+### Features
+
+* **bundlers:** Add module and main entries in package.json (#33) ([97673e1](https://github.com/blesh/symbol-observable/commit/97673e1))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/blesh/symbol-observable/compare/1.0.4...v1.1.0) (2017-11-28)
 

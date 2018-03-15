@@ -1,3 +1,18 @@
+module.exports = Long;
+
+/**
+ * wasm optimizations, to do native i64 multiplication and divide
+ */
+var wasm = null;
+
+try {
+  wasm = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([
+    0, 97, 115, 109, 1, 0, 0, 0, 1, 13, 2, 96, 0, 1, 127, 96, 4, 127, 127, 127, 127, 1, 127, 3, 7, 6, 0, 1, 1, 1, 1, 1, 6, 6, 1, 127, 1, 65, 0, 11, 7, 50, 6, 3, 109, 117, 108, 0, 1, 5, 100, 105, 118, 95, 115, 0, 2, 5, 100, 105, 118, 95, 117, 0, 3, 5, 114, 101, 109, 95, 115, 0, 4, 5, 114, 101, 109, 95, 117, 0, 5, 8, 103, 101, 116, 95, 104, 105, 103, 104, 0, 0, 10, 191, 1, 6, 4, 0, 35, 0, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 126, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 127, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 128, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 129, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 130, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11
+  ])), {}).exports;
+} catch (e) {
+  // no wasm support :(
+}
+
 /**
  * Constructs a 64 bit two's-complement integer, given its low and high 32 bit values as *signed* integers.
  *  See the from* functions below for more convenient ways of constructing Longs.
@@ -5,7 +20,7 @@
  * @class A Long class for representing a 64 bit two's-complement integer value.
  * @param {number} low The low (signed) 32 bits of the long
  * @param {number} high The high (signed) 32 bits of the long
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
  * @constructor
  */
 function Long(low, high, unsigned) {
@@ -54,11 +69,7 @@ function Long(low, high, unsigned) {
  */
 Long.prototype.__isLong__;
 
-Object.defineProperty(Long.prototype, "__isLong__", {
-    value: true,
-    enumerable: false,
-    configurable: false
-});
+Object.defineProperty(Long.prototype, "__isLong__", { value: true });
 
 /**
  * @function
@@ -129,7 +140,7 @@ function fromInt(value, unsigned) {
  * Returns a Long representing the given 32 bit integer value.
  * @function
  * @param {number} value The 32 bit integer in question
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
  * @returns {!Long} The corresponding Long value
  */
 Long.fromInt = fromInt;
@@ -141,7 +152,7 @@ Long.fromInt = fromInt;
  * @inner
  */
 function fromNumber(value, unsigned) {
-    if (isNaN(value) || !isFinite(value))
+    if (isNaN(value))
         return unsigned ? UZERO : ZERO;
     if (unsigned) {
         if (value < 0)
@@ -163,7 +174,7 @@ function fromNumber(value, unsigned) {
  * Returns a Long representing the given value, provided that it is a finite number. Otherwise, zero is returned.
  * @function
  * @param {number} value The number in question
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
  * @returns {!Long} The corresponding Long value
  */
 Long.fromNumber = fromNumber;
@@ -185,7 +196,7 @@ function fromBits(lowBits, highBits, unsigned) {
  * @function
  * @param {number} lowBits The low 32 bits
  * @param {number} highBits The high 32 bits
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
  * @returns {!Long} The corresponding Long value
  */
 Long.fromBits = fromBits;
@@ -211,7 +222,7 @@ function fromString(str, unsigned, radix) {
         throw Error('empty string');
     if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity")
         return ZERO;
-    if (typeof unsigned === 'number') { 
+    if (typeof unsigned === 'number') {
         // For goog.math.long compatibility
         radix = unsigned,
         unsigned = false;
@@ -253,7 +264,7 @@ function fromString(str, unsigned, radix) {
  * Returns a Long representation of the given string, written using the specified radix.
  * @function
  * @param {string} str The textual representation of the Long
- * @param {(boolean|number)=} unsigned Whether unsigned or not, defaults to `false` for signed
+ * @param {(boolean|number)=} unsigned Whether unsigned or not, defaults to signed
  * @param {number=} radix The radix in which the text is written (2-36), defaults to 10
  * @returns {!Long} The corresponding Long value
  */
@@ -262,24 +273,24 @@ Long.fromString = fromString;
 /**
  * @function
  * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val
+ * @param {boolean=} unsigned
  * @returns {!Long}
  * @inner
  */
-function fromValue(val) {
-    if (val /* is compatible */ instanceof Long)
-        return val;
+function fromValue(val, unsigned) {
     if (typeof val === 'number')
-        return fromNumber(val);
+        return fromNumber(val, unsigned);
     if (typeof val === 'string')
-        return fromString(val);
+        return fromString(val, unsigned);
     // Throws for non-objects, converts non-instanceof Long:
-    return fromBits(val.low, val.high, val.unsigned);
+    return fromBits(val.low, val.high, typeof unsigned === 'boolean' ? unsigned : val.unsigned);
 }
 
 /**
- * Converts the specified value to a Long.
+ * Converts the specified value to a Long using the appropriate from* function for its type.
  * @function
  * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val Value
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
  * @returns {!Long}
  */
 Long.fromValue = fromValue;
@@ -549,6 +560,12 @@ LongPrototype.isZero = function isZero() {
 };
 
 /**
+ * Tests if this Long's value equals zero. This is an alias of {@link Long#isZero}.
+ * @returns {boolean}
+ */
+LongPrototype.eqz = LongPrototype.isZero;
+
+/**
  * Tests if this Long's value is negative.
  * @returns {boolean}
  */
@@ -619,6 +636,14 @@ LongPrototype.notEquals = function notEquals(other) {
 LongPrototype.neq = LongPrototype.notEquals;
 
 /**
+ * Tests if this Long's value differs from the specified's. This is an alias of {@link Long#notEquals}.
+ * @function
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+LongPrototype.ne = LongPrototype.notEquals;
+
+/**
  * Tests if this Long's value is less than the specified's.
  * @param {!Long|number|string} other Other value
  * @returns {boolean}
@@ -653,6 +678,14 @@ LongPrototype.lessThanOrEqual = function lessThanOrEqual(other) {
 LongPrototype.lte = LongPrototype.lessThanOrEqual;
 
 /**
+ * Tests if this Long's value is less than or equal the specified's. This is an alias of {@link Long#lessThanOrEqual}.
+ * @function
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+LongPrototype.le = LongPrototype.lessThanOrEqual;
+
+/**
  * Tests if this Long's value is greater than the specified's.
  * @param {!Long|number|string} other Other value
  * @returns {boolean}
@@ -685,6 +718,14 @@ LongPrototype.greaterThanOrEqual = function greaterThanOrEqual(other) {
  * @returns {boolean}
  */
 LongPrototype.gte = LongPrototype.greaterThanOrEqual;
+
+/**
+ * Tests if this Long's value is greater than or equal the specified's. This is an alias of {@link Long#greaterThanOrEqual}.
+ * @function
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+LongPrototype.ge = LongPrototype.greaterThanOrEqual;
 
 /**
  * Compares this Long's value with the specified's.
@@ -801,6 +842,16 @@ LongPrototype.multiply = function multiply(multiplier) {
         return ZERO;
     if (!isLong(multiplier))
         multiplier = fromValue(multiplier);
+
+    // use wasm support if present
+    if (wasm) {
+        var low = wasm.mul(this.low,
+                           this.high,
+                           multiplier.low,
+                           multiplier.high);
+        return fromBits(low, wasm.get_high(), this.unsigned);
+    }
+
     if (multiplier.isZero())
         return ZERO;
     if (this.eq(MIN_VALUE))
@@ -876,6 +927,27 @@ LongPrototype.divide = function divide(divisor) {
         divisor = fromValue(divisor);
     if (divisor.isZero())
         throw Error('division by zero');
+
+    // use wasm support if present
+    if (wasm) {
+        // guard against signed division overflow: the largest
+        // negative number / -1 would be 1 larger than the largest
+        // positive number, due to two's complement.
+        if (!this.unsigned &&
+            this.high === -0x80000000 &&
+            divisor.low === -1 && divisor.high === -1) {
+            // be consistent with non-wasm code path
+            return this;
+        }
+        var low = (this.unsigned ? wasm.div_u : wasm.div_s)(
+            this.low,
+            this.high,
+            divisor.low,
+            divisor.high
+        );
+        return fromBits(low, wasm.get_high(), this.unsigned);
+    }
+
     if (this.isZero())
         return this.unsigned ? UZERO : ZERO;
     var approx, rem, res;
@@ -919,7 +991,7 @@ LongPrototype.divide = function divide(divisor) {
             return UONE;
         res = UZERO;
     }
-        
+
     // Repeat the following until the remainder is less than other:  find a
     // floating-point that approximates remainder / other *from below*, add this
     // into the result, and subtract it from the remainder.  It is critical that
@@ -973,6 +1045,18 @@ LongPrototype.div = LongPrototype.divide;
 LongPrototype.modulo = function modulo(divisor) {
     if (!isLong(divisor))
         divisor = fromValue(divisor);
+
+    // use wasm support if present
+    if (wasm) {
+        var low = (this.unsigned ? wasm.rem_u : wasm.rem_s)(
+            this.low,
+            this.high,
+            divisor.low,
+            divisor.high
+        );
+        return fromBits(low, wasm.get_high(), this.unsigned);
+    }
+
     return this.sub(this.div(divisor).mul(divisor));
 };
 
@@ -983,6 +1067,14 @@ LongPrototype.modulo = function modulo(divisor) {
  * @returns {!Long} Remainder
  */
 LongPrototype.mod = LongPrototype.modulo;
+
+/**
+ * Returns this Long modulo the specified. This is an alias of {@link Long#modulo}.
+ * @function
+ * @param {!Long|number|string} divisor Divisor
+ * @returns {!Long} Remainder
+ */
+LongPrototype.rem = LongPrototype.modulo;
 
 /**
  * Returns the bitwise NOT of this Long.
@@ -1105,6 +1197,14 @@ LongPrototype.shiftRightUnsigned = function shiftRightUnsigned(numBits) {
 LongPrototype.shru = LongPrototype.shiftRightUnsigned;
 
 /**
+ * Returns this Long with bits logically shifted to the right by the given amount. This is an alias of {@link Long#shiftRightUnsigned}.
+ * @function
+ * @param {number|!Long} numBits Number of bits
+ * @returns {!Long} Shifted Long
+ */
+LongPrototype.shr_u = LongPrototype.shiftRightUnsigned;
+
+/**
  * Converts this Long to signed.
  * @returns {!Long} Signed long
  */
@@ -1129,44 +1229,95 @@ LongPrototype.toUnsigned = function toUnsigned() {
  * @param {boolean=} le Whether little or big endian, defaults to big endian
  * @returns {!Array.<number>} Byte representation
  */
-LongPrototype.toBytes = function(le) {
+LongPrototype.toBytes = function toBytes(le) {
     return le ? this.toBytesLE() : this.toBytesBE();
-}
+};
 
 /**
  * Converts this Long to its little endian byte representation.
  * @returns {!Array.<number>} Little endian byte representation
  */
-LongPrototype.toBytesLE = function() {
+LongPrototype.toBytesLE = function toBytesLE() {
     var hi = this.high,
         lo = this.low;
     return [
-         lo         & 0xff,
-        (lo >>>  8) & 0xff,
-        (lo >>> 16) & 0xff,
-        (lo >>> 24) & 0xff,
-         hi         & 0xff,
-        (hi >>>  8) & 0xff,
-        (hi >>> 16) & 0xff,
-        (hi >>> 24) & 0xff
+        lo        & 0xff,
+        lo >>>  8 & 0xff,
+        lo >>> 16 & 0xff,
+        lo >>> 24       ,
+        hi        & 0xff,
+        hi >>>  8 & 0xff,
+        hi >>> 16 & 0xff,
+        hi >>> 24
     ];
-}
+};
 
 /**
  * Converts this Long to its big endian byte representation.
  * @returns {!Array.<number>} Big endian byte representation
  */
-LongPrototype.toBytesBE = function() {
+LongPrototype.toBytesBE = function toBytesBE() {
     var hi = this.high,
         lo = this.low;
     return [
-        (hi >>> 24) & 0xff,
-        (hi >>> 16) & 0xff,
-        (hi >>>  8) & 0xff,
-         hi         & 0xff,
-        (lo >>> 24) & 0xff,
-        (lo >>> 16) & 0xff,
-        (lo >>>  8) & 0xff,
-         lo         & 0xff        
+        hi >>> 24       ,
+        hi >>> 16 & 0xff,
+        hi >>>  8 & 0xff,
+        hi        & 0xff,
+        lo >>> 24       ,
+        lo >>> 16 & 0xff,
+        lo >>>  8 & 0xff,
+        lo        & 0xff
     ];
-}
+};
+
+/**
+ * Creates a Long from its byte representation.
+ * @param {!Array.<number>} bytes Byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @param {boolean=} le Whether little or big endian, defaults to big endian
+ * @returns {Long} The corresponding Long value
+ */
+Long.fromBytes = function fromBytes(bytes, unsigned, le) {
+    return le ? Long.fromBytesLE(bytes, unsigned) : Long.fromBytesBE(bytes, unsigned);
+};
+
+/**
+ * Creates a Long from its little endian byte representation.
+ * @param {!Array.<number>} bytes Little endian byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @returns {Long} The corresponding Long value
+ */
+Long.fromBytesLE = function fromBytesLE(bytes, unsigned) {
+    return new Long(
+        bytes[0]       |
+        bytes[1] <<  8 |
+        bytes[2] << 16 |
+        bytes[3] << 24,
+        bytes[4]       |
+        bytes[5] <<  8 |
+        bytes[6] << 16 |
+        bytes[7] << 24,
+        unsigned
+    );
+};
+
+/**
+ * Creates a Long from its big endian byte representation.
+ * @param {!Array.<number>} bytes Big endian byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @returns {Long} The corresponding Long value
+ */
+Long.fromBytesBE = function fromBytesBE(bytes, unsigned) {
+    return new Long(
+        bytes[4] << 24 |
+        bytes[5] << 16 |
+        bytes[6] <<  8 |
+        bytes[7],
+        bytes[0] << 24 |
+        bytes[1] << 16 |
+        bytes[2] <<  8 |
+        bytes[3],
+        unsigned
+    );
+};

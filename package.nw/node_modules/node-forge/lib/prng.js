@@ -48,7 +48,9 @@ prng.create = function(plugin) {
     // number of reseeds so far
     reseeds: 0,
     // amount of data generated so far
-    generated: 0
+    generated: 0,
+    // no initial key bytes
+    keyBytes: ''
   };
 
   // create 32 entropy pools (each is a message digest)
@@ -85,7 +87,11 @@ prng.create = function(plugin) {
     var formatSeed = ctx.plugin.formatSeed;
     var b = forge.util.createBuffer();
 
-    // reset key for every request
+    // paranoid deviation from Fortuna:
+    // reset key for every request to protect previously
+    // generated random bytes should the key be discovered;
+    // there is no 100ms based reseeding because of this
+    // forced reseed for every `generate` call
     ctx.key = null;
 
     generate();
@@ -139,7 +145,11 @@ prng.create = function(plugin) {
     var formatKey = ctx.plugin.formatKey;
     var formatSeed = ctx.plugin.formatSeed;
 
-    // reset key for every request
+    // paranoid deviation from Fortuna:
+    // reset key for every request to protect previously
+    // generated random bytes should the key be discovered;
+    // there is no 100ms based reseeding because of this
+    // forced reseed for every `generateSync` call
     ctx.key = null;
 
     var b = forge.util.createBuffer();
@@ -205,35 +215,44 @@ prng.create = function(plugin) {
    * Private function that seeds a generator once enough bytes are available.
    */
   function _seed() {
+    // update reseed count
+    ctx.reseeds = (ctx.reseeds === 0xffffffff) ? 0 : ctx.reseeds + 1;
+
+    // goal is to update `key` via:
+    // key = hash(key + s)
+    //   where 's' is all collected entropy from selected pools, then...
+
     // create a plugin-based message digest
     var md = ctx.plugin.md.create();
 
-    // digest pool 0's entropy and restart it
-    md.update(ctx.pools[0].digest().getBytes());
-    ctx.pools[0].start();
+    // consume current key bytes
+    md.update(ctx.keyBytes);
 
-    // digest the entropy of other pools whose index k meet the
-    // condition '2^k mod n == 0' where n is the number of reseeds
-    var k = 1;
-    for(var i = 1; i < 32; ++i) {
-      // prevent signed numbers from being used
-      k = (k === 31) ? 0x80000000 : (k << 2);
-      if(k % ctx.reseeds === 0) {
-        md.update(ctx.pools[i].digest().getBytes());
-        ctx.pools[i].start();
+    // digest the entropy of pools whose index k meet the
+    // condition 'n mod 2^k == 0' where n is the number of reseeds
+    var _2powK = 1;
+    for(var k = 0; k < 32; ++k) {
+      if(ctx.reseeds % _2powK === 0) {
+        md.update(ctx.pools[k].digest().getBytes());
+        ctx.pools[k].start();
       }
+      _2powK = _2powK << 1;
     }
 
-    // get digest for key bytes and iterate again for seed bytes
-    var keyBytes = md.digest().getBytes();
+    // get digest for key bytes
+    ctx.keyBytes = md.digest().getBytes();
+
+    // paranoid deviation from Fortuna:
+    // update `seed` via `seed = hash(key)`
+    // instead of initializing to zero once and only
+    // ever incrementing it
     md.start();
-    md.update(keyBytes);
+    md.update(ctx.keyBytes);
     var seedBytes = md.digest().getBytes();
 
-    // update
-    ctx.key = ctx.plugin.formatKey(keyBytes);
+    // update state
+    ctx.key = ctx.plugin.formatKey(ctx.keyBytes);
     ctx.seed = ctx.plugin.formatSeed(seedBytes);
-    ctx.reseeds = (ctx.reseeds === 0xffffffff) ? 0 : ctx.reseeds + 1;
     ctx.generated = 0;
   }
 

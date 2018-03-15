@@ -1,0 +1,5 @@
+{
+  "miniprogramRoot": "./miniprogram",
+  "pluginRoot": "./plugin",
+  "compileType": "plugin"
+}

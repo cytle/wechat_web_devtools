@@ -30,7 +30,11 @@ module.exports = function (file, opts) {
                 readdir: readdir
             }
         },
-        { vars: vars, varModules: { path: path } }
+        {
+            vars: vars,
+            varModules: { path: path },
+            sourceMap: opts && (opts.sourceMap || opts._flags && opts._flags.debug)
+        }
     );
     return sm;
     

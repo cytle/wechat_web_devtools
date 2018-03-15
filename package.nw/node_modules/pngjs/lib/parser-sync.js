@@ -3,6 +3,9 @@
 var hasSyncZlib = true;
 var zlib = require('zlib');
 var inflateSync = require('./sync-inflate');
+if (!zlib.deflateSync) {
+  hasSyncZlib = false;
+}
 var SyncReader = require('./sync-reader');
 var FilterSync = require('./filter-parse-sync');
 var Parser = require('./parser');

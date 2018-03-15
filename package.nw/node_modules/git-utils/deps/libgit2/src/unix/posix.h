@@ -40,8 +40,13 @@ typedef int GIT_SOCKET;
 #define p_link(o,n) link(o, n)
 #define p_unlink(p) unlink(p)
 #define p_mkdir(p,m) mkdir(p, m)
-#define p_fsync(fd) fsync(fd)
 extern char *p_realpath(const char *, char *);
+
+GIT_INLINE(int) p_fsync(int fd)
+{
+	p_fsync__cnt++;
+	return fsync(fd);
+}
 
 #define p_recv(s,b,l,f) recv(s,b,l,f)
 #define p_send(s,b,l,f) send(s,b,l,f)
@@ -50,7 +55,7 @@ extern char *p_realpath(const char *, char *);
 #define p_strcasecmp(s1, s2) strcasecmp(s1, s2)
 #define p_strncasecmp(s1, s2, c) strncasecmp(s1, s2, c)
 #define p_vsnprintf(b, c, f, a) vsnprintf(b, c, f, a)
-#define p_snprintf(b, c, f, ...) snprintf(b, c, f, __VA_ARGS__)
+#define p_snprintf(b, c, ...) snprintf(b, c, __VA_ARGS__)
 #define p_mkstemp(p) mkstemp(p)
 #define p_chdir(p) chdir(p)
 #define p_chmod(p,m) chmod(p, m)
@@ -78,6 +83,16 @@ GIT_INLINE(int) p_futimes(int f, const struct p_timeval t[2])
 }
 #else
 # define p_futimes futimes
+#endif
+
+#ifdef HAVE_REGCOMP_L
+#include <xlocale.h>
+GIT_INLINE(int) p_regcomp(regex_t *preg, const char *pattern, int cflags)
+{
+	return regcomp_l(preg, pattern, cflags, (locale_t) 0);
+}
+#else
+# define p_regcomp regcomp
 #endif
 
 #endif

@@ -32,6 +32,23 @@ function getWinSystemProxySetting(callback) {
 
           if (res.ProxyOverride)
             res.ProxyOverride = res.ProxyOverride.split(';')
+          else if (global.autoTest) {
+            res.ProxyOverride = ['<Local>']
+          }
+
+          if (global.autoTest && !res.ProxyEnable) {
+            let envProxy = process.env.http_proxy || process.env.https_proxy
+            if (envProxy) {
+              const match = envProxy.match(/^https?:\/\/(.+)/g)
+              if (match && match[1]) {
+                envProxy = match[1]
+                res.ProxyEnable = true
+                res.AutoConfigURL = null
+                res.ProxyServer = envProxy
+                res.ProxyOverride = ["<Local>"]
+              }
+            }
+          }
 
           resolve(res)
         } catch (e) {
@@ -99,7 +116,7 @@ function getOsxSystemProxySetting(callback) {
   })
 }
 
-const getSystemProxySetting = async function() {
+const getSystemProxySetting = async function () {
   if (process.platform === 'win32') {
     return await getWinSystemProxySetting()
   } else {

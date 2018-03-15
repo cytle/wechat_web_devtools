@@ -1,5 +1,5 @@
 /*
- * $Id: base64.js,v 2.15 2014/04/05 12:58:57 dankogai Exp dankogai $
+ *  base64.js
  *
  *  Licensed under the BSD 3-Clause License.
  *    http://opensource.org/licenses/BSD-3-Clause
@@ -8,18 +8,20 @@
  *    http://en.wikipedia.org/wiki/Base64
  */
 ;(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(global) :
-    typeof define === 'function' && define.amd ? define(factory) :
-    global.moment = factory(global)
-}((   typeof self   !== 'undefined' ? self
-: typeof window !== 'undefined' ? window
-: typeof global !== 'undefined' ? global
+    typeof exports === 'object' && typeof module !== 'undefined'
+        ? module.exports = factory(global)
+        : typeof define === 'function' && define.amd
+        ? define(factory) : factory(global)
+}((
+    typeof self !== 'undefined' ? self
+        : typeof window !== 'undefined' ? window
+        : typeof global !== 'undefined' ? global
 : this
 ), function(global) {
     'use strict';
     // existing version for noConflict()
     var _Base64 = global.Base64;
-    var version = "2.4.0";
+    var version = "2.4.3";
     // if node.js, we use Buffer
     var buffer;
     if (typeof module !== 'undefined' && module.exports) {

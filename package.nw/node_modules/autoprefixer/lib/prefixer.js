@@ -7,7 +7,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Browsers = require('./browsers');
 var utils = require('./utils');
 
-var vendor = require('postcss/lib/vendor');
+var vendor = require('postcss').vendor;
 
 /**
  * Recursivly clone objects

@@ -1,5 +1,5 @@
-v0.24 + 1
--------
+v0.26 + 1
+---------
 
 ### Changes or improvements
 
@@ -9,10 +9,258 @@ v0.24 + 1
 
 ### Breaking API changes
 
+v0.26
+-----
+
+### Changes or improvements
+
+* Support for opening, creating and modifying worktrees.
+
+* We can now detect SHA1 collisions resulting from the SHAttered attack. These
+  checks can be enabled at build time via `-DUSE_SHA1DC`.
+
+* Fix for missing implementation of `git_merge_driver_source` getters.
+
+* Fix for installed pkg-config file being broken when the prefix contains
+  spaces.
+
+* We now detect when the hashsum of on-disk objects does not match their
+  expected hashsum.
+
+* We now support open-ended ranges (e.g. "master..", "...master") in our
+  revision range parsing code.
+
+* We now correctly compute ignores with leading "/" in subdirectories.
+
+* We now optionally call `fsync` on loose objects, packfiles and their indexes,
+  loose references and packed reference files.
+
+* We can now build against OpenSSL v1.1 and against LibreSSL.
+
+* `GIT_MERGE_OPTIONS_INIT` now includes a setting to perform rename detection.
+  This aligns this structure with the default by `git_merge` and
+  `git_merge_trees` when `NULL` was provided for the options.
+
+* Improvements for reading index v4 files.
+
+* Perform additional retries for filesystem operations on Windows when files
+  are temporarily locked by other processes.
+
+### API additions
+
+* New family of functions to handle worktrees:
+
+    * `git_worktree_list()` lets you look up worktrees for a repository.
+    * `git_worktree_lookup()` lets you get a specific worktree.
+    * `git_worktree_open_from_repository()` lets you get the associated worktree
+      of a repository.
+      a worktree.
+    * `git_worktree_add` lets you create new worktrees.
+    * `git_worktree_prune` lets you remove worktrees from disk.
+    * `git_worktree_lock()` and `git_worktree_unlock()` let you lock
+      respectively unlock a worktree.
+    * `git_repository_open_from_worktree()` lets you open a repository via
+    * `git_repository_head_for_worktree()` lets you get the current `HEAD` for a
+      linked worktree.
+    * `git_repository_head_detached_for_worktree()` lets you check whether a
+      linked worktree is in detached HEAD mode.
+
+* `git_repository_item_path()` lets you retrieve paths for various repository
+  files.
+
+* `git_repository_commondir()` lets you retrieve the common directory of a
+  repository.
+
+* `git_branch_is_checked_out()` allows you to check whether a branch is checked
+  out in a repository or any of its worktrees.
+
+* `git_repository_submodule_cache_all()` and
+  `git_repository_submodule_cache_clear()` functions allow you to prime or clear
+  the submodule cache of a repository.
+
+* You can disable strict hash verifications via the
+  `GIT_OPT_ENABLE_STRICT_HASH_VERIFICATION` option with `git_libgit2_opts()`.
+
+* You can enable us calling `fsync` for various files inside the ".git"
+  directory by setting the `GIT_OPT_ENABLE_FSYNC_GITDIR` option with
+  `git_libgit2_opts()`.
+
+* You can now enable "offset deltas" when creating packfiles and negotiating
+  packfiles with a remote server by setting `GIT_OPT_ENABLE_OFS_DELTA` option
+  with `GIT_libgit2_opts()`.
+
+* You can now set the default share mode on Windows for opening files using
+  `GIT_OPT_SET_WINDOWS_SHAREMODE` option with `git_libgit2_opts()`.
+  You can query the current share mode with `GIT_OPT_GET_WINDOWS_SHAREMODE`.
+
+* `git_transport_smart_proxy_options()' enables you to get the proxy options for
+  smart transports.
+
+* The `GIT_FILTER_INIT` macro and the `git_filter_init` function are provided
+  to initialize a `git_filter` structure.
+
+### Breaking API changes
+
+* `clone_checkout_strategy` has been removed from
+  `git_submodule_update_option`. The checkout strategy used to clone will
+  be the same strategy specified in `checkout_opts`.
+
+v0.25
+-------
+
+### Changes or improvements
+
+* Fix repository discovery with `git_repository_discover` and
+  `git_repository_open_ext` to match git's handling of a ceiling
+  directory at the current directory. git only checks ceiling
+  directories when its search ascends to a parent directory.  A ceiling
+  directory matching the starting directory will not prevent git from
+  finding a repository in the starting directory or a parent directory.
+
+* Do not fail when deleting remotes in the presence of broken
+  global configs which contain branches.
+
+* Support for reading and writing git index v4 files
+
+* Improve the performance of the revwalk and bring us closer to git's code.
+
+* The reference db has improved support for concurrency and returns `GIT_ELOCKED`
+  when an operation could not be performed due to locking.
+
+* Nanosecond resolution is now activated by default, following git's change to
+  do this.
+
+* We now restrict the set of ciphers we let OpenSSL use by default.
+
+* Users can now register their own merge drivers for use with `.gitattributes`.
+  The library also gained built-in support for the union merge driver.
+
+* The default for creating references is now to validate that the object does
+  exist.
+
+* Add `git_proxy_options` which is used by the different networking
+  implementations to let the caller specify the proxy settings instead of
+  relying on the environment variables.
+
+### API additions
+
+* You can now get the user-agent used by libgit2 using the
+  `GIT_OPT_GET_USER_AGENT` option with `git_libgit2_opts()`.
+  It is the counterpart to `GIT_OPT_SET_USER_AGENT`.
+
+* The `GIT_OPT_SET_SSL_CIPHERS` option for `git_libgit2_opts()` lets you specify
+  a custom list of ciphers to use for OpenSSL.
+
+* `git_commit_create_buffer()` creates a commit and writes it into a
+  user-provided buffer instead of writing it into the object db. Combine it with
+  `git_commit_create_with_signature()` in order to create a commit with a
+  cryptographic signature.
+
+* `git_blob_create_fromstream()` and
+  `git_blob_create_fromstream_commit()` allow you to create a blob by
+  writing into a stream. Useful when you do not know the final size or
+  want to copy the contents from another stream.
+
+* New flags for `git_repository_open_ext`:
+
+    * `GIT_REPOSITORY_OPEN_NO_DOTGIT` - Do not check for a repository by
+      appending `/.git` to the `start_path`; only open the repository if
+      `start_path` itself points to the git directory.
+    * `GIT_REPOSITORY_OPEN_FROM_ENV` - Find and open a git repository,
+      respecting the environment variables used by the git command-line
+      tools. If set, `git_repository_open_ext` will ignore the other
+      flags and the `ceiling_dirs` argument, and will allow a NULL
+      `path` to use `GIT_DIR` or search from the current directory. The
+      search for a repository will respect `$GIT_CEILING_DIRECTORIES`
+      and `$GIT_DISCOVERY_ACROSS_FILESYSTEM`.  The opened repository
+      will respect `$GIT_INDEX_FILE`, `$GIT_NAMESPACE`,
+      `$GIT_OBJECT_DIRECTORY`, and `$GIT_ALTERNATE_OBJECT_DIRECTORIES`.
+      In the future, this flag will also cause `git_repository_open_ext`
+      to respect `$GIT_WORK_TREE` and `$GIT_COMMON_DIR`; currently,
+      `git_repository_open_ext` with this flag will error out if either
+      `$GIT_WORK_TREE` or `$GIT_COMMON_DIR` is set.
+
+* `git_diff_from_buffer()` can create a `git_diff` object from the contents
+  of a git-style patch file.
+
+* `git_index_version()` and `git_index_set_version()` to get and set
+  the index version
+
+* `git_odb_expand_ids()` lets you check for the existence of multiple
+  objects at once.
+
+* The new `git_blob_dup()`, `git_commit_dup()`, `git_tag_dup()` and
+  `git_tree_dup()` functions provide type-specific wrappers for
+  `git_object_dup()` to reduce noise and increase type safety for callers.
+
+* `git_reference_dup()` lets you duplicate a reference to aid in ownership
+  management and cleanup.
+
+* `git_signature_from_buffer()` lets you create a signature from a string in the
+  format that appear in objects.
+
+* `git_tree_create_updated()` lets you create a tree based on another one
+  together with a list of updates. For the covered update cases, it's more
+  efficient than the `git_index` route.
+
+* `git_apply_patch()` applies hunks from a `git_patch` to a buffer.
+
+* `git_diff_to_buf()` lets you print an entire diff directory to a buffer,
+  similar to how `git_patch_to_buf()` works.
+
+* `git_proxy_init_options()` is added to initialize a `git_proxy_options`
+  structure at run-time.
+
+* `git_merge_driver_register()`, `git_merge_driver_unregister()` let you
+  register and unregister a custom merge driver to be used when `.gitattributes`
+  specifies it.
+
+* `git_merge_driver_lookup()` can be used to look up a merge driver by name.
+
+* `git_merge_driver_source_repo()`, `git_merge_driver_source_ancestor()`,
+  `git_merge_driver_source_ours()`, `git_merge_driver_source_theirs()`,
+  `git_merge_driver_source_file_options()` added as accessors to
+  `git_merge_driver_source`.
+
+### API removals
+
+* `git_blob_create_fromchunks()` has been removed in favour of
+  `git_blob_create_fromstream()`.
+
+### Breaking API changes
+
+* `git_packbuilder_object_count` and `git_packbuilder_written` now
+  return a `size_t` instead of a `uint32_t` for more thorough
+  compatibility with the rest of the library.
+
+* `git_packbuiler_progress` now provides explicitly sized `uint32_t`
+  values instead of `unsigned int`.
+
+* `git_diff_file` now includes an `id_abbrev` field that reflects the
+  number of nibbles set in the `id` field.
+
+* `git_odb_backend` now has a `freshen` function pointer.  This optional
+  function pointer is similar to the `exists` function, but it will update
+  a last-used marker.  For filesystem-based object databases, this updates
+  the timestamp of the file containing the object, to indicate "freshness".
+  If this is `NULL`, then it will not be called and the `exists` function
+  will be used instead.
+
+* `git_remote_connect()` now accepts `git_proxy_options` argument, and
+  `git_fetch_options` and `git_push_options` each have a `proxy_opts` field.
+
+* `git_merge_options` now provides a `default_driver` that can be used
+  to provide the name of a merge driver to be used to handle files changed
+  during a merge.
+
 v0.24
 -------
 
 ### Changes or improvements
+
+* Custom merge drivers can now be registered, which allows callers to
+  configure callbacks to honor `merge=driver` configuration in
+  `.gitattributes`.
 
 * Custom filters can now be registered with wildcard attributes, for
   example `filter=*`.  Consumers should examine the attributes parameter
@@ -111,11 +359,14 @@ v0.24
   `GIT_CONFIG_LEVEL_PROGRAMDATA` which represent a rough Windows equivalent
   to the system level configuration.
 
-* `git_rebase_init()` not also takes a merge options.
+* `git_rebase_options` now has a `merge_options` field.
 
 * The index no longer performs locking itself. This is not something
   users of the library should have been relying on as it's not part of
   the concurrency guarantees.
+
+* `git_remote_connect()` now takes a `custom_headers` argument to set
+  the extra HTTP header fields to send.
 
 v0.23
 ------

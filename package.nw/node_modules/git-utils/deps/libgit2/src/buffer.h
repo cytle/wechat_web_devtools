@@ -34,7 +34,7 @@ GIT_INLINE(bool) git_buf_is_allocated(const git_buf *buf)
  * For the cases where GIT_BUF_INIT cannot be used to do static
  * initialization.
  */
-extern void git_buf_init(git_buf *buf, size_t initial_size);
+extern int git_buf_init(git_buf *buf, size_t initial_size);
 
 /**
  * Resize the buffer allocation to make more space.
@@ -66,13 +66,14 @@ extern int git_buf_try_grow(
  * library, when providing git_buf's, may wish to provide a NULL ptr for
  * ease of handling.  The buffer routines, however, expect a non-NULL ptr
  * always.  This helper method simply handles NULL input, converting to a
- * git_buf__initbuf.
+ * git_buf__initbuf. If a buffer with a non-NULL ptr is passed in, this method
+ * assures that the buffer is '\0'-terminated.
  */
 extern void git_buf_sanitize(git_buf *buf);
 
 extern void git_buf_swap(git_buf *buf_a, git_buf *buf_b);
 extern char *git_buf_detach(git_buf *buf);
-extern void git_buf_attach(git_buf *buf, char *ptr, size_t asize);
+extern int git_buf_attach(git_buf *buf, char *ptr, size_t asize);
 
 /* Populates a `git_buf` where the contents are not "owned" by the
  * buffer, and calls to `git_buf_free` will not free the given buf.
@@ -173,6 +174,12 @@ void git_buf_rtrim(git_buf *buf);
 
 int git_buf_cmp(const git_buf *a, const git_buf *b);
 
+/* Quote and unquote a buffer as specified in
+ * http://marc.info/?l=git&m=112927316408690&w=2
+ */
+int git_buf_quote(git_buf *buf);
+int git_buf_unquote(git_buf *buf);
+
 /* Write data as base64 encoded in buffer */
 int git_buf_encode_base64(git_buf *buf, const char *data, size_t len);
 /* Decode the given bas64 and write the result to the buffer */
@@ -180,6 +187,8 @@ int git_buf_decode_base64(git_buf *buf, const char *base64, size_t len);
 
 /* Write data as "base85" encoded in buffer */
 int git_buf_encode_base85(git_buf *buf, const char *data, size_t len);
+/* Decode the given "base85" and write the result to the buffer */
+int git_buf_decode_base85(git_buf *buf, const char *base64, size_t len, size_t output_len);
 
 /*
  * Insert, remove or replace a portion of the buffer.

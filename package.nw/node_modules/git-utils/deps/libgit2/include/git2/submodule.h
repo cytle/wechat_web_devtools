@@ -134,9 +134,7 @@ typedef struct git_submodule_update_options {
 	 * checkout, set the `checkout_strategy` to
 	 * `GIT_CHECKOUT_NONE`. Generally you will want the use
 	 * GIT_CHECKOUT_SAFE to update files in the working
-	 * directory. Use the `clone_checkout_strategy` field
-	 * to set the checkout strategy that will be used in
-	 * the case where update needs to clone the repository.
+	 * directory. 
 	 */
 	git_checkout_options checkout_opts;
 
@@ -149,18 +147,17 @@ typedef struct git_submodule_update_options {
 	git_fetch_options fetch_opts;
 
 	/**
-	 * The checkout strategy to use when the sub repository needs to
-	 * be cloned. Use GIT_CHECKOUT_SAFE to create all files
-	 * in the working directory for the newly cloned repository.
+	 * Allow fetching from the submodule's default remote if the target
+	 * commit isn't found. Enabled by default.
 	 */
-	unsigned int clone_checkout_strategy;
+	int allow_fetch;
 } git_submodule_update_options;
 
 #define GIT_SUBMODULE_UPDATE_OPTIONS_VERSION 1
 #define GIT_SUBMODULE_UPDATE_OPTIONS_INIT \
-	{ GIT_CHECKOUT_OPTIONS_VERSION, \
+	{ GIT_SUBMODULE_UPDATE_OPTIONS_VERSION, \
 		{ GIT_CHECKOUT_OPTIONS_VERSION, GIT_CHECKOUT_SAFE }, \
-	GIT_FETCH_OPTIONS_INIT, GIT_CHECKOUT_SAFE }
+	GIT_FETCH_OPTIONS_INIT, 1 }
 
 /**
  * Initializes a `git_submodule_update_options` with default values.
@@ -176,7 +173,9 @@ GIT_EXTERN(int) git_submodule_update_init_options(
 /**
  * Update a submodule. This will clone a missing submodule and
  * checkout the subrepository to the commit specified in the index of
- * containing repository.
+ * the containing repository. If the submodule repository doesn't contain
+ * the target commit (e.g. because fetchRecurseSubmodules isn't set), then
+ * the submodule is fetched using the fetch options supplied in options.
  *
  * @param submodule Submodule object
  * @param init If the submodule is not initialized, setting this flag to true

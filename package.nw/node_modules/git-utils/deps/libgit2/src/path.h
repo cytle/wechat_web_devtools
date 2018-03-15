@@ -203,6 +203,18 @@ extern bool git_path_contains(git_buf *dir, const char *item);
 extern bool git_path_contains_dir(git_buf *parent, const char *subdir);
 
 /**
+ * Determine the common directory length between two paths, including
+ * the final path separator.  For example, given paths 'a/b/c/1.txt
+ * and 'a/b/c/d/2.txt', the common directory is 'a/b/c/', and this
+ * will return the length of the string 'a/b/c/', which is 6.
+ *
+ * @param one The first path
+ * @param two The second path
+ * @return The length of the common directory
+ */
+extern size_t git_path_common_dirlen(const char *one, const char *two);
+
+/**
  * Make the path relative to the given parent path.
  *
  * @param path The path to make relative
@@ -230,6 +242,12 @@ extern bool git_path_contains_file(git_buf *dir, const char *file);
  */
 extern int git_path_join_unrooted(
 	git_buf *path_out, const char *path, const char *base, ssize_t *root_at);
+
+/**
+ * Removes multiple occurrences of '/' in a row, squashing them into a
+ * single '/'.
+ */
+extern void git_path_squash_slashes(git_buf *path);
 
 /**
  * Clean up path, prepending base if it is not already rooted.
