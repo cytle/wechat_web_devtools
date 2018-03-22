@@ -11,6 +11,7 @@ module.exports = {
   JSON_PAGE_JS_NOT_EXISTS: '未找到 %s 中的定义的 %s "%s" 对应的 JS 文件',
   JSON_PAGE_FILE_NOT_EXISTS: '未找到 %s 中的定义的 %s "%s" 对应的 %s 文件',
   JSON_PAGE_SHOULD_NOT_IN_SUBPACKAGE: '%s 不应该在分包 %s 中',
+  JSON_PLUGIN_SHOULD_NOT_IN_SUBPACKAGE: '%s 不应该在分包 %s 中',
   JSON_CUSTOM_COMPILE_PATH_NOT_EXISTS_TITLE: 'app.json 或自定义编译条件错误',
   JSON_CUSTOM_COMPILE_PATH_NOT_EXISTS: 'app.json 中未定义自定义编译中指定的启动页面 %s',
   JSON_ENTRY_PAGE_PATH_NOT_FOUND: '未在 %s 中找到 %s 定义的入口页面',
@@ -224,6 +225,8 @@ module.exports = {
   CGI_ERR_DEV_DEVPLUGIN_NOT_DEFINED: '开发版插件未定义在 app.json 中',
   CGI_ERR_DEV_PLUGIN_ROOT_NOT_DEFINED: '插件目录未定义在 project.config.json 中',
   CGI_ERR_DEV_TWO_SAME_PLUGIN_FOUND: '使用了同一个插件的不同版本',
+  CGI_ERR_DEV_COMPILE_SOURCE_MAX_LIMIT_SUBPKG: '分包大小超过限制',
+  CGI_ERR_DEV_PLUGIN_NOT_INITTED: '插件未初始化',
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',
