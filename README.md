@@ -1,15 +1,20 @@
 # Linux微信web开发者工具
-
-linux下使用微信web开发者工具.
+linux 下使用微信web开发者工具.
 
 ![wx-dev-tools v-1.02.1803210](https://img.shields.io/badge/wx_dev_tools-1.02.1803210-green.svg)
 ![nw.js v-0.24.4](https://img.shields.io/badge/nw.js-v0.24.4-blue.svg)
 
-## Description
-**Linux微信web开发者工具** 可在linux桌面环境跑起微信开发者工具,原理是微信开发者
-工具本质是nw.js程序,把它移植到linux下没大问题.然后,负责编译wxml和wxss(可能还有
-其他功能)的wcc和wcsc,利用wine来跑皆可.
 
+## Description
+**Linux微信web开发者工具**, 可在 `linux` 桌面环境跑起 `微信开发者工具`,  
+原理是 `微信开发者工具` 本质是 `nw.js` 程序, 把它移植到 `linux` 下没大问题.  
+负责编译 `wxml` 和 `wxss` 的 `wcc` 和 `wcsc` (可能还有其他功能),  
+则利用 `wine` 来跑即可.
+
+欢迎提PR~
+
+
+## Changelog
 - 2017/03/28 更新:微信小程序升级到0.15.152800
 - 2017/03/30 更新:微信小程序升级到0.15.152900
 - 2017/05/18 更新:微信小程序升级到0.17.170900
@@ -37,78 +42,58 @@ linux下使用微信web开发者工具.
 - 2018/03/14 更新:微信小程序升级到1.02.1803130
 - 2018/03/22 更新:微信小程序升级到1.02.1803210
 
-### 更新到最新版
 
-1. 执行脚本会自动下载安装最新开发者工具（window x64）
+## 安装 Wine
+请先安装 [Wine](https://wiki.winehq.org/Download)  
+以 `Ubuntu` 为例: https://wiki.winehq.org/Ubuntu
 
-安装`httpie`,以下是`Ubuntu`安装方法,其它参考[https://httpie.org/doc#linux](https://httpie.org/doc#linux)
 
-
-```console
-sudo apt install httpie # 脚本依赖httpie
-```
-
-```console
-./bin/update_package_nw.sh # 执行更新
-```
-
-2. 安装过程中确认安装到`$HOME/.wine/drive_c/Program Files (x86)/Tencent/微信web开发者工具`路径下
-
-3. 最后完成去掉打开开发者工具的钩
-
-然后执行`./bin/wxdt`，如果没有问题欢迎提PR~
-
-## Usage
-
-```console
+## 下载并安装 微信web开发者工具
+1. 下载项目
+``` bash
 git clone git@github.com:cytle/wechat_web_devtools.git
+```
+
+2. 进入目录
+``` bash
 cd wechat_web_devtools
-./bin/wxdt
 ```
 
-### 需要小程序开发
-1. 用下面的命令安装wine(ubuntu下)
-
-推荐安装1.8或1.6版本的wine
-```console
-sudo apt install wine
-```
-
-2. wcc.exe和wcsc.exe是32位的,用下面命令创建32位环境
-
-```console
-WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
-```
-
-3. 安装
-
-```console
+3. 自动下载最新 `Windows x64` 版开发者工具, 并安装到 `~/.config/微信web开发者工具/` 目录中
+``` bash
 ./bin/wxdt install
 ```
 
-4. 启动
 
-```console
+## 运行
+``` bash
 ./bin/wxdt
 ```
 
-## 更新
 
-直接pull就好了
+## 更新到最新版
+以下是 `Ubuntu` 安装方法, 其它参考 [https://httpie.org/doc#linux](https://httpie.org/doc#linux)
 
-```console
+1. 安装 脚本依赖 `httpie`
+``` bash
+sudo apt install httpie
+```
+
+2. 执行更新
+``` bash
+./bin/update_package_nw.sh
+```
+
+
+## 源码更新
+直接 `pull` 就好了
+
+``` bash
 git pull origin
 ```
 
-如果wcc和wcsc编译有问题，执行以下，让工具重新生成wcc和wcsc，**会删除开发者工具配置文件,所有工程和登录信息会消失**
-
-```console
-./bin/wxdt uninstall
-./bin/wxdt install
-```
 
 ## 截图
-
 ![截图1](https://github.com/cytle/wechat_web_devtools/raw/fb84550d2d9b9f40f7a80b896066e1933892eff9/images/截图1.png)
 
 ![调试界面](https://github.com/cytle/wechat_web_devtools/raw/fb84550d2d9b9f40f7a80b896066e1933892eff9/images/调试界面.png)
@@ -117,8 +102,9 @@ git pull origin
 
 ## 卸载
 
-1. 关闭微信web开发者工具
-2. 项目文件夹下运行`./bin/wxdt uninstall`(删除桌面图标、微信web开发者工具配置目录)
+1. 关闭 `微信web开发者工具`
+2. 项目文件夹下运行 `./bin/wxdt uninstall` (删除桌面图标、微信web开发者工具配置目录),  
+   **开发者工具配置文件, 所有工程和登录信息均会消失**
 3. 删除项目文件夹
 
 ## 其它
