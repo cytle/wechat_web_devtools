@@ -71,6 +71,12 @@ cd wechat_web_devtools
 ```
 
 
+## 错误排除
+### `wcc` 和 `wcsc` 编译错误
+1. https://github.com/cytle/wechat_web_devtools/issues/66#issuecomment-368434141
+2. https://github.com/cytle/wechat_web_devtools/issues/56#issuecomment-371999385
+
+
 ## 更新到最新版
 以下是 `Ubuntu` 安装方法, 其它参考 [https://httpie.org/doc#linux](https://httpie.org/doc#linux)
 
