@@ -51,7 +51,7 @@ linux 下使用微信web开发者工具.
 ## 下载并安装 微信web开发者工具
 1. 下载项目
 ``` bash
-git clone git@github.com:cytle/wechat_web_devtools.git
+git clone https://github.com/cytle/wechat_web_devtools.git
 ```
 
 2. 进入目录
