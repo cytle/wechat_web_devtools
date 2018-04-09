@@ -73,8 +73,36 @@ cd wechat_web_devtools
 
 ## 错误排除
 ### `wcc` 和 `wcsc` 编译错误
+执行
+``` bash
+sudo apt-get install wine-binfmt
+sudo update-binfmts --import /usr/share/binfmts/wine
+```
+
+完成后, 点击 <kbd>编译</kbd> 即可.
+
+参考:
 1. https://github.com/cytle/wechat_web_devtools/issues/66#issuecomment-368434141
 2. https://github.com/cytle/wechat_web_devtools/issues/56#issuecomment-371999385
+
+### `./bin/wxdt install` 报错失败
+> ./nw: error while loading shared libraries: libnw.so: cannot open shared object file: No such file or directory
+
+该错误是由 `nw.js` 下载失败所致.  
+删除缓存, 重新下载即可.
+
+``` bash
+rm -rf /path/to/wechat_web_devtools/dist
+rm -rf /tmp/wxdt_xsp
+```
+
+``` bash
+# 请务必等待执行完成
+./bin/wxdt install
+```
+
+参考
+- https://github.com/cytle/wechat_web_devtools/issues/49#issuecomment-350478295
 
 
 ## 更新到最新版
