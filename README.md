@@ -34,7 +34,7 @@ git clone https://github.com/cytle/wechat_web_devtools.git
 cd wechat_web_devtools
 ```
 
-3. 自动下载最新 `Windows x64` 版开发者工具, 并安装到 `~/.config/微信web开发者工具/` 目录中
+3. 自动下载最新 `nw.js` , 同时部署目录 `~/.config/微信web开发者工具/`
 ``` bash
 ./bin/wxdt install
 ```
@@ -89,7 +89,7 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 sudo apt install httpie
 ```
 
-2. 执行更新
+2. 执行更新, 自动下载并安装最新 `Windows x64` 版开发者工具
 ``` bash
 ./bin/update_package_nw.sh
 ```
