@@ -82,28 +82,35 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 
 
 ## 更新到最新版
-**注**: 如果抽风了, 可以尝试使用 `git reset --hard` 等操作, 还原到最初的状态.
-
 ### 方法 1: 直接从当前项目源码 进行 更新 (稳定, 推荐)
 ``` bash
 git pull origin
 ```
 
 ### 方法 2: 使用腾讯原始安装程序 进行 自助复制更新 (及时, 自行折腾)
-以下是 `Ubuntu` 安装方法, 其它参考 https://httpie.org/doc#linux
+
+**注**: 如果抽风了, 可以尝试使用 `git reset --hard` 等操作, 还原到最初的状态.
 
 1. 安装 脚本依赖 `httpie`
+
+以下是 `Ubuntu` 安装方法, 其它参考 https://httpie.org/doc#linux
+
 ``` bash
 sudo apt install httpie
 ```
 
-2. 执行更新, 自动下载最新 `Windows x64` 版开发者工具.  
-   下载完毕后, 会自动弹出 `Wine` 启动的 `安装界面`, 直接安装即可.  
-   安装完毕之后, **不要勾选** `立即启动`, 同时删除桌面的 `Wine` 生成的 `快捷方式`.  
-   等待脚本**成功**执行完成, 即表示升级成功.
+2. 执行更新, 自动下载最新 `Windows x64` 版开发者工具, 并且使用`wine`安装.  
+
 ``` bash
 ./bin/update_package_nw.sh
 ```
+
+*Tips*
+
+- 下载完毕后, 会自动弹出 `Wine` 启动的 `安装界面`, 直接安装即可.  
+- 安装完毕之后, **不要勾选** `立即启动`, 同时删除桌面的 `Wine` 生成的 `快捷方式`.  
+- 等待脚本**成功**执行完成, 即表示升级成功.
+- 运行没问题，欢迎PR
 
 ## 截图
 ![截图1](https://github.com/cytle/wechat_web_devtools/raw/fb84550d2d9b9f40f7a80b896066e1933892eff9/images/截图1.png)
