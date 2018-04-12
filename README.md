@@ -15,7 +15,8 @@ linux 下使用微信web开发者工具.
 
 
 ## Changelog
-[更新日志](CHANGELOG.md)
+- [更新日志](CHANGELOG.md)
+- [腾讯官方更新日志](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 
 
 ## 安装 Wine
