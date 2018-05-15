@@ -4,6 +4,8 @@ var browserify = require('browserify');
 var vm = require('vm');
 var path = require('path');
 
+if (!ArrayBuffer.isView) ArrayBuffer.isView = function () { return false; };
+
 test('sync string encoding', function (t) {
     t.plan(2);
     var b = browserify(__dirname + '/files/buffer.js');
@@ -13,7 +15,10 @@ test('sync string encoding', function (t) {
         if (err) t.fail(err);
         var context = {
             setTimeout: setTimeout,
-            console: { log: log }
+            console: { log: log },
+            ArrayBuffer: ArrayBuffer,
+            Uint8Array: Uint8Array,
+            DataView: DataView
         };
         var buffers = [];
         vm.runInNewContext(src, context);

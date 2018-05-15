@@ -30,11 +30,11 @@ test('convert to base64 and back', function (t) {
 })
 
 var data = [
-    [[0, 0, 0], 'AAAA'],
-    [[0, 0, 1], 'AAAB'],
-    [[0, 1, -1], 'AAH/'],
-    [[1, 1, 1], 'AQEB'],
-    [[0, -73, 23], 'ALcX']
+  [[0, 0, 0], 'AAAA'],
+  [[0, 0, 1], 'AAAB'],
+  [[0, 1, -1], 'AAH/'],
+  [[1, 1, 1], 'AQEB'],
+  [[0, -73, 23], 'ALcX']
 ]
 
 test('convert known data to string', function (t) {
@@ -53,6 +53,8 @@ test('convert known data from string', function (t) {
     var string = data[i][1]
     var actual = b64.toByteArray(string)
     t.ok(equal(actual, expected), 'Ensure that ' + string + ' deserialise to ' + expected)
+    var length = b64.byteLength(string)
+    t.equal(length, expected.length, 'Ensure that ' + string + ' has byte lentgh of ' + expected.length)
   }
   t.end()
 })

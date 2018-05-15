@@ -41,6 +41,14 @@ ParserAsync.prototype._handleError = function(err) {
     this._inflate.destroy();
   }
 
+  if (this._filter) {
+    this._filter.destroy();
+    // For backward compatibility with Node 7 and below.
+    // Suppress errors due to _inflate calling write() even after
+    // it's destroy()'ed.
+    this._filter.on('error', function() {});
+  }
+
   this.errord = true;
 };
 

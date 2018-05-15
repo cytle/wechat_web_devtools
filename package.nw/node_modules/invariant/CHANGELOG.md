@@ -1,3 +1,39 @@
+2.2.4 / 2018-03-13
+==================
+
+  * Use flow strict mode (i.e. `@flow strict`).
+
+2.2.3 / 2018-02-19
+==================
+
+  * Change license from BSD+Patents to MIT.
+
+2.2.2 / 2016-11-15
+==================
+
+  * Add LICENSE file.
+  * Misc housekeeping.
+
+2.2.1 / 2016-03-09
+==================
+
+  * Use `NODE_ENV` variable instead of `__DEV__` to cache `process.env.NODE_ENV`.
+
+2.2.0 / 2015-11-17
+==================
+
+  * Use `error.name` instead of `Invariant Violation`.
+
+2.1.3 / 2015-11-17
+==================
+
+  * Remove `@provideModule` pragma.
+
+2.1.2 / 2015-10-27
+==================
+
+  * Fix license.
+
 2.1.1 / 2015-09-20
 ==================
 

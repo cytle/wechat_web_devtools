@@ -42,13 +42,13 @@
 </html>
 <script>
 if (document.readyState == 'complete') {
-  alert('DOCUMENT_READY')
+  window.__global.alert('DOCUMENT_READY')
 } else {
   var fn = function(event) {
-    alert('DOCUMENT_READY')
+    window.__global.alert('DOCUMENT_READY')
     window.removeEventListener("load", fn)
   }
   window.addEventListener('load', fn)
 }
 </script>
-`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=global.appConfig.isDev?a.join(__dirname,'../../../extensions/context/index.js'):a.join(__dirname,'./extensions/context/index.js'),l=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/index.js'):a.join(__dirname,'./extensions/worker/index.js'),m=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/weixinworker.tpl.js'):a.join(__dirname,'./extensions/worker/weixinworker.tpl.js'),n=b.readFileSync(j,'utf8'),o=b.readFileSync(k,'utf8'),p=b.readFileSync(l,'utf8'),q=b.readFileSync(m,'utf8'),r=c.join(',');module.exports={asDebug:n,subAsDebug:o,workerAsDebug:p,WeixinWorkerTpl:q,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','native-buffer.js','wx-worker.js','reporter-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','plugin-node.js','webnode.js','global-read-only.js'],devWorkerList:['wx-config.js','native-buffer.js','wx-console.js','wx-worker.js','webnode.js','worker-sdk.js'],workerVendorList:['WAWorker.js'],noBrowser:r,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g,plugincodePlaceholder:'<!- plugincode -->'}}(require('lazyload'),require);
+`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=global.appConfig.isDev?a.join(__dirname,'../../../extensions/context/index.js'):a.join(__dirname,'./extensions/context/index.js'),l=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/index.js'):a.join(__dirname,'./extensions/worker/index.js'),m=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/weixinworker.tpl.js'):a.join(__dirname,'./extensions/worker/weixinworker.tpl.js'),n=b.readFileSync(j,'utf8'),o=b.readFileSync(k,'utf8'),p=b.readFileSync(l,'utf8'),q=b.readFileSync(m,'utf8'),r=c.join(',');module.exports={asDebug:n,subAsDebug:o,workerAsDebug:p,WeixinWorkerTpl:q,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','native-buffer.js','wx-worker.js','js-context.js','reporter-sdk.js','protect-sdk.js','subcontext-engine-main.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','plugin-node.js','webnode.js','global-read-only.js'],devWorkerList:['wx-config.js','native-buffer.js','wx-console.js','wx-worker.js','webnode.js','worker-sdk.js'],workerVendorList:['WAWorker.js'],noBrowser:r,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g,plugincodePlaceholder:'<!- plugincode -->'}}(require('lazyload'),require);

@@ -26,9 +26,6 @@ static DWORD WINAPI git_win32__threadproc(LPVOID lpParameter)
 {
 	git_thread *thread = lpParameter;
 
-	/* Set the current thread for `git_thread_exit` */
-	GIT_GLOBAL->current_thread = thread;
-
 	thread->result = thread->proc(thread->param);
 
 	git__free_tls_data();
@@ -96,21 +93,6 @@ int git_thread_join(
 
 	CloseHandle(thread->thread);
 	return 0;
-}
-
-void git_thread_exit(void *value)
-{
-	assert(GIT_GLOBAL->current_thread);
-	GIT_GLOBAL->current_thread->result = value;
-
-	git__free_tls_data();
-
-	ExitThread(CLEAN_THREAD_EXIT);
-}
-
-size_t git_thread_currentid(void)
-{
-	return GetCurrentThreadId();
 }
 
 int git_mutex_init(git_mutex *GIT_RESTRICT mutex)

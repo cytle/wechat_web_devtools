@@ -14,19 +14,18 @@ if (PHP_OS === 'WINNT') {
     $sdkConfigPath = '/data/release/sdk.config.json';
 }
 
-if (!file_exists($sdkConfigPath)) {
-    echo "SDK 配置文件（{$sdkConfigPath}）不存在";
-    die;
-}
+$sdkConfig = [];
 
-// 合并 sdk config 和原来的配置
-$sdkConfig = json_decode(file_get_contents($sdkConfigPath), true);
+if (file_exists($sdkConfigPath)) {
+    $sdkConfig = json_decode(file_get_contents($sdkConfigPath), true);
+}
 
 if (!is_array($sdkConfig)) {
     echo "SDK 配置文件（{$sdkConfigPath}）内容不合法";
     die;
 }
 
+// 合并 sdk config 和原来的配置
 $config = array_merge($sdkConfig, $config);
 
 /**

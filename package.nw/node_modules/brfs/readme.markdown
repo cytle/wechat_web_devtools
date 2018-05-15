@@ -125,6 +125,9 @@ Optionally, you can set which `opts.vars` will be used in the
 [static argument evaluation](https://npmjs.org/package/static-eval)
 in addition to `__dirname` and `__filename`.
 
+`opts.parserOpts` can be used to configure the parser brfs uses,
+[acorn](https://github.com/acornjs/acorn#main-parser).
+
 # events
 
 ## tr.on('file', function (file) {})

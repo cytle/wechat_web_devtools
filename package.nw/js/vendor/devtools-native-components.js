@@ -24,22 +24,24 @@ var temp = document.getElementById('container')
 
 // 创建容器
 var parent = exparser.createElement('div')
-parent.setAttribute('style', 'height:inherit;')
+parent.setAttribute('style', 'height:100%;')
 exparser.Element.replaceDocumentElement(parent, temp)
 
 // 监听组件更新
 WeixinJSBridge.on('updateNativeView', function(data) {
   if (!dom)return
+
   for (let key in data) {
     dom[key] = data[key]
+    if (query.data) {
+      query.data[key] = data[key]
+    }
   }
 })
 
 // 监听组件操作
 WeixinJSBridge.on('operateNativeView', function(data) {
   if (!dom)return
-  // TODO
-  console.log(data)
 
   switch(query.name) {
     case 'video':
@@ -69,8 +71,8 @@ if (query.name) {
         eventName: 'onVideoPlay',
         data: {
           timeStamp: e.timeStamp,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     }, { capture: false });
@@ -81,8 +83,8 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoPause',
         data: {
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -92,8 +94,8 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoEnded',
         data: {
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -105,8 +107,8 @@ if (query.name) {
         data: {
           position: e.detail.currentTime,
           duration: e.detail.duration,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -118,8 +120,8 @@ if (query.name) {
         data: {
           fullScreen: e.detail.fullScreen,
           direction: dom.direction,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })

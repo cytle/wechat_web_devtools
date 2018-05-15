@@ -1,0 +1,1 @@
+"use strict";!function(require,directRequire){module.exports={private_openUrl:async function(a,b){return nw.Shell.openExternal(b.args.url),{errMsg:`${b.api}:ok`}}}}(require("lazyload"),require);

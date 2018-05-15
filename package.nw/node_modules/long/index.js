@@ -1,1 +1,1 @@
-module.exports = require("./src/long");
+module.exports = require("./dist/long.js");

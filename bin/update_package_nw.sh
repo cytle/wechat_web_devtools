@@ -13,7 +13,7 @@ cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
 
-wcwd_package_dir="$HOME/.wine/drive_c/xsp/Application Data/Tencent/微信web开发者工具/package.nw"
+wcwd_package_dir="$HOME/.wine/drive_c/users/xsp/Application Data/Tencent/微信web开发者工具/package.nw"
 vendor_dir="$root_dir/package.nw/js/vendor"
 wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
 wechat_v=$(http --headers $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
@@ -45,7 +45,7 @@ if [ ! -f "$wcwd_file" ]; then
 fi
 
 # 安装 来自 https://github.com/cytle/wechat_web_devtools/issues/43
-env LC_ALL=zh_CN.UTF-8 wine $wcwd_file
+# env LC_ALL=zh_CN.UTF-8 wine $wcwd_file
 
 rm -rf "$root_dir/package.nw"
 echo "$wcwd_package_dir"

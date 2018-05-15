@@ -1,4 +1,6 @@
 //! moment.js locale configuration
+//! locale : Arabic (Saudi Arabia) [ar-sa]
+//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -19,7 +21,8 @@ var symbolMap = {
     '8': '٨',
     '9': '٩',
     '0': '٠'
-}, numberMap = {
+};
+var numberMap = {
     '١': '1',
     '٢': '2',
     '٣': '3',
@@ -70,7 +73,6 @@ var arSa = moment.defineLocale('ar-sa', {
         future : 'في %s',
         past : 'منذ %s',
         s : 'ثوان',
-        ss : '%d ثانية',
         m : 'دقيقة',
         mm : '%d دقائق',
         h : 'ساعة',

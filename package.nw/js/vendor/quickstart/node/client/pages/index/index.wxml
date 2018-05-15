@@ -13,16 +13,6 @@
         </view>
     </view>
 
-    <!-- 信道连接测试 -->
-    <view class="tunnel">
-        <view class="tunnel-text uploader-text">
-            <text bindtap="doRequest">请求（是否带有登陆态）</text>
-            <switch class="tunnel-switch" bindchange="switchRequestMode" color="#007AFF"/>
-        </view>
-        <view class="tunnel-text" wx:if="{{requestResult}}">
-            <text class="request-text">{{'请求结果：' + requestResult}}</text>
-        </view>
-    </view>
 
     <!-- 上传图片测试 -->
     <view class="uploader">
@@ -39,16 +29,6 @@
         </view>
     </view>
 
-    <!-- 信道连接测试 -->
-    <view class="tunnel">
-        <view class="tunnel-text">
-            <text>信道</text>
-            <switch class="tunnel-switch" bindchange="switchChange" color="#007AFF"/>
-        </view>
-        <view class="tunnel-text {{ tunnelStatus && tunnelStatus === 'connected' ? 'active' : 'disable' }}" bindtap="sendMessage">
-            <text>发送消息</text>
-        </view>
-    </view>
 
     <!-- 上传图片测试 -->
     <view class="uploader">

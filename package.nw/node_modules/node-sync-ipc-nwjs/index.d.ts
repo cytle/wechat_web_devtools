@@ -7,7 +7,9 @@ declare namespace NodeSyncIpc{
 
     interface NodeSyncIpcParent{
 
-        fork(modulePath:string,args?:any[],options?:Object):NodeSyncIpcChildProcess;
+        fork(modulePath:string,args?:any[],options?:Object): NodeSyncIpcChildProcess;
+
+        addChild(childProcess:child_process.ChildProcess): NodeSyncIpcChildProcess;
 
     }
 

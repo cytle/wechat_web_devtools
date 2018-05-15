@@ -46,8 +46,6 @@ struct git_index {
 	git_vector_cmp entries_search;
 	git_vector_cmp entries_search_path;
 	git_vector_cmp reuc_search;
-
-	unsigned int version;
 };
 
 struct git_index_conflict_iterator {
