@@ -3,7 +3,10 @@
 var paethPredictor = require('./paeth-predictor');
 
 function filterNone(pxData, pxPos, byteWidth, rawData, rawPos) {
-  pxData.copy(rawData, rawPos, pxPos, pxPos + byteWidth);
+
+  for (var x = 0; x < byteWidth; x++) {    
+    rawData[rawPos + x] = pxData[pxPos + x];
+  }
 }
 
 function filterSumNone(pxData, pxPos, byteWidth) {

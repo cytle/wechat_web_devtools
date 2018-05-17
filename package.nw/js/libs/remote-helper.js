@@ -15,6 +15,7 @@ let networkApiInjected = false;
 let systemInfoCache = null;
 let usingLocalStorage = false;
 const SyncSDKNames = {
+    measureText: true,
     getSystemInfo: () => {
         return typeof systemInfoCache !== 'string';
     },
@@ -104,6 +105,7 @@ else {
     });
     Object.defineProperty(log, 'w', {
         value: function (...args) {
+            console.warn(...args);
             errorsAndWarns.push([...args]);
             if (!sendLogTimer) {
                 sendLogTimer = setTimeout(() => {
@@ -122,6 +124,7 @@ else {
     });
     Object.defineProperty(log, 'e', {
         value: function (...args) {
+            console.error(...args);
             errorsAndWarns.push([...args]);
             if (!sendLogTimer) {
                 sendLogTimer = setTimeout(() => {
@@ -557,7 +560,8 @@ function handleInitPubLib(pubMd5) {
         let publibFilePath = path.join(tempDir, fileName);
         if (!fs.existsSync(publibFilePath)) {
             log.e('publibFilePath not found');
-            publibFilePath = path.join(__dirname, fileName);
+            const currentVersion = JSON.parse(fs.readFileSync(path.join(__dirname, '../vendor/config.json'), 'utf-8').toString()).currentLibVersion;
+            publibFilePath = path.join(__dirname, '../vendor', currentVersion, fileName);
         }
         const script = fs.readFileSync(publibFilePath, 'utf-8').toString();
         ret = vm.runInContext(script, jsVm, {
@@ -634,6 +638,7 @@ function loadCode(filePath, sourceURL) {
     }
     catch (e) {
         // something went wrong in user code
+        console.error(e);
     }
     return ret;
 }
@@ -693,6 +698,8 @@ function handleSetupContext(data) {
     loadCode(path.join(tempDir, 'wxappcode.js'));
     const pubMd5 = data.public_js_md5;
     handleInitPubLib(pubMd5);
+    // load plugin code
+    loadCode(path.join(tempDir, 'wxplugincode.js'));
     // inject network apis
     if (vmGlobal.WeixinJSBridge && typeof vmGlobal.WeixinJSBridge.subscribeHandler === 'function') {
         const realSubscribeHandler = vmGlobal.WeixinJSBridge.subscribeHandler;

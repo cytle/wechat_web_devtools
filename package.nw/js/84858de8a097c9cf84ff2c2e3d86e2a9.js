@@ -56,21 +56,46 @@
     mkdir.sync(WeappLocalData);
     _localData = {};
 
+    // 兼容使用 localstorage.json 的版本
     if (fs.existsSync(localDataPath)) {
       try {
         _localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
+        fs.unlinkSync(localDataPath);
       } catch (e) {}
     }
 
+    try {
+      if (!localStorage.hasUpgradedFromPureLocalStorage || localStorage.hasUpgradedFromPureLocalStorage !== global.appVersion) {
+        // 兼容使用 localstorage.json 之前的版本，使用 localStorage 直接存
+        for (var key in localStorage) {
+          if (!_localData[key] && key.startsWith(config.PROJECT_PREFIX)) {
+            // 保留旧项目
+            _localData[key] = localStorage[key];
+          }
+        }
+        localStorage.hasUpgradedFromPureLocalStorage = global.appVersion;
+      }
+    } catch (e) {}
+
+    // 现在的逻辑，每个 key 一个 json
     var files = fs.readdirSync(WeappLocalData);
+    var keys = {};
     files.forEach(function (file) {
       var m = file.match(/^localstorage_(.+)\.json$/);
       if (m && m[1]) {
+        keys[m[1]] = true;
         _localData[m[1]] = fs.readFileSync(getDataFilePath(m[1]), 'utf8');
       }
     });
 
     localData = proxify(_localData);
+
+    // 把升级后的数据写回
+    for (var _key in _localData) {
+      if (!keys[_key]) {
+        localData[_key] = _localData[_key];
+      }
+    }
 
     /*
     if (!fs.existsSync(localDataPath)) {
@@ -341,8 +366,8 @@
             }
           }
         } else {
-          for (var _key in value) {
-            localStorage[config.USER_INFO + '_' + _key] = value[_key];
+          for (var _key2 in value) {
+            localStorage[config.USER_INFO + '_' + _key2] = value[_key2];
           }
         }
       }

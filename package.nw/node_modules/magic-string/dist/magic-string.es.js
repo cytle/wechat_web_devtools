@@ -236,10 +236,10 @@ function getRelativePath ( from, to ) {
 	return fromParts.concat( toParts ).join( '/' );
 }
 
-var toString$1 = Object.prototype.toString;
+var toString = Object.prototype.toString;
 
 function isObject ( thing ) {
-	return toString$1.call( thing ) === '[object Object]';
+	return toString.call( thing ) === '[object Object]';
 }
 
 function getLocator ( source ) {
@@ -1291,5 +1291,6 @@ Bundle.prototype = {
 	}
 };
 
-export { Bundle };export default MagicString$1;
+export { Bundle };
+export default MagicString$1;
 //# sourceMappingURL=magic-string.es.js.map

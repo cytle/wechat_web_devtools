@@ -27,6 +27,20 @@ test('readFileSync', function (t) {
     }));
 });
 
+test('readFileSync empty', function (t) {
+    t.plan(1);
+    var sm = staticModule({
+        fs: {
+            readFileSync: function (file) {
+                return fs.createReadStream(file).pipe(quote());
+            }
+        }
+    }, { vars: { __dirname: path.join(__dirname, 'brfs') } });
+    readStream('empty.js').pipe(sm).pipe(concat(function (body) {
+        t.equal(body.toString('utf8'), '');
+    }));
+});
+
 test('readFileSync attribute', function (t) {
     t.plan(2);
     var sm = staticModule({

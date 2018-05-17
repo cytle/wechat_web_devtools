@@ -1,5 +1,7 @@
 const path = require('path')
 const tools = require('../js/84b183688a46c9e2626d3e6f83365e13.js')
+const isMac = (process.platform === 'darwin')
+
 
 function getQueryParameter(key) {
   const m = location.search.match(new RegExp(`${key}=(.*?)(&|$)`))
@@ -36,6 +38,9 @@ if (location.search) {
     }
   }
 }
+
+// mac 从application 启动时带的环境变量里没有 :/usr/local/bin
+isMac && (process.env.PATH += ':/usr/local/bin')
 
 // nw & foreground variables
 const Win = nw.Window.get()
@@ -81,7 +86,7 @@ global.reload = () => {
 
 // init initial menu in case of failure
 try {
-  if (global.isDevWindow || process.platform === 'darwin') {
+  if (global.isDevWindow || isMac) {
     const menu = new nw.Menu({ type: 'menubar' })
     const ideMenu = new nw.Menu()
     const debugMenu = new nw.Menu()
@@ -100,7 +105,7 @@ try {
             extensionId: chrome.runtime.id
           })
         },
-      })) 
+      }))
     }
     ideMenu.append(new nw.MenuItem({
       label: '调试',
@@ -155,7 +160,7 @@ function init() {
   Win.on('close', () => {
     global.windowMap.forEach((win) => {
       if (win !== Win) {
-        win.close()
+        win.close(true)
       }
     })
     global.windowMap.clear()
@@ -183,13 +188,18 @@ function init() {
   })
 }
 
-const checkUpdate = require('../js/e5184416014aff2809a9dee32cc447c8.js')
-checkUpdate.loop()
+if (!global.isDevWindow) {
+  const checkUpdate = require('../js/e5184416014aff2809a9dee32cc447c8.js')
+  checkUpdate.loop()
 
-// 检查是否需要更新
-tools.checkUpdateApp()
-  .then(()=>{
-    init()
-  })
+  // 检查是否需要更新
+  tools.checkUpdateApp()
+    .then(() => {
+      init()
+    })
+} else {
+  init()
+}
+
 
 
