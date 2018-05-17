@@ -15,7 +15,8 @@ test('readdir', function(t) {
         if (err) t.fail(err);
         vm.runInNewContext(src, {
             console: { log: log },
-            setTimeout: setTimeout
+            setTimeout: setTimeout,
+            clearTimeout: clearTimeout
         });
     });
 

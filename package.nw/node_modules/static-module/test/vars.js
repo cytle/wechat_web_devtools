@@ -77,7 +77,10 @@ test('multi consecutive require vars', function (t) {
                 return fs.createReadStream(file).pipe(quote());
             }
         }
-    }, { vars: { __dirname: path.join(__dirname, 'vars') } });
+    }, {
+        vars: { __dirname: path.join(__dirname, 'vars') },
+        sourceMap: true // Make sure source maps work when replacing 0 length ranges.
+    });
     
     readStream('multi-require.js').pipe(sm).pipe(concat(function (body) {
         Function(['console','require'],body)({ log: log }, function() { return {} });

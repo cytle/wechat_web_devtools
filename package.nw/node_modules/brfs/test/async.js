@@ -13,6 +13,7 @@ test('async', function (t) {
         if (err) t.fail(err);
         vm.runInNewContext(src, {
             setTimeout: setTimeout,
+            clearTimeout: clearTimeout,
             console: { log: log }
         });
     });
@@ -27,6 +28,7 @@ test('async encoding', function (t) {
         if (err) t.fail(err);
         vm.runInNewContext(src, {
             setTimeout: setTimeout,
+            clearTimeout: clearTimeout,
             console: { log: log }
         });
     });
@@ -41,6 +43,7 @@ test('async string encoding', function (t) {
         if (err) t.fail(err);
         vm.runInNewContext(src, {
             setTimeout: setTimeout,
+            clearTimeout: clearTimeout,
             console: { log: log }
         });
     });

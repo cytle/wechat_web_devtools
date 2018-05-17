@@ -29,7 +29,7 @@ test('parse non-js, non-json files', function (t) {
         if (err) t.fail(err);
         vm.runInNewContext(src, { console: { log: log } });
     });
-    bs.on('transform', function (tr) {
+    b.on('transform', function (tr) {
         tr.on('file', function (file) {
             t.equal(file, __dirname + '/files/tr.html');
         });

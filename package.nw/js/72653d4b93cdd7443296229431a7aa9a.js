@@ -1,12 +1,13 @@
 const path = require('path')
-const log = require('./b22d389f507598d040002f99ddfae35d.js')
+const getLog = require('./b22d389f507598d040002f99ddfae35d.js')
 
 
 
 let parentFileName
 
 var handler = {
-  get:  function(target, name){
+  get: function (target, name) {
+    let log = getLog()
     if (!parentFileName) {
       parentFileName = module.parent.filename
       if (path.basename(parentFileName) == 'lazy-require.js') {

@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow strict */
 
 declare module.exports: (
   condition: any,

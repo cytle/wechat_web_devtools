@@ -2,7 +2,7 @@
 
 > Regular expression for matching JavaScript comments
 
-*This is pretty fragile and created for perf reasons where a using real parser would be overkill.*
+*This is pretty fragile and created for perf reasons where using a real parser would be overkill.*
 
 
 ## Install

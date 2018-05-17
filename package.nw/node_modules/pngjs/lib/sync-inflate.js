@@ -17,6 +17,10 @@ function Inflate(opts) {
 
   zlib.Inflate.call(this, opts);
 
+  // Node 8 --> 9 compatibility check
+  this._offset = this._offset === undefined ? this._outOffset : this._offset;
+  this._buffer = this._buffer || this._outBuffer;
+
   if (opts && opts.maxLength != null) {
     this._maxLength = opts.maxLength;
   }
@@ -110,6 +114,8 @@ Inflate.prototype._processChunk = function(chunk, flushFlag, asyncCb) {
                                      this._buffer, // out
                                      this._offset, //out_off
                                      availOutBefore); // out_len
+    // Node 8 --> 9 compatibility check
+    res = res || this._writeState;
   } while (!this._hadError && handleChunk(res[0], res[1]));
 
   if (this._hadError) {

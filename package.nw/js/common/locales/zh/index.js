@@ -39,8 +39,10 @@ module.exports = {
   JSON_WIDGETS_PATH_SHOULD_BE_DIR: '%s 的 widgets[%s].path 需为目录',
   JSON_WIDGETS_JS_NOT_FOUND: '%s 的 widgets[%s].path 下未找到 %s',
   JSON_SUBPACKAGE_EXIST: 'app.json 中 %s 已经存在',
+  JSON_CONTENT_EXISTED: '%s 已经存在',
   JSON_CONTENT_SHOULD_BE: '%s 字段需为 %s',
   JSON_CONTENT_ERROR: '%s 文件内容错误',
+  JSON_CONTENT_NOT_FOUND: '%s 不存在',
   CLEAN_USER_AUTH_SUCCESS: '清除工具及手机授权数据成功',
   CLEAN_USER_AUTH_ERROR: '清除工具及手机授权数据失败 %s',
   CLEAN_USER_SESSION_SUCCESS: '清除登录状态成功',
@@ -327,7 +329,7 @@ module.exports = {
   CLI_GET_APP_INFO_ERROR: '获取应用信息错误，错误码 %s',
   CLI_QR_OUTDATED: '二维码超时，请重试',
   CLI_LOGIN_RETRY: '登录错误，请重试',
-  CLI_DUPLICATE_PROJECT_ID: '工具已有此 AppID 和 projectname 的项目，请修改后重试',
+  CLI_DUPLICATE_PROJECT_ID: '已存在相同 AppID 和 projectname 的项目（路径），请修改后重试',
   CLI_GENERIC_ERROR: '错误 %s',
 
 
@@ -340,6 +342,7 @@ module.exports = {
   WIDGET_IF_WANT_TO_JUMP: '是否跳转到小程序开发模式？',
   RESOURCE_RELATIVE_TIPS_TITLE: '项目资源引用错误',
   RESOURCE_RELATIVE_TIPS_CONTENT: '项目资源 %s 与页面不在同一个分包中导致无法正常加载',
+  RESOURCE_SUBPACKAGE_TIPS: '项目资源 %s 所在的分包尚未加载',
 
   NO_NETWORK_TIPS_TITLE: '无网络状态模拟',
   NO_NETWORK_TIPS_CONTENT: '已开启无网络状态模拟，网络请求 %s 已被阻止；在模拟器工具栏切换网络状态，可恢复网络请求。',

@@ -1,6 +1,6 @@
 {
-	"configVersion": 1521533252277,
-	"currentLibVersion": "1.9.94",
+	"configVersion": 1524227955086,
+	"currentLibVersion": "1.9.98",
 	"libs": {
 		"1.0.0": {
 			"WAService.js": "0a1ff7d0f8e95976fee1c8369cb76d79",
@@ -146,42 +146,76 @@
 			"WAGameSubContext.js": "18786086d7746adac6816cfe4f7a84d0"
 		},
 		"1.9.90": {
-			"WAService.js": "81b58900f21a83d79c71635eccea3c2d",
-			"WAWebview.js": "17291e92f3efcb3e20a3059c0ec23741",
-			"WAWidget.js": "8b12201c30e9761e8ba6494563ae5491",
-			"WAGame.js": "26740c06bfcd116e59fd08ac37e92cad",
-			"WAGameSubContext.js": "bd7cb66ca05229a2b43d24b82b1b0c3f",
-			"WAWorker.js": "1cb32f06c0d55422807012d903e90a5a"
+			"WAService.js": "e35028ee15f8fc05b93974ede69f006a",
+			"WAWebview.js": "afbf163f8bef2dc97af3214f35798aba",
+			"WAWidget.js": "a71d7ee69dcccb8be49652ef84cf9730",
+			"WAGame.js": "d8abdb8370825f6228fe8dd4030ed8d4",
+			"WAGameSubContext.js": "b95706477feea6d3c85689625afb1816",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
 		},
 		"1.9.91": {
-			"WAService.js": "8a1200f4ffc87b514c6feff199026671",
-			"WAWebview.js": "b08b1757ca269abcd02ddd4360d072af",
-			"WAWidget.js": "78cdc5b03b98514923e7eac5610d2f91",
-			"WAGame.js": "42566ae49afad46e24bf204216244070",
-			"WAGameSubContext.js": "f6abcbaaa1d7e7e6bd719ef3d3372a63",
-			"WAWorker.js": "1cb32f06c0d55422807012d903e90a5a"
+			"WAService.js": "6af2725887e3f1f6c72c671522a0b0eb",
+			"WAWebview.js": "da339936edb4f371ef97a062b6da4518",
+			"WAWidget.js": "cf08c422068c7d70df9b09d77e11eca5",
+			"WAGame.js": "1fae2ed0947e164393fb95fb6bc92d76",
+			"WAGameSubContext.js": "950e07ec42ceec54b471b804cbd8c2db",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
 		},
 		"1.9.92": {
-			"WAGame.js": "2d3e966931a290507412de912eb48569",
-			"WAGameSubContext.js": "e66c6654540d1d94e94cac19aa80e192",
-			"WAService.js": "d385448f88333ddab1e62e33180792e7",
-			"WAWebview.js": "ddd62aaf6d183f5131f92bf078845325",
-			"WAWidget.js": "4a7b99f97266a7540712754214801c69",
-			"WAWorker.js": "1cb32f06c0d55422807012d903e90a5a"
+			"WAGame.js": "2a4ef9c0f53715befa2aaa3fee685623",
+			"WAGameSubContext.js": "ec5dc7bd5b0cb796e6fd6aedae70ffb3",
+			"WAService.js": "7190825989648deff6c67d48f646f8a9",
+			"WAWebview.js": "42958602863e8ea4ce1d7044e1cef4a6",
+			"WAWidget.js": "bbaba329dddd3a696ea8a100b3c81559",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
 		},
 		"1.9.93": {
 			"WAGame.js": "d7fb408ae47a41079630d22f90c43947",
 			"WAGameSubContext.js": "99de33d2b0ed5350e6f3098b965a3673",
 			"WAService.js": "7e296ac555b45c5f63a0c300059def77",
 			"WAWebview.js": "83fbb35f5ad3cb2d7b8a43cd43604846",
-			"WAWidget.js": "6e5e940c17bb7263540243e5000a3651"
+			"WAWidget.js": "6e5e940c17bb7263540243e5000a3651",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
 		},
 		"1.9.94": {
 			"WAGame.js": "9b937f0548fe79eaf4b59ba0ac783ca5",
 			"WAGameSubContext.js": "8e2b2923cec49c3dea776003c8383993",
 			"WAService.js": "71abdad406aa272900a05bbf772d1209",
 			"WAWebview.js": "640954ed6d63132dbd107a089eca0957",
-			"WAWidget.js": "6ebf86749d4050008051dbe949dd1168"
+			"WAWidget.js": "6ebf86749d4050008051dbe949dd1168",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
+		},
+		"1.9.98": {
+			"WAGame.js": "e11916aa1836542aae6c895a755e7c16",
+			"WAGameSubContext.js": "29116080b49cc8d9fc802273a27efc35",
+			"WAService.js": "fa6ccaf7b6c67999ce6fb778271350b9",
+			"WAWebview.js": "0f7290ad8ea8b79984a5ba8309e32c23",
+			"WAWidget.js": "8422a97163db0d48e38e780de4fe9823",
+			"WAWorker.js": "15b7db7f91eb02e5352073db669a5f25"
+		},
+		"2.0.0": {
+			"WAGame.js": "816c09757bcb8da96c00b320935ac654",
+			"WAGameSubContext.js": "20c3f564abc0363542ca42f3aec72aba",
+			"WAService.js": "24fbfd71f064a3107a88c7115fbfded0",
+			"WAWebview.js": "ea5b8eff8eb156983100ecaedc39b602",
+			"WAWidget.js": "3d9ab235af2190043a4f26e0d8cc9148",
+			"WAWorker.js": "a219875fa3185db23bd083a43f6cb76a"
+		},
+		"2.0.1": {
+			"WAGame.js": "38fd66cf09929aea252cec9ece0ccbef",
+			"WAGameSubContext.js": "ca11d08554ba7a085d160d8afb61f8c3",
+			"WAService.js": "be2124437f65919d0e1b06eeb6d98417",
+			"WAWebview.js": "b928734ec10d0022f78f2cd31b8a8fd3",
+			"WAWidget.js": "ad5ad14d4932fec0e302ed81521b1933",
+			"WAWorker.js": "a219875fa3185db23bd083a43f6cb76a"
+		},
+		"2.0.2": {
+			"WAGame.js": "4bfffb08ecfe786b7ab09bdf685d7f63",
+			"WAGameSubContext.js": "e41b7e410ca9b3c5f8e898fff1f80493",
+			"WAService.js": "7d777101dc241ddd8570e2dde613c281",
+			"WAWebview.js": "4dff8b40807fc22b18ab21cc8ead4e56",
+			"WAWidget.js": "c84f566af18d327a0f24c4b4bba5fa92",
+			"WAWorker.js": "989217441ccd1979e5f8c9d5f9386545"
 		}
 	},
 	"wcc": "fce7b3082e719e69f586d9463e416cfe",

@@ -240,10 +240,10 @@ function getRelativePath ( from, to ) {
 	return fromParts.concat( toParts ).join( '/' );
 }
 
-var toString$1 = Object.prototype.toString;
+var toString = Object.prototype.toString;
 
 function isObject ( thing ) {
-	return toString$1.call( thing ) === '[object Object]';
+	return toString.call( thing ) === '[object Object]';
 }
 
 function getLocator ( source ) {
