@@ -18,7 +18,7 @@
     },
     "inject_js_start": "js/extensions/inject/documentstart/index.js",
     "inject_js_end": "js/extensions/inject/devtools/index.js",
-    "chromium-args": "--disable-http2 --disable-devtools --ignore-gpu-blacklist  --enable-experimental-web-platform-features -load-extension=./js/extensions/devtools/ -ignore-certificate-errors",
+    "chromium-args": "--disable-http2 --disable-devtools --ignore-gpu-blacklist  --enable-experimental-web-platform-features -load-extension=./package.nw/js/extensions/devtools/ -ignore-certificate-errors",
     "node-remote": [
         "http://*.open.weixin.qq.com/*",
         "https://*.mp.weixin.qq.com/*",
