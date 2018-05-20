@@ -42,10 +42,10 @@
 </html>
 <script>
 if (document.readyState == 'complete') {
-  alert('DOCUMENT_READY')
+  window.__global.alert('DOCUMENT_READY')
 } else {
   var fn = function(event) {
-    alert('DOCUMENT_READY')
+    window.__global.alert('DOCUMENT_READY')
     window.removeEventListener("load", fn)
   }
   window.addEventListener('load', fn)

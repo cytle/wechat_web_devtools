@@ -1,4 +1,17 @@
-'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c={[b.DISPLAY_TYPES.BBS_LOG_LINK]:(b,c,d)=>{let e='',f='';try{f='bbs'===d.linkType?'\u793E\u533A\u76F8\u5173\u5E16\u5B50\u63A8\u8350':'doc'===d.linkType?'\u6587\u6863\u63A8\u8350':'\u6587\u7AE0\u63A8\u8350',e=`
+'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c={[b.DISPLAY_TYPES.PLUGIN_UPDATE_INFO]:(b,c,d)=>{let e='';try{e=`
+      (function() {
+      try {
+        console.group(\`${new Date} 插件更新提示\`)
+
+        console.warn(decodeURIComponent(\' ${encodeURIComponent(`插件 ${d.name} 有更新，当前使用的版本为 ${d.currentVersion}，最新版本为 ${d.latestVersion}`).replace(/'/g,'\\\'')}\'))
+
+        console.groupEnd()
+      } catch(err) {
+        // do not show error in case of error during printing
+        console.groupEnd()
+      }
+      })()
+      `}catch(b){a.error(`info.display.js error while trying to display bbs information`,d)}b.executeScript({code:e})},[b.DISPLAY_TYPES.BBS_LOG_LINK]:(b,c,d)=>{let e='',f='';try{f='bbs'===d.linkType?'\u793E\u533A\u76F8\u5173\u5E16\u5B50\u63A8\u8350':'doc'===d.linkType?'\u6587\u6863\u63A8\u8350':'\u6587\u7AE0\u63A8\u8350',e=`
       (function() {
       try {
         console.group(\`${new Date} ${f}\`)
@@ -20,7 +33,7 @@
       `}catch(b){a.error(`info.display.js error while trying to display bbs information`,d)}b.executeScript({code:e})},[b.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,c)=>{let{url:d,domains:e}=c,f=c.type,g=`
     (function() {
     console.group(\`${new Date} ${f} 合法域名校验出错\`)
-    console.info(\`如若已在管理后台更新域名配置，请刷新项目配置后重新编译项目，操作路径：“项目-域名信息”\`)
+    console.info(\`如若已在管理后台更新域名配置，请刷新项目配置后重新编译项目，操作路径：“详情-域名信息”\`)
     console.error(\` ${d} 不在以下 ${f} 合法域名列表中，请参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html\`)
     console.table(${JSON.stringify(e)})
     console.groupEnd()

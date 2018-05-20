@@ -144,6 +144,12 @@ module.exports = {
   MENU_TOOLBAR: '工具栏',
   MENU_MOVE_SIMULATOR_LEFT: '左移模拟器',
   MENU_MOVE_SIMULATOR_RIGHT: '右移模拟器',
+  MENU_QCLOUD: '腾讯云',
+  MENU_COS: '素材管理',
+  MENU_TOOLS_MGR: '工具栏管理',
+  MENU_TGIT: '代码仓库',
+
+
   SETTING_APPEARANCE: '外观',
   SETTING_EDIT: '编辑',
   SETTING_PROXY: '代理',
@@ -215,7 +221,7 @@ module.exports = {
   CGI_ERR_DEV_CLOUD_CALLBACK_ERR: '%s，通知腾讯云发生错误',
   CGI_ERR_DEV_CLOUD_INVALID_ACTION: '腾讯云非法操作请求',
   CGI_ERR_DEV_CLOUD_EVENT_EXPIRED: '操作腾讯云请求超时',
-  CGI_ERR_DEV_CLOUD_NO_PERMISSION: '没有权限操作腾讯云',
+  CGI_ERR_DEV_CLOUD_NO_PERMISSION: '非小程序管理员，没有权限操作腾讯云',
   CGI_ERR_DEV_CLOUD_NO_PRODUCT_ENV: '未开通腾讯现网环境，请先开通',
   CGI_ERR_DEV_CLOUD_NO_CLOUD_ACCOUNT: '未开通腾讯云帐号',
   CGI_ERR_DEV_CLOUD_INVALID_RESP_DATA: '腾讯云返回非法数据',
@@ -229,6 +235,7 @@ module.exports = {
   CGI_ERR_DEV_TWO_SAME_PLUGIN_FOUND: '使用了同一个插件的不同版本',
   CGI_ERR_DEV_COMPILE_SOURCE_MAX_LIMIT_SUBPKG: '分包大小超过限制',
   CGI_ERR_DEV_PLUGIN_NOT_INITTED: '插件未初始化',
+  CGI_ERR_DEV_CLOUD_NO_TGIT_PROJECT: '未开通 TGit',
 
   API_NOT_SUPPORT: '开发者工具暂时不支持此 API 调试，请使用真机进行开发',
   API_NOT_ALLOW: '没有权限',
@@ -243,6 +250,10 @@ module.exports = {
   CREATE_PROJECT_TIP_MUST_CHOOSE_FOLDER: '创建临时目录失败，请选择一个目录',
   CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_APP_FOLDER: '请选择空目录或含 app.json / project.config.json 的目录创建项目',
   CREATE_PROJECT_TIP_MUST_USE_VALID_MINI_GAME_FOLDER: '请选择空目录或含 game.json 的目录创建项目',
+
+  PROJECT_PLUGIN_VERSION_WARNING: '插件版本警告',
+  PROJECT_PLUGIN_VERSION_UNMATCHED_WITH_VERSION_USED_IN_ONLINE_MINI_PROGRAM: '请注意，插件 %s 当前选择的版本 (%s) 小于线上小程序使用的版本 (%s)',
+
   // ===== QCLOUD =====
 
   CLOUD_ACTION_UPLOAD: '上传测试代码',

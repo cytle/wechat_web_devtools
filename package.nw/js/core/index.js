@@ -11,6 +11,9 @@ function getQueryParameter(key) {
   return ''
 }
 
+// 在非 new instance 的窗口内可以共享
+global.shareData = {}
+
 global.devInfo = {}
 if (location.search) {
   global.isDevWindow = true
@@ -127,6 +130,30 @@ try {
   }
 } catch (err) {}
 
+// parse cli
+try {
+  global.CLI.isTestMode = nw.App.argv.indexOf('--test-mode') > -1
+  global.autoTest = global.CLI.isTestMode
+
+  if (nw.App.argv.indexOf('--only-simulator') > -1) {
+    global.onlySimulator = true
+  }
+
+  if (nw.App.argv.indexOf('--online') > -1) {
+    global.online = true
+  }
+
+  if (global.CLI.isTestMode) {
+    const ind = nw.App.argv.indexOf('--id')
+    if (ind > -1) {
+      let raw = nw.App.argv[ind + 1]
+      if (raw) {
+        global.CLI.id = raw
+      }
+    }
+  }
+} catch (err) {}
+
 // enter background
 
 function init() {
@@ -158,10 +185,21 @@ function init() {
   })
 
   Win.on('close', () => {
-    global.windowMap.forEach((win) => {
-      if (win !== Win) {
-        win.close(true)
+    // make all webviews invisible
+    const webviews = document.querySelectorAll('webview')
+    for (const webview of webviews) {
+      try {
+        webview.style.display = 'none'
+      } catch (e) {
+        // nothing to do
       }
+    }
+    global.windowMap.forEach((win) => {
+      try {
+        if (win !== Win) {
+          win.close(true)
+        }
+      } catch(e) {}
     })
     global.windowMap.clear()
 
@@ -188,18 +226,17 @@ function init() {
   })
 }
 
-if (!global.isDevWindow) {
+if (!global.isDevWindow && !global.online) {
   const checkUpdate = require('../js/e5184416014aff2809a9dee32cc447c8.js')
   checkUpdate.loop()
 
   // 检查是否需要更新
   tools.checkUpdateApp()
-    .then(() => {
+    .then(()=>{
       init()
     })
 } else {
   init()
 }
-
 
 

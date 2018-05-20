@@ -52,21 +52,38 @@ const SyncSDKNames = {
     createRequestTask: () => {
         return !networkApiInjected;
     },
-    createUploadTask: true,
+    createUploadTask: () => {
+        return !networkApiInjected;
+    },
     createDownloadTask: () => {
         return !networkApiInjected;
     },
-    createSocketTask: true,
+    createSocketTask: () => {
+        return !networkApiInjected;
+    },
     operateSocketTask: true,
+    operateDownloadTask: true,
+    operateUploadTask: true,
+    operateRequestTask: true,
     createAudioInstance: true,
     unlink: true,
 };
 let managedRequestTaskId = 0;
-const managedRequestTaskCallIdTaskIdMap = {};
-const managedRealRequestTaskIdFakeTaskIdMap = {};
 let managedDownloadTaskId = 0;
-const managedDownloadTaskCallIdTaskIdMap = {};
-const managedRealDownloadTaskIdFakeTaskIdMap = {};
+let managedUploadTaskId = 0;
+let managedSocketTaskId = 0;
+const networkTaskIdRealFakeMap = {
+    request: {},
+    download: {},
+    upload: {},
+    socket: {},
+};
+const networkDatas = {
+    request: {},
+    download: {},
+    upload: {},
+    socket: {},
+};
 function isSdkSync(sdkName) {
     if (SyncSDKNames.hasOwnProperty(sdkName)) {
         const sdk = SyncSDKNames[sdkName];
@@ -296,7 +313,7 @@ function handleRegisterInterface(data) {
         const methodArgs = m.method_args;
         const fn = function (...fnArgs) {
             const sdkName = fnArgs[0];
-            const sdkArgs = fnArgs[1];
+            let sdkArgs = fnArgs[1];
             const _sdkCallId = parseInt(fnArgs[2], 10);
             const sdkCallId = isNaN(_sdkCallId) ? 0 : _sdkCallId;
             const callInterface = (callId, extra = {}, raw = false) => {
@@ -319,12 +336,59 @@ function handleRegisterInterface(data) {
                     errMsg: sdkName + ':fail debug invoke no active session'
                 });
             }
+            // transforms
+            if (sdkName === 'operateSocketTask') {
+                const parsedArgs = JSON.parse(sdkArgs);
+                const fakeId = parsedArgs.socketTaskId;
+                const realId = getNetworkRealIdByFakeId(fakeId, 'socket');
+                if (realId !== null) {
+                    log.i('operateSocketTask tranform id from', fakeId, 'to', realId);
+                    parsedArgs.socketTaskId = realId;
+                    sdkArgs = JSON.stringify(parsedArgs);
+                    fnArgs[1] = sdkArgs;
+                }
+            }
+            else if (sdkName === 'operateDownloadTask') {
+                const parsedArgs = JSON.parse(sdkArgs);
+                const fakeId = parsedArgs.downloadTaskId;
+                const realId = getNetworkRealIdByFakeId(fakeId, 'download');
+                if (realId !== null) {
+                    log.i('operateDownloadTask tranform id from', fakeId, 'to', realId);
+                    parsedArgs.downloadTaskId = realId;
+                    sdkArgs = JSON.stringify(parsedArgs);
+                    fnArgs[1] = sdkArgs;
+                }
+            }
+            else if (sdkName === 'operateUploadTask') {
+                const parsedArgs = JSON.parse(sdkArgs);
+                const fakeId = parsedArgs.uploadTaskId;
+                const realId = getNetworkRealIdByFakeId(fakeId, 'upload');
+                if (realId !== null) {
+                    log.i('operateUploadTask tranform id from', fakeId, 'to', realId);
+                    parsedArgs.uploadTaskId = realId;
+                    sdkArgs = JSON.stringify(parsedArgs);
+                    fnArgs[1] = sdkArgs;
+                }
+            }
+            else if (sdkName === 'operateRequestTask') {
+                const parsedArgs = JSON.parse(sdkArgs);
+                const fakeId = parsedArgs.requestTaskId;
+                const realId = getNetworkRealIdByFakeId(fakeId, 'request');
+                if (realId !== null) {
+                    log.i('operateRequestTask tranform id from', fakeId, 'to', realId);
+                    parsedArgs.requestTaskId = realId;
+                    sdkArgs = JSON.stringify(parsedArgs);
+                    fnArgs[1] = sdkArgs;
+                }
+            }
+            // end transforms
             if (methodName === 'invokeHandler' && isSdkSync(sdkName)) {
                 // sync function
                 const debugMessage = callInterface(sdkCallId, {
                     is_sync: true,
                     timestamp: Date.now(),
                     sdkName: sdkName,
+                    len: (sdkArgs || '').length + sdkName.length,
                 }, true);
                 try {
                     const res = childIpc.sendSync('sdksyncapi', debugMessage);
@@ -350,9 +414,20 @@ function handleRegisterInterface(data) {
             }
             else if (methodName === 'invokeHandler' && sdkName === 'createRequestTask') {
                 // request task
-                callInterface(sdkCallId);
+                const parsedArgs = JSON.parse(sdkArgs) || {};
                 const requestTaskId = ++managedRequestTaskId;
-                managedRequestTaskCallIdTaskIdMap[sdkCallId] = requestTaskId;
+                networkDatas.request[sdkCallId] = {
+                    id: String(requestTaskId),
+                    api: 'request',
+                    info: {
+                        url: parsedArgs.url,
+                        method: parsedArgs.method || 'GET',
+                        data: parsedArgs.data,
+                    },
+                    state: 'requestSent',
+                    data: null,
+                };
+                callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
                     requestTaskId: String(requestTaskId)
@@ -360,12 +435,59 @@ function handleRegisterInterface(data) {
             }
             else if (methodName === 'invokeHandler' && sdkName === 'createDownloadTask') {
                 // download task
-                callInterface(sdkCallId);
                 const downloadTaskId = ++managedDownloadTaskId;
-                managedDownloadTaskCallIdTaskIdMap[sdkCallId] = downloadTaskId;
+                const parsedArgs = JSON.parse(sdkArgs) || {};
+                networkDatas.download[sdkCallId] = {
+                    id: String(downloadTaskId),
+                    api: 'download',
+                    info: {
+                        url: parsedArgs.url,
+                    },
+                    state: 'requestSent',
+                    data: null,
+                };
+                callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
                     downloadTaskId: String(downloadTaskId)
+                });
+            }
+            else if (methodName === 'invokeHandler' && sdkName === 'createUploadTask') {
+                // download task
+                const uploadTaskId = ++managedUploadTaskId;
+                const parsedArgs = JSON.parse(sdkArgs) || {};
+                networkDatas.upload[sdkCallId] = {
+                    id: String(uploadTaskId),
+                    api: 'upload',
+                    info: {
+                        url: parsedArgs.url,
+                    },
+                    state: 'requestSent',
+                    data: null,
+                };
+                callInterface(sdkCallId);
+                return JSON.stringify({
+                    errMsg: `${sdkName}:ok`,
+                    uploadTaskId: String(uploadTaskId)
+                });
+            }
+            else if (methodName === 'invokeHandler' && sdkName === 'createSocketTask') {
+                // download task
+                const socketTaskId = ++managedSocketTaskId;
+                const parsedArgs = JSON.parse(sdkArgs) || {};
+                networkDatas.socket[sdkCallId] = {
+                    id: String(socketTaskId),
+                    api: 'socket',
+                    info: {
+                        url: parsedArgs.url,
+                    },
+                    state: 'requestSent',
+                    data: null,
+                };
+                callInterface(sdkCallId);
+                return JSON.stringify({
+                    errMsg: `${sdkName}:ok`,
+                    socketTaskId: String(socketTaskId)
                 });
             }
             else if (methodName === 'invokeHandler' && sdkName === 'getSystemInfo' || sdkName === 'getSystemInfoSync') {
@@ -376,6 +498,7 @@ function handleRegisterInterface(data) {
                     is_sync: true,
                     timestamp: Date.now(),
                     sdkName: sdkName,
+                    len: (sdkArgs || '').length + sdkName.length,
                 }, true);
                 try {
                     const res = childIpc.sendSync('sdkstorageapi', debugMessage);
@@ -419,7 +542,10 @@ function handleRegisterInterface(data) {
                         }
                     }
                     else if (sdkName.endsWith('vdSync') ||
-                        sdkName.endsWith('vdSyncBatch') || sdkName.endsWith('appDataChange') || sdkName.endsWith('pageInitData') || sdkName.endsWith('__updateAppData')) {
+                        sdkName.endsWith('vdSyncBatch') ||
+                        sdkName.endsWith('appDataChange') ||
+                        sdkName.endsWith('pageInitData') ||
+                        sdkName.endsWith('__updateAppData')) {
                         updateAppData();
                     }
                 }
@@ -536,11 +662,38 @@ function handleCallInterfaceResult(data) {
     const callId = isNaN(_callId) ? 0 : _callId;
     reportSDKAPI(callId, retDataSize);
     if (vmGlobal.WeixinJSBridge && typeof vmGlobal.WeixinJSBridge.invokeCallbackHandler === 'function') {
-        if (networkApiInjected && managedRequestTaskCallIdTaskIdMap[callId] && ret.requestTaskId) {
-            managedRealRequestTaskIdFakeTaskIdMap[ret.requestTaskId] = managedRequestTaskCallIdTaskIdMap[callId];
+        if (networkApiInjected && networkDatas.request[callId] && ret.requestTaskId) {
+            networkTaskIdRealFakeMap.request[ret.requestTaskId] = networkDatas.request[callId].id;
+            if (exchangeGetNetworkRequestInfos[ret.requestTaskId]) {
+                const exchange = exchangeGetNetworkRequestInfos[ret.requestTaskId] || [];
+                handleMasterExchange(exchange[0], exchange[1], exchange[2]);
+                log.i('reinvoke exchange', exchange);
+                delete exchangeGetNetworkRequestInfos[ret.requestTaskId];
+            }
         }
-        else if (networkApiInjected && managedDownloadTaskCallIdTaskIdMap[callId] && ret.downloadTaskId) {
-            managedRealDownloadTaskIdFakeTaskIdMap[ret.downloadTaskId] = managedDownloadTaskCallIdTaskIdMap[callId];
+        else if (networkApiInjected && networkDatas.download[callId] && ret.downloadTaskId) {
+            networkTaskIdRealFakeMap.download[ret.downloadTaskId] = networkDatas.download[callId].id;
+            if (exchangeGetNetworkRequestInfos[ret.downloadTaskId]) {
+                const exchange = exchangeGetNetworkRequestInfos[ret.downloadTaskId] || [];
+                handleMasterExchange(exchange[0], exchange[1], exchange[2]);
+                delete exchangeGetNetworkRequestInfos[ret.downloadTaskId];
+            }
+        }
+        else if (networkApiInjected && networkDatas.upload[callId] && ret.uploadTaskId) {
+            networkTaskIdRealFakeMap.upload[ret.uploadTaskId] = networkDatas.upload[callId].id;
+            if (exchangeGetNetworkRequestInfos[ret.uploadTaskId]) {
+                const exchange = exchangeGetNetworkRequestInfos[ret.uploadTaskId] || [];
+                handleMasterExchange(exchange[0], exchange[1], exchange[2]);
+                delete exchangeGetNetworkRequestInfos[ret.uploadTaskId];
+            }
+        }
+        else if (networkApiInjected && networkDatas.socket[callId] && ret.socketTaskId) {
+            networkTaskIdRealFakeMap.socket[ret.socketTaskId] = networkDatas.socket[callId].id;
+            if (exchangeGetNetworkRequestInfos[ret.socketTaskId]) {
+                const exchange = exchangeGetNetworkRequestInfos[ret.socketTaskId] || [];
+                handleMasterExchange(exchange[0], exchange[1], exchange[2]);
+                delete exchangeGetNetworkRequestInfos[ret.socketTaskId];
+            }
         }
         const handler = vmGlobal.WeixinJSBridge.invokeCallbackHandler;
         handler.call(vmGlobal.WeixinJSBridge, callId, ret);
@@ -683,6 +836,225 @@ function loadSubpackage(subRoot) {
         }
     }
 }
+function sendNetworkDebug(data, timestamp) {
+    const message = {
+        type: 'networkdebug',
+        data,
+        timestamp,
+    };
+    log.i('sending network debug', message, timestamp);
+    sendMessageToMaster(message);
+}
+function plainCopy(o) {
+    return JSON.parse(JSON.stringify(o));
+}
+function onRequestTaskStateChange(args) {
+    const data = args[1] || {};
+    const nativeTime = (args[3] || {}).nativeTime || Date.now();
+    const obj = getNetworkDebugByRealId(data.requestTaskId, 'request');
+    if (!obj) {
+        log.w('onRequestTaskStateChange', data.requestTaskId, 'not found');
+        return;
+    }
+    if (data.state === 'headersReceived') {
+        obj.responseHeaders = plainCopy(data.header);
+        obj.state = 'headersReceived';
+        const message = {
+            id: data.requestTaskId,
+            api: 'request',
+            responseHeaders: data.header,
+            state: 'headersReceived',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'success') {
+        obj.state = 'success';
+        obj.data = data.data;
+        obj.statusCode = data.statusCode;
+        obj.statusText = data.statusText;
+        const message = {
+            id: data.requestTaskId,
+            state: 'success',
+            api: 'request',
+            statusCode: data.statusCode,
+            statusText: data.statusText,
+            dataLength: (data.data || '').length
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'fail') {
+        obj.state = 'fail';
+        obj.statusCode = obj.statusCode || data.statusCode;
+        const message = {
+            id: data.requestTaskId,
+            api: 'request',
+            state: 'fail',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+}
+function onDownloadTaskStateChange(args) {
+    const data = args[1] || {};
+    const nativeTime = (args[3] || {}).nativeTime || Date.now();
+    const obj = getNetworkDebugByRealId(data.downloadTaskId, 'download');
+    if (!obj) {
+        log.w('onDownloadTaskStateChange', data.downloadTaskId, 'not found');
+        return;
+    }
+    if (data.state === 'headersReceived') {
+        obj.responseHeaders = plainCopy(data.header);
+        obj.state = 'headersReceived';
+        const message = {
+            id: data.downloadTaskId,
+            api: 'download',
+            responseHeaders: data.header,
+            state: 'headersReceived',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'progressUpdate') {
+        obj.state = 'dataReceived';
+        obj.dataLength = data.totalBytesWritten;
+        const message = {
+            id: data.downloadTaskId,
+            state: 'dataReceived',
+            dataLength: data.totalBytesWritten,
+            api: 'download',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'success') {
+        obj.state = 'success';
+        if (typeof obj.dataLength === 'number') {
+            obj.data = `Saved ${obj.dataLength} Bytes at "${data.tempFilePath}"`;
+        }
+        else {
+            obj.data = `Saved at ${data.tempFilePath}`;
+        }
+        obj.statusCode = data.statusCode;
+        obj.statusText = data.statusText;
+        const message = {
+            id: data.downloadTaskId,
+            state: 'success',
+            api: 'download',
+            statusCode: data.statusCode,
+            statusText: data.statusText,
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'fail') {
+        obj.state = 'fail';
+        obj.statusCode = obj.statusCode || data.statusCode;
+        const message = {
+            id: data.downloadTaskId,
+            api: 'download',
+            state: 'fail',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+}
+function onUploadTaskStateChange(args) {
+    const data = args[1] || {};
+    const nativeTime = (args[3] || {}).nativeTime || Date.now();
+    const obj = getNetworkDebugByRealId(data.uploadTaskId, 'upload');
+    if (!obj) {
+        log.w('onUploadTaskStateChange', data.uploadTaskId, 'not found');
+        return;
+    }
+    if (data.state === 'headersReceived') {
+        obj.responseHeaders = plainCopy(data.header);
+        obj.state = 'headersReceived';
+        const message = {
+            id: data.uploadTaskId,
+            api: 'upload',
+            responseHeaders: data.header,
+            state: 'headersReceived',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'progressUpdate') {
+        obj.state = 'dataSent';
+        obj.dataLength = data.totalBytesSent;
+        const message = {
+            id: data.uploadTaskId,
+            state: 'dataSent',
+            dataLength: data.totalBytesSent,
+            api: 'upload',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'success') {
+        obj.state = 'success';
+        obj.data = data.data;
+        obj.statusCode = data.statusCode;
+        obj.statusText = data.statusText;
+        const message = {
+            id: data.uploadTaskId,
+            state: 'success',
+            api: 'upload',
+            statusCode: data.statusCode,
+            statusText: data.statusText,
+            dataLength: (data.data || '').length,
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'fail') {
+        obj.state = 'fail';
+        obj.statusCode = obj.statusCode || data.statusCode;
+        const message = {
+            id: data.uploadTaskId,
+            api: 'upload',
+            state: 'fail',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+}
+function onSocketTaskStateChange(args) {
+    const data = args[1] || {};
+    const nativeTime = (args[3] || {}).nativeTime || Date.now();
+    const obj = getNetworkDebugByRealId(data.socketTaskId, 'socket');
+    if (!obj) {
+        log.w('onSocketTaskStateChange', data.socketTaskId, 'not found');
+        return;
+    }
+    if (data.state === 'open') {
+        obj.responseHeaders = plainCopy(data.header);
+        obj.state = 'headersReceived';
+        const message = {
+            id: data.socketTaskId,
+            api: 'socket',
+            responseHeaders: data.header,
+            state: 'headersReceived',
+            websocketState: 'open',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'close') {
+        obj.state = 'success';
+        obj.statusCode = data.statusCode;
+        obj.statusText = data.statusText;
+        const message = {
+            id: data.socketTaskId,
+            state: 'success',
+            api: 'socket',
+            statusCode: data.statusCode,
+            statusText: data.statusText,
+            websocketState: 'close',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+    else if (data.state === 'error') {
+        obj.state = 'fail';
+        obj.statusCode = obj.statusCode || data.statusCode;
+        const message = {
+            id: data.socketTaskId,
+            api: 'socket',
+            websocketState: 'error',
+            state: 'fail',
+        };
+        sendNetworkDebug(message, nativeTime);
+    }
+}
 let getCurrentPages = vmGlobal.getCurrentPages || null;
 const savedWebviewIds = new Set();
 function handleSetupContext(data) {
@@ -707,15 +1079,31 @@ function handleSetupContext(data) {
         Object.defineProperty(vmGlobal.WeixinJSBridge, 'subscribeHandler', {
             value: function (...args) {
                 if (args[0] === 'onRequestTaskStateChange' && args[1] && args[1].requestTaskId) {
+                    onRequestTaskStateChange(args);
                     const realId = args[1].requestTaskId;
-                    if (managedRealRequestTaskIdFakeTaskIdMap[realId]) {
-                        args[1].requestTaskId = managedRealRequestTaskIdFakeTaskIdMap[realId];
+                    if (networkTaskIdRealFakeMap.request[realId]) {
+                        args[1].requestTaskId = networkTaskIdRealFakeMap.request[realId];
                     }
                 }
                 else if (args[0] === 'onDownloadTaskStateChange' && args[1] && args[1].downloadTaskId) {
+                    onDownloadTaskStateChange(args);
                     const realId = args[1].downloadTaskId;
-                    if (managedRealDownloadTaskIdFakeTaskIdMap[realId]) {
-                        args[1].downloadTaskId = managedRealDownloadTaskIdFakeTaskIdMap[realId];
+                    if (networkTaskIdRealFakeMap.download[realId]) {
+                        args[1].downloadTaskId = networkTaskIdRealFakeMap.download[realId];
+                    }
+                }
+                else if (args[0] === 'onUploadTaskStateChange') {
+                    onUploadTaskStateChange(args);
+                    const realId = args[1].uploadTaskId;
+                    if (networkTaskIdRealFakeMap.upload[realId]) {
+                        args[1].uploadTaskId = networkTaskIdRealFakeMap.upload[realId];
+                    }
+                }
+                else if (args[0] === 'onSocketTaskStateChange') {
+                    onSocketTaskStateChange(args);
+                    const realId = args[1].socketTaskId;
+                    if (networkTaskIdRealFakeMap.socket[realId]) {
+                        args[1].socketTaskId = networkTaskIdRealFakeMap.socket[realId];
                     }
                 }
                 else if (args[0] === 'onAppRouteDone') {
@@ -797,11 +1185,118 @@ function handleProcessMessage(msg) {
     else if (msg.type === 'setWXAppDatas') {
         handleSetWxAppDatas(msg.data);
     }
+    else if (msg.type === 'exchange') {
+        handleMasterExchange(msg.id, msg.command, msg.data);
+    }
     else {
         log.e('unrecognized message from master', msg);
     }
 }
 // process.on('message', handleProcessMessage)
+function getNetworkDebugByRealId(realId, api) {
+    const networkApi = (api || '').toLowerCase();
+    const map = networkTaskIdRealFakeMap[networkApi];
+    const networkMap = networkDatas[networkApi];
+    if (map && map.hasOwnProperty('' + realId) && networkMap) {
+        const fakeId = map[realId];
+        return getNetworkDebugByFakeId(fakeId, networkApi);
+    }
+    return null;
+}
+function getNetworkDebugByFakeId(fakeId, api) {
+    let obj = null;
+    const networkApi = (api || '').toLowerCase();
+    const networkMap = networkDatas[networkApi];
+    if (!networkMap) {
+        return null;
+    }
+    for (const key in networkMap) {
+        if (networkMap[key].id === fakeId) {
+            obj = networkMap[key];
+            break;
+        }
+    }
+    return obj;
+}
+function getNetworkRealIdByFakeId(fakeId, api) {
+    const networkApi = (api || '').toLowerCase();
+    const networkMap = networkTaskIdRealFakeMap[networkApi];
+    if (!networkMap) {
+        return null;
+    }
+    for (const key in networkMap) {
+        if (networkMap[key] === fakeId) {
+            return key;
+        }
+    }
+    return null;
+}
+const exchangeGetNetworkRequestInfos = {};
+function handleMasterExchange(id, command, data) {
+    if (command === 'getNetworkRequestInfo') {
+        if (!data || !id) {
+            log.w('invalid getNetworkRequestInfo, data =', data);
+            return;
+        }
+        const clientId = data.id;
+        const api = data.api;
+        const obj = getNetworkDebugByRealId(clientId, api);
+        if (obj) {
+            const message = {
+                type: 'exchange',
+                id,
+                result: obj.info,
+            };
+            sendMessageToMaster(message);
+        }
+        else {
+            log.i('exchange', command, clientId, api, 'not found, push to queue.');
+            exchangeGetNetworkRequestInfos[clientId] = Array.from(arguments);
+        }
+    }
+    else if (command === 'getNetworkResponseBody') {
+        if (!data || !id) {
+            log.w('invalid getNetworkRequestInfo, data =', data);
+            return;
+        }
+        log.i('obtaining network response body', data);
+        const clientId = data.id;
+        const api = data.api;
+        const obj = getNetworkDebugByRealId(clientId, api);
+        if (obj) {
+            const message = {
+                type: 'exchange',
+                id,
+                result: obj.data,
+            };
+            sendMessageToMaster(message);
+        }
+    }
+    else if (command === 'resetNetworkCache') {
+        for (const api in networkDatas) {
+            if (!networkDatas.hasOwnProperty(api)) {
+                continue;
+            }
+            const map = networkDatas[api];
+            for (const idKey in map) {
+                if (!map.hasOwnProperty(idKey)) {
+                    continue;
+                }
+                const item = map[idKey];
+                if (item.state === 'success' || item.state === 'fail') {
+                    // safe delete
+                    log.i('deleting network cache', item);
+                    delete item.data;
+                    delete item.info;
+                    delete item.responseHeaders;
+                }
+            }
+        }
+    }
+    else {
+        log.w('invalid exchange command', command);
+    }
+}
 function handleGetWxAppDatas() {
     if (getWXAppDatasTimeout) {
         clearTimeout(getWXAppDatasTimeout);
