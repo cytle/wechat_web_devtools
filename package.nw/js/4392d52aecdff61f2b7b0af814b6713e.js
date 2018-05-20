@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <script>var __webviewId__;</script>
   <script>var __wxConfig = {};</script>
+  <style>
+    body div {
+      height:100%
+    }
+  </style>
 </head>
 `,d=`<body style="width: 100%;height:100%;padding:0px;margin:0px;">
 <div id="container">

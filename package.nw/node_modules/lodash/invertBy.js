@@ -8,13 +8,6 @@ var objectProto = Object.prototype;
 var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var nativeObjectToString = objectProto.toString;
-
-/**
  * This method is like `_.invert` except that the inverted object is generated
  * from the results of running each element of `object` thru `iteratee`. The
  * corresponding inverted value of each inverted key is an array of keys
@@ -41,11 +34,6 @@ var nativeObjectToString = objectProto.toString;
  * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
  */
 var invertBy = createInverter(function(result, value, key) {
-  if (value != null &&
-      typeof value.toString != 'function') {
-    value = nativeObjectToString.call(value);
-  }
-
   if (hasOwnProperty.call(result, value)) {
     result[value].push(key);
   } else {

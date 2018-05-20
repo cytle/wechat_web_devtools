@@ -39,11 +39,19 @@ const getSortedFileList = () => {
     let fileNameList = fs.readdirSync(WeappLog)
     let sortFileList = fileNameList.reduce((array, item) => {
       let fullpath = path.join(WeappLog, item)
-      let stat = fs.statSync(fullpath)
-      array.push({
-        filePath: fullpath,
-        createTime: parseInt(stat.birthtime.getTime() / 1000)
-      })
+      let stat = null
+      try {
+        stat = fs.statSync(fullpath)
+      } catch (e) {
+        stat = null
+        console.error(e)
+      }
+      if (stat) {
+        array.push({
+          filePath: fullpath,
+          createTime: parseInt(stat.birthtime.getTime() / 1000)
+        })
+      }
       return array
     }, [])
     sortFileList = sortFileList.sort(function (a, b) {
@@ -89,8 +97,12 @@ function start() {
     let currentTime = new Date()
     let logName = `${currentTime.getFullYear()}-${currentTime.getMonth() + 1}-${currentTime.getDate()}-${currentTime.getHours()}-${currentTime.getMinutes()}-${currentTime.getSeconds()}.log`
     let logFilePath = global.logFilePath || path.join(WeappLog, logName)
+    if (global.isDevWindow) {
+      const ext = path.extname(logFilePath)
+      logFilePath = `${logFilePath.substring(0, logFilePath.length - ext.length)}-${global.devInfo.id}${ext}`
+    }
     fileStream = fs.createWriteStream(logFilePath)
-
+    let writeSize = 0
     Log.prototype.log = function (levelStr, args) {
       if (Log[levelStr] <= this.level) {
         var msg = fmt.apply(null, args);
@@ -104,7 +116,11 @@ function start() {
         } else {
           console.log(msg)
         }
+        writeSize += msg.length
         this.stream.write(msg)
+        if (writeSize >= MAX_LOG_BYTES && typeof log.flush === 'function') {
+          log.flush(true)
+        }
       }
     }
 
@@ -126,12 +142,12 @@ function start() {
   }
 
 
-  log.flush = () => {
-    process.nextTick(() => {
+  log.flush = (forced = false) => {
+    const _flush = () => {
       try {
         fileStream.uncork()
         const size = fileStream.bytesWritten || 0
-        if (size > MAX_LOG_BYTES && !global.logFilePath) {
+        if (forced || (size > MAX_LOG_BYTES && !global.logFilePath)) {
           try {
             fileStream.end()
             // restart
@@ -143,8 +159,13 @@ function start() {
         } else {
           fileStream.cork()
         }
-      } catch (e) { }
-    })
+      } catch (e) {}
+    }
+    if (forced) {
+      _flush()
+    } else {
+      process.nextTick(_flush)
+    }
   }
 
   if (!isDev || global.logFilePath) {
@@ -154,7 +175,7 @@ function start() {
       log.flush()
     }, LOG_FLUSH_INTERVAL)
   }
-}  
+}
 
 start()
 

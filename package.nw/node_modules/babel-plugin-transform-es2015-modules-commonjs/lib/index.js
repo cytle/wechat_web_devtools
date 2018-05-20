@@ -29,15 +29,19 @@ exports.default = function () {
 
       if (this.scope.getBinding(name) !== path.scope.getBinding(name)) return;
 
+      var replacement = t.cloneDeep(remap);
+
+      replacement.loc = path.node.loc;
+
       if (path.parentPath.isCallExpression({ callee: path.node })) {
-        path.replaceWith(t.sequenceExpression([t.numericLiteral(0), remap]));
-      } else if (path.isJSXIdentifier() && t.isMemberExpression(remap)) {
-        var object = remap.object,
-            property = remap.property;
+        path.replaceWith(t.sequenceExpression([t.numericLiteral(0), replacement]));
+      } else if (path.isJSXIdentifier() && t.isMemberExpression(replacement)) {
+        var object = replacement.object,
+            property = replacement.property;
 
         path.replaceWith(t.JSXMemberExpression(t.JSXIdentifier(object.name), t.JSXIdentifier(property.name)));
       } else {
-        path.replaceWith(remap);
+        path.replaceWith(replacement);
       }
       this.requeueInParent(path);
     },
@@ -515,7 +519,7 @@ exports.default = function () {
                       topNodes.push(_varDecl);
                     }
                   }
-                  remaps[_specifier.local.name] = t.memberExpression(target, t.cloneWithoutLoc(_specifier.imported));
+                  remaps[_specifier.local.name] = t.memberExpression(t.cloneWithoutLoc(target), t.cloneWithoutLoc(_specifier.imported));
                 }
               }
             } else {

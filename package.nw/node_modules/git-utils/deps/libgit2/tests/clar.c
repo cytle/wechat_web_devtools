@@ -340,12 +340,6 @@ clar_parse_args(int argc, char **argv)
 				if (strncmp(argument, _clar_suites[j].name, cmplen) == 0) {
 					int exact = (arglen >= suitelen);
 
-					/* Do we have a real suite prefix separated by a
-					 * trailing '::' or just a matching substring? */
-					if (arglen > suitelen && (argument[suitelen] != ':'
-						    || argument[suitelen + 1] != ':'))
-					    continue;
-
 					++found;
 
 					if (!exact)
@@ -415,7 +409,7 @@ clar_test_init(int argc, char **argv)
 }
 
 int
-clar_test_run(void)
+clar_test_run()
 {
 	if (_clar.argc > 1)
 		clar_parse_args(_clar.argc, _clar.argv);
@@ -430,7 +424,7 @@ clar_test_run(void)
 }
 
 void
-clar_test_shutdown(void)
+clar_test_shutdown()
 {
 	clar_print_shutdown(
 		_clar.tests_ran,

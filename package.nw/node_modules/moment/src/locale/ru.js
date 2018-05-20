@@ -12,7 +12,6 @@ function plural(word, num) {
 }
 function relativeTimeWithPlural(number, withoutSuffix, key) {
     var format = {
-        'ss': withoutSuffix ? 'секунда_секунды_секунд' : 'секунду_секунды_секунд',
         'mm': withoutSuffix ? 'минута_минуты_минут' : 'минуту_минуты_минут',
         'hh': 'час_часа_часов',
         'dd': 'день_дня_дней',
@@ -64,36 +63,36 @@ export default moment.defineLocale('ru', {
     // Выражение, которое соотвествует только сокращённым формам
     monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
     longDateFormat : {
-        LT : 'H:mm',
-        LTS : 'H:mm:ss',
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
         L : 'DD.MM.YYYY',
         LL : 'D MMMM YYYY г.',
-        LLL : 'D MMMM YYYY г., H:mm',
-        LLLL : 'dddd, D MMMM YYYY г., H:mm'
+        LLL : 'D MMMM YYYY г., HH:mm',
+        LLLL : 'dddd, D MMMM YYYY г., HH:mm'
     },
     calendar : {
-        sameDay: '[Сегодня, в] LT',
-        nextDay: '[Завтра, в] LT',
-        lastDay: '[Вчера, в] LT',
+        sameDay: '[Сегодня в] LT',
+        nextDay: '[Завтра в] LT',
+        lastDay: '[Вчера в] LT',
         nextWeek: function (now) {
             if (now.week() !== this.week()) {
                 switch (this.day()) {
                     case 0:
-                        return '[В следующее] dddd, [в] LT';
+                        return '[В следующее] dddd [в] LT';
                     case 1:
                     case 2:
                     case 4:
-                        return '[В следующий] dddd, [в] LT';
+                        return '[В следующий] dddd [в] LT';
                     case 3:
                     case 5:
                     case 6:
-                        return '[В следующую] dddd, [в] LT';
+                        return '[В следующую] dddd [в] LT';
                 }
             } else {
                 if (this.day() === 2) {
-                    return '[Во] dddd, [в] LT';
+                    return '[Во] dddd [в] LT';
                 } else {
-                    return '[В] dddd, [в] LT';
+                    return '[В] dddd [в] LT';
                 }
             }
         },
@@ -101,21 +100,21 @@ export default moment.defineLocale('ru', {
             if (now.week() !== this.week()) {
                 switch (this.day()) {
                     case 0:
-                        return '[В прошлое] dddd, [в] LT';
+                        return '[В прошлое] dddd [в] LT';
                     case 1:
                     case 2:
                     case 4:
-                        return '[В прошлый] dddd, [в] LT';
+                        return '[В прошлый] dddd [в] LT';
                     case 3:
                     case 5:
                     case 6:
-                        return '[В прошлую] dddd, [в] LT';
+                        return '[В прошлую] dddd [в] LT';
                 }
             } else {
                 if (this.day() === 2) {
-                    return '[Во] dddd, [в] LT';
+                    return '[Во] dddd [в] LT';
                 } else {
-                    return '[В] dddd, [в] LT';
+                    return '[В] dddd [в] LT';
                 }
             }
         },
@@ -125,7 +124,6 @@ export default moment.defineLocale('ru', {
         future : 'через %s',
         past : '%s назад',
         s : 'несколько секунд',
-        ss : relativeTimeWithPlural,
         m : relativeTimeWithPlural,
         mm : relativeTimeWithPlural,
         h : 'час',
@@ -170,6 +168,6 @@ export default moment.defineLocale('ru', {
     },
     week : {
         dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
+        doy : 7  // The week that contains Jan 1st is the first week of the year.
     }
 });
