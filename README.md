@@ -127,9 +127,9 @@ sudo apt install httpie
    **开发者工具配置文件, 所有工程和登录信息均会消失**
 3. 删除项目文件夹
 
-# 其它
+## 其它
 
-## Ubuntu环境下编辑器字体安装
+### Ubuntu环境下编辑器字体安装
 Ubuntu环境下默认没有`Cosolas`字体，同时目前无法修改字体，因此下载安装Consolas字体是较优方案，使得编辑器将显示更舒服。
 * 下载`https://github.com/kakkoyun/linux.files/blob/master/fonts/Consolas.ttf` 至`/usr/local/share/fonts` or `~/.fonts`
 * `sudo fc-cache -f`重建字体缓存
