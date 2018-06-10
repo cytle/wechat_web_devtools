@@ -722,6 +722,36 @@ function handleInitPubLib(pubMd5) {
         });
         // restore the original console
         vmGlobal.console = console;
+        // finishing up
+        loadCode('', '[__WXWorkerHelper__]', `
+      ;(function () {
+        const logNotSupport = function() {
+          console.group(new Date(), 'Worker 调试')
+          console.error('远程调试暂不支持 Worker 调试，请使用模拟器或真机预览进行调试。')
+          console.groupEnd()
+        }
+        const notSupport = {
+          postMessage() {
+            logNotSupport()
+          },
+          onMessage() {
+            logNotSupport()
+          },
+        }
+        try {
+          Object.defineProperty((typeof wx === 'object' ? wx : {}), 'createWorker', {
+            get() {
+              return function() {
+                logNotSupport()
+                return notSupport
+              }
+            },
+          })
+        } catch (e) {
+          // ignore
+        }
+      })();
+    `);
     }
     catch (err) {
         // something went wrong in pub lib code
@@ -781,10 +811,10 @@ function handleInitUserCode(userMd5) {
     }
     return ret;
 }
-function loadCode(filePath, sourceURL) {
+function loadCode(filePath, sourceURL, content) {
     let ret;
     try {
-        const script = fs.readFileSync(filePath, 'utf-8').toString();
+        const script = typeof content === 'string' ? content : fs.readFileSync(filePath, 'utf-8').toString();
         ret = vm.runInContext(script, jsVm, {
             filename: sourceURL,
         });

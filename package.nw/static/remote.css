@@ -242,6 +242,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-forbidden {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url('svg/forbidden.svg') no-repeat 50% 50%;
+          mask: url('svg/forbidden.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #6E6E6E;
+}
 .ui-icon-cache {
   display: inline-block;
   vertical-align: middle;
@@ -884,6 +895,14 @@ body {
   background: url('svg/git-u.svg') no-repeat 50% 50%;
   background-size: cover;
 }
+.ui-icon-tgit {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 12px;
+  background: url('svg/tgit.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-git-a {
   display: inline-block;
   vertical-align: middle;
@@ -1127,6 +1146,22 @@ body {
   background: url('svg/theme.svg') no-repeat 50% 50%;
   background-size: cover;
 }
+.ui-icon-go-ahead {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 14px;
+  background: url('svg/go-ahead.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-skip {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 10px;
+  background: url('svg/skip.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-thumbtack {
   display: inline-block;
   vertical-align: middle;
@@ -1173,6 +1208,22 @@ body {
   width: 57px;
   height: 19px;
   background: url('image/wetest.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-mute {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  background: url('image/mute@3x.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-unmute {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  background: url('image/unmute@3x.png') no-repeat 50% 50%;
   background-size: cover;
 }
 @media (min-resolution: 2dppx), (min-resolution: 192dpi) {

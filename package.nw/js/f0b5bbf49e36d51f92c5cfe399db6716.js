@@ -39,7 +39,7 @@ function getWinSystemProxySetting(callback) {
           if (global.autoTest && !res.ProxyEnable) {
             let envProxy = process.env.http_proxy || process.env.https_proxy
             if (envProxy) {
-              const match = envProxy.match(/^https?:\/\/(.+)/g)
+              const match = envProxy.match(/^https?:\/\/(.+)/)
               if (match && match[1]) {
                 envProxy = match[1]
                 res.ProxyEnable = true

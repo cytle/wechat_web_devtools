@@ -402,6 +402,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-forbidden {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url('svg/forbidden.svg') no-repeat 50% 50%;
+          mask: url('svg/forbidden.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #6E6E6E;
+}
 .ui-icon-cache {
   display: inline-block;
   vertical-align: middle;
@@ -1044,6 +1055,14 @@ body {
   background: url('svg/git-u.svg') no-repeat 50% 50%;
   background-size: cover;
 }
+.ui-icon-tgit {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 12px;
+  background: url('svg/tgit.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-git-a {
   display: inline-block;
   vertical-align: middle;
@@ -1287,6 +1306,22 @@ body {
   background: url('svg/theme.svg') no-repeat 50% 50%;
   background-size: cover;
 }
+.ui-icon-go-ahead {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 14px;
+  background: url('svg/go-ahead.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-skip {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 10px;
+  background: url('svg/skip.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-thumbtack {
   display: inline-block;
   vertical-align: middle;
@@ -1333,6 +1368,22 @@ body {
   width: 57px;
   height: 19px;
   background: url('image/wetest.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-mute {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  background: url('image/mute@3x.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-unmute {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  background: url('image/unmute@3x.png') no-repeat 50% 50%;
   background-size: cover;
 }
 @media (min-resolution: 2dppx), (min-resolution: 192dpi) {
@@ -5724,9 +5775,14 @@ span + .weui-tabbar__label {
   padding: 0 10px;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
-.simulator-toolbar-action a + a {
-  margin-left: 10px;
+.simulator-toolbar-action a:not(:first-child) {
+  padding-left: 6px;
+}
+.simulator-toolbar-action a:not(:last-child) {
+  padding-right: 6px;
+  border-right: 1px solid #dfdfdf;
 }
 .simulator-toolbar-item-active {
   background-color: rgba(0, 0, 0, 0.06);
@@ -5795,6 +5851,48 @@ span + .weui-tabbar__label {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.break-point {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 12px 15px;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 2000;
+}
+.break-point:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  height: 200%;
+  transform-origin: 0 0;
+  transform: scale(0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.break-point-bd {
+  position: relative;
+  flex: 1;
+  padding-right: 15px;
+  white-space: nowrap;
+}
+.break-point-ft {
+  position: relative;
+  display: flex;
+}
+.break-point-action:not(:last-child) {
+  padding-right: 10px;
+  border-right: 1px solid rgba(151, 151, 151, 0.3);
+}
+.break-point-action:not(:first-child) {
+  padding-left: 10px;
 }
 .standalone .simulator-toolbar-item {
   width: auto;

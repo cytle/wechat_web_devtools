@@ -130,6 +130,12 @@ class FileUtils extends EventEmitter {
       completeFileList.push(path.posix.relative(this.dirPath, fileName) + '/')
     } else if(eventType === 'change'){
       let p = path.posix.relative(this.dirPath, fileName)
+      
+      // 一些用户反馈在 部分 win10 1803下会自动编译，找用户定位后确认 是会触发文件改变但是 modifiy time并没有更新
+      if(process.platform !== 'darwin' && fileInfo[p] && fileInfo[p].mtimeMs === details.mtimeMs) {
+        return
+      }
+
       fileInfo[p] = details
     }
 

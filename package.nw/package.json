@@ -4,10 +4,10 @@
     "name": "微信web开发者工具",
     "productName": "微信开发者工具",
     "appname": "wechatwebdevtools",
-    "version": "1.02.1805181",
+    "version": "1.02.1806080",
     "window": {
         "id": "init",
-        "title": "微信开发者工具 v1.02.1805181",
+        "title": "微信开发者工具 v1.02.1806080",
         "icon": "app/images/logo2.png",
         "toolbar": true,
         "width": 334,

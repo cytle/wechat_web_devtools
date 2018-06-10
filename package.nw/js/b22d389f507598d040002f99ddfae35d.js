@@ -26,6 +26,10 @@ try {
         global.logInterval = logInterval
       }
     }
+
+    if (nw.App.argv.indexOf('--log-realtime') > -1) {
+      global.logRealtime = true
+    }
   }
 
 } catch (err) {
@@ -99,7 +103,7 @@ function start() {
     let logFilePath = global.logFilePath || path.join(WeappLog, logName)
     if (global.isDevWindow) {
       const ext = path.extname(logFilePath)
-      logFilePath = `${logFilePath.substring(0, logFilePath.length - ext.length)}-${global.devInfo.id}${ext}`
+      logFilePath = `${logFilePath.substring(0, logFilePath.length - ext.length)}-${global.devInfo.appid || global.devInfo.id}${ext}`
     }
     fileStream = fs.createWriteStream(logFilePath)
     let writeSize = 0
@@ -118,14 +122,20 @@ function start() {
         }
         writeSize += msg.length
         this.stream.write(msg)
-        if (writeSize >= MAX_LOG_BYTES && typeof log.flush === 'function') {
-          log.flush(true)
+        if (!global.logRealtime) {
+          if (writeSize >= MAX_LOG_BYTES && typeof log.flush === 'function') {
+            log.flush(true)
+          }
         }
       }
     }
 
     log = new Log('info', fileStream)
-    fileStream.cork()
+
+    if (!global.logRealtime) {
+      fileStream.cork()
+    }
+
     log.filePath = logFilePath
   }
 
@@ -158,7 +168,7 @@ function start() {
           }
         } else {
           fileStream.cork()
-        }
+         }
       } catch (e) {}
     }
     if (forced) {
@@ -168,7 +178,7 @@ function start() {
     }
   }
 
-  if (!isDev || global.logFilePath) {
+  if (!global.logRealtime && !isDev || global.logFilePath) {
     const LOG_FLUSH_INTERVAL = global.logInterval || 60000 * 5
     clearInterval(_interval)
     _interval = setInterval(() => {

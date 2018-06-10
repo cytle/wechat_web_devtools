@@ -1,5 +1,5 @@
 module.exports = {
-  APP_NEED_UPDATE: '已有新的版本 %s，正在下载更新，请稍候重启',
+  APP_NEED_UPDATE: '已有新的版本 %s，正在下载更新，请稍后重启',
   APP_NEED_NOT_UPDATE: '当前已是最新版本（%s）',
   NETWORK_ERROR: '网络错误，状态码：%s',
   FILE_NOT_FOUND: '未找到入口 %s 文件，或者文件读取失败，请检查后重新编译。',
@@ -360,5 +360,9 @@ module.exports = {
 
   FILE_NOT_UTF8: '%s 文件不是 UTF-8 格式',
 
-  PROJECT_JSON_VALUE_NO_FOUND: 'project.config.json 未找到 %s 字段'
+  PROJECT_JSON_VALUE_NO_FOUND: 'project.config.json 未找到 %s 字段',
+
+  SEM_VER_MAJOR: '版本升级',
+  SEM_VER_MINOR: '特性更新',
+  SEM_VER_PATCH: '修订补丁',
 }
