@@ -129,5 +129,16 @@ sudo apt install httpie
 
 ## 其它
 
+### Ubuntu环境下编辑器字体安装
+Ubuntu环境下默认没有`Cosolas`字体，同时目前无法修改字体，因此下载安装Consolas字体是较优方案，使得编辑器将显示更舒服。
+* 下载`https://github.com/kakkoyun/linux.files/blob/master/fonts/Consolas.ttf` 至`/usr/local/share/fonts` or `~/.fonts`
+* `sudo fc-cache -f`重建字体缓存
+* 确认字体安装成功
+```
+ sudo fc-list|grep Consol
+.fonts/Consolas.ttf: Consolas:style=Regular
+```
+* 重启微信开发者工具
+
 ### 免责声明
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：canyoutle@gmail.com
