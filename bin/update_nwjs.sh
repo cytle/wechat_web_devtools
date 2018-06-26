@@ -14,7 +14,7 @@ tmp_dir="/tmp/wxdt_xsp"
 
 nwjs_file="$tmp_dir/nwjs-v$nwjs_v.tar.gz"
 nwjs_dir="$tmp_dir/nwjs-sdk-v${nwjs_v}-linux-$bit"
-nwjs_download="https://dl.nwjs.io/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-$bit.tar.gz"
+nwjs_download="https://npm.taobao.org/mirrors/nwjs/v$nwjs_v/nwjs-sdk-v${nwjs_v}-linux-$bit.tar.gz"
 
 dist_dir="$root_dir/dist"
 
