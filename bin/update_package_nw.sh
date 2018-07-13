@@ -45,7 +45,7 @@ if [ ! -f "$wcwd_file" ]; then
 fi
 
 # 安装 来自 https://github.com/cytle/wechat_web_devtools/issues/43
-# env LC_ALL=zh_CN.UTF-8 wine $wcwd_file
+env LC_ALL=zh_CN.UTF-8 wine $wcwd_file
 
 rm -rf "$root_dir/package.nw"
 echo "$wcwd_package_dir"
