@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vm = require("vm");
 const fs = require("fs");
 const path = require("path");
+//@ts-ignore
 const inspector = require("inspector");
 const child_process_1 = require("child_process");
 const WebSocket = require("ws");
@@ -517,12 +518,14 @@ function handleRegisterInterface(data) {
             else if (methodName === 'invokeHandler' && (sdkName === 'navigateTo' || sdkName === 'redirectTo' || sdkName === 'switchTab' || sdkName === 'reLaunch')) {
                 // page navigations
                 try {
-                    const uri = JSON.parse(sdkArgs).url;
-                    const parsed = parseUrl(uri);
-                    const subRoot = getSubpackageRootForPath(parsed.pathName);
-                    if (subRoot) {
-                        loadSubpackage(subRoot);
-                    }
+                    // const uri = JSON.parse(sdkArgs).url
+                    // const parsed = parseUrl(uri)
+                    // const subRoot = getSubpackageRootForPath(parsed.pathName)
+                    // if (subRoot) {
+                    //   loadSubpackage(subRoot)
+                    // }
+                    // clear system info cache
+                    systemInfoCache = null;
                 }
                 catch (e) {
                     log.e('[REMOTE] load subpackage failed', e);
@@ -782,23 +785,24 @@ function handleInitUserCode(userMd5) {
             }
             else if (path.extname(filePath).toLowerCase() === '.js') {
                 // javascript files
-                if (appJson && appJson.subPackages && Array.isArray(appJson.subPackages)) {
-                    let inSubPackages = false;
-                    for (const sub of appJson.subPackages) {
-                        if (!sub || typeof sub.root !== 'string') {
-                            continue;
-                        }
-                        const root = trailing(sub.root, '/');
-                        if (file.indexOf(root) === 0) {
-                            inSubPackages = true;
-                            break;
-                        }
-                    }
-                    if (inSubPackages) {
-                        // do not load subpackage files for now
-                        continue;
-                    }
-                }
+                // load subpackages for now
+                // if (appJson && appJson.subPackages && Array.isArray(appJson.subPackages)) {
+                //   let inSubPackages = false
+                //   for (const sub of appJson.subPackages) {
+                //     if (!sub || typeof sub.root !== 'string') {
+                //       continue
+                //     }
+                //     const root = trailing(sub.root, '/')
+                //     if (file.indexOf(root) === 0) {
+                //       inSubPackages = true
+                //       break
+                //     }
+                //   }
+                //   if (inSubPackages) {
+                //     // do not load subpackage files for now
+                //     continue
+                //   }
+                // }
                 ret = loadCode(filePath);
             }
             else {
@@ -1094,6 +1098,23 @@ function handleSetupContext(data) {
     handleEvaluateJavascript({
         script: cfgJs
     });
+    // initialization
+    loadCode('', '[__InitHelper__]', `var __wxAppData = __wxAppData || {};
+    var __wxRoute;
+    var __wxRouteBegin;
+    var __wxAppCode__ = __wxAppCode__ || {};
+    var __wxAppCurrentFile__;
+    var Component = Component || function() {};
+    var Behavior = Behavior || function() {};
+    var definePlugin = definePlugin || function() {};
+    var requirePlugin = requirePlugin || function() {};
+    var global = global || {};
+    var __workerVendorCode__ = __workerVendorCode__ || {};
+    var __workersCode__ = __workersCode__ || {};
+    var WeixinWorker = WeixinWorker || {}
+    var __WeixinWorker = WeixinWorker
+    var __initHelper = 1;
+    var $gwx;`);
     // load wxml xcjs
     loadCode(path.join(tempDir, 'wxmlxcjs.js'));
     // load wx app code
@@ -1375,7 +1396,7 @@ function handleSetWxAppDatas(data) {
         }
     }
 }
-process.on('uncaughtException', error => {
+process.on('uncaughtException', (error) => {
     log.e('uncaughtException', error);
     console.error('uncaughtException', error);
     const message = {

@@ -68,7 +68,7 @@ module.exports = function parse (modules, opts) {
             if (updates.length === 0) return done();
             var s = updates.shift();
 
-            output.push(src.slice(pos, s.start));
+            output.write(src.slice(pos, s.start));
             pos = s.start + s.offset;
 
             s.stream.pipe(output, { end: false });
@@ -88,7 +88,7 @@ module.exports = function parse (modules, opts) {
         })();
 
         function done () {
-            output.push(src.slice(pos));
+            output.write(src.slice(pos));
             if (opts.sourceMap) {
                 var map = sourcemapper.generateMap({
                     source: opts.inputFilename || 'input.js',
@@ -96,12 +96,12 @@ module.exports = function parse (modules, opts) {
                 });
                 if (inputMap) {
                     var merged = mergeSourceMap(inputMap, map);
-                    output.push('\n' + convertSourceMap.fromObject(merged).toComment() + '\n');
+                    output.write('\n' + convertSourceMap.fromObject(merged).toComment() + '\n');
                 } else {
-                    output.push('\n//# sourceMappingURL=' + map.toUrl() + '\n');
+                    output.write('\n//# sourceMappingURL=' + map.toUrl() + '\n');
                 }
             }
-            output.push(null);
+            output.end();
         }
     }
 

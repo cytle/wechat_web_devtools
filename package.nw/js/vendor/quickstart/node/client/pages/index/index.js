@@ -12,47 +12,40 @@ Page({
     },
 
     // 用户登录示例
-    login: function() {
+    bindGetUserInfo: function () {
         if (this.data.logged) return
 
         util.showBusy('正在登录')
-        var that = this
 
-        // 调用登录接口
-        qcloud.login({
-            success(result) {
-                if (result) {
+        const session = qcloud.Session.get()
+
+        if (session) {
+            // 第二次登录
+            // 或者本地已经有登录态
+            // 可使用本函数更新登录态
+            qcloud.loginWithCode({
+                success: res => {
+                    this.setData({ userInfo: res, logged: true })
                     util.showSuccess('登录成功')
-                    that.setData({
-                        userInfo: result,
-                        logged: true
-                    })
-                } else {
-                    // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-                    qcloud.request({
-                        url: config.service.requestUrl,
-                        login: true,
-                        success(result) {
-                            util.showSuccess('登录成功')
-                            that.setData({
-                                userInfo: result.data.data,
-                                logged: true
-                            })
-                        },
-
-                        fail(error) {
-                            util.showModel('请求失败', error)
-                            console.log('request fail', error)
-                        }
-                    })
+                },
+                fail: err => {
+                    console.error(err)
+                    util.showModel('登录错误', err.message)
                 }
-            },
-
-            fail(error) {
-                util.showModel('登录失败', error)
-                console.log('登录失败', error)
-            }
-        })
+            })
+        } else {
+            // 首次登录
+            qcloud.login({
+                success: res => {
+                    this.setData({ userInfo: res, logged: true })
+                    util.showSuccess('登录成功')
+                },
+                fail: err => {
+                    console.error(err)
+                    util.showModel('登录错误', err.message)
+                }
+            })
+        }
     },
 
     // 切换是否带有登录态

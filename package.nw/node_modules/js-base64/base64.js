@@ -21,7 +21,7 @@
     'use strict';
     // existing version for noConflict()
     var _Base64 = global.Base64;
-    var version = "2.4.3";
+    var version = "2.4.5";
     // if node.js, we use Buffer
     var buffer;
     if (typeof module !== 'undefined' && module.exports) {
@@ -81,7 +81,8 @@
         return b.replace(/[\s\S]{1,3}/g, cb_encode);
     };
     var _encode = buffer ?
-        buffer.from && buffer.from !== Uint8Array.from ? function (u) {
+        buffer.from && Uint8Array && buffer.from !== Uint8Array.from
+        ? function (u) {
             return (u.constructor === buffer.constructor ? u : buffer.from(u))
                 .toString('base64')
         }
@@ -152,7 +153,8 @@
         return a.replace(/[\s\S]{1,4}/g, cb_decode);
     };
     var _decode = buffer ?
-        buffer.from && buffer.from !== Uint8Array.from ? function(a) {
+        buffer.from && Uint8Array && buffer.from !== Uint8Array.from
+        ? function(a) {
             return (a.constructor === buffer.constructor
                     ? a : buffer.from(a, 'base64')).toString();
         }

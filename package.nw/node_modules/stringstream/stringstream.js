@@ -28,7 +28,7 @@ StringStream.prototype.write = function(data) {
     return false
   }
   if (this.fromEncoding) {
-    if (Buffer.isBuffer(data)) data = data.toString()
+    if (Buffer.isBuffer(data) || typeof data === 'number') data = data.toString()
     data = new Buffer(data, this.fromEncoding)
   }
   var string = this.decoder.write(data)

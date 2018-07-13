@@ -9,12 +9,14 @@
 
 var isNumber = require('is-number');
 var typeOf = require('kind-of');
+var mathRandom = require('math-random');
 
 /**
  * Expose `randomatic`
  */
 
 module.exports = randomatic;
+module.exports.isCrypto = !!mathRandom.cryptographic;
 
 /**
  * Available mask characters
@@ -51,7 +53,9 @@ function randomatic(pattern, length, options) {
       length = pattern.length;
 
     } else if (isNumber(pattern)) {
-      options = {}; length = pattern; pattern = '*';
+      options = {};
+      length = pattern;
+      pattern = '*';
     }
   }
 
@@ -76,7 +80,7 @@ function randomatic(pattern, length, options) {
   if (custom) mask += pattern;
 
   while (length--) {
-    res += mask.charAt(parseInt(Math.random() * mask.length, 10));
+    res += mask.charAt(parseInt(mathRandom() * mask.length, 10));
   }
   return res;
 };
