@@ -20,7 +20,7 @@ class User
         } else {
             DB::update(
                 'cSessionInfo',
-                compact('skey', 'last_visit_time', 'session_key', 'user_info'),
+                compact('uuid', 'skey', 'last_visit_time', 'session_key', 'user_info'),
                 compact('open_id')
             );
         }
@@ -28,9 +28,5 @@ class User
 
     public static function findUserBySKey ($skey) {
         return DB::row('cSessionInfo', ['*'], compact('skey'));
-    }
-
-    public static function findUserByOpenId ($open_id) {
-        return DB::row('cSessionInfo', ['*'], compact('open_id'));
     }
 }

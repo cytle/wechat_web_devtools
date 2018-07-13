@@ -67,22 +67,12 @@ function request(options) {
 
     // 登录后再请求
     function doRequestWithLogin() {
-        loginLib.loginWithCode({ success: doRequest, fail: callFail });
+        loginLib.login({ success: doRequest, fail: callFail });
     }
 
     // 实际进行请求的方法
     function doRequest() {
-        var authHeader = {}
-
-        if (requireLogin) {
-            var session = Session.get();
-    
-            if (!session) {
-                return doRequestWithLogin();
-            }
-    
-            authHeader = buildAuthHeader(session.skey);
-        }
+        var authHeader = buildAuthHeader(Session.get());
 
         wx.request(utils.extend({}, options, {
             header: utils.extend({}, originHeader, authHeader),

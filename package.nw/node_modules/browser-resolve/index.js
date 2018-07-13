@@ -53,7 +53,7 @@ function find_shims_in_package(pkgJson, cur_path, shims, browser) {
     Object.keys(replacements).forEach(function(key) {
         var val;
         if (replacements[key] === false) {
-            val = path.normalize(__dirname + '/empty.js');
+            val = __dirname + '/empty.js';
         }
         else {
             val = replacements[key];
@@ -299,17 +299,15 @@ resolve.sync = function (id, opts) {
 
     // we must always load shims because the browser field could shim out a module
     var shims = load_shims_sync(paths, opts.browser);
-    var resid = path.resolve(opts.basedir || path.dirname(opts.filename), id);
 
-    if (shims[id] || shims[resid]) {
-        var xid = shims[id] ? id : resid;
+    if (shims[id]) {
         // if the shim was is an absolute path, it was fully resolved
-        if (shims[xid][0] === '/') {
-            return resv.sync(shims[xid], build_resolve_opts(opts, base));
+        if (shims[id][0] === '/') {
+            return shims[id];
         }
 
         // module -> alt-module shims
-        id = shims[xid];
+        id = shims[id];
     }
 
     var modules = opts.modules || Object.create(null);

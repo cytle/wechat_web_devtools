@@ -11,36 +11,48 @@ Page({
         requestResult: ''
     },
 
-    bindGetUserInfo: function () {
+    // 用户登录示例
+    login: function() {
         if (this.data.logged) return
 
         util.showBusy('正在登录')
+        var that = this
 
-        const session = qcloud.Session.get()
+        // 调用登录接口
+        qcloud.login({
+            success(result) {
+                if (result) {
+                    util.showSuccess('登录成功')
+                    that.setData({
+                        userInfo: result,
+                        logged: true
+                    })
+                } else {
+                    // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
+                    qcloud.request({
+                        url: config.service.requestUrl,
+                        login: true,
+                        success(result) {
+                            util.showSuccess('登录成功')
+                            that.setData({
+                                userInfo: result.data.data,
+                                logged: true
+                            })
+                        },
 
-        if (session) {
-            qcloud.loginWithCode({
-                success: res => {
-                    this.setData({ userInfo: res, logged: true })
-                    util.showSuccess('登录成功')
-                },
-                fail: err => {
-                    console.error(err)
-                    util.showModel('登录错误', err.message)
+                        fail(error) {
+                            util.showModel('请求失败', error)
+                            console.log('request fail', error)
+                        }
+                    })
                 }
-            })
-        } else {
-            qcloud.login({
-                success: res => {
-                    this.setData({ userInfo: res, logged: true })
-                    util.showSuccess('登录成功')
-                },
-                fail: err => {
-                    console.error(err)
-                    util.showModel('登录错误', err.message)
-                }
-            })
-        }
+            },
+
+            fail(error) {
+                util.showModel('登录失败', error)
+                console.log('登录失败', error)
+            }
+        })
     },
 
     // 切换是否带有登录态
@@ -97,9 +109,7 @@ Page({
 
                     success: function(res){
                         util.showSuccess('上传图片成功')
-                        console.log(res)
                         res = JSON.parse(res.data)
-                        console.log(res)
                         that.setData({
                             imgUrl: res.data.imgUrl
                         })

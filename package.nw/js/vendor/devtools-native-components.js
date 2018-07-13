@@ -1,11 +1,5 @@
 // 获取数据初始化数据
 var search = location.href.split('?')[1] || ''
-var hiddenVideoCenterBtnStyle = document.createElement('style')
-hiddenVideoCenterBtnStyle.innerHTML = `
-wx-video .wx-video-cover {
-  display: none;
-}
-`
 search = search.split('&')
 var query = {}
 for (var i = 0, len = search.length; i < len; i++) {
@@ -38,14 +32,6 @@ WeixinJSBridge.on('updateNativeView', function(data) {
   if (!dom)return
 
   for (let key in data) {
-    if (key == 'showCenterPlayBtn') {
-      if (data[key]) {
-        hiddenVideoCenterBtnStyle.remove()
-      } else if(!hiddenVideoCenterBtnStyle.parentElement){
-        document.body.appendChild(hiddenVideoCenterBtnStyle)
-      }
-    }
-
     dom[key] = data[key]
     if (query.data) {
       query.data[key] = data[key]
@@ -66,39 +52,12 @@ WeixinJSBridge.on('operateNativeView', function(data) {
   }
 })
 
-var forcePaused = false
-WeixinJSBridge.on('onAppEnterBackground', function() {
-  if (dom && dom.is == 'wx-video') {
-    if (!dom.paused) {
-      dom.actionChanged({
-        method: 'pause'
-      })
-     forcePaused = true
-    }
-  }
-})
-
-WeixinJSBridge.on('onAppEnterForeground', function() {
-  if (dom && dom.is == 'wx-video') {
-    if (forcePaused) {
-      dom.actionChanged({
-        method: 'play'
-      })
-      forcePaused = false
-    }
-  }
-})
-
-
 if (query.name) {
   // 创建组件
   dom = exparser.createElement('wx-' + query.name)
   dom.$$.setAttribute('style', 'height:100%;width:100%')
   if (query.data) {
     for (let key in query.data) {
-      if (key == 'showCenterPlayBtn' && !query.data[key]) {
-        document.body.appendChild(hiddenVideoCenterBtnStyle)
-      }
       dom[key] = query.data[key]
     }
   }

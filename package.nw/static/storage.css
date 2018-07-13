@@ -122,7 +122,7 @@
 .ui-icon-upload {
   display: inline-block;
   vertical-align: middle;
-  width: 16px;
+  width: 12px;
   height: 11px;
   -webkit-mask: url('svg/upload.svg') no-repeat 50% 50%;
           mask: url('svg/upload.svg') no-repeat 50% 50%;
@@ -489,17 +489,6 @@
           mask-size: cover;
   background-color: #5E5E5E;
 }
-.ui-icon-cogs {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 16px;
-  -webkit-mask: url('svg/cogs.svg') no-repeat 50% 50%;
-          mask: url('svg/cogs.svg') no-repeat 50% 50%;
-  -webkit-mask-size: cover;
-          mask-size: cover;
-  background-color: #000;
-}
 .ui-icon-mini-app {
   display: inline-block;
   vertical-align: middle;
@@ -654,17 +643,6 @@
           mask-size: cover;
   background-color: #000;
 }
-.ui-icon-inspect {
-  display: inline-block;
-  vertical-align: middle;
-  width: 14px;
-  height: 14px;
-  -webkit-mask: url('svg/inspect.svg') no-repeat 50% 50%;
-          mask: url('svg/inspect.svg') no-repeat 50% 50%;
-  -webkit-mask-size: cover;
-          mask-size: cover;
-  background-color: #000;
-}
 .ui-icon-trash {
   display: inline-block;
   vertical-align: middle;
@@ -724,14 +702,6 @@
   width: 16px;
   height: 12px;
   background: url('svg/git-m.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-rotation {
-  display: inline-block;
-  vertical-align: middle;
-  width: 15px;
-  height: 15px;
-  background: url('svg/rotation.svg') no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-circle-x {
@@ -794,15 +764,6 @@
   align-items: center;
   justify-content: center;
 }
-.ui-icon-git-label {
-  display: inline-flex;
-  font-size: 10px;
-  color: #fff;
-  background: #5e5e5e;
-  padding: 2px 5px;
-  border-radius: 10px;
-  line-height: 1;
-}
 .ui-icon-git-dot {
   display: inline-block;
   vertical-align: middle;
@@ -818,37 +779,6 @@
   height: 10px;
   background: url('svg/pause.svg') no-repeat 50% 50%;
   background-size: cover;
-}
-.ui-icon-msg-upload {
-  display: inline-block;
-  vertical-align: middle;
-  width: 72px;
-  height: 72px;
-  background: url('svg/msg-upload.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-community {
-  display: inline-block;
-  vertical-align: middle;
-  width: 19px;
-  height: 19px;
-  background: url('svg/community.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-link {
-  display: inline-block;
-  vertical-align: middle;
-  width: 19px;
-  height: 19px;
-  background: url('svg/link.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-minus {
-  display: inline-block;
-  width: 10px;
-  height: 1px;
-  background-color: #000;
-  vertical-align: middle;
 }
 .ui-icon-play {
   display: inline-block;
@@ -906,68 +836,12 @@
   background: url('svg/audio.svg') no-repeat 50% 50%;
   background-size: cover;
 }
-.ui-icon-file-d-ts {
-  display: inline-block;
-  vertical-align: middle;
-  width: 14px;
-  height: 14px;
-  background: url('svg/d.ts.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-file-map {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 16px;
-  background: url('svg/map.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-file-project-config-json {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 16px;
-  background: url('svg/project.config.json.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-file-ts {
-  display: inline-block;
-  vertical-align: middle;
-  width: 14px;
-  height: 14px;
-  background: url('svg/ts.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-file-tsconfig-json {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 16px;
-  background: url('svg/tsconfig.json.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
 .ui-icon-qrcode {
   display: inline-block;
   vertical-align: middle;
   width: 10px;
   height: 10px;
   background: url('svg/qrcode.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-compare {
-  display: inline-block;
-  vertical-align: middle;
-  width: 12px;
-  height: 12px;
-  background: url('svg/compare.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-download {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 10px;
-  background: url('svg/download.svg') no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-success {
@@ -1239,22 +1113,6 @@
   background: url('svg/notification.svg') no-repeat 50% 50%;
   background-size: cover;
 }
-.ui-icon-cloud-function {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  height: 10px;
-  background: url('svg/cloud-function.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-cloud-function-dir {
-  display: inline-block;
-  vertical-align: middle;
-  width: 14px;
-  height: 11px;
-  background: url('svg/cloud-function-dir.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
 .ui-icon-file {
   display: inline-block;
   vertical-align: middle;
@@ -1269,8 +1127,8 @@
 .ui-icon-file-js {
   display: inline-block;
   vertical-align: middle;
-  width: 13px;
-  height: 11px;
+  width: 12px;
+  height: 10px;
   -webkit-mask: url('svg/file-js.svg') no-repeat 50% 50%;
           mask: url('svg/file-js.svg') no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -1302,15 +1160,19 @@
 .ui-icon-file-wxs {
   display: inline-block;
   vertical-align: middle;
-  width: 16px;
-  height: 17px;
-  background: url('svg/file-wxs.svg') no-repeat 50% 50%;
+  width: 14px;
+  height: 6px;
+  -webkit-mask: url('svg/file-wxs.svg') no-repeat 50% 50%;
+          mask: url('svg/file-wxs.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #2C9F67;
 }
 .ui-icon-file-wxss {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
-  height: 5px;
+  height: 6px;
   -webkit-mask: url('svg/file-wxss.svg') no-repeat 50% 50%;
           mask: url('svg/file-wxss.svg') no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -1327,22 +1189,6 @@
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
-}
-.ui-icon-file-nodejs {
-  display: inline-block;
-  vertical-align: middle;
-  width: 17px;
-  height: 7px;
-  background: url('svg/file-nodejs.svg') no-repeat 50% 50%;
-  background-size: cover;
-}
-.ui-icon-file-php {
-  display: inline-block;
-  vertical-align: middle;
-  width: 13px;
-  height: 7px;
-  background: url('svg/file-php.svg') no-repeat 50% 50%;
-  background-size: cover;
 }
 .ui-icon-report {
   display: inline-block;

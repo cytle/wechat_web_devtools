@@ -19,28 +19,10 @@ class AuthAPI {
      */
     public static function login($code, $encryptData, $iv) {
         // 1. 获取 session key
-        list($session_key, $openid) = array_values(self::getSessionKey($code));
+        $sessionKey = self::getSessionKey($code);
 
         // 2. 生成 3rd key (skey)
-        $skey = sha1($session_key . mt_rand());
-
-        // 如果只提供了 code
-        // 就用 code 解出来的 openid 去查数据库
-        if ($code && !$encryptData && !$iv) {
-            $userInfo = User::findUserByOpenId($openid);
-            $wxUserInfo = json_decode($userInfo->user_info);
-            
-            // 更新登录态
-            User::storeUserInfo($wxUserInfo, $skey, $session_key);
-
-            return [
-                'loginState' => Constants::S_AUTH,
-                'userinfo' => [
-                    'userinfo' => $wxUserInfo,
-                    'skey' => $skey
-                ]
-            ];
-        }
+        $skey = sha1($sessionKey . mt_rand());
         
         /**
          * 3. 解密数据
@@ -52,14 +34,14 @@ class AuthAPI {
         $decryptData = \openssl_decrypt(
             base64_decode($encryptData),
             'AES-128-CBC',
-            base64_decode($session_key),
+            base64_decode($sessionKey),
             OPENSSL_RAW_DATA,
             base64_decode($iv)
         );
         $userinfo = json_decode($decryptData);
 
         // 4. 储存到数据库中
-        User::storeUserInfo($userinfo, $skey, $session_key);
+        User::storeUserInfo($userinfo, $skey, $sessionKey);
 
         return [
             'loginState' => Constants::S_AUTH,
@@ -107,11 +89,13 @@ class AuthAPI {
         if ($useQcProxy) {
             $secretId = Conf::getQcloudSecretId();
             $secretKey = Conf::getQcloudSecretKey();
-            return self::useQcloudProxyGetSessionKey($secretId, $secretKey, $code);
+            list($session_key, $openid) = array_values(self::useQcloudProxyGetSessionKey($secretId, $secretKey, $code));
+            return $session_key;
         } else {
             $appId = Conf::getAppId();
             $appSecret = Conf::getAppSecret();
-            return self::getSessionKeyDirectly($appId, $appSecret, $code);
+            list($session_key, $openid) = array_values(self::getSessionKeyDirectly($appId, $appSecret, $code));
+            return $session_key;
         }
     }
 

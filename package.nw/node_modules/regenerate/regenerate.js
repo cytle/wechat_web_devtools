@@ -533,21 +533,13 @@
 		else if (codePoint == 0x0D) {
 			string = '\\r';
 		}
-		else if (codePoint == 0x2D) {
-			// https://mathiasbynens.be/notes/javascript-escapes#hexadecimal
-			// Note: `-` (U+002D HYPHEN-MINUS) is escaped in this way rather
-			// than by backslash-escaping, in case the output is used outside
-			// of a character class in a `u` RegExp. /\-/u throws, but
-			// /\x2D/u is fine.
-			string = '\\x2D';
-		}
 		else if (codePoint == 0x5C) {
 			string = '\\\\';
 		}
 		else if (
 			codePoint == 0x24 ||
 			(codePoint >= 0x28 && codePoint <= 0x2B) ||
-			codePoint == 0x2E || codePoint == 0x2F ||
+			(codePoint >= 0x2D && codePoint <= 0x2F) ||
 			codePoint == 0x3F ||
 			(codePoint >= 0x5B && codePoint <= 0x5E) ||
 			(codePoint >= 0x7B && codePoint <= 0x7D)
@@ -555,10 +547,9 @@
 			// The code point maps to an unsafe printable ASCII character;
 			// backslash-escape it. Here’s the list of those symbols:
 			//
-			//     $()*+./?[\]^{|}
+			//     $()*+-./?[\]^{|}
 			//
-			// This matches SyntaxCharacters as well as `/` (U+002F SOLIDUS).
-			// https://tc39.github.io/ecma262/#prod-SyntaxCharacter
+			// See #7 for more info.
 			string = '\\' + stringFromCharCode(codePoint);
 		}
 		else if (codePoint >= 0x20 && codePoint <= 0x7E) {
@@ -572,6 +563,7 @@
 			string = stringFromCharCode(codePoint);
 		}
 		else if (codePoint <= 0xFF) {
+			// https://mathiasbynens.be/notes/javascript-escapes#hexadecimal
 			string = '\\x' + pad(hex(codePoint), 2);
 		}
 		else { // `codePoint <= 0xFFFF` holds true.
