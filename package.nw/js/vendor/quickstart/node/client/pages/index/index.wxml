@@ -1,15 +1,15 @@
 <!--index.wxml-->
 <view class="container">
     <!-- 用户登录测试 -->
-    <view class="userinfo" bindtap="login">
+    <view class="userinfo">
         <image
             class="userinfo-avatar"
             src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
             background-size="cover"
         ></image>
         <view>
-            <text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击测试登录接口'}}</text>
-            <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
+            <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击测试登录接口</button>
+            <text class="userinfo-nickname" wx:else>{{userInfo.nickName}}</text>
         </view>
     </view>
 

@@ -1,6 +1,12 @@
 ## [Unreleased]
 
 
+## [0.8.17] - 2018-06-11
+
+### Fixed
+- Upgraded `ua-parser-js` dependency to address ReDoS vulnerability.
+
+
 ## [0.8.16] - 2017-09-25
 
 ### Changed

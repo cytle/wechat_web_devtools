@@ -515,6 +515,30 @@
     removeForceUpdateVersion: function removeForceUpdateVersion() {
       this._forceUpdateVersion = undefined;
       removeItem(config.FORCE_UPDATE_VERSION);
+    },
+    getToolbarForProject: function getToolbarForProject(id) {
+      try {
+        return JSON.parse(getItem('' + config.TOOLBAR_PREFIX + id));
+      } catch (e) {
+        return null;
+      }
+    },
+    setToolbarForProject: function setToolbarForProject(id, state) {
+      try {
+        setItem('' + config.TOOLBAR_PREFIX + id, JSON.stringify(state));
+      } catch (e) {}
+    },
+    getWindowForProject: function getWindowForProject(id) {
+      try {
+        return JSON.parse(getItem('' + config.WINDOW_PREFIX + id));
+      } catch (e) {
+        return null;
+      }
+    },
+    setWindowForProject: function setWindowForProject(id, state) {
+      try {
+        setItem('' + config.WINDOW_PREFIX + id, JSON.stringify(state));
+      } catch (e) {}
     }
   };
 })();

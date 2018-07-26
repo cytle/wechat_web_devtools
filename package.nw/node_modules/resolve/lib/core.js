@@ -2,8 +2,8 @@ var current = (process.versions && process.versions.node && process.versions.nod
 
 function specifierIncluded(specifier) {
     var parts = specifier.split(' ');
-    var op = parts[0];
-    var versionParts = parts[1].split('.');
+    var op = parts.length > 1 ? parts[0] : '=';
+    var versionParts = (parts.length > 1 ? parts[1] : parts[0]).split('.');
 
     for (var i = 0; i < 3; ++i) {
         var cur = Number(current[i] || 0);
