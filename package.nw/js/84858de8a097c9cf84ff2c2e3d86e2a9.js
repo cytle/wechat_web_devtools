@@ -512,6 +512,18 @@
       this._forceUpdateVersion = value;
     },
 
+    getTcb: function getTcb(appid) {
+      try {
+        return JSON.parse(getItem('' + config.TCB_APPID + appid)) || {};
+      } catch (e) {
+        return {};
+      }
+    },
+    setTcb: function setTcb(appid, tcb) {
+      try {
+        setItem('' + config.TCB_APPID + appid, JSON.stringify(tcb));
+      } catch (e) {}
+    },
     removeForceUpdateVersion: function removeForceUpdateVersion() {
       this._forceUpdateVersion = undefined;
       removeItem(config.FORCE_UPDATE_VERSION);

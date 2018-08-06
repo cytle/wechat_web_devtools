@@ -254,7 +254,7 @@ body {
   }
 }
 .ui-animate-swipeInLeft {
-  animation: swipeInLeft ease .3s;
+  animation: swipeInLeft cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
 }
 @keyframes swipeOutRight {
   from {
@@ -265,10 +265,10 @@ body {
   }
 }
 .ui-animate-swipeOutRight {
-  animation: swipeOutRight ease .3s;
+  animation: swipeOutRight cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
 }
 .ui-animate-swipeInDown {
-  animation: swipeInDown ease .3s;
+  animation: swipeInDown cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
 }
 @keyframes swipeInDown {
   from {
@@ -279,7 +279,7 @@ body {
   }
 }
 .ui-animate-swipeInUp {
-  animation: swipeInUp ease .3s forwards;
+  animation: swipeInUp cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
 }
 @keyframes swipeInUp {
   from {
@@ -290,7 +290,7 @@ body {
   }
 }
 .ui-animate-pull-down {
-  animation: pull-down linear 0.2s;
+  animation: pull-down cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
 }
 @keyframes pull-down {
   from {
@@ -301,7 +301,7 @@ body {
   }
 }
 .ui-animate-pull-up {
-  animation: pull-up linear 0.2s;
+  animation: pull-up cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
 }
 @keyframes pull-up {
   from {
@@ -2944,6 +2944,8 @@ input[type=number]::-webkit-outer-spin-button {
   width: 300px;
   border-right: 1px solid #dfdfdf;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .file-mgr-toolbar {
   display: flex;
@@ -2967,6 +2969,9 @@ input[type=number]::-webkit-outer-spin-button {
 .file-mgr-bd {
   flex: 1;
   padding: 10px 10px;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .file-mgr-preview {
   display: flex;

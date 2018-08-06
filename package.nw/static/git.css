@@ -2271,6 +2271,119 @@ body {
 .workbench {
   display: flex;
 }
+.working-copy {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+}
+.commit-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-right: 1px solid #d5d5d5;
+}
+.commit-form-hd {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #d5d5d5;
+  font-size: 12px;
+}
+.commit-form-hd p {
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.commit-form-detail {
+  flex: 1;
+  padding: 15px;
+  background-color: #fbfbfb;
+  border-top: 1px solid #d3d3d3;
+}
+.commit-form-detail input,
+.commit-form-detail textarea {
+  background-color: #fff;
+  border: 1px solid #dadada;
+}
+.commit-form-action {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.file-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.file-table-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.file-table-header-item-status {
+  width: 7em;
+}
+.file-table-header {
+  display: flex;
+  background-color: #fbfbfb;
+  border-bottom: 1px solid #d3d3d3;
+  font-size: 12px;
+}
+.file-table-header-item {
+  padding: 2px 10px;
+}
+.file-table-header-item:not(:last-child) {
+  border-right: 1px solid #d3d3d3;
+}
+.file-table-item {
+  display: flex;
+  border-bottom: 1px solid #f4f4f4;
+  align-items: center;
+  outline: 0;
+}
+.file-table-item:focus {
+  background-color: #2b6ad2;
+}
+.file-table-item:focus .file-table-item-content {
+  color: #ffffff;
+}
+.file-table-item-active {
+  background-color: #dcdcdc;
+}
+.file-table-item-status {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  width: 7em;
+}
+.file-table-item-status .ui-checkbox {
+  margin-right: 0;
+}
+.file-table-item-status-label {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.file-table-item-status-label [class^=ui-icon]:not(:first-child) {
+  margin-left: 5px;
+}
+.file-table-item-content {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+.file-table-item-content p {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.file-table-item-content [class^=ui-icon] {
+  margin-right: 5px;
+}
 .history {
   flex: 1;
   display: flex;
@@ -2280,8 +2393,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 300px;
-  min-height: 0;
-  overflow-y: auto;
   border-right: 1px solid #d5d5d5;
 }
 .commit-view-hd {
@@ -2300,6 +2411,8 @@ body {
 }
 .commit-view {
   flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 .commit-view-item {
   display: flex;

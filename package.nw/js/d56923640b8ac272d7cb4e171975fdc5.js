@@ -23,6 +23,7 @@
     WEB_DEBUGGER: 'WEB_DEBUGGER',
     SETTINGS: 'reduxPersist:settings',
     QCLOUD_FILEINFO: 'qcloud:fileinfo',
-    FORCE_UPDATE_VERSION: 'forceUpdateVersion'
+    FORCE_UPDATE_VERSION: 'forceUpdateVersion',
+    TCB_APPID: 'tcb_'
   };
 })();
