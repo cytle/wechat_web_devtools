@@ -166,4 +166,4 @@ Ubuntu环境下默认没有`Cosolas`字体，同时目前无法修改字体，�
 
 ## 赞赏
 
-![赞赏码](https://raw.githubusercontent.com/cytle/wechat_web_devtools/master/images/%E5%BE%AE%E4%BF%A1%E8%B5%9E%E8%B5%8F%E7%A0%81.jpeg)
+<img width="400px" height="400px" alt="赞赏码" src="https://raw.githubusercontent.com/cytle/wechat_web_devtools/master/images/%E5%BE%AE%E4%BF%A1%E8%B5%9E%E8%B5%8F%E7%A0%81.jpeg"/>
