@@ -109,15 +109,7 @@ git pull origin
 
 **注**: 如果抽风了, 可以尝试使用 `git reset --hard` 等操作, 还原到最初的状态.
 
-1. 安装 脚本依赖 `httpie`
-
-以下是 `Ubuntu` 安装方法, 其它参考 https://httpie.org/doc#linux
-
-``` bash
-sudo apt install httpie
-```
-
-2. 执行更新, 自动下载最新 `Windows x64` 版开发者工具, 并且使用`wine`安装.  
+执行更新, 自动下载最新 `Windows x64` 版开发者工具, 并且使用`wine`安装.  
 
 ``` bash
 ./bin/update_package_nw.sh
