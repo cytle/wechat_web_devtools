@@ -16,7 +16,7 @@ echo "当前wechat_v: $cur_wechat_v"
 wcwd_package_dir="$HOME/.wine/drive_c/users/$USERNAME/Application Data/Tencent/微信web开发者工具/package.nw"
 vendor_dir="$root_dir/package.nw/js/vendor"
 wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
-wechat_v=$(http --headers $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
+wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
 
 
 if [ -z "$wechat_v" ]; then
