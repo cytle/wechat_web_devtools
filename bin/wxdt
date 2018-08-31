@@ -16,7 +16,6 @@ if [ "$cur_nwjs_v" != "$nwjs_v" ]; then
 fi
 
 # fix
-bash "$root_dir/bin/fix_node_sync_ipc.sh"
 
 cd "$root_dir/dist"
 
