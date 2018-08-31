@@ -12,8 +12,6 @@ dist_dir="$root_dir/dist"
 cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
-
-wcwd_package_dir="$HOME/.wine/drive_c/users/$USERNAME/Application Data/Tencent/微信web开发者工具/package.nw"
 vendor_dir="$root_dir/package.nw/js/vendor"
 wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
 wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
@@ -44,8 +42,12 @@ if [ ! -f "$wcwd_file" ]; then
   wget "$wcwd_download" -O $wcwd_file
 fi
 
-# 安装 来自 https://github.com/cytle/wechat_web_devtools/issues/43
-env LC_ALL=zh_CN.UTF-8 wine $wcwd_file
+wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
+wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信web开发者工具/package.nw"
+
+7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
+
+wcwd_package_dir="$wcwd_file_target/$wcwd_file_package_nw_dir"
 
 rm -rf "$root_dir/package.nw"
 echo "$wcwd_package_dir"
@@ -53,6 +55,7 @@ cp -r "$wcwd_package_dir" "$root_dir"
 
 sh "$root_dir/bin/replace_package_nw.sh"
 sh "$root_dir/bin/fix_node_sync_ipc.sh"
+sh "$root_dir/bin/fix_load_extension.sh"
 
 # 链接wcc.exe wcsc.exe
 ln -f "$vendor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
