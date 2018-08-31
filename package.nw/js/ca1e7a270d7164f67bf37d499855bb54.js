@@ -1,1 +1,159 @@
-'use strict';!function(require,directRequire){function a(a){const d=b.open(a);if(d){const b=d.getWorkingDirectory(),e=c.relative(b.toLowerCase(),a.toLowerCase());if(e&&'.'!==e)return d.release(),null}return d}const b=require('./0d657e9d4701812224e40d6b99666d3c.js'),c=require('path'),d={};d.getGitHead=function(b,c){const{dir:d}=c;console.log('process task getgithead',d);let e=null;try{const b=a(d);let c=null;b?(c=b.getShortHead(),e={enabled:!0,head:(c||'')+''},b.release()):e={enabled:!1,head:null}}catch(a){e={error:a.toString()}}return e},d.getGitEnabled=function(b,c){const{dir:d}=c;let e=null;try{const b=a(d);b?(e={enabled:!0},b.release()):e={enabled:!1}}catch(a){e={error:a.toString()}}return e},d.getGitStatus=function(b,c){const{dir:d}=c;let e;try{const b=a(d);if(b){const a=b.getStatus()||{};e={status:a},b.release()}else e={status:{}}}catch(a){e={error:a.toString()}}return e},d.getGitLineDiffs=function(b,c){const{dir:d,path:e}=c;let f;try{const c=a(d);if(c){const a=c.getLineDiffs(e,b,{ignoreEolWhitespace:!1})||[];f={gitLineDiffs:a},c.release()}else f={gitLineDiffs:[]}}catch(a){f={error:a.toString()}}return f},d.getGitCommitFile=function(b,c){const{dir:d,path:e}=c;let f;try{const b=a(d);if(b){const a=b.getHeadBlob(e)||'',c=b.getDiffStats(e)||null;f={content:a,stats:c},b.release()}else f={content:null,stats:null}}catch(a){f={error:a.toString()}}return f},module.exports=d}(require('lazyload'),require);
+const path = require('path')
+const git = require('./0d657e9d4701812224e40d6b99666d3c.js')
+
+var exports = exports || {}
+
+function getRepo(dir) {
+  const repo = git.open(dir)
+  if (repo) {
+    const realDir = repo.getWorkingDirectory()
+    const relative = path.relative(realDir.toLowerCase(), dir.toLowerCase())
+    if (relative && relative !== '.') {
+      repo.release()
+      return null
+    }
+  }
+  return repo
+}
+
+exports.getGitHead = function getGitHead(body, query) {
+  const {
+    dir,
+  } = query
+  console.log('process task getgithead', dir)
+  let result = null
+  try {
+    const repo = getRepo(dir)
+    let head = null
+    if (repo) {
+      head = repo.getShortHead()
+      result = {
+        enabled: true,
+        head: String(head || ''), // do not make json stringify crash
+      }
+      repo.release()
+    } else {
+      result = {
+        enabled: false,
+        head: null
+      }
+    }
+  } catch (err) {
+    result = {
+      error: err.toString()
+    }
+  }
+  return result
+}
+
+exports.getGitEnabled = function getGitEnabled(body, query) {
+  const {
+    dir,
+  } = query
+  let result = null
+  try {
+    const repo = getRepo(dir)
+    if (repo) {
+      result = {
+        enabled: true
+      }
+      repo.release()
+    } else {
+      result = {
+        enabled: false
+      }
+    }
+  } catch (err) {
+    result = {
+      error: err.toString()
+    }
+  }
+  return result
+}
+
+exports.getGitStatus = function getGitStatus(body, query) {
+  const {
+    dir,
+  } = query
+  let result
+  try {
+    const repo = getRepo(dir)
+    if (repo) {
+      const status = repo.getStatus() || {}
+      result = {
+        status,
+      }
+      repo.release()
+    } else {
+      result = {
+        status: {}
+      }
+    }
+  } catch (err) {
+    result = {
+      error: err.toString()
+    }
+  }
+  return result
+}
+
+exports.getGitLineDiffs = function getGitLineDiffs(body, query) {
+  const {
+    dir,
+    path,
+  } = query
+  let result
+  try {
+    const repo = getRepo(dir)
+    if (repo) {
+      const gitLineDiffs = repo.getLineDiffs(path, body, {
+        ignoreEolWhitespace: false
+      }) || []
+      result = {
+        gitLineDiffs,
+      }
+      repo.release()
+    } else {
+      result = {
+        gitLineDiffs: []
+      }
+    }
+  } catch (err) {
+    result = {
+      error: err.toString()
+    }
+  }
+  return result
+}
+
+exports.getGitCommitFile = function getGitCommitFile(body, query) {
+  const {
+    dir,
+    path,
+  } = query
+  let result
+  try {
+    const repo = getRepo(dir)
+    if (repo) {
+      const content = repo.getHeadBlob(path) || ''
+      const stats = repo.getDiffStats(path) || null
+      result = {
+        content,
+        stats,
+      }
+      repo.release()
+    } else {
+      result = {
+        content: null,
+        stats: null,
+      }
+    }
+  } catch (err) {
+    result = {
+      error: err.toString()
+    }
+  }
+  return result
+}
+
+module.exports = exports

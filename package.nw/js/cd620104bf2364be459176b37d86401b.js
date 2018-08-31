@@ -1,1 +1,62 @@
-'use strict';!function(require,directRequire){const a=require('jimp');module.exports={isSameColorImage:(b,c)=>new Promise((d,e)=>{b||d({error:!1,same:!0});let f;'dataURI'===c.type?'png'===c.format?f=Buffer.from(b.slice(22),'base64'):'jpg'===c.format?f=Buffer.from(b.slice(22),'base64'):'jpeg'===c.format&&(f=Buffer.from(b.slice(23),'base64')):f=b,a.read(f,(a,b)=>{if(a)return e(a);b=b.grayscale();let c=0,f=255;b.scan(0,0,b.bitmap.width,b.bitmap.height,function(a,b,d){let e=this.bitmap.data[d+0];e>c&&(c=e),e<f&&(f=e)}),c-f<10?d({error:!1,same:!0}):d({error:!1,same:!1})})})}}(require('lazyload'),require);
+const jimp = require('jimp')
+
+const isSameColorImage = (data, query) => new Promise((resolve, reject) => {
+  if (!data) {
+    resolve({
+      error: false,
+      same: true,
+    })
+  }
+
+  let buffer
+
+  if (query.type === 'dataURI') {
+    if (query.format === 'png') {
+      buffer = Buffer.from(data.slice('data:image/png;base64,'.length), 'base64')
+    } else if (query.format === 'jpg') {
+      buffer = Buffer.from(data.slice('data:image/jpg;base64,'.length), 'base64')
+    } else if (query.format === 'jpeg') {
+      buffer = Buffer.from(data.slice('data:image/jpeg;base64,'.length), 'base64')
+    }
+  } else {
+    buffer = data
+  }
+
+  jimp.read(buffer, (err, image) => {
+    if (err) {
+      return reject(err)
+    }
+
+    image = image.grayscale()
+    const threshold = 10 // 阈值
+    let max = 0
+    let min = 255
+    // 像素检测
+    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
+      const bit = this.bitmap.data[idx + 0]
+      if (bit > max) {
+        max = bit
+      }
+
+      if (bit < min) {
+        min = bit
+      }
+    })
+
+    if (max - min < threshold) {
+      resolve({
+        error: false,
+        same: true,
+      })
+    } else {
+      resolve({
+        error: false,
+        same: false,
+      })
+    }
+  })
+})
+
+module.exports = {
+  isSameColorImage,
+}

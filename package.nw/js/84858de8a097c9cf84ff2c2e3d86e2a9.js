@@ -551,6 +551,40 @@
       try {
         setItem('' + config.WINDOW_PREFIX + id, JSON.stringify(state));
       } catch (e) {}
+    },
+    updateProjectId: function updateProjectId(oldProjectid, newProjectId) {
+      const commonFileKeys = [config.LAST_SELECT, config.PROJECT_ACCESS_TIME]
+      const dataPrefix = 'localstorage_'
+      const prefixFileKeys = [
+        dataPrefix + config.PROJECT_PREFIX,
+        dataPrefix + config.TOOLBAR_PREFIX,
+        dataPrefix + config.WINDOW_PREFIX,
+        config.PROJECT_COVER_PREFIX]
+      const replaceFileContent = path => {
+        const replaceReg = new RegExp(oldProjectid, 'g')
+        const content = fs.readFileSync(path, 'utf8')
+        const newContent = content.replace(replaceReg, newProjectId)
+        fs.writeFileSync(path, newContent, 'utf8')
+      }
+      try {
+        for(const key of commonFileKeys) {
+          replaceFileContent(getDataFilePath(key))
+        }
+
+        const names = fs.readdirSync(WeappLocalData);
+        for(const name of names) {
+          const prefix = prefixFileKeys.find(prefix => name.startsWith(prefix + oldProjectid))
+          if(prefix) {
+            const newName = name.replace(oldProjectid, newProjectId)
+            fs.renameSync(path.join(WeappLocalData, name), path.join(WeappLocalData, newName))
+          }
+          if(prefix === config.PROJECT_PREFIX) {
+            replaceFileContent(path.join(WeappLocalData, name))
+          }
+        }
+        this.updateProject(newProjectId, this.projectList[oldProjectid])
+        this.removeProject(oldProjectid)
+      } catch(e) {}
     }
   };
 })();

@@ -1,1 +1,1 @@
-"use strict";!function(require,directRequire){const a=require('./0634ee2ebd3e560d9d4804ecc960160f.js');module.exports={clear:()=>{return{type:a.CONSOLE_CLEAR}},log:(b)=>{return{type:a.CONSOLE_LOG,data:b}},error:(b)=>{return{type:a.CONSOLE_ERROR,data:b}}}}(require("lazyload"),require);
+"use strict";!function(require,directRequire){const a=require('./0634ee2ebd3e560d9d4804ecc960160f.js');module.exports={clear:()=>({type:a.CONSOLE_CLEAR}),log:(b)=>({type:a.CONSOLE_LOG,data:b}),error:(b)=>({type:a.CONSOLE_ERROR,data:b})}}(require("lazyload"),require);

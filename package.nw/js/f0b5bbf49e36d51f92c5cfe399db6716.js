@@ -68,7 +68,7 @@ function getOsxSystemProxySetting(callback) {
       ? path.join(__dirname, 'getosxproxysetting.sh')
       : path.join(__dirname, './common/proxy/getosxproxysetting.sh')
 
-    exec(`sh ${shFile}`, {}, (error, stdout, stderr) => {
+    exec(`sh "${shFile}"`, {}, (error, stdout, stderr) => {
       if (!error) {
         let res = stdout.split(/\r?\n/)
 

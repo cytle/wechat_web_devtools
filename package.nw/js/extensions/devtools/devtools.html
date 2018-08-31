@@ -80,6 +80,25 @@ function addAppserviceDevtools(){
       }
     )
 
+    chrome.devtools.panels.create("Audits",
+      "",
+      "experience/index.html",
+      function (panel) {
+        window.panel = panel
+        var panelWindow
+        panel.onShown.addListener(function (win) {
+          panelWindow = win
+          win.onShown()
+        })
+        panel.onHidden.addListener(function (win) {
+          panelWindow.onHidden()
+        })
+        panel.onSearch.addListener(function (win) {
+          panelWindow.onSearch()
+        })
+      }
+    ) 
+
     // 暂时不做，留待之后补充
     // chrome.devtools.panels.create("Bluetooth",
     //   "",
@@ -214,6 +233,7 @@ function addAppserviceDevtools(){
         }
       )
     }
+
   }
 }
 

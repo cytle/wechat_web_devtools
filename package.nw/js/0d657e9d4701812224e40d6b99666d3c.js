@@ -1,1 +1,46 @@
-'use strict';!function(require,directRequire){let a;try{const b=require('git-utils');a={open(...a){let c;try{c=b.open(...a)}catch(a){c=null}return c?new Proxy(c,{get(a,b){const c=a[b];return'function'==typeof c?function(...b){let d;try{d=c.apply(a,b)}catch(a){console.log('proxy intercepted an error',a),d=null}return d}:c}}):null}}}catch(b){console.log('import git module failed.'),a={open(){return null}}}module.exports=a}(require('lazyload'),require);
+let git
+try {
+  const _realGit = require('git-utils')
+  git = {
+    open(...argus) {
+      let _realRepo
+      try {
+        _realRepo = _realGit.open(...argus)
+      } catch (err) {
+        _realRepo = null
+      }
+      if (!_realRepo) {
+        return null
+      }
+      return new Proxy(_realRepo, {
+        get(obj, key) {
+          const original = obj[key]
+          if (typeof original === 'function') {
+            return function (...args) {
+              let result
+              try {
+                result = original.apply(obj, args)
+              } catch (e) {
+                console.log('proxy intercepted an error', e)
+                result = null
+              }
+              return result
+            }
+          }
+          return original
+        }
+      })
+    }
+  }
+} catch (e) {
+  // import git module failed.
+  // fake git
+  console.log('import git module failed.')
+  git = {
+    open() {
+      return null
+    }
+  }
+}
+
+module.exports = git

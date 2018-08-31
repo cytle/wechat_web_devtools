@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><title></title><link rel=stylesheet type=text/css href=css/inspectorCommon.css><link rel=stylesheet type=text/css href=css/inspectorStyle.css><link rel=stylesheet type=text/css href=css/inspectorSyntaxHighlight.css><link rel=stylesheet type=text/css href=css/toolbar.css><link rel=stylesheet type=text/css href=css/dialog.css><link rel=stylesheet type=text/css href=css/closeButton.css><link rel=stylesheet type=text/css href=css/report-styles.css><link rel=stylesheet type=text/css href=css/audits2Panel.css><link rel=stylesheet type=text/css href=css/audits2Dialog.css><!-- <link rel="import" href="./text-button.html"> --><template id=tpl><style type=text/css>:host{margin:2px;height:24px;font-size:12px;border:1px solid rgba(0,0,0,.2);border-radius:2px;padding:0 12px;font-weight:500;color:#333;background-color:#fff;flex:none;white-space:nowrap;margin:15px 10px;line-height:24px}:host(:not(:disabled):active),:host(:not(:disabled):focus),:host(:not(:disabled):hover){background-color:var(--toolbar-bg-color);box-shadow:0 1px 2px rgba(0,0,0,.1);cursor:pointer}:host(:not(:disabled):active){background-color:#f2f2f2}:host(:not(:disabled):focus){box-shadow:0 1px 2px rgba(0,0,0,.1),0 0 0 2px rgba(66,133,244,.4)}:host(:disabled){opacity:.38}-theme-preserve,:host(.primary-button){background-color:#4285f4;border:none;color:#fff}-theme-preserve,:host(.primary-button:not(:disabled):focus),:host(.primary-button:not(:disabled):hover){background-color:#3b78e7}-theme-preserve,:host(.primary-button:not(:disabled):active){background-color:#3367d6}:host-context(.-theme-with-dark-background):host(:not(.primary-button):not(:disabled):active),:host-context(.-theme-with-dark-background):host(:not(.primary-button):not(:disabled):focus),:host-context(.-theme-with-dark-background):host(:not(.primary-button):not(:disabled):hover){background-color:#313131;box-shadow:0 1px 2px rgba(0,0,0,.1)}:host-context(.-theme-with-dark-background):host(:not(.primary-button):not(:disabled):focus){box-shadow:0 1px 2px rgba(0,0,0,.1),0 0 0 2px rgba(94,151,246,.6)}:host-context(.-theme-with-dark-background):host(:not(.primary-button):not(:disabled):active){background-color:#3e3e3e}</style><slot></slot></template><script type=text/javascript>class TextButton extends HTMLElement {
+      constructor() {
+        super();
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        const template = document.querySelector('#tpl');
+        const content = document.importNode(template.content, true);
+        shadowRoot.appendChild(content);
+      }
+    }
+    customElements.define('text-button', TextButton);</script><style>.lh-gauge{--circle-size:calc(2.5 * var(--header-font-size));--circle-size-half:calc(var(--circle-size) / 2);--circle-background:#ccc;--circle-border-width:2px;--inset-size:calc(var(--circle-size) - 2 * var(--circle-border-width));--inset-color:#fff;--transition-length:1s;width:var(--circle-size);height:var(--circle-size);background-color:var(--circle-background);border-radius:50%}.lh-gauge--pass{--circle-color:var(--pass-color);color:var(--circle-color)}.lh-gauge--average{--circle-color:var(--average-color);color:var(--circle-color)}.lh-gauge--fail{--circle-color:var(--fail-color);color:var(--circle-color)}.lh-gauge__fill,.lh-gauge__mask{width:var(--circle-size);height:var(--circle-size);position:absolute;transition:transform var(--transition-length);border-radius:50%}.lh-gauge__mask{clip:rect(0,var(--circle-size),var(--circle-size),var(--circle-size-half))}.lh-gauge__mask .lh-gauge__fill{clip:rect(0,var(--circle-size-half),var(--circle-size),0);background-color:var(--circle-color);backface-visibility:hidden}.lh-gauge__percentage{--spacer:calc((var(--circle-size) - var(--inset-size)) / 2);width:var(--inset-size);height:var(--inset-size);position:absolute;margin-left:var(--spacer);margin-top:var(--spacer);background-color:var(--inset-color);border-radius:inherit;display:flex;align-items:center;justify-content:center;font-size:var(--header-font-size)}.lh-gauge__wrapper{display:inline-flex;align-items:center;flex-direction:column;text-decoration:none;color:inherit;flex:1;min-width:auto;position:relative}.lh-scores-header .lh-gauge__wrapper{width:calc(10.5 * var(--body-font-size))}.lh-gauge__label{font-size:var(--body-font-size);line-height:var(--body-line-height);margin-top:calc(.5 * var(--body-line-height));text-align:center}</style></head><body><div class="widget vbox panel audits2"><div class=toolbar-shadow style="border-bottom:1px solid var(--divider-color)"><!-- 开始按钮 --> <button id=start class="toolbar-button toolbar-item toolbar-has-glyph" tabindex=0><span is=ui-icon class="toolbar-glyph spritesheet-largeicons largeicon-add icon-mask" style="--spritesheet-position:-28px 48px;width:28px;height:24px"></span><div class="toolbar-text hidden"></div></button><!--
+  <button class="toolbar-button toolbar-item toolbar-has-glyph" tabindex="0">
+    <span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-download icon-mask" style="--spritesheet-position:-196px 144px; width: 28px; height: 24px;"></span>
+    <div class="toolbar-text hidden"></div>
+  </button>
+  <div class="toolbar-divider toolbar-item"></div>
+  <span class="toolbar-select-container toolbar-item">
+    <select class="toolbar-item audits2-report" tabindex="0" style="max-width: 180px; min-width: 140px;">
+      <option label="下午4:15:02 - www.baidu.com"></option>
+    </select>
+    <span is="ui-icon" class="toolbar-dropdown-arrow spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span>
+  </span>
+  --> <button id=clear class="toolbar-button toolbar-item toolbar-has-glyph" tabindex=0><span is=ui-icon class="toolbar-glyph spritesheet-largeicons largeicon-clear icon-mask" style="--spritesheet-position:0px 144px;width:28px;height:24px"></span><div class="toolbar-text hidden"></div></button><!--
+  <div class="toolbar-divider toolbar-item"></div>
+  <div class="toolbar-text toolbar-item">Emulation: </div>
+  <span class="toolbar-select-container toolbar-item">
+    <select class="toolbar-item" tabindex="0">
+      <option value="mobile">Mobile</option>
+      <option value="desktop">Desktop</option>
+    </select>
+    <span is="ui-icon" class="toolbar-dropdown-arrow spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span>
+  </span>
+  <span class="toolbar-select-container toolbar-item">
+    <select class="toolbar-item" tabindex="0">
+      <option value="default">3G w/ CPU slowdown</option>
+      <option value="off">No throttling</option>
+    </select>
+    <span is="ui-icon" class="toolbar-dropdown-arrow spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span>
+  </span>
+  <span class="toolbar-select-container toolbar-item">
+    <select class="toolbar-item" tabindex="0">
+      <option value="on">Clear storage</option>
+      <option value="off">Preserve storage</option>
+    </select>
+    <span is="ui-icon" class="toolbar-dropdown-arrow spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span>
+  </span>
+  --></div><div id=guild class=audits2-results-container><div class="lh-vars lh-root lh-devtools"><div class=lh-container><div class=lh-report><div class=lh-categories><div class=lh-category><span class=lh-permalink id=best-practices></span><div class=lh-score><div class=lh-score__header><div class=lh-score__snippet><span class=lh-score__title><span>体验评分</span></span></div><div class=lh-score__description><span>我们会在小程序运行过程中实时检查，分析出一些可能导致体验不好的地方，并且定位出哪里有问题，以及给出一些优化建议。请点击 <span id=start2 is=ui-icon class="toolbar-glyph spritesheet-largeicons largeicon-add icon-mask" style="--spritesheet-position:-30px 43px;width:24px;height:12px;cursor:pointer"></span> 开始检查。</span></div></div></div></div></div></div></div></div></div><div id=result :class="['audits2-results-container', hidden ? 'hidden' : '']"><div class="lh-vars lh-root lh-devtools"><div class=lh-container><div class=lh-report><!--
+        <div class="lh-scores-header">
+          <a href="#performance" class="lh-gauge__wrapper" tabindex="0">
+            <div class="lh-gauge lh-gauge--fail" data-progress="0">
+              <div class="lh-gauge__circle">
+                <div class="lh-gauge__mask lh-gauge__mask--full" style="transform: rotate(0deg);">
+                  <div class="lh-gauge__fill" style="transform: rotate(0deg);"></div>
+                </div>
+                <div class="lh-gauge__mask lh-gauge__mask--half">
+                  <div class="lh-gauge__fill" style="transform: rotate(0deg);"></div>
+                  <div class="lh-gauge__fill lh-gauge__fill--fix" style="transform: rotate(0deg);"></div>
+                </div>
+              </div>
+              <div class="lh-gauge__percentage">0</div>
+            </div>
+            <div class="lh-gauge__label">Performance</div>
+          </a>
+          <a href="#accessibility" class="lh-gauge__wrapper" tabindex="0">
+            <div class="lh-gauge lh-gauge--average" data-progress="51">
+              <div class="lh-gauge__circle">
+                <div class="lh-gauge__mask lh-gauge__mask--full" style="transform: rotate(91deg);">
+                  <div class="lh-gauge__fill" style="transform: rotate(91deg);"></div>
+                </div>
+                <div class="lh-gauge__mask lh-gauge__mask--half">
+                  <div class="lh-gauge__fill" style="transform: rotate(91deg);"></div>
+                  <div class="lh-gauge__fill lh-gauge__fill--fix" style="transform: rotate(182deg);"></div>
+                </div>
+              </div>
+              <div class="lh-gauge__percentage">51</div>
+            </div>
+            <div class="lh-gauge__label">Accessibility</div>
+          </a>
+          <a href="#best-practices" class="lh-gauge__wrapper" tabindex="0">
+            <div class="lh-gauge lh-gauge--average" data-progress="63">
+              <div class="lh-gauge__circle">
+                <div class="lh-gauge__mask lh-gauge__mask--full" style="transform: rotate(113deg);">
+                  <div class="lh-gauge__fill" style="transform: rotate(113deg);"></div>
+                </div>
+                <div class="lh-gauge__mask lh-gauge__mask--half">
+                  <div class="lh-gauge__fill" style="transform: rotate(113deg);"></div>
+                  <div class="lh-gauge__fill lh-gauge__fill--fix" style="transform: rotate(226deg);"></div>
+                </div>
+              </div>
+              <div class="lh-gauge__percentage">63</div>
+            </div>
+            <div class="lh-gauge__label">Best Practices</div>
+          </a>
+        </div>
+        --><!-- -------------------- main content ----------------------- --><div class=lh-categories><div class=lh-category><span class=lh-permalink id=best-practices></span><div class=lh-score><div class=lh-score__gauge><a href=#best-practices class=lh-gauge__wrapper tabindex=0><div :class="['lh-gauge', scoringStyle]"><div class=lh-gauge__circle><div class="lh-gauge__mask lh-gauge__mask--full" :style="{ transform: rotate }"><div class=lh-gauge__fill :style="{ transform: rotate }"></div></div><div class="lh-gauge__mask lh-gauge__mask--half"><div class=lh-gauge__fill :style="{ transform: rotate }"></div><div class="lh-gauge__fill lh-gauge__fill--fix" :style="{ transform: rotate2 }"></div></div></div><div class=lh-gauge__percentage>{{score}}</div></div><div class=lh-gauge__label>Best Practices</div></a></div><div class=lh-score__header><div class=lh-score__snippet><span class=lh-score__title><span>体验评分</span></span></div><div class=lh-score__description><span>我们会在小程序运行过程中实时检查，分析出一些可能导致体验不好的地方，并且定位出哪里有问题，以及给出一些优化建议</span></div></div></div><div class="lh-audit-group lh-failed-audits"><summary class=lh-audit-group__summary><div class=lh-audit-group__header>{{failed.length}} Failed Audits</div><div class="lh-toggle-arrow lh-toggle-arrow-unexpandable" title="See audits"></div></summary><div v-for="item in failed" class=lh-audit><div class=lh-score><!-- <div class="lh-score__value lh-score__value--fail lh-score__value--binary">0</div> --><details class="lh-score__header lh-expandable-details"><summary class="lh-score__snippet lh-expandable-details__summary" tabindex=0><span class=lh-score__title><span>{{item.title}}</span></span><div class=lh-toggle-arrow title="See audits"></div><a v-if=item.showIgnore href="" @click.prevent=ignore(item.meta.id)>忽略</a></summary><div class=lh-score__description><span>{{item.meta.description}} <a v-if=item.meta.document rel=noopener target=_blank href="" @click.prevent=open(item.meta.document)>更多学习</a></span></div><details v-if=item.details.length class=lh-details><summary tabindex=0>详情</summary><table class=lh-table><thead><tr><th v-for="(head, idx) in item.headings" :class="[head.type === 'none' ? '' : (idx ? 'lh-table-column--text' : 'lh-table-column--url')]"><div class=lh-text__url :title=head.text>{{head.text}}</div></th></tr></thead><tbody><tr v-for="row in item.details"><td v-for="(col, idx) in item.headings" :class="[col.type === 'none' ? '' : (idx ? 'lh-table-column--text' : 'lh-table-column--url')]"><div v-html=row[col.key] v-if="typeof row[col.key] === 'string' && row[col.key].indexOf('</div>') > -1" class=lh-text__url>{{row[col.key]}}</div><div v-else class=lh-text__url>{{row[col.key]}}</div></td></tr></tbody></table></details></details></div></div></div><details class="lh-audit-group lh-passed-audits"><summary class=lh-audit-group__summary tabindex=0><div class=lh-audit-group__header>{{passed.length}} Passed Audits</div><div class=lh-toggle-arrow title="See audits"></div></summary><div v-for="item in passed" class=lh-audit><div class=lh-score><!-- <div class="lh-score__value lh-score__value--pass lh-score__value--binary">100</div> --><details class="lh-score__header lh-expandable-details"><summary class="lh-score__snippet lh-expandable-details__summary" tabindex=0><span class=lh-score__title><span>{{item.title}}</span></span><div class=lh-toggle-arrow title="See audits"></div></summary><div class=lh-score__description><span>{{item.meta.description}} <a v-if=item.meta.document rel=noopener target=_blank href="" @click.prevent=open(item.meta.document)>更多学习</a></span></div></details></div></div></details><details class="lh-audit-group lh-passed-audits"><summary class=lh-audit-group__summary tabindex=0><div class=lh-audit-group__header>{{ignored.length}} Ignored Audits</div><div class=lh-toggle-arrow title="See audits"></div></summary><div v-for="item in ignored" class=lh-audit><div class=lh-score><!-- <div class="lh-score__value lh-score__value--pass lh-score__value--binary">100</div> --><details class="lh-score__header lh-expandable-details"><summary class="lh-score__snippet lh-expandable-details__summary" tabindex=0><span class=lh-score__title><span>{{item.title}}</span></span><div class=lh-toggle-arrow title="See audits"></div><a href="" @click.prevent=reset(item.meta.id)>重置</a></summary><div class=lh-score__description><span>{{item.meta.description}} <a v-if=item.meta.document rel=noopener target=_blank href="" @click.prevent=open(item.meta.document)>更多学习</a></span></div></details></div></div></details></div></div><!-- -------------------- main content ----------------------- --><!--
+        <style>
+          .lh-footer {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--report-header-bg-color);
+            border-top: 1px solid var(--report-secondary-border-color);
+          }
+
+          .lh-footer span {
+            text-align: center;
+          }
+        </style>
+        <footer class="lh-footer">
+          <span>
+            Generated by <b>Lighthouse</b> <span class="lh-footer__version">2.9.1</span> on
+            <span class="lh-footer__timestamp">Jun 24, 2018, 4:15 PM GMT+8</span> |
+            <a href="https://github.com/GoogleChrome/Lighthouse/issues" target="_blank" rel="noopener" tabindex="0">File an issue</a>
+          </span>
+        </footer>
+        --></div></div></div></div></div><div id=dialog :class="['vbox', 'flex-auto', hidden ? 'hidden' : '']" style=position:absolute!important;top:0;bottom:0;left:0;right:0;overflow:hidden;contain:strict;background-color:transparent;z-index:3000><div class=widget tabindex=0 style=width:500px;max-height:400px;left:50%;top:50%;margin-top:-100px;margin-left:-250px;position:absolute><div class="audits2-view vbox" tabindex=0><div is=dt-close-button class=dialog-close-button @click=cancel><div v-pre class=close-button><span is=ui-icon class="default-icon spritesheet-smallicons smallicon-cross" style="--spritesheet-position:-20px 70px;width:10px;height:10px"></span> <span is=ui-icon class="hover-icon spritesheet-mediumicons mediumicon-red-cross-hover" style="--spritesheet-position:0px 16px;width:16px;height:16px"></span> <span is=ui-icon class="active-icon spritesheet-mediumicons mediumicon-red-cross-active" style="--spritesheet-position:-48px 32px;width:16px;height:16px"></span></div></div><div class="vbox launcher-container"><header><p>Running Audits...</p></header><div class="audits2-status vbox"><div class="audits2-progress-wrapper hidden"><div class=audits2-progress-bar></div></div><div v-if="status === 'error'" class=audits2-status-text>基础库切换到 2.2.0+ ，才能使用 Audits 功能</div><div v-else class=audits2-status-text>正在检查体验问题。请自行操作小程序，尽可能覆盖到所有页面，以及触发各个页面的各种交互，让“体验评分”功能可以检查到各个地方。完成后，请点击下方“Stop”按钮。</div></div><div v-pre class="audits2-dialog-buttons hbox"><text-button id=stop type=button class=primary-button data-keyboard-focus=true>Stop</text-button></div></div></div></div></div><script src=./index.js></script></body></html>

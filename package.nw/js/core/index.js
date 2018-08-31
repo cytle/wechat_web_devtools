@@ -1,5 +1,7 @@
 const path = require('path')
 const tools = require('../js/84b183688a46c9e2626d3e6f83365e13.js')
+const locales = require('../js/common/locales/index.js')
+
 const isMac = (process.platform === 'darwin')
 const query = tools.getQuery(location.search)
 
@@ -9,21 +11,20 @@ global.beginTime = Date.now()
 
 function hack() {
   // to prevent drag image or html
-  document.body.addEventListener('dragover', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-  }, false);
+  document.body.addEventListener('dragover', function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }, false)
 
-  document.body.addEventListener('drop', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-  }, false);
+  document.body.addEventListener('drop', function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }, false)
 
 
   // 禁用滚轮缩放
   document.addEventListener('mousewheel', (event) => {
-    if(event.ctrlKey)
-      event.preventDefault()
+    if (event.ctrlKey) event.preventDefault()
   })
 }
 
@@ -49,7 +50,7 @@ function initGlobal() {
   global.contentDocumentBody = document.body
   global.contentWindow = window
 
-  global.windowMap = new Map
+  global.windowMap = new Map()
   global.windowMap.set('LOGIN', global.Win)
 
   // worker 懒加载
@@ -82,19 +83,19 @@ function initGlobal() {
     global.devType = location.search.match(/devtype=(.*?)(&|$)/)[1]
     switch (global.devType) {
       case 'webdebugger': {
-        global.devInfo.id = query['devid']
+        global.devInfo.id = query.devid
         break
       }
 
       default: {
-        global.devInfo.id = query['devid']
-        global.devInfo.appid = query['appid']
-        global.devInfo.projectname = query['projectname']
-        global.devInfo.projectpath = query['projectpath']
+        global.devInfo.id = query.devid
+        global.devInfo.appid = query.appid
+        global.devInfo.projectname = query.projectname
+        global.devInfo.projectpath = query.projectpath
         global.devInfo.projectid = `${global.devInfo.appid}_${encodeURIComponent(global.devInfo.projectname)}`
 
-        global.devInfo.isTemp = Boolean(query['isTemp'])
-        global.devInfo.isOnline = Boolean(query['isOnline'])
+        global.devInfo.isTemp = Boolean(query.isTemp)
+        global.devInfo.isOnline = Boolean(query.isOnline)
 
         if (global.devInfo.isTemp) {
           const tempLocalStorageKey = `temp_${global.devInfo.appid}_${global.devInfo.projectname}`
@@ -142,7 +143,7 @@ function initGlobal() {
     if (global.CLI.isTestMode) {
       const ind = nw.App.argv.indexOf('--id')
       if (ind > -1) {
-        let raw = nw.App.argv[ind + 1]
+        const raw = nw.App.argv[ind + 1]
         if (raw) {
           global.CLI.id = raw
         }
@@ -156,18 +157,18 @@ function initMenu() {
   // init initial menu in case of failure
   try {
     if (global.isDevWindow || isMac) {
-      const menu = new nw.Menu({ type: 'menubar' })
+      const menu = new nw.Menu({type: 'menubar'})
       const ideMenu = new nw.Menu()
       const debugMenu = new nw.Menu()
 
       if (global.isDevWindow) {
         debugMenu.append(new nw.MenuItem({
-          label: '调试微信开发者工具',
+          label: locales.config.MENU_INSPECT_APP,
           click: () => global.Win.showDevTools(),
         }))
       } else {
         debugMenu.append(new nw.MenuItem({
-          label: '调试微信开发者工具',
+          label: locales.config.MENU_INSPECT_APP,
           click: () => {
             chrome.developerPrivate.openDevTools({
               renderViewId: -1,
@@ -179,19 +180,19 @@ function initMenu() {
       }
 
       ideMenu.append(new nw.MenuItem({
-        label: '调试',
+        label: locales.config.MENU_INSPECT,
         submenu: debugMenu,
       }))
       ideMenu.append(new nw.MenuItem({
-        label: '关闭窗口',
+        label: locales.config.CLOSE_WINDOW,
         click: () => global.Win.close(true),
       }))
       ideMenu.append(new nw.MenuItem({
-        label: '退出',
+        label: locales.config.MENU_EXIT,
         click: () => nw.App.quit(),
       }))
       menu.append(new nw.MenuItem({
-        label: '微信开发者工具',
+        label: locales.config.MENU_TITLE_APP,
         submenu: ideMenu,
       }))
       global.Win.menu = menu
@@ -223,7 +224,7 @@ function init() {
         if (win !== Win) {
           win.close(true)
         }
-      } catch(e) {}
+      } catch (e) {}
     })
     global.windowMap.clear()
 
@@ -273,11 +274,9 @@ if (!global.isDevWindow && !global.online) {
 
   // 检查是否需要更新
   tools.checkUpdateApp()
-    .then(()=>{
+    .then(() => {
       init()
     })
 } else {
   init()
 }
-
-

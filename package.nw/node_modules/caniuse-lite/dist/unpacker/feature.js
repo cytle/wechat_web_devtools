@@ -19,6 +19,8 @@ var _browserVersions = require('./browserVersions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var MATH2LOG = Math.log(2);
+
 function unpackSupport(cipher) {
     // bit flags
     var stats = Object.keys(_supported2.default).reduce(function (list, support) {
@@ -30,7 +32,7 @@ function unpackSupport(cipher) {
     var notes = cipher >> 7;
     var notesArray = [];
     while (notes) {
-        var note = Math.floor(Math.log2(notes)) + 1;
+        var note = Math.floor(Math.log(notes) / MATH2LOG) + 1;
         notesArray.unshift('#' + note);
         notes -= Math.pow(2, note - 1);
     }

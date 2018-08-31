@@ -885,6 +885,173 @@ body {
   background-color: #000;
   border-radius: 1px;
 }
+.ui-icon-save-stash {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  -webkit-mask: url('svg/save-stash.svg') no-repeat 50% 50%;
+          mask: url('svg/save-stash.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-pop-stash {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  -webkit-mask: url('svg/pop-stash.svg') no-repeat 50% 50%;
+          mask: url('svg/pop-stash.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-attention {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url('svg/attention.svg') no-repeat 50% 50%;
+          mask: url('svg/attention.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-submodule {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url('svg/git-submodule.svg') no-repeat 50% 50%;
+          mask: url('svg/git-submodule.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-history {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url('svg/git-history.svg') no-repeat 50% 50%;
+          mask: url('svg/git-history.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-cloud-branch {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url('svg/git-cloud-branch.svg') no-repeat 50% 50%;
+          mask: url('svg/git-cloud-branch.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-pull {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 14px;
+  -webkit-mask: url('svg/git-pull.svg') no-repeat 50% 50%;
+          mask: url('svg/git-pull.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-fetch {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 14px;
+  -webkit-mask: url('svg/git-fetch.svg') no-repeat 50% 50%;
+          mask: url('svg/git-fetch.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-push {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 14px;
+  -webkit-mask: url('svg/git-push.svg') no-repeat 50% 50%;
+          mask: url('svg/git-push.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-stash {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 11px;
+  -webkit-mask: url('svg/git-stash.svg') no-repeat 50% 50%;
+          mask: url('svg/git-stash.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-merge {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 14px;
+  -webkit-mask: url('svg/git-merge.svg') no-repeat 50% 50%;
+          mask: url('svg/git-merge.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-rebase {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 13px;
+  -webkit-mask: url('svg/git-rebase.svg') no-repeat 50% 50%;
+          mask: url('svg/git-rebase.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-ask {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url('svg/git-ask.svg') no-repeat 50% 50%;
+          mask: url('svg/git-ask.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-git-s {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: url('svg/git-s.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-git-d {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: url('svg/git-d.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-git-r {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: url('svg/git-r.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-git-m {
   display: inline-block;
   vertical-align: middle;
@@ -1041,6 +1208,14 @@ body {
   background: url('svg/reload.svg') no-repeat 50% 50%;
   background-size: cover;
 }
+.ui-icon-collapse-all {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 9px;
+  background: url('svg/collapse-all.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-detach {
   display: inline-block;
   vertical-align: middle;
@@ -1071,6 +1246,22 @@ body {
   width: 10px;
   height: 12px;
   background: url('svg/audio.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-triangle-right-o {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 8px;
+  background: url('svg/triangle-right-o.svg') no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-triangle-right {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 6px;
+  background: url('svg/triangle-right.svg') no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-d-ts {

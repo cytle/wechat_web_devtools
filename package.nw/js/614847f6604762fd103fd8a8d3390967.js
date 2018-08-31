@@ -1,9 +1,9 @@
-'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c={[b.DISPLAY_TYPES.PLUGIN_UPDATE_INFO]:(b,c,d)=>{let e='';try{e=`
+'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c=require('./common/locales/index.js'),d={[b.DISPLAY_TYPES.PLUGIN_UPDATE_INFO]:(b,d,e)=>{let f='';try{f=`
       (function() {
       try {
-        console.group(\`${new Date} 插件更新提示\`)
+        console.group(\`${new Date} ${c.config.PLUG_IN_UPDATE_PROMPTS}\`)
 
-        console.warn(decodeURIComponent(\' ${encodeURIComponent(`插件 ${d.name} 有更新，当前使用的版本为 ${d.currentVersion}，最新版本为 ${d.latestVersion}`).replace(/'/g,'\\\'')}\'))
+        console.warn(decodeURIComponent(\' ${encodeURIComponent(c.config.PLUG_IN_UPDATE_DETAIL.format([e.name,e.currentVersion,e.latestVersion])).replace(/'/g,'\\\'')}\'))
 
         console.groupEnd()
       } catch(err) {
@@ -11,17 +11,17 @@
         console.groupEnd()
       }
       })()
-      `}catch(b){a.error(`info.display.js error while trying to display bbs information`,d)}b.executeScript({code:e})},[b.DISPLAY_TYPES.BBS_LOG_LINK]:(b,c,d)=>{let e='',f='';try{f='bbs'===d.linkType?'\u793E\u533A\u76F8\u5173\u5E16\u5B50\u63A8\u8350':'doc'===d.linkType?'\u6587\u6863\u63A8\u8350':'\u6587\u7AE0\u63A8\u8350',e=`
+      `}catch(b){a.error('info.display.js error while trying to display bbs information',e)}b.executeScript({code:f})},[b.DISPLAY_TYPES.BBS_LOG_LINK]:(b,d,e)=>{let f='',g='';try{g='bbs'===e.linkType?c.config.COMMUNITY_RELATED_POST_RECOMMENDATION:'doc'===e.linkType?c.config.DOCUMENT_RECOMMENDATION:c.config.ARTICLE_RECOMMENDS,f=`
       (function() {
       try {
-        console.group(\`${new Date} ${f}\`)
+        console.group(\`${new Date} ${g}\`)
 
-        console.group('原${1===d.messageLevel?'\u8B66\u544A':'\u62A5\u9519'}信息')
-        console.${1===d.messageLevel?'warn':'error'}(decodeURIComponent('${encodeURIComponent(d.message).replace(/'/g,'\\\'')}'))
+        console.group('${c.config.INFO_DISPLAY_ORIGINAL_INFORMATION.format(1===e.messageLevel?c.config.EMBED_WARNINGS:c.config.EMBED_ERRORS)}')
+        console.${1===e.messageLevel?'warn':'error'}(decodeURIComponent('${encodeURIComponent(e.message).replace(/'/g,'\\\'')}'))
         console.groupEnd()
 
-        ${d.explanation?'console.log(decodeURIComponent(\''+encodeURIComponent(d.explanation).replace(/'/g,'\\\'')+'\'))':''}
-        console.log('关于上述${1===d.messageLevel?'\u8B66\u544A':'\u62A5\u9519'}，点击查看更多信息：${d.link}')
+        ${e.explanation?'console.log(decodeURIComponent(\''+encodeURIComponent(e.explanation).replace(/'/g,'\\\'')+'\'))':''}
+        console.log('${c.config.INFO_DISPLAY_MORE_INFORMATION.format([1===e.messageLevel?c.config.EMBED_WARNINGS:c.config.EMBED_ERRORS,e.link])}')
 
         console.groupEnd()
       } catch(err) {
@@ -30,25 +30,25 @@
         console.groupEnd()
       }
       })()
-      `}catch(b){a.error(`info.display.js error while trying to display bbs information`,d)}b.executeScript({code:e})},[b.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,c)=>{let{url:d,domains:e}=c,f=c.type,g=`
+      `}catch(b){a.error('info.display.js error while trying to display bbs information',e)}b.executeScript({code:f})},[b.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,d)=>{const{url:e,domains:f}=d,g=d.type,h=`
     (function() {
-    console.group(\`${new Date} ${f} 合法域名校验出错\`)
-    console.info(\`如若已在管理后台更新域名配置，请刷新项目配置后重新编译项目，操作路径：“详情-域名信息”\`)
-    console.error(\` ${d} 不在以下 ${f} 合法域名列表中，请参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html\`)
-    console.table(${JSON.stringify(e)})
+    console.group(\`${new Date} ${g} ${c.config.ERROR_VERIFY_VALID_DOMAIN}\`)
+    console.info(\`${c.config.UPDATE_DOMAIN_RECOMPILE_PROJECT}\`)
+    console.error(\`${c.config.NOT_IN_VALID_DOMAIN_LIST.format([e,g,'https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html'])}\`)
+    console.table(${JSON.stringify(f)})
     console.groupEnd()
-    })()`;a.executeScript({code:g})},RECORD_FORMAT_INFO:(a)=>{let b=`
+    })()`;a.executeScript({code:h})},RECORD_FORMAT_INFO:(a)=>{const b=`
     (function() {
-    console.group(\`${new Date} 录音文件格式说明\`)
-    console.warn(\`开发者工具上的录音文件与移动端格式不同，暂时只可在工具上进行播放调试，无法直接播放或者在客户端上播放\`)
+    console.group(\`${new Date} ${c.config.RECORDING_FILE_FORMAT_DESCRIPTION}\`)
+    console.warn(\`${c.config.RECORDING_FILE_FORMAT_DIFF}\`)
     console.groupEnd()
-    })()`;a.executeScript({code:b})},COMPILE_JS_TOO_LARGE_IGNORE:(a,b,c)=>{const d=(c.files||[]).join('\\n').replace(/\"/g,'?');let e=`
+    })()`;a.executeScript({code:b})},COMPILE_JS_TOO_LARGE_IGNORE:(a,b,d)=>{const e=(d.files||[]).join('\\n').replace(/\"/g,'?'),f=`
     (function() {
-    console.group(\`${new Date} JS 文件编译\`)
-    console.warn(\`以下 JS 文件过大（超过 500K），已跳过 ES6 转 ES5 和压缩的处理：\`)
-    console.log("${d}")
+    console.group(\`${new Date} ${c.config.FILE_COMPILE_ERROR.format('JS')}\`)
+    console.warn(\`${c.config.PREVIEW_MSG_BIG_FILE_DETAILS}\`)
+    console.log("${e}")
     console.groupEnd()
-    })()`;a.executeScript({code:e})},[b.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{let b=`
+    })()`;a.executeScript({code:f})},[b.DISPLAY_TYPES.HINT_NO_URL_CHECK]:(a)=>{const b=`
     (function() {
       try {
         if (!window.hasOwnProperty('__disPlayURLCheckWarning')) {
@@ -56,8 +56,8 @@
         }
 
         if (window.__disPlayURLCheckWarning) {
-          console.group(\`${new Date} 配置中关闭 合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书检查\`)
-          console.warn(\`工具未校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书。\`)
+          console.group(\`${new Date} ${c.config.TURN_OFF_VERIFY_VALIDITY}\`)
+          console.warn(\`${c.config.TOOL_NOT_VERIFY_VALIDITY}\`)
           console.groupEnd()
           window.__disPlayURLCheckWarning = false
         }
@@ -65,18 +65,18 @@
         console.warn('error', err)
       }
     })()
-    `;a.executeScript({code:b})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,c)=>{let d=`
+    `;a.executeScript({code:b})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_GET_APP_CONFIG]:(a,b,d)=>{const e=`
     (function() {
 
-    console.group(\`\${new Date()} 自定义分析 配置拉取成功\`)
+    console.group(\`\${new Date()} ${c.config.CUSTOM_ANALYSIS} ${c.config.PULL_CONFIGURE_SUCCESSFULLY}\`)
     let config = $config
     try {
       let events = JSON.parse(config)
       let event = events[0]
       let table = {}
-      table['事件 ID'] = { value: event.eventID }
-      table['事件名'] = { value: event.eventName }
-      console.info('事件信息')
+      table['${c.config.EVENT} ID'] = { value: event.eventID }
+      table['${c.config.EVENT_NAME}'] = { value: event.eventName }
+      console.info('${c.config.EVENT_INFORMATION}')
       console.table(table)
 
       let eventTargets = event.eventTarget
@@ -88,18 +88,18 @@
             actionTable[key] = { value: target[key] }
           }
         }
-        console.group(\`动作 #\${i + 1 }：\`)
-        console.info('触发条件：')
+        console.group(\`${c.config.ACTION} #\${i + 1 }：\`)
+        console.info('${c.config.TRIGGERING_CONDITIONS}')
         console.table(actionTable)
 
         let actionDataTable = []
         for (const key in target.data) {
           actionDataTable.push({
-            '字段值': target.data[key]
+            '${c.config.FIELD_VALUE}': target.data[key]
           })
         }
 
-        console.info('上报数据：')
+        console.info('${c.config.REPORT_DATA}')
         console.table(actionDataTable)
 
         console.groupEnd()
@@ -111,19 +111,19 @@
     console.groupEnd()
 
     })()
-    `.replace('$config',c.config);a.executeScript({code:d})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_ON_APP_CONFIG]:(a,b,c)=>{let d=`
+    `.replace('$config',d.config);a.executeScript({code:e})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_ON_APP_CONFIG]:(a,b,d)=>{const e=`
 
     (function (){
 
-    console.group(\`\${new Date()} 自定义分析 收到最新配置\`)
+    console.group(\`\${new Date()} ${c.config.CUSTOM_ANALYSIS} ${c.config.RECEIVE_LATEST_CONFIGURATION}\`)
     let config = $config
     try {
       let events = JSON.parse(config)
       let event = events[0]
       let table = {}
-      table['事件 ID'] = { value: event.eventID }
-      table['事件名'] = { value: event.eventName }
-      console.info('事件信息')
+      table['${c.config.EVENT} ID'] = { value: event.eventID }
+      table['${c.config.EVENT_NAME}'] = { value: event.eventName }
+      console.info('${c.config.EVENT_INFORMATION}')
       console.table(table)
 
       let eventTargets = event.eventTarget
@@ -135,18 +135,18 @@
             actionTable[key] = { value: target[key] }
           }
         }
-        console.group(\`动作 #\${i + 1 }：\`)
-        console.info('触发条件：')
+        console.group(\`${c.config.ACTION} #\${i + 1 }：\`)
+        console.info('${c.config.TRIGGERING_CONDITIONS}')
         console.table(actionTable)
 
         let actionDataTable = []
         for (const key in target.data) {
           actionDataTable.push({
-            '字段值': target.data[key]
+            '${c.config.FIELD_VALUE}': target.data[key]
           })
         }
 
-        console.info('上报数据：')
+        console.info('${c.config.REPORT_DATA}')
         console.table(actionDataTable)
 
         console.groupEnd()
@@ -158,7 +158,7 @@
     console.groupEnd()
 
     })()
-    `.replace('$config',c.config);a.executeScript({code:d})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_REPORT]:(a,b,c)=>{let d=`
+    `.replace('$config',d.config);a.executeScript({code:e})},[b.DISPLAY_TYPES.CUSTOM_ANALYSIS_REPORT]:(a,b,d)=>{const e=`
 
     (function (){
 
@@ -171,7 +171,7 @@
 
       // wx.reportAnalytics
 
-      console.group(\`\${new Date() } 自定义分析 上报成功\`)
+      console.group(\`\${new Date() } ${c.config.CUSTOM_ANALYSIS} ${c.config.REPORT_SUCCESS}\`)
       if (actionData.eventID) {
         console.info(\`event ID: \${actionData.eventID }\`)
       }
@@ -181,7 +181,7 @@
 
       const table = {}
       for (const key in data) {
-        table[key] = { '数据': data[key] }
+        table[key] = { '${c.config.DATA}': data[key] }
       }
 
       console.table(table)
@@ -206,7 +206,7 @@
         idMap = null
       }
 
-      console.group(\`\${new Date() } 自定义分析 上报成功\`)
+      console.group(\`\${new Date() } ${c.config.CUSTOM_ANALYSIS} ${c.config.REPORT_SUCCESS}\`)
 
       try {
         if (actionData.eventID) {
@@ -235,17 +235,17 @@
       try {
         if (idMap) {
           for (const item of data) {
-            item['字段值'] = idMap[item.id].selector
-            item['数据'] = item.value
+            item['${c.config.FIELD_VALUE}'] = idMap[item.id].selector
+            item['${c.config.DATA}'] = item.value
           }
 
           if (data && data.length > 0) {
-            console.table(data, ['字段值', '数据'])
+            console.table(data, ['${c.config.FIELD_VALUE}', '${c.config.DATA}'])
           }
           console.groupEnd()
         } else {
           if (data && data.length > 0) {
-            console.table(data, ['id', '数据'])
+            console.table(data, ['id', '${c.config.DATA}'])
           }
           console.groupEnd()
         }
@@ -258,4 +258,4 @@
     }
 
     })()
-    `.replace('$actionData',c.actionData).replace('$config',c.config);a.executeScript({code:d})}};module.exports=(a,b,d)=>{c[b]&&c[b](a,b,d)}}(require('lazyload'),require);
+    `.replace('$actionData',d.actionData).replace('$config',d.config);a.executeScript({code:e})}};module.exports=(a,b,c)=>{d[b]&&d[b](a,b,c)}}(require('lazyload'),require);

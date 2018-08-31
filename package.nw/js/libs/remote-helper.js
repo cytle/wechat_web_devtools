@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vm = require("vm");
 const fs = require("fs");
 const path = require("path");
-//@ts-ignore
+// @ts-ignore
 const inspector = require("inspector");
 const child_process_1 = require("child_process");
 const WebSocket = require("ws");
@@ -104,22 +104,22 @@ if (isDev) {
     Object.defineProperty(log, 'i', {
         get() {
             return console.log.bind(console, '[REMOTE]');
-        }
+        },
     });
     Object.defineProperty(log, 'w', {
         get() {
             return console.warn.bind(console, '[REMOTE]');
-        }
+        },
     });
     Object.defineProperty(log, 'e', {
         get() {
             return console.error.bind(console, '[REMOTE]');
-        }
+        },
     });
 }
 else {
     Object.defineProperty(log, 'i', {
-        value: noop
+        value: noop,
     });
     Object.defineProperty(log, 'w', {
         value: function (...args) {
@@ -131,14 +131,14 @@ else {
                     const errorMessage = {
                         type: 'error',
                         data: {
-                            error: errorsAndWarns.join('\n')
-                        }
+                            error: errorsAndWarns.join('\n'),
+                        },
                     };
                     errorsAndWarns = [];
                     sendMessageToMaster(errorMessage);
                 }, 0);
             }
-        }
+        },
     });
     Object.defineProperty(log, 'e', {
         value: function (...args) {
@@ -157,10 +157,9 @@ else {
                     sendMessageToMaster(errorMessage);
                 }, 0);
             }
-        }
+        },
     });
 }
-;
 (['dir', 'tempDir', 'vendorDir', 'isDev', 'files', 'httpPort', 'initialInspectPort', 'dataDir', 'usingLocalStorage', 'wsurl']).forEach(key => {
     if (typeof process.env[key] !== 'string') {
         log.e(key, 'is not defined in process.env');
@@ -263,7 +262,7 @@ const vmGlobal = {
             }
         }
         return consoleClone;
-    })()
+    })(),
 };
 const jsVm = vm.createContext(vmGlobal);
 function sendMessageToMaster(message) {
@@ -280,8 +279,8 @@ function sendDebugMessageToClient(debugObject, category, extra, raw = false) {
         type: 'sendMessageToClient',
         data: {
             category,
-            debugObject
-        }
+            debugObject,
+        },
     };
     if (extra) {
         message.data.extra = extra;
@@ -334,7 +333,7 @@ function handleRegisterInterface(data) {
             };
             if (!debugEnabled && methodName === 'invokeHandler') {
                 return JSON.stringify({
-                    errMsg: sdkName + ':fail debug invoke no active session'
+                    errMsg: sdkName + ':fail debug invoke no active session',
                 });
             }
             // transforms
@@ -423,7 +422,7 @@ function handleRegisterInterface(data) {
                     info: {
                         url: parsedArgs.url,
                         method: parsedArgs.method || 'GET',
-                        data: parsedArgs.data,
+                        data: parsedArgs.data || parsedArgs.formData || undefined,
                     },
                     state: 'requestSent',
                     data: null,
@@ -431,7 +430,7 @@ function handleRegisterInterface(data) {
                 callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
-                    requestTaskId: String(requestTaskId)
+                    requestTaskId: String(requestTaskId),
                 });
             }
             else if (methodName === 'invokeHandler' && sdkName === 'createDownloadTask') {
@@ -443,6 +442,8 @@ function handleRegisterInterface(data) {
                     api: 'download',
                     info: {
                         url: parsedArgs.url,
+                        method: parsedArgs.method || 'GET',
+                        data: parsedArgs.data || parsedArgs.formData || undefined,
                     },
                     state: 'requestSent',
                     data: null,
@@ -450,7 +451,7 @@ function handleRegisterInterface(data) {
                 callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
-                    downloadTaskId: String(downloadTaskId)
+                    downloadTaskId: String(downloadTaskId),
                 });
             }
             else if (methodName === 'invokeHandler' && sdkName === 'createUploadTask') {
@@ -462,6 +463,8 @@ function handleRegisterInterface(data) {
                     api: 'upload',
                     info: {
                         url: parsedArgs.url,
+                        method: parsedArgs.method || 'POST',
+                        data: parsedArgs.data || parsedArgs.formData || undefined,
                     },
                     state: 'requestSent',
                     data: null,
@@ -469,7 +472,7 @@ function handleRegisterInterface(data) {
                 callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
-                    uploadTaskId: String(uploadTaskId)
+                    uploadTaskId: String(uploadTaskId),
                 });
             }
             else if (methodName === 'invokeHandler' && sdkName === 'createSocketTask') {
@@ -481,6 +484,7 @@ function handleRegisterInterface(data) {
                     api: 'socket',
                     info: {
                         url: parsedArgs.url,
+                        data: parsedArgs.data || parsedArgs.formData || undefined,
                     },
                     state: 'requestSent',
                     data: null,
@@ -488,7 +492,7 @@ function handleRegisterInterface(data) {
                 callInterface(sdkCallId);
                 return JSON.stringify({
                     errMsg: `${sdkName}:ok`,
-                    socketTaskId: String(socketTaskId)
+                    socketTaskId: String(socketTaskId),
                 });
             }
             else if (methodName === 'invokeHandler' && sdkName === 'getSystemInfo' || sdkName === 'getSystemInfoSync') {
@@ -576,7 +580,7 @@ let vmCounter = 0;
 function handleEvaluateJavascript(data) {
     const script = ';' + data.script + '\n;';
     const evaluateId = parseInt(String(data.evaluate_id), 10);
-    let ret = undefined;
+    let ret;
     try {
         // only keep 50 vms in source panel
         vmCounter = vmCounter >= 50 ? 0 : (vmCounter + 1);
@@ -607,7 +611,7 @@ function handleEvaluateJavascript(data) {
         // send back to client.
         const evaluateJavascriptResult = {
             evaluate_id: evaluateId,
-            ret
+            ret,
         };
         sendDebugMessageToClient(evaluateJavascriptResult, 'evaluateJavascriptResult', {
             len: (ret || '').length,
@@ -636,7 +640,7 @@ function reportSDKAPI(callId, retDataSize) {
         }
     }
 }
-let sdkApiReportTimer = undefined;
+let sdkApiReportTimer;
 function sendSDKAPIReport() {
     if (!sdkApiReportTimer) {
         sdkApiReportTimer = setTimeout(() => {
@@ -912,7 +916,7 @@ function onRequestTaskStateChange(args) {
             api: 'request',
             statusCode: data.statusCode,
             statusText: data.statusText,
-            dataLength: (data.data || '').length
+            dataLength: (data.data || '').length,
         };
         sendNetworkDebug(message, nativeTime);
     }
@@ -1096,7 +1100,7 @@ function handleSetupContext(data) {
     handleRegisterInterface(rio);
     const cfgJs = data.configure_js || '';
     handleEvaluateJavascript({
-        script: cfgJs
+        script: cfgJs,
     });
     // initialization
     loadCode('', '[__InitHelper__]', `var __wxAppData = __wxAppData || {};
@@ -1174,7 +1178,7 @@ function handleSetupContext(data) {
                             data: {
                                 currentWebviewId: pages[pages.length - 1].__wxWebviewId__,
                                 webviewIds: Array.from(savedWebviewIds),
-                            }
+                            },
                         };
                         sendMessageToMaster(message);
                     }
@@ -1201,7 +1205,7 @@ function handleSetupContext(data) {
                     }
                 }
                 return realSubscribeHandler.call(vmGlobal.WeixinJSBridge, ...args);
-            }
+            },
         });
         log.i('subscribeHandler injected');
         networkApiInjected = true;
@@ -1212,7 +1216,7 @@ function handleSetupContext(data) {
     const userMd5 = data.three_js_md5;
     handleInitUserCode(userMd5);
 }
-let getWXAppDatasTimeout = undefined;
+let getWXAppDatasTimeout;
 function handleProcessMessage(msg) {
     if (!msg) {
         log.e('invalid master message', msg);
@@ -1402,8 +1406,8 @@ process.on('uncaughtException', (error) => {
     const message = {
         type: 'error',
         data: {
-            error
-        }
+            error,
+        },
     };
     sendMessageToMaster(message);
 });
@@ -1423,8 +1427,8 @@ function notifyMaster() {
     sendMessageToMaster({
         type: 'vmReady',
         data: {
-            inspectUrl: inspector.url()
-        }
+            inspectUrl: inspector.url(),
+        },
     });
 }
 let ws;
@@ -1488,22 +1492,22 @@ if (isDev) {
                 child_process_1.exec(`${isMac ? 'open' : 'explorer'} "${dir}"`);
                 return;
             },
-            enumerable: false
+            enumerable: false,
         },
         _tmp: {
             get() {
                 child_process_1.exec(`${isMac ? 'open' : 'explorer'} "${tempDir}"`);
                 return;
             },
-            enumerable: false
+            enumerable: false,
         },
         _log: {
             get() {
                 child_process_1.exec(`${isMac ? 'open' : 'explorer'} "${dir}/../../log/"`);
                 return;
             },
-            enumerable: false
-        }
+            enumerable: false,
+        },
     };
     global.jsVM = jsVm;
 }
@@ -1516,7 +1520,7 @@ else {
             },
             enumerable: false,
             configurable: true,
-        }
+        },
     };
 }
 Object.defineProperties(global, descriptors);

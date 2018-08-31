@@ -9,8 +9,8 @@ const getType = object => Object.prototype.toString.call(object).slice(8, -1).to
  * if x < y return -1
  * if x = y return 0
  * if x > y return 1
- * @param {string} x 
- * @param {string} y 
+ * @param {string} x
+ * @param {string} y
  */
 function compareLibVersion(x, y) {
   if (!x && !y) return 0
@@ -139,7 +139,7 @@ function evaluate(message, context, ext) {
       // filter based on message
       if (((config.matchType === 'full') && (config.match === message)) ||
         ((config.matchType === 'reg') && ((new RegExp(config.match)).test(message)))) {
-        reply(null, { config }, ext)
+        reply(null, {config}, ext)
         rule.used = true
         break
       }

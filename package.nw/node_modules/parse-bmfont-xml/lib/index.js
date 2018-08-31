@@ -31,14 +31,18 @@ module.exports = function parseBMFontXML(data) {
       output.pages[parseInt(p.id, 10)] = p.file
     }
 
-    var chrArray = result.chars[0]['char'] || []
-    for (var i = 0; i < chrArray.length; i++) {
-      output.chars.push(parseAttributes(chrArray[i].$))
+    if (result.chars) {
+      var chrArray = result.chars[0]['char'] || []
+      for (var i = 0; i < chrArray.length; i++) {
+        output.chars.push(parseAttributes(chrArray[i].$))
+      }
     }
 
-    var kernArray = result.kernings[0]['kerning'] || []
-    for (var i = 0; i < kernArray.length; i++) {
-      output.kernings.push(parseAttributes(kernArray[i].$))
+    if (result.kernings) {
+      var kernArray = result.kernings[0]['kerning'] || []
+      for (var i = 0; i < kernArray.length; i++) {
+        output.kernings.push(parseAttributes(kernArray[i].$))
+      }
     }
   })
   return output

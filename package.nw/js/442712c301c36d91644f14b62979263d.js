@@ -1,0 +1,2 @@
+;!function(require, directRequire){;"use strict";const _=require("lodash"),noop=()=>{};let container,ob={observe:noop,unobserve:noop},callback=noop;const debouncedResizeObserverFn=_.debounce(()=>{callback(container)},16);"function"==typeof ResizeObserver&&(ob=new ResizeObserver(debouncedResizeObserverFn)),module.exports={observe(a,b){container&&ob.unobserve(container),ob.observe(a),container=a,callback=b||noop},forceUpdate(){debouncedResizeObserverFn()},unobserve(a){ob.unobserve(a),container=void 0,callback=noop}};
+;}(require("lazyload"), require);

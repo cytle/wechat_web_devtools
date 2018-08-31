@@ -1,5 +1,5 @@
-'use strict';!function(require,directRequire){const a=require('./1dea83a77e99a7c94f6b6f01f5c175b0.js'),b=require('./d3976cc01aeebc5b09e11c4135b6bd8d.js'),c=require('./26407b6d0ea17270c5f9d72eabdaab4e.js');module.exports=async(d,e)=>{const f=await a(d);let g=[],h=b.checkIsInSubPackage(f,e);if(h&&h.plugins)for(let a in h.plugins){const{provider:b,version:e}=h.plugins[a];let f=await c(d,{pluginId:b,version:e});g.push(f.replace(/\\/g,'\\\\').replace(/`/g,'\\`'))}let i=/__plugin__\/([^\/]*)\/(.*)/,j=i.exec(e),k=j[1]||'';e=j[2];let l={window:f.global&&f.global.window||{}},m=e.replace(/\"/g,'\\"').replace(/`/g,'\\`'),n=`
-    var generateFunc = $gwx_${k} && $gwx_${k}("./${m}.wxml")
+'use strict';!function(require,directRequire){const a=require('./1dea83a77e99a7c94f6b6f01f5c175b0.js'),b=require('./d3976cc01aeebc5b09e11c4135b6bd8d.js'),c=require('./26407b6d0ea17270c5f9d72eabdaab4e.js'),d=require('./common/locales/index.js');module.exports=async(e,f)=>{const g=await a(e),h=[],i=b.checkIsInSubPackage(g,f);if(i&&i.plugins)for(const a in i.plugins){const{provider:b,version:d}=i.plugins[a],f=await c(e,{pluginId:b,version:d});h.push(f.replace(/\\/g,'\\\\').replace(/`/g,'\\`'))}const j=/__plugin__\/([^\/]*)\/(.*)/,k=j.exec(f),l=k[1]||'';f=k[2];const m={window:g.global&&g.global.window||{}},n=f.replace(/\"/g,'\\"').replace(/`/g,'\\`'),o=`
+    var generateFunc = $gwx_${l} && $gwx_${l}("./${n}.wxml")
     if (generateFunc) {
       document.dispatchEvent(new CustomEvent("generateFuncReady", {
         detail: {
@@ -7,25 +7,25 @@
         }
      }))
     } else {
-      document.body.innerText = "未找到 ${m}.wxml 文件"
-      console.error("未找到 ${m}.wxml 文件")
+      document.body.innerText = "${d.config.CANNOT_BE_FOUND.format(n+'.wxml')}"
+      console.error("${d.config.CANNOT_BE_FOUND.format(n+'.wxml')}")
     }
-  `,o=`plugin-private://${k}/${e}`,p=`
-      __wxConfig=${JSON.stringify(l)};
+  `,p=`plugin-private://${l}/${f}`,q=`
+      __wxConfig=${JSON.stringify(m)};
       __wxConfig={
         window: {
           ...__wxConfig.window,
-          ...__wxAppCode__['${o}.json']
+          ...__wxAppCode__['${p}.json']
         }
       }
-      ${l.window.enablePullDownRefresh?'window.enablePullDownRefresh();':''};
-      __wxAppCode__['${o}.wxss'] && __wxAppCode__['${o}.wxss']();
-      ${g.join('\n;')}
-      ${n};
+      ${m.window.enablePullDownRefresh?'window.enablePullDownRefresh();':''};
+      __wxAppCode__['${p}.wxss'] && __wxAppCode__['${p}.wxss']();
+      ${h.join('\n;')}
+      ${o};
 
       if (__wxConfig.window.disableScroll) {
         var style = document.createElement('style')
         style.innerText = 'body{overflow-y:hidden;}'
         document.head.appendChild(style)
       }
-    `;return p}}(require('lazyload'),require);
+    `;return q}}(require('lazyload'),require);

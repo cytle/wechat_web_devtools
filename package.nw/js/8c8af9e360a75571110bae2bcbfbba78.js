@@ -1,88 +1,88 @@
-"use strict";!function(require,directRequire){const a=`// {{page}}.js
+'use strict';!function(require,directRequire){const a=require('./common/locales/index.js'),b=`// {{page}}.js
 Page({
 
   /**
-   * 页面的初始数据
+   * ${a.config.PAGE_DATA}
    */
   data: {
-  
+
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONLOAD}
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONREADY}
    */
   onReady: function () {
-  
+
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONSHOW}
    */
   onShow: function () {
-  
+
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONHIDE}
    */
   onHide: function () {
-  
+
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONUNLOAD}
    */
   onUnload: function () {
-  
+
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * ${a.config.PAGE_EVENT_HANDLER_FUNCTION}--${a.config.PAGE_ONPULLDOWNREFRESH}
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * ${a.config.PAGE_ONREACHBOTTOM}
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
-   * 用户点击右上角分享
+   * ${a.config.PAGE_ONSHAREAPPMESSAGE}
    */
   onShareAppMessage: function () {
-  
+
   }
-})`,b=`/* {{page}}.wxss */`,c=`<!--{{page}}.wxml-->
+})`,c=`<!--{{page}}.wxml-->
 <text>{{page}}.wxml</text>
 `,d=`// {{component}}.js
 Component({
   /**
-   * 组件的属性列表
+   * ${a.config.COMPONENT_PROPERTIES}
    */
   properties: {
 
   },
 
   /**
-   * 组件的初始数据
+   * ${a.config.COMPONENT_DATA}
    */
   data: {
 
   },
 
   /**
-   * 组件的方法列表
+   * ${a.config.COMPONENT_METHODS}
    */
   methods: {
 
@@ -93,4 +93,4 @@ Component({
   "usingComponents": {}
 }`,f=`<!--{{component}}.wxml-->
 <text>{{component}}.wxml</text>
-`,g=`/* {{component}}.wxss */`;module.exports={pageJS:a,pageJSON:"{}",pageWXML:c,pageWXSS:b,componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:g}}(require("lazyload"),require);
+`;module.exports={pageJS:b,pageJSON:'{}',pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:'/* {{component}}.wxss */'}}(require('lazyload'),require);

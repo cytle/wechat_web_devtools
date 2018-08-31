@@ -1,9 +1,10 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),{NO_BOM_VAR:c}=require('./6242f55dbdfe53c2f07b7a51568311f2.js'),d='<!-- wxConfig -->',e='<!-- devtoolsConfig -->',f='<!- wxmlxcjs -->',g='<!- wxappcode -->',h=`
+'use strict';!function(require,directRequire){const a=require('path'),b=require('fs'),{NO_BOM_VAR:c}=require('./6242f55dbdfe53c2f07b7a51568311f2.js'),d='<!-- ondocumentstart -->',e='<!-- wxConfig -->',f='<!-- devtoolsConfig -->',g='<!- wxmlxcjs -->',h='<!- wxappcode -->',i=`
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+  ${d}
   <script>
   var __wxAppData = {}
   var __wxRoute
@@ -20,11 +21,11 @@
   var __WeixinWorker = WeixinWorker = {}
   var $gwx
   </script>
-  ${d}
   ${e}
   ${f}
   ${g}
-`,i=`
+  ${h}
+`,j=`
 <style>
     body {
       overflow: hidden;
@@ -51,4 +52,4 @@ if (document.readyState == 'complete') {
   window.addEventListener('load', fn)
 }
 </script>
-`,j=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),k=global.appConfig.isDev?a.join(__dirname,'../../../extensions/context/index.js'):a.join(__dirname,'./extensions/context/index.js'),l=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/index.js'):a.join(__dirname,'./extensions/worker/index.js'),m=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/weixinworker.tpl.js'):a.join(__dirname,'./extensions/worker/weixinworker.tpl.js'),n=b.readFileSync(j,'utf8'),o=b.readFileSync(k,'utf8'),p=b.readFileSync(l,'utf8'),q=b.readFileSync(m,'utf8'),r=c.join(',');module.exports={asDebug:n,subAsDebug:o,workerAsDebug:p,WeixinWorkerTpl:q,htmlBegin:h,htmlEnd:i,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','native-buffer.js','wx-worker.js','js-context.js','reporter-sdk.js','protect-sdk.js','subcontext-engine-main.js','safeway-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','plugin-node.js','webnode.js','global-read-only.js'],devWorkerList:['wx-config.js','native-buffer.js','wx-console.js','wx-worker.js','webnode.js','worker-sdk.js'],workerVendorList:['WAWorker.js'],noBrowser:r,devtoolsConfigPlaceholder:e,wxConfigPlaceholder:d,wxmlXCJSPlaceholder:f,wxappcodePlaceholder:g,plugincodePlaceholder:'<!- plugincode -->'}}(require('lazyload'),require);
+`,k=global.appConfig.isDev?a.join(__dirname,'../../../extensions/appservice/index.js'):a.join(__dirname,'./extensions/appservice/index.js'),l=global.appConfig.isDev?a.join(__dirname,'../../../extensions/context/index.js'):a.join(__dirname,'./extensions/context/index.js'),m=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/index.js'):a.join(__dirname,'./extensions/worker/index.js'),n=global.appConfig.isDev?a.join(__dirname,'../../../extensions/worker/weixinworker.tpl.js'):a.join(__dirname,'./extensions/worker/weixinworker.tpl.js'),o=b.readFileSync(k,'utf8'),p=b.readFileSync(l,'utf8'),q=b.readFileSync(m,'utf8'),r=b.readFileSync(n,'utf8'),s=c.join(',');module.exports={asDebug:o,subAsDebug:p,workerAsDebug:q,WeixinWorkerTpl:r,htmlBegin:i,htmlEnd:j,vendorList:['WAService.js'],devVendorList:['wx-config.js','wx-console.js','native-buffer.js','wx-worker.js','js-context.js','reporter-sdk.js','protect-sdk.js','subcontext-engine-main.js','safeway-sdk.js','appservice-sdk.js','exparser.min.js','virtual_dom_data.js','app_service_engine.js','plugin-node.js','webnode.js','global-read-only.js'],devWorkerList:['wx-config.js','native-buffer.js','wx-console.js','wx-worker.js','webnode.js','worker-sdk.js'],workerVendorList:['WAWorker.js'],noBrowser:s,onDocumentStartPlaceholder:d,devtoolsConfigPlaceholder:f,wxConfigPlaceholder:e,wxmlXCJSPlaceholder:g,wxappcodePlaceholder:h,plugincodePlaceholder:'<!- plugincode -->'}}(require('lazyload'),require);
