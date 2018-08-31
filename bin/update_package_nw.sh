@@ -24,10 +24,10 @@ fi
 
 echo "最新wechat_v: $wechat_v"
 
-# if [ "$wechat_v" = "$cur_wechat_v" ]; then
-#   echo "当前已经是最新版本"
-#   exit 0
-# fi
+if [ "$wechat_v" = "$cur_wechat_v" ]; then
+  echo "当前已经是最新版本"
+  exit 0
+fi
 
 wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
 
@@ -55,6 +55,7 @@ cp -r "$wcwd_package_dir" "$root_dir"
 
 sh "$root_dir/bin/replace_package_nw.sh"
 sh "$root_dir/bin/fix_node_sync_ipc.sh"
+sh "$root_dir/bin/fix_load_extension.sh"
 
 # 链接wcc.exe wcsc.exe
 ln -f "$vendor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
