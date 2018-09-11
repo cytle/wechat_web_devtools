@@ -1,0 +1,17 @@
+<svg id="图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #888;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>001_图标汇总</title>
+  <polygon class="cls-1" points="6 2 0 2 0 14 11 14 13 12 13 4 8 4 6 2"/>
+  <polygon class="cls-2" points="1.52 13 4.32 6 14.48 6 11.68 13 1.52 13"/>
+  <path class="cls-1" d="M13,7l-2,5H3L5,7h8m3-2H3.65l-.5,1.26-2,5L0,14H12.35l.5-1.26,2-5L16,5Z"/>
+</svg>

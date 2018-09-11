@@ -308,6 +308,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-cloud-develop {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 11px;
+  -webkit-mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
+          mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-bug {
   display: inline-block;
   vertical-align: middle;

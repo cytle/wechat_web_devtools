@@ -1213,6 +1213,9 @@ function handleSetupContext(data) {
     else {
         log.w('subscribeHandler injected failed');
     }
+    if (fs.existsSync(path.join(tempDir, 'wacloud.js'))) {
+        loadCode(path.join(tempDir, 'wacloud.js'));
+    }
     const userMd5 = data.three_js_md5;
     handleInitUserCode(userMd5);
 }
@@ -1365,6 +1368,9 @@ function handleGetWxAppDatas() {
     const pages = fn.call(vmGlobal);
     const appDatas = {};
     for (const p of pages) {
+        if (!p || !(p.__route__ || p.route)) {
+            continue;
+        }
         appDatas[p.__route__ || p.route] = Object.assign({}, (p.data || {}), { __webviewId__: p.__wxWebviewId__ });
     }
     const message = {
@@ -1526,4 +1532,4 @@ else {
 Object.defineProperties(global, descriptors);
 Object.defineProperties(vmGlobal, descriptors);
 // hide this code in source panel
-//# sourceURL=[publib]
+//# sourceURL=[publib2]

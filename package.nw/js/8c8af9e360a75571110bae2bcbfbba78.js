@@ -93,4 +93,25 @@ Component({
   "usingComponents": {}
 }`,f=`<!--{{component}}.wxml-->
 <text>{{component}}.wxml</text>
-`;module.exports={pageJS:b,pageJSON:'{}',pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:'/* {{component}}.wxss */'}}(require('lazyload'),require);
+`,g=`// 云函数入口文件
+const cloud = require('wx-server-sdk')
+
+cloud.init()
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+
+}`,h=`{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\"Error: no test specified\\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}`;module.exports={pageJS:b,pageJSON:'{}',pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:'/* {{component}}.wxss */',tcbIndexJS:g,tcbCloudFunctionPackageJSON:h}}(require('lazyload'),require);

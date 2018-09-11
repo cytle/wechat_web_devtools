@@ -468,6 +468,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-cloud-develop {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 11px;
+  -webkit-mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
+          mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-bug {
   display: inline-block;
   vertical-align: middle;
@@ -2157,7 +2168,6 @@ body {
   height: 100%;
   border-radius: 3px;
   background-color: rgba(251, 251, 251, 0.8);
-  backdrop-filter: blur(10px);
   z-index: 0;
 }
 @media (min-resolution: 2dppx), (min-resolution: 192dpi) {
@@ -2313,7 +2323,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(251, 251, 251, 0.8);
-  backdrop-filter: blur(10px);
   z-index: -1;
 }
 .ui-dialog:after {
@@ -2502,7 +2511,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(251, 251, 251, 0.8);
-  backdrop-filter: blur(10px);
   z-index: -1;
 }
 .ui-divider-vertical {
@@ -2967,7 +2975,6 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
   height: 100%;
   background-color: rgba(251, 251, 251, 0.8);
-  backdrop-filter: blur(10px);
   z-index: -1;
 }
 .panel-pull-right {
@@ -8261,7 +8268,6 @@ body > div {
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  backdrop-filter: blur(10px);
   z-index: 0;
 }
 .menu:after {

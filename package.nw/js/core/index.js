@@ -270,7 +270,10 @@ initMenu()
 
 if (!global.isDevWindow && !global.online) {
   const checkUpdate = require('../js/e5184416014aff2809a9dee32cc447c8.js')
+  const idepluginUpdater = require('../js/8a1cb9f18551c9fced04d3b87ddfa687.js')
+
   checkUpdate.loop()
+  idepluginUpdater.loop()
 
   // 检查是否需要更新
   tools.checkUpdateApp()
