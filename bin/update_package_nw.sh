@@ -55,7 +55,7 @@ cp -r "$wcwd_package_dir" "$root_dir"
 
 sh "$root_dir/bin/replace_package_nw.sh"
 sh "$root_dir/bin/fix_node_sync_ipc.sh"
-sh "$root_dir/bin/fix_load_extension.sh"
+# sh "$root_dir/bin/fix_load_extension.sh"
 
 # 链接wcc.exe wcsc.exe
 ln -f "$vendor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
