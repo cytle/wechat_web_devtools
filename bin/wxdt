@@ -21,7 +21,7 @@ cd "$root_dir/dist"
 
 want=${1:-"start"}
 if [ $want = "start" ]; then
-  `./nw`
+  `./nw -load-extension=./package.nw/js/ideplugin`
 elif [ $want = "install" ]; then
   bash "$root_dir/bin/replace_weapp_vendor.sh"
   bash "$root_dir/bin/install_desktop.sh"
