@@ -20,6 +20,13 @@ linux 下使用微信web开发者工具.
 - [腾讯官方更新日志](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 
 ## 安装 Wine
+ArchLinux（及其衍生版如Manjaro等）用户可安装aur包——[wechat_web_devtools](https://aur.archlinux.org/packages/wechat_web_devtools/)(需要[开启multilib仓库](https://wiki.archlinux.org/index.php/Official_repositories#multilib))。例如使用[aur helper](https://wiki.archlinux.org/index.php/AUR_helper)工具[yay](https://aur.archlinux.org/packages/yay/)安装：
+```shell
+yay -S wechat_web_devtools
+```
+安装脚本将完成以下所有工作。
+
+---
 
 请先安装 [Wine](https://wiki.winehq.org/Download)
 以 `Ubuntu` 为例: https://wiki.winehq.org/Ubuntu
