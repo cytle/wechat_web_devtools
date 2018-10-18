@@ -232,7 +232,12 @@ function init() {
       // dev window
       const clientWindowSync = require('../js/881e653f19d837f2408386047cb8c38c.js')
       clientWindowSync.notifyCloseWindow()
-      Win.close(true)
+      // 先隐藏， 可能需要处理一些事情，比如上报之后再真正关闭
+      // 如果直接 Win.close(true), 别的地方的 Win.on('close') 是不会收到调用的
+      Win.hide()
+      setTimeout(() => {
+        Win.close(true)
+      }, 1000)
     } else {
       // original main window
       const serverWindowSync = require('../js/b543ae2da406cea63b3ad8951f17b6c0.js')

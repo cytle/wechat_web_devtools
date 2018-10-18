@@ -2,7 +2,7 @@
 
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Loads an [AngelCode BMFont](http://www.angelcode.com/products/bmfont/) file from XHR (in browser) and fs (in Node), returning a [JSON representation](json-spec.md).
+Loads an [AngelCode BMFont](http://www.angelcode.com/products/bmfont/) file in browser (with XHR) and node (with fs and [phin](https://github.com/ethanent/phin)), returning a [JSON representation](json-spec.md).
 
 ```js
 var load = require('load-bmfont')
@@ -38,9 +38,9 @@ See [text-modules](https://github.com/mattdesl/text-modules) for related modules
 
 Loads a BMFont file with the `opt` settings and fires the callback with `(err, font)` params once finished. If `opt` is a string, it is used as the URI. Otherwise the options can be:
 
-- `uri` or `url` the path (in Node) or URI (in the browser)
+- `uri` or `url` the path (in Node) or URI
 - `binary` boolean, whether the data should be read as binary, default false
-- (in node) options for `fs.readFile`
+- (in node) options for `fs.readFile` or `phin`
 - (in browser) options for [xhr](https://github.com/Raynos/xhr)
 
 To support binary files in the browser and Node, you should use `binary: true`. Otherwise the XHR request might come in the form of a UTF8 string, which will not work with binary files. This also sets up the XHR object to override mime type in older browsers.

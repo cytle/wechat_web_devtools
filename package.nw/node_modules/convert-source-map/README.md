@@ -1,6 +1,6 @@
-# convert-source-map [![build status](https://secure.travis-ci.org/thlorenz/convert-source-map.png)](http://travis-ci.org/thlorenz/convert-source-map)
+# convert-source-map [![build status](https://secure.travis-ci.org/thlorenz/convert-source-map.svg?branch=master)](http://travis-ci.org/thlorenz/convert-source-map)
 
-[![NPM](https://nodei.co/npm/convert-source-map.png?downloads=true&stars=true)](https://nodei.co/npm/convert-source-map/)
+<a href="https://www.patreon.com/bePatron?u=8663953"><img alt="become a patron" src="https://c5.patreon.com/external/logo/become_a_patron_button.png" height="35px"></a>
 
 Converts a source-map from/to  different formats and allows adding/changing properties.
 

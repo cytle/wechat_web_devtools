@@ -1,4 +1,21 @@
 <!DOCTYPE html><html><head><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><script>var __subVendorCode__={},__subContextCode__={};global={};var __WeixinJSContext=WeixinJSContext={},__workerVendorCode__={},__workersCode__={},__WeixinWorker=WeixinWorker={}</script><!-- devtoolsConfig --><!-- wxConfig --><!-- asdebug --><style>body{position:absolute;width:100%;height:100%;margin:0;overflow:hidden}iframe{width:1px;height:1px}#myCanvas{height:100%;width:100%;background-color:#000}</style></head><body><!-- Canvas --><script>(function () {
+        //http://git.code.oa.com/wxweb/game-design/blob/master/global/NativeGlobal/EventHandler/TouchEvent/Touch.md
+        //devtools/main#882
+        //对其文档及客户端实现
+        var toucheEventTransform = (events) => {
+          return Array.prototype.map.call(events, (e) => {
+            return {
+              identifier: e.identifier,
+              clientX: e.clientX,
+              clientY: e.clientY,
+              pageX: e.pageX,
+              pageY: e.pageY,
+              // 以下两个是 iOS 有 android 没有的，工具取最小集
+              // force: e.force,
+              // target: e.target
+            }
+          })
+        }
         var hackGlobal = window.__global
         var document = hackGlobal.document
         var innerWidth = window.innerWidth
@@ -98,11 +115,13 @@
             const listener = global.EventHandler['on' + type]
             if (typeof listener === 'function') {
               const eventObj = {
-                changedTouches: e.changedTouches,
-                currentTarget: e.currentTarget,
-                target: e.target,
-                targetTouches: e.targetTouches,
-                touches: e.touches,
+                changedTouches: toucheEventTransform(e.changedTouches),
+                touches: toucheEventTransform(e.touches),
+                // http://git.code.oa.com/wxweb/game-design/blob/master/global/NativeGlobal/EventHandler/TouchEvent/README.md
+                // 对齐文档
+                // targetTouches: toucheEventTransform(e.targetTouches),
+                // currentTarget: e.currentTarget,
+                // target: e.target,
                 timeStamp: e.timeStamp,
                 type
               }

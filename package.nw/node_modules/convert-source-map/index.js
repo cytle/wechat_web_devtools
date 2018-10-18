@@ -1,6 +1,7 @@
 'use strict';
 var fs = require('fs');
 var path = require('path');
+var SafeBuffer = require('safe-buffer');
 
 Object.defineProperty(exports, 'commentRegex', {
   get: function getCommentRegex () {
@@ -17,7 +18,7 @@ Object.defineProperty(exports, 'mapFileCommentRegex', {
 
 
 function decodeBase64(base64) {
-  return new Buffer(base64, 'base64').toString();
+  return SafeBuffer.Buffer.from(base64, 'base64').toString();
 }
 
 function stripComment(sm) {
@@ -57,7 +58,7 @@ Converter.prototype.toJSON = function (space) {
 
 Converter.prototype.toBase64 = function () {
   var json = this.toJSON();
-  return new Buffer(json).toString('base64');
+  return SafeBuffer.Buffer.from(json, 'utf8').toString('base64');
 };
 
 Converter.prototype.toComment = function (options) {

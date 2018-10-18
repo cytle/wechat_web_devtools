@@ -38,7 +38,8 @@ var ORIGINS = function(){
     return [
         '127.0.0.1',
         'qcloud.com',
-        'tencent.com'
+        'tencent.com',
+        "open.weixin.qq.com"
     ].map(function(domain){
         var prefix = '^https?:\/\/(?:(?:\\w\\-|\\w)+\\.)*';
     var infix = domain.replace(/\./g, '\\.');
