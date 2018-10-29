@@ -83,12 +83,12 @@ them with the IANA. The community registration procedure is outlined in
 [RFC 6838 section 5](http://tools.ietf.org/html/rfc6838#section-5). Types
 registered with the IANA are automatically pulled into this library.
 
-[npm-version-image]: https://img.shields.io/npm/v/mime-db.svg
-[npm-downloads-image]: https://img.shields.io/npm/dm/mime-db.svg
-[npm-url]: https://npmjs.org/package/mime-db
-[travis-image]: https://img.shields.io/travis/jshttp/mime-db/master.svg
-[travis-url]: https://travis-ci.org/jshttp/mime-db
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/mime-db/master.svg
+[coveralls-image]: https://badgen.net/coveralls/c/github/jshttp/mime-db/master
 [coveralls-url]: https://coveralls.io/r/jshttp/mime-db?branch=master
-[node-image]: https://img.shields.io/node/v/mime-db.svg
-[node-url]: https://nodejs.org/en/download/
+[node-image]: https://badgen.net/npm/node/mime-db
+[node-url]: https://nodejs.org/en/download
+[npm-downloads-image]: https://badgen.net/npm/dm/mime-db
+[npm-url]: https://npmjs.org/package/mime-db
+[npm-version-image]: https://badgen.net/npm/v/mime-db
+[travis-image]: https://badgen.net/travis/jshttp/mime-db/master
+[travis-url]: https://travis-ci.org/jshttp/mime-db

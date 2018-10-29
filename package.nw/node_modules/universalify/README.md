@@ -1,6 +1,9 @@
 # universalify
 
 [![Travis branch](https://img.shields.io/travis/RyanZim/universalify/master.svg)](https://travis-ci.org/RyanZim/universalify)
+![Coveralls github branch](https://img.shields.io/coveralls/github/RyanZim/universalify/master.svg)
+![npm](https://img.shields.io/npm/dm/universalify.svg)
+![npm](https://img.shields.io/npm/l/universalify.svg)
 
 Make a callback- or promise-based function support both promises and callbacks.
 

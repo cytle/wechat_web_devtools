@@ -97,7 +97,7 @@ Have an idea? Found a bug? See [how to contribute][contributing].
 
 ## :sparkling_heart: Support my projects
 
-I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously,
+I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can integrate and use these projects in your applications *for free*! You can even change the source code and redistribute (even resell it).
 
 However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
@@ -117,9 +117,10 @@ Thanks! :heart:
 If you are using this library in one of your projects, add it in this list. :sparkles:
 
 
+ - [`codelofts-git-url-parse`](https://github.com/IonicaBizau/git-url-parse)—A high level git url parser for common git providers.
  - [`front-end-styleguide-cli`](https://front-end-style.guide) (by Fynn Becker)—Provides access to the global CLI interface for the Front End Styleguide
- - [`front-end-styleguide-init`](https://front-end-style.guide) (by Fynn Becker)—Templates to create the basic file structure needed for the Front End Styleguide
  - [`git-url-parse`](https://github.com/IonicaBizau/git-url-parse)—A high level git url parser for common git providers.
+ - [`miguelcostero-ng2-toasty`](https://github.com/akserg/ng2-toasty) (by Sergey Akopkokhyants)—Angular2 Toasty component shows growl-style alerts and messages for your web app
  - [`ship-release`](https://github.com/IonicaBizau/ship-release#readme)—Publish new versions on GitHub and npm with ease.
 
 ## :scroll: License

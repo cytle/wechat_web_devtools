@@ -11,20 +11,24 @@ while read line; do
         if [ "$rc" -eq 0 ]; then
             # echo $sname
             proxy=$(networksetup -getwebproxy $sname)
+            if [ "$?" -ne 0 ]; then continue; fi
             # # echo $proxy
             while read p; do
                 echo $p
             done <<< "$(echo "$proxy")"
             sproxy=$(networksetup -getsecurewebproxy $sname)
+            if [ "$?" -ne 0 ]; then continue; fi
             # # echo $proxy
             while read p; do
                 echo $p
             done <<< "$(echo "$sproxy")"
             proxyurl=$(networksetup -getautoproxyurl $sname)
+            if [ "$?" -ne 0 ]; then continue; fi
             while read p; do
                 echo $p
             done <<< "$(echo "$proxyurl")"
             proxybypassdomains=$(networksetup -getproxybypassdomains $sname)
+            if [ "$?" -ne 0 ]; then continue; fi
             echo $proxybypassdomains
             # while read p; do
             #     echo $p

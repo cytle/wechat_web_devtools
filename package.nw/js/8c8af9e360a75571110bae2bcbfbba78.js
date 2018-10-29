@@ -1,96 +1,96 @@
 'use strict';!function(require,directRequire){const a=require('./common/locales/index.js'),b=`// {{page}}.js
 Page({
 
-  /**
-   * ${a.config.PAGE_DATA}
-   */
-  data: {
+\t/**
+\t * ${a.config.PAGE_DATA}
+\t */
+\tdata: {
 
-  },
+\t},
 
-  /**
-   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONLOAD}
-   */
-  onLoad: function (options) {
+\t/**
+\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONLOAD}
+\t */
+\tonLoad: function (options) {
 
-  },
+\t},
 
-  /**
-   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONREADY}
-   */
-  onReady: function () {
+\t/**
+\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONREADY}
+\t */
+\tonReady: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONSHOW}
-   */
-  onShow: function () {
+\t/**
+\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONSHOW}
+\t */
+\tonShow: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONHIDE}
-   */
-  onHide: function () {
+\t/**
+\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONHIDE}
+\t */
+\tonHide: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONUNLOAD}
-   */
-  onUnload: function () {
+\t/**
+\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONUNLOAD}
+\t */
+\tonUnload: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.PAGE_EVENT_HANDLER_FUNCTION}--${a.config.PAGE_ONPULLDOWNREFRESH}
-   */
-  onPullDownRefresh: function () {
+\t/**
+\t * ${a.config.PAGE_EVENT_HANDLER_FUNCTION}--${a.config.PAGE_ONPULLDOWNREFRESH}
+\t */
+\tonPullDownRefresh: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.PAGE_ONREACHBOTTOM}
-   */
-  onReachBottom: function () {
+\t/**
+\t * ${a.config.PAGE_ONREACHBOTTOM}
+\t */
+\tonReachBottom: function () {
 
-  },
+\t},
 
-  /**
-   * ${a.config.PAGE_ONSHAREAPPMESSAGE}
-   */
-  onShareAppMessage: function () {
+\t/**
+\t * ${a.config.PAGE_ONSHAREAPPMESSAGE}
+\t */
+\tonShareAppMessage: function () {
 
-  }
+\t}
 })`,c=`<!--{{page}}.wxml-->
 <text>{{page}}.wxml</text>
 `,d=`// {{component}}.js
 Component({
-  /**
-   * ${a.config.COMPONENT_PROPERTIES}
-   */
-  properties: {
+\t/**
+\t * ${a.config.COMPONENT_PROPERTIES}
+\t */
+\tproperties: {
 
-  },
+\t},
 
-  /**
-   * ${a.config.COMPONENT_DATA}
-   */
-  data: {
+\t/**
+\t * ${a.config.COMPONENT_DATA}
+\t */
+\tdata: {
 
-  },
+\t},
 
-  /**
-   * ${a.config.COMPONENT_METHODS}
-   */
-  methods: {
+\t/**
+\t * ${a.config.COMPONENT_METHODS}
+\t */
+\tmethods: {
 
-  }
+\t}
 })
 `,e=`{
-  "component": true,
-  "usingComponents": {}
+\t"component": true,
+\t"usingComponents": {}
 }`,f=`<!--{{component}}.wxml-->
 <text>{{component}}.wxml</text>
 `,g=`// 云函数入口文件
@@ -102,16 +102,16 @@ cloud.init()
 exports.main = async (event, context) => {
 
 }`,h=`{
-  "name": "{{name}}",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \\"Error: no test specified\\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "wx-server-sdk": "latest"
-  }
+\t"name": "{{name}}",
+\t"version": "1.0.0",
+\t"description": "",
+\t"main": "index.js",
+\t"scripts": {
+\t\t"test": "echo \\"Error: no test specified\\" && exit 1"
+\t},
+\t"author": "",
+\t"license": "ISC",
+\t"dependencies": {
+\t\t"wx-server-sdk": "latest"
+\t}
 }`;module.exports={pageJS:b,pageJSON:'{}',pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:'/* {{component}}.wxss */',tcbIndexJS:g,tcbCloudFunctionPackageJSON:h}}(require('lazyload'),require);

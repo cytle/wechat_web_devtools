@@ -431,7 +431,7 @@ module.exports = {
   TOOLBAR_CONFIGLIST_DEFAULT: '图标与文字说明',
   TOOLBAR_ICON_MANAGER_TITLE: '自定义工具管理',
 
-AUTO_PREVIEW: '自动预览',
+  AUTO_PREVIEW: '自动预览',
   QR_CODE_REMOTE_DEBUG: '扫描二维码真机调试',
   QR_CODE_PREVIEW: '扫描二维码预览',
   PREVIEW_QR_CODE_TITLE: '%s 于 %s 上传',
@@ -1094,5 +1094,9 @@ AUTO_PREVIEW: '自动预览',
   CREATE_SUCCESS: '创建成功',
   ALREADY_EXIST: '已存在',
   OVERWRITE_FILE: '已存在文件 %s, 是否覆盖?',
-  AUTO_UGLIFY_FILE_NAME_WHEN_UPLOAD: '上传时进行代码保护'
+  AUTO_UGLIFY_FILE_NAME_WHEN_UPLOAD: '上传时进行代码保护',
+  TESTCODE: '测试代码',
+  EXCEED_LIMIT: '%s 超过限制 %s',
+  COULD_NOT_USE_CODE_PROTECT: '无法使用代码保护功能',
+  NAVIGATETOMINIPROGRAM_TIPS: 'navigateToMiniProgram 接口需要配置声明，否则将无法跳转',
 }

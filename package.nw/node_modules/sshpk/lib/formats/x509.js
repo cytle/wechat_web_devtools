@@ -242,7 +242,8 @@ function readExtension(cert, buf, der) {
 	var extId = der.readOID();
 	var id;
 	var sig = cert.signatures.x509;
-	sig.extras.exts = [];
+	if (!sig.extras.exts)
+		sig.extras.exts = [];
 
 	var critical;
 	if (der.peek() === asn1.Ber.Boolean)

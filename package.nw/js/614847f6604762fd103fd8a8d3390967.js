@@ -34,7 +34,7 @@
     (function() {
     console.group(\`${new Date} ${g} ${c.config.ERROR_VERIFY_VALID_DOMAIN}\`)
     console.info(\`${c.config.UPDATE_DOMAIN_RECOMPILE_PROJECT}\`)
-    console.error(\`${c.config.NOT_IN_VALID_DOMAIN_LIST.format([e,g,'https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html'])}\`)
+    console.error(\`${c.config.NOT_IN_VALID_DOMAIN_LIST.format([e,g,'https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html'])}\`)
     console.table(${JSON.stringify(f)})
     console.groupEnd()
     })()`;a.executeScript({code:h})},RECORD_FORMAT_INFO:(a)=>{const b=`

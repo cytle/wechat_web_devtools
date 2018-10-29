@@ -11,7 +11,8 @@ const {
   FILE_NOT_UTF8,
   BABEL_TRANS_JS_ERR,
   UGLIFY_JS_ERR,
-  BABILI_JS_ERR
+  BABILI_JS_ERR,
+  FILE_FLAT_ERR
 } = require('./949d8235c744ced2a80121e4dba34c28.js')
 
 module.exports = function processJS(code, query) {
@@ -45,11 +46,12 @@ module.exports = function processJS(code, query) {
         map = trans.map
       } catch (error) {
         const message = `file: ${file}\n ${error.message}\n ${babelCodeFrame(code, error.loc.line, error.loc.column > 0 ? error.loc.column : 1)}`
-        const err = {
-          message,
-          code: BABEL_TRANS_JS_ERR
+        return {
+          error: {
+            message,
+            code: BABEL_TRANS_JS_ERR
+          }
         }
-        throw err
       }
 
       if (minified && minified.toLowerCase() === 'yes') {
@@ -91,11 +93,12 @@ module.exports = function processJS(code, query) {
           //   file,
           //   error: `${result.error.line} - ${result.error.message}`
           // })
-          const err = {
-            message,
-            code: UGLIFY_JS_ERR,
+          return {
+            error: {
+              message,
+              code: UGLIFY_JS_ERR,
+            }
           }
-          throw err
         }
         code = result.code
         map = result.map
@@ -193,11 +196,12 @@ module.exports = function processJS(code, query) {
       } catch (error) {
         error.loc = error.loc || {}
         const message = `file: ${file}\n ${error.message}\n ${babelCodeFrame(code, error.loc.line, error.loc.column > 0 ? error.loc.column : 1)}`
-        const err = {
-          message,
-          code: BABILI_JS_ERR,
+        return {
+          error: {
+            message,
+            code: BABILI_JS_ERR,
+          }
         }
-        throw err
       }
     }
 
@@ -210,14 +214,20 @@ module.exports = function processJS(code, query) {
           filePath: file,
           code: code,
           nameMapping: nameMappingObject,
-          check: true
+          sourceMap: map,
+          sourceFileName: sourceFileName || file,
+          check: true,
         })
 
         if (uglifyResult.translated) {
           code = uglifyResult.translatedContent
+          map = uglifyResult.translatedSourceMap || map
         } else {
           return {
-            error: uglifyResult.errMsg
+            error: {
+              message: uglifyResult.errMsg,
+              code: FILE_FLAT_ERR
+            }
           }
         }
       }
@@ -230,7 +240,9 @@ module.exports = function processJS(code, query) {
     }
   } catch (err) {
     return {
-      error: err
+      error: {
+        message: err.message
+      }
     }
   }
 }

@@ -1094,5 +1094,9 @@ module.exports = {
   CREATE_SUCCESS: 'Done',
   ALREADY_EXIST: 'Already Exist',
   OVERWRITE_FILE: 'File %s exist, overwrite it?',
-  AUTO_UGLIFY_FILE_NAME_WHEN_UPLOAD: 'Uglify filenames when uploading code',
+  AUTO_UGLIFY_FILE_NAME_WHEN_UPLOAD: 'Code protect when uploading',
+  TESTCODE: 'Test Code',
+  EXCEED_LIMIT: '%s 超过限制 %s',
+  COULD_NOT_USE_CODE_PROTECT: 'Could not code protect',
+  NAVIGATETOMINIPROGRAM_TIPS: 'Usage error (navigateToMiniProgram): configuration file required in order to navigate',
 }

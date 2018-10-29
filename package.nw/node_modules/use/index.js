@@ -1,20 +1,18 @@
 /*!
  * use <https://github.com/jonschlinkert/use>
  *
- * Copyright (c) 2015, 2017, Jon Schlinkert.
+ * Copyright (c) 2015-2017, Jon Schlinkert.
  * Released under the MIT License.
  */
 
 'use strict';
 
-var typeOf = require('kind-of');
-
 module.exports = function base(app, options) {
-  if (typeOf(app) !== 'object' && typeof app !== 'function') {
+  if (!isObject(app) && typeof app !== 'function') {
     throw new TypeError('expected an object or function');
   }
 
-  var opts = typeOf(options) === 'object' ? options : {};
+  var opts = isObject(options) ? options : {};
   var prop = typeof opts.prop === 'string' ? opts.prop : 'fns';
   if (!Array.isArray(app[prop])) {
     define(app, prop, []);
@@ -67,7 +65,7 @@ module.exports = function base(app, options) {
    */
 
   define(app, 'run', function(val) {
-    if (typeOf(val) !== 'object') return;
+    if (!isObject(val)) return;
 
     if (!val.use || !val.run) {
       define(val, prop, val[prop] || []);
@@ -143,6 +141,10 @@ module.exports = function base(app, options) {
 
   return app;
 };
+
+function isObject(val) {
+  return val && typeof val === 'object' && !Array.isArray(val);
+}
 
 function define(obj, key, val) {
   Object.defineProperty(obj, key, {

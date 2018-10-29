@@ -310,6 +310,9 @@
     "source": "iana",
     "compressible": true
   },
+  "application/dns-message": {
+    "source": "iana"
+  },
   "application/docbook+xml": {
     "source": "apache",
     "compressible": true,
@@ -2391,6 +2394,10 @@
   "application/vnd.evolv.ecig.theme": {
     "source": "iana"
   },
+  "application/vnd.exstream-empower+zip": {
+    "source": "iana",
+    "compressible": false
+  },
   "application/vnd.ezpix-album": {
     "source": "iana",
     "extensions": ["ez2"]
@@ -2501,6 +2508,9 @@
     "source": "iana"
   },
   "application/vnd.fut-misnet": {
+    "source": "iana"
+  },
+  "application/vnd.futoin+cbor": {
     "source": "iana"
   },
   "application/vnd.futoin+json": {
@@ -6394,16 +6404,20 @@
     "extensions": ["gif"]
   },
   "image/heic": {
-    "source": "iana"
+    "source": "iana",
+    "extensions": ["heic"]
   },
   "image/heic-sequence": {
-    "source": "iana"
+    "source": "iana",
+    "extensions": ["heics"]
   },
   "image/heif": {
-    "source": "iana"
+    "source": "iana",
+    "extensions": ["heif"]
   },
   "image/heif-sequence": {
-    "source": "iana"
+    "source": "iana",
+    "extensions": ["heifs"]
   },
   "image/ief": {
     "source": "iana",
@@ -7469,6 +7483,9 @@
     "source": "iana"
   },
   "video/vc1": {
+    "source": "iana"
+  },
+  "video/vc2": {
     "source": "iana"
   },
   "video/vnd.cctv": {

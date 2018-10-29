@@ -14,14 +14,8 @@ var utils = require('./utils');
 var dhe = require('./dhe');
 var generateECDSA = dhe.generateECDSA;
 var generateED25519 = dhe.generateED25519;
-var edCompat;
-var nacl;
-
-try {
-	edCompat = require('./ed-compat');
-} catch (e) {
-	/* Just continue through, and bail out if we try to use it. */
-}
+var edCompat = require('./ed-compat');
+var nacl = require('tweetnacl');
 
 var Key = require('./key');
 
@@ -90,9 +84,6 @@ PrivateKey.prototype.derive = function (newType) {
 	var priv, pub, pair;
 
 	if (this.type === 'ed25519' && newType === 'curve25519') {
-		if (nacl === undefined)
-			nacl = require('tweetnacl');
-
 		priv = this.part.k.data;
 		if (priv[0] === 0x00)
 			priv = priv.slice(1);
@@ -108,9 +99,6 @@ PrivateKey.prototype.derive = function (newType) {
 			]
 		}));
 	} else if (this.type === 'curve25519' && newType === 'ed25519') {
-		if (nacl === undefined)
-			nacl = require('tweetnacl');
-
 		priv = this.part.k.data;
 		if (priv[0] === 0x00)
 			priv = priv.slice(1);

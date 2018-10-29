@@ -1,5 +1,4 @@
 {
-  "cloud": true,
   "pages": [
     "pages/index/index",
     "pages/userConsole/userConsole",

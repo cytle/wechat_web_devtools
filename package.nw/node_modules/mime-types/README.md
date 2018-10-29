@@ -1,7 +1,7 @@
 # mime-types
 
-[![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
+[![NPM Version][npm-version-image]][npm-url]
+[![NPM Downloads][npm-downloads-image]][npm-url]
 [![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
@@ -96,13 +96,12 @@ A map of extensions by content-type.
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/mime-types.svg
+[coveralls-image]: https://badgen.net/coveralls/c/github/jshttp/mime-types/master
+[coveralls-url]: https://coveralls.io/r/jshttp/mime-types?branch=master
+[node-version-image]: https://badgen.net/npm/node/mime-types
+[node-version-url]: https://nodejs.org/en/download
+[npm-downloads-image]: https://badgen.net/npm/dm/mime-types
 [npm-url]: https://npmjs.org/package/mime-types
-[node-version-image]: https://img.shields.io/node/v/mime-types.svg
-[node-version-url]: https://nodejs.org/en/download/
-[travis-image]: https://img.shields.io/travis/jshttp/mime-types/master.svg
+[npm-version-image]: https://badgen.net/npm/v/mime-types
+[travis-image]: https://badgen.net/travis/jshttp/mime-types/master
 [travis-url]: https://travis-ci.org/jshttp/mime-types
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/mime-types/master.svg
-[coveralls-url]: https://coveralls.io/r/jshttp/mime-types
-[downloads-image]: https://img.shields.io/npm/dm/mime-types.svg
-[downloads-url]: https://npmjs.org/package/mime-types
