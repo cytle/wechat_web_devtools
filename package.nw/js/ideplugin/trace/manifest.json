@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": "0.0.1",
   "name": "Trace",
   "main": "./index.html",

@@ -1,1 +1,0 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('./bc2b895ee57942c71d19191b1e204b79.js');(async function(){console.time('test packNpm');const c=a.join(__dirname,'\u5C0F\u7A0B\u5E8F-require');try{const a=await b(c);console.log(a)}catch(a){console.error(a)}console.timeEnd('test packNpm')})().then(()=>{})}(require('lazyload'),require);

@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "manifest_version": "0.0.1",
   "name": "AppData",
   "main": "./index.html",

@@ -1,0 +1,17 @@
+;!function(require, directRequire){;"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const reporter=require('./5c2b1a0770e0c320de6ae69667bea4de.js'),utils_1=require('./344232cd2199c9c3a024b4005d054672.js'),config_1=require('./292aedc562d71aa6200e3471d0bc7b8e.js'),log=require('./72653d4b93cdd7443296229431a7aa9a.js'),reported=new Set;function onIDEPerformanceMarkEvent(a,b){const c=utils_1.getIDEMarkCanonicalName(b.name);switch(c){case config_1.HERO_ELEMENT_PAINT.SIMULATOR:case config_1.HERO_ELEMENT_PAINT.EDITOR:case config_1.HERO_ELEMENT_PAINT.DEVTOOLS:{onHeroElementPaint(a,c,b);break}case config_1.COMPILE_PHASE.START:case config_1.COMPILE_PHASE.COMPLETE:{onCompilePhaseMark(a,c,b);break}default:return void log.info(`[performance] [warn] [onIDEPerformanceMarkEvent] unrecognized IDE performance mark: ${b.name}`);}}exports.default=onIDEPerformanceMarkEvent;function onHeroElementPaint(a,b,c){checkDuplicateMark(b);const d=c.startTime+a.performanceTimingOffset;if(b===config_1.HERO_ELEMENT_PAINT.SIMULATOR){const b=a.getFirstCompileListenerRegisterTime();if(b&&+new Date-b>config_1.MAX_GAP_FIRST_COMPILE_LISTENER_REGISTER_TIME_AND_SIMULATOR_PAINT)return void log.info(`[performance] [warn] too long after the listener is register, cannot mark simulator paint: ${+new Date-b}ms`)}a.blockingDebug&&a.alert(`hero element paint: [${b}]: ${d.toFixed(0)}`),reporter.reportHeroElementPaint(b,d),a.heroElementRecords.set(b,d),3===a.heroElementRecords.size&&(reporter.reportFirstMeaningfulPaint(d),a.timings.set(config_1.TIMING.FIRST_MEANINGFUL_PAINT,d),a.debug&&alert(`
+      first paint: ${(a.timings.get(config_1.TIMING.FIRST_PAINT)||0).toFixed(0)}ms
+      first contentful paint: ${(a.timings.get(config_1.TIMING.FIRST_CONTENTFUL_PAINT)||0).toFixed(0)}ms
+      first meaningful paint: ${d.toFixed(0)}ms
+
+      others:
+      hero element paint: [${config_1.HERO_ELEMENT_PAINT.SIMULATOR}]: ${a.heroElementRecords.get(config_1.HERO_ELEMENT_PAINT.SIMULATOR).toFixed(0)}ms
+      hero element paint: [${config_1.HERO_ELEMENT_PAINT.EDITOR}]: ${a.heroElementRecords.get(config_1.HERO_ELEMENT_PAINT.EDITOR).toFixed(0)}ms
+      hero element paint: [${config_1.HERO_ELEMENT_PAINT.DEVTOOLS}]: ${a.heroElementRecords.get(config_1.HERO_ELEMENT_PAINT.DEVTOOLS).toFixed(0)}ms
+      `))}function onCompilePhaseMark(a,b,c){const d=c.startTime+a.performanceTimingOffset+a.firstCompileOffset;switch(b){case config_1.COMPILE_PHASE.START:{a.timings.set(config_1.TIMING.FIRST_COMPILE_START,d);break}case config_1.COMPILE_PHASE.COMPLETE:{checkDuplicateMark(b);const c=a.timings.get(config_1.TIMING.FIRST_COMPILE_START);if(!c)throw new Error(`[BUG] complete complete mark is received before complete start`);reporter.reportFirstCompileStart(c),reporter.reportFirstCompileComplete(d),a.timings.set(config_1.TIMING.FIRST_COMPILE_COMPLETE,d),reporter.reportFirstCompileCost(d-c),reporter.reportTimeToInteractive(d),a.debug&&(a.alert(`
+        compile start: ${c.toFixed(0)}ms
+        compile complete: ${d.toFixed(0)}ms
+        compile cost: ${(d-c).toFixed(0)}ms
+        `),a.alert(`
+        time to interactive: ${d.toFixed(0)}ms
+        `)),a.unregisterFirstCompileListener();break}}}function checkDuplicateMark(a){if(reported.has(a)){const b=`[performance] duplicate mark event encounted: ${a}\n${new Error().stack}`;if(global.appConfig.isDev)throw new Error(b);return void log.error(b)}reported.add(a)}
+;}(require("lazyload"), require);

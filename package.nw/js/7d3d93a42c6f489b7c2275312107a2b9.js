@@ -1,1 +1,29 @@
-'use strict';!function(require,directRequire){function a(){f.remove(f.CACHE_KEYS.JS_SUBCONTEXT_GAME)}const b=require('path'),c=require('./d28a711224425b00101635efe1034c99.js'),d=require('./162bf2ee28b76d3b3d95b685cede4146.js'),e=require('./48679210e49dc5028a8b6642263eba75.js'),f=require('./2e9637e8a0816a626f7db9a0dee5efe8.js'),{subcontextHtmlTpl:g,subAsDebug:h,devSubContextList:i,subvendorList:j,subVendorPlaceholder:k,subAppservicejslistPlaceholder:l}=require('./d9ce5316cc172b6017fdd2399a91117a.js'),m=global.appConfig.isDev,n=m&&!nw.App.manifest.forceVendor?i:j;c.on('VENDOR_CONFIG_CHANGE',a),c.on('VENDOR_VERSION_CHANGE',a),module.exports=async function(a,c={}){await f.init(a);const h=f.CACHE_KEYS.JS_SUBCONTEXT_GAME,i=await d(a);let j=f.get(h);if(!j||c.force){let c=g;const d=await e(a),m=d.openDataContext||d.subContext;m&&(c=c.replace(k,()=>{const a=[];for(let c=0,d=n.length;c<d;c++){const d=n[c],e=b.extname(d);'.js'===e?a.push(`<script src="__subdev__/${d}"></script>`):'.css'===e&&a.push(`<link rel="stylesheet" type="text/css" href="__subdev__/${d}" />`)}return a.join('\n')}));const o=i.getAllJSFiles(),p=[];o.forEach((a)=>{m&&0===a.indexOf(m)&&p.push(a)}),m&&p.length&&(c=c.replace(l,()=>{const a=[];for(let b=0;b<p.length;b++)a.push(`<script src="${encodeURI(p[b])}"></script>`);return a.push(`<script>require('${m}${d.openDataContext?'index.js':'sub.js'}')</script>`),a.join('\n')})),j=c,f.set(h,j)}return j}}(require('lazyload'),require);
+;!function(require, directRequire){;"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const path=require("path"),vendorManager=require('./d28a711224425b00101635efe1034c99.js'),contentWatcher=require('./162bf2ee28b76d3b3d95b685cede4146.js'),checkGameJSON=require('./48679210e49dc5028a8b6642263eba75.js'),compileCache=require('./2e9637e8a0816a626f7db9a0dee5efe8.js'),fileRules=require('./1c8a8c710417d102ab574145dc51b4b0.js'),{subcontextHtmlTpl,subAsDebug,devSubContextList,subvendorList,subVendorPlaceholder,subAppservicejslistPlaceholder}=require('./d9ce5316cc172b6017fdd2399a91117a.js'),isDev=global.appConfig.isDev,subVendors=isDev&&!nw.App.manifest.forceVendor?devSubContextList:subvendorList;function resetCache(){compileCache.remove(compileCache.CACHE_KEYS.JS_SUBCONTEXT_FRAME)}function hidedInDevtoolsMaker(a){const b=path.posix.join("appservice",a);return`// ${a} has been hided by project.config.json~\n//# sourceURL=http://127.0.0.1:${global.proxyPort}/${b}\n`}async function getSubContextJS(a,b={}){await compileCache.init(a);const c=compileCache.CACHE_KEYS.JS_SUBCONTEXT_JS;let d=compileCache.get(c);if(d)return d;const e=await contentWatcher(a),f=e.getAllJSFiles(),g=[],h=await checkGameJSON(a),i=h.openDataContext||h.subContext;if(!i)return"";f.forEach((a)=>{i&&0===a.indexOf(i)&&g.push(a)});const j=[],k=[];if(i&&g.length){for(const a of g)k.push(encodeURI(a));const a=encodeURI(`${i}${h.openDataContext?"index.js":"sub.js"}`);j.push(`var decodePathName = decodeURI("${a}")`),j.push(`require(decodePathName)`)}const l=(a.debugOptions||{}).hidedInDevtools||[],m=[];for(let c=0;c<k.length;c++){const a=k[c];fileRules.isFileHidedInDevtools(a,l)&&(m[c]=hidedInDevtoolsMaker(a))}const n=[`
+    var scriptCounter = ${k.length}
+    var requireScript = document.createElement('script')
+    requireScript.text = \`${j.join("\n")}\`
+    var requireScriptAppended = false
+    var scriptLoaded = function(event) {
+      if (this.__loaded) {
+        return
+      }
+      this.__loaded = true
+      scriptCounter--
+      if (!requireScriptAppended && scriptCounter <= 0) {
+        requireScriptAppended = true
+        document.head.appendChild(requireScript)
+      }
+    }
+  `];for(let c=0,d=k.length;c<d;c++){const a=m[c]?encodeURIComponent(m[c]):null;n.push(`var script${c} = document.createElement('script')
+    script${c}.src = '${k[c]}'
+    script${c}.onload = `+(a?`function() {
+      scriptLoaded.apply(script${c}, arguments)
+      var s = document.createElement('script')
+      s.text = decodeURIComponent("${a}")
+      document.head.appendChild(s)
+    }`:`scriptLoaded.bind(script${c})`)+`
+    script${c}.onerror = function() {
+      scriptLoaded.call(this)
+    }
+    document.head.appendChild(script${c})`)}return d=n.join("\n"),d}async function getSubContextFrame(a,b={}){await compileCache.init(a);const c=compileCache.CACHE_KEYS.JS_SUBCONTEXT_FRAME;let d=compileCache.get(c);if(!d||b.force){let b=subcontextHtmlTpl;const e=await checkGameJSON(a),f=e.openDataContext||e.subContext;f&&(b=b.replace(subVendorPlaceholder,()=>{const a=[];for(let b=0,c=subVendors.length;b<c;b++){const c=subVendors[b],d=path.extname(c);".js"===d?a.push(`<script src="__subdev__/${c}"></script>`):".css"===d&&a.push(`<link rel="stylesheet" type="text/css" href="__subdev__/${c}" />`)}return a.join("\n")})),d=b,compileCache.set(c,d)}return d}vendorManager.on("VENDOR_CONFIG_CHANGE",resetCache),vendorManager.on("VENDOR_VERSION_CHANGE",resetCache),module.exports={getSubContextJS,getSubContextFrame};
+;}(require("lazyload"), require);

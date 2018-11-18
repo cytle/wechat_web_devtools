@@ -1,19 +1,31 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>微信开发者工具</title><style>body,html,iframe{margin:0;padding:0;width:100%;height:100%}body,html{overflow:hidden}iframe{display:none}</style></head><body><script>let href = location.href  
-    let query = href.slice(href.indexOf('?') + 1).split('&')
-    let options = {}
-    query.forEach(query => {
-      query = query.split('=')
-      options[decodeURIComponent(query[0])] = decodeURIComponent(query[1])
-    })
-    if (options.title) document.title = options.title
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>微信开发者工具</title><style>body,html,iframe{margin:0;padding:0;width:100%;height:100%}body,html{overflow:hidden}iframe{display:none}webview{position:absolute;width:100%;height:100%}</style></head><body><webview id=webview></webview></body><script>const href = location.href
+  const query = href.slice(href.indexOf('?') + 1).split('&')
+  const options = {}
+  query.forEach(query => {
+    query = query.split('=')
+    options[decodeURIComponent(query[0])] = decodeURIComponent(query[1])
+  })
+  if (options.title) document.title = options.title
 
-    let iframe = document.createElement('iframe')
-    iframe.src = options.url
-    iframe.frameBorder = 0
-    // 使用 onload 防止闪烁
-    iframe.onload = () => {
-      iframe.style.display = 'block'
-      // 纠正页面的 opener 使其能与主窗口通过 postMessage 正确通信 
-      iframe.contentWindow.opener = window.opener
-    }
-    document.body.appendChild(iframe)</script></body></html>
+  // iframe 的方案有 xss 漏洞
+  // let iframe = document.createElement('iframe')
+  // iframe.src = options.url
+  // iframe.frameBorder = 0
+  // // 使用 onload 防止闪烁
+  // iframe.onload = () => {
+  //   iframe.style.display = 'block'
+  //   // 纠正页面的 opener 使其能与主窗口通过 postMessage 正确通信
+  //   iframe.contentWindow.opener = window.opener
+  // }
+  // document.body.appendChild(iframe)
+
+  const init = () => {
+    const webview = document.getElementById('webview')
+    webview.src = options.url
+  }
+
+  if (document.readyState === 'complete') {
+    init()
+  } else {
+    document.addEventListener('DOMContentLoaded', init)
+  }</script></html>

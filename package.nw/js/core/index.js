@@ -1,3 +1,4 @@
+
 const path = require('path')
 const tools = require('../js/84b183688a46c9e2626d3e6f83365e13.js')
 const locales = require('../js/common/locales/index.js')
@@ -149,7 +150,11 @@ function initGlobal() {
         }
       }
     }
-  } catch (err) {}
+
+    require('../js/09495074395d0f72e0c2a4eb13e1076c.js')
+  } catch (err) {
+    console.error('init global caught error: ', err)
+  }
 }
 
 
@@ -264,6 +269,8 @@ function init() {
   if (query.simple) {
     require('../js/8524207e9ea0bd06cec5e97c74bd6b7d.js')
   } else {
+    const observer = require('../js/5f3c86137d346ddffec99d08c1ac2bb0.js').default
+    observer.start()
     require('../js/29cbb96f0d87ca0a3ee63c5dbbd8107c.js')
   }
 }

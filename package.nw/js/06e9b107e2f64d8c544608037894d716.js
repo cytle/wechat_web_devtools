@@ -1,0 +1,2 @@
+;!function(require, directRequire){;"use strict";const minicode=require('./956b6e121951d375a14c73d3418eaf77.js'),libpack=require('./da189bc919cfd050066ec695411cbcf5.js');module.exports=async(a,b)=>{const c=await minicode.getMiniCodeInfo(a);if(b){if(!c.codePackTmpPath)throw new Error("code cannot be downloaded");await libpack.asarUnpack(c.codePackTmpPath,b)}return c.code};
+;}(require("lazyload"), require);

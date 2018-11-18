@@ -235,7 +235,7 @@
     removeProject: function removeProject(id) {
       delete this._projectList[id];
       if (!this._accessTime) {
-        this.recentProjects;
+        this.initAccessTime();
       }
       if (this._accessTime && this._accessTime[id]) {
         delete this._accessTime[id];
@@ -250,6 +250,17 @@
           removeItem(key);
         }
       }
+    },
+    initAccessTime: function initAccessTime() {
+      this._accessTime = {};
+      var accessTime = JSON.parse(getItem(config.PROJECT_ACCESS_TIME) || '{}');
+      for (var projectid in accessTime) {
+        if (this.projectList[projectid] && accessTime[projectid]) {
+          this._accessTime[projectid] = accessTime[projectid];
+        }
+      }
+
+      setItem(config.PROJECT_ACCESS_TIME, JSON.stringify(accessTime));
     },
 
 
@@ -275,7 +286,7 @@
         setItem(config.LAST_SELECT, '' + config.PROJECT_PREFIX + projectid);
 
         if (!this._accessTime) {
-          this.recentProjects;
+          this.initAccessTime();
         }
 
         this._accessTime[projectid] = +new Date();
@@ -289,27 +300,12 @@
       var _this = this;
 
       if (!this._accessTime) {
-        this._accessTime = {};
-        var accessTime = JSON.parse(getItem(config.PROJECT_ACCESS_TIME) || '{}');
-        for (var projectid in accessTime) {
-          if (this.projectList[projectid] && accessTime[projectid]) {
-            this._accessTime[projectid] = accessTime[projectid];
-          }
-        }
-
-        setItem(config.PROJECT_ACCESS_TIME, JSON.stringify(accessTime));
-
-        var recentProjects = Object.keys(this._accessTime).sort(function (pid1, pid2) {
-          return _this._accessTime[pid2] - _this._accessTime[pid1];
-        });
-
-        return recentProjects;
-      } else {
-        var _recentProjects = Object.keys(this._accessTime).sort(function (pid1, pid2) {
-          return _this._accessTime[pid2] - _this._accessTime[pid1];
-        });
-        return _recentProjects;
+        this.initAccessTime();
       }
+      var recentProjects = Object.keys(this._accessTime).sort(function (pid1, pid2) {
+        return _this._accessTime[pid2] - _this._accessTime[pid1];
+      }).slice(0, 11);
+      return recentProjects;
     },
 
     set recentProjects(value) {

@@ -2,7 +2,7 @@ const URL = require('url')
 const tools = require('../js/84b183688a46c9e2626d3e6f83365e13.js')
 
 function init() {
-  var webview = document.getElementById('webview')
+  const webview = document.getElementById('webview')
   const query = tools.getQuery(location.search)
 
   // enter backgroud
@@ -18,6 +18,6 @@ if (document.readyState === 'complete') {
   document.addEventListener('DOMContentLoaded', init)
 }
 
-window.onerror = function(e) {
-  document.body.innerHTML = e.toString()
+window.onerror = function (e) {
+  document.body.innerText = e.toString()
 }

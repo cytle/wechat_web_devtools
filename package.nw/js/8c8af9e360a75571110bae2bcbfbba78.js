@@ -100,7 +100,14 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+\tconst wxContext = cloud.getWXContext()
 
+\treturn {
+\t\tevent,
+\t\topenid: wxContext.OPENID,
+\t\tappid: wxContext.APPID,
+\t\tunionid: wxContext.UNIONID,
+\t}
 }`,h=`{
 \t"name": "{{name}}",
 \t"version": "1.0.0",

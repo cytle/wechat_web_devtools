@@ -316,6 +316,7 @@ module.exports = {
   CLI_GET_APP_INFO_ERROR: 'Get application information error, error code %s',
   CLI_QR_OUTDATED: 'QR code expired, please try again',
   CLI_LOGIN_RETRY: 'Login error, please try again',
+  CLI_LOGIN_CANCEL: 'Login cancel, please try again',
   CLI_DUPLICATE_PROJECT_ID: 'A project (path) with the same AppID and projectname already exists. Please modify and try again',
   CLI_GENERIC_ERROR: 'Error %s',
 
@@ -330,6 +331,7 @@ module.exports = {
   RESOURCE_RELATIVE_TIPS_TITLE: 'Project resource reference error',
   RESOURCE_RELATIVE_TIPS_CONTENT: 'Project resource %s and page are not in the same subpackage and cannot be loaded properly',
   RESOURCE_SUBPACKAGE_TIPS: 'The subpackage where project resource %s lies in has not been loaded',
+  RESOURCE_LOADING_IMAGE: 'Cannot use loadingImgUrl:%s in runtime',
 
   NO_NETWORK_TIPS_TITLE: 'No network status simulation',
   NO_NETWORK_TIPS_CONTENT: 'No network status simulation is enabled, network requests %s is blocked; and network status can be switched on the simulator toolbar to restore network requests.',
@@ -600,6 +602,7 @@ module.exports = {
   AUTOCOMPLETED_WHEN_UPLOADING: 'The style is autocompleted when uploading code',
   AUTO_COMPRESSED_WHEN_UPLOADING: 'Compressed & Uglify automatically when uploading code',
   ENABLE_CUSTOM_PROCESSING: 'Enable Custom Processing Commands',
+  AUTO_AUDITS: 'Auto Run Audits',
   PRE_COMPILATION_PREPROCESSING: 'Pre-compile',
   PRE_PREVIEW_PREPROCESSING: 'Pre-preview',
   PRE_UPLOAD_PREPROCESSING: 'Pre-upload',
@@ -664,7 +667,7 @@ module.exports = {
   NOTE: 'Note',
   EXECUTE_PREPROCESSOR_UPLOAD: 'Executing the custom preprocessor before uploading...',
   UPLOAD_BIG_SIZE_DETAILS: 'The following files, which are greater than 500kb, has jumped the compression and conversion from es6 to es5. Please use other tools to compress codes or transpile es6 to es5 if necessary, because there could be a riskwhen running codes in low vision devices.\nFile lists: %s',
-  FILES_NOT_PACKAGED_UPLOADED: 'The following files were packaged and uploaded: %s',
+  FILES_NOT_PACKAGED_UPLOADED: 'The following files were not packaged and uploaded: %s',
   CODES_UPLOAD_SUCCEEDED: 'Codes Upload Succeeded',
   LASTEST_VERSION_NUMBER: 'Lastest Version',
   UPDATE_TYPE: 'Update Type',
@@ -1099,4 +1102,17 @@ module.exports = {
   EXCEED_LIMIT: '%s 超过限制 %s',
   COULD_NOT_USE_CODE_PROTECT: 'Could not code protect',
   NAVIGATETOMINIPROGRAM_TIPS: 'Usage error (navigateToMiniProgram): configuration file required in order to navigate',
+  PROJECT_CONFIG_CHANGE_APPID_CONFIRM: 'The AppID in project.config.json (%s) is different from the project AppID (%s). Change project AppID to %s?',
+  PROJECT_CONFIG_CHANGE_APPID_FAIL: 'Change AppID failed',
+
+  TCB_STAGE_PREPARE: 'preparing',
+  TCB_STAGE_GET_FUNCTION_INFO: 'fetching function config info',
+  TCB_STAGE_UPDATE_FUNCTION_CONFIG: 'updating function config',
+  TCB_STAGE_COMPRESS_FUNCTION_CODE: 'compressing function code',
+  TCB_STAGE_WILL_UPLOAD_FUNCTION: 'will upload function code',
+  TCB_STAGE_UPLOAD_FUNCTION: 'uploading function code',
+  TCB_STAGE_WAIT_FUNCTION_UPDATE: 'waiting for the update of function',
+  TCB_STAGE_WAIT_FUNCTION_UPDATE_AND_NPM: 'waiting for the update and installation of dependencies of function',
+  TCB_STAGE_UPLOAD_DONE: 'upload completed',
+
 }

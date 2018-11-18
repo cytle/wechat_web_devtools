@@ -1532,4 +1532,4 @@ else {
 Object.defineProperties(global, descriptors);
 Object.defineProperties(vmGlobal, descriptors);
 // hide this code in source panel
-//# sourceURL=[publib2]
+//# sourceURL=[publib]
