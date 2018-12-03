@@ -7,14 +7,14 @@
       "url": "https://res.servicewechat.com/weapp/public/commlib/124.wxapkg"
     }
   },
-	"configVersion": 1542267701218,
+	"configVersion": 1543216350985,
 	"libs": {
 		"alpha": {
 			"WACloud.js": "bb8f62764c16a531e7b70ddd6b5b37ec"
 		}
 	},
-	"wcc": "b27b6a5b8cce6ce98917dfb974e716c7",
+	"wcc": "d83d32c87aa6e0b136688e849cdd7573",
 	"wcsc": "b85b05164923ff1e50a30e3532ac8a80",
-	"wcc.exe": "94fa07647fc0c37a9188a46555e37298",
+	"wcc.exe": "f05167e064bd09d3916b244e5808ccf5",
 	"wcsc.exe": "6e62ac7188b70ca19a5cae9ff34e50ce"
 }

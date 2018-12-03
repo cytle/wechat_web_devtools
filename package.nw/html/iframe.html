@@ -7,18 +7,6 @@
   })
   if (options.title) document.title = options.title
 
-  // iframe 的方案有 xss 漏洞
-  // let iframe = document.createElement('iframe')
-  // iframe.src = options.url
-  // iframe.frameBorder = 0
-  // // 使用 onload 防止闪烁
-  // iframe.onload = () => {
-  //   iframe.style.display = 'block'
-  //   // 纠正页面的 opener 使其能与主窗口通过 postMessage 正确通信
-  //   iframe.contentWindow.opener = window.opener
-  // }
-  // document.body.appendChild(iframe)
-
   const init = () => {
     const webview = document.getElementById('webview')
     webview.src = options.url

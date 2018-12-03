@@ -1107,10 +1107,12 @@ module.exports = {
 
   TCB_STAGE_PREPARE: 'preparing',
   TCB_STAGE_GET_FUNCTION_INFO: 'fetching function config info',
+  TCB_STAGE_CHECK_TRIGGERS: 'getting local function triggers config',
   TCB_STAGE_UPDATE_FUNCTION_CONFIG: 'updating function config',
   TCB_STAGE_COMPRESS_FUNCTION_CODE: 'compressing function code',
   TCB_STAGE_WILL_UPLOAD_FUNCTION: 'will upload function code',
   TCB_STAGE_UPLOAD_FUNCTION: 'uploading function code',
+  TCB_STAGE_UPLOAD_FUNCTION_TRIGGERS: 'uploading function triggers',
   TCB_STAGE_WAIT_FUNCTION_UPDATE: 'waiting for the update of function',
   TCB_STAGE_WAIT_FUNCTION_UPDATE_AND_NPM: 'waiting for the update and installation of dependencies of function',
   TCB_STAGE_UPLOAD_DONE: 'upload completed',
