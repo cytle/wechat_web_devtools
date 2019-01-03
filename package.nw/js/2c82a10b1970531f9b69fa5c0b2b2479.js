@@ -1,1 +1,2 @@
-'use strict';!function(require,directRequire){const{connect:a}=require('react-redux'),b=require('./e98c60a262d8d98e69e574a9d12a21df.js'),c=require('./e921a52cdb6662cf9e0fc38485a2aa81.js');module.exports=a(()=>({}),(a)=>({updateIDESetting(){a(b.updateIDESetting.apply(this,arguments))}}))(c)}(require('lazyload'),require);
+;!function(require, directRequire){;'use strict';const{connect}=require('react-redux'),settingsActions=require('./e98c60a262d8d98e69e574a9d12a21df.js'),ProxySetting=require('./e921a52cdb6662cf9e0fc38485a2aa81.js'),mapStateToProps=()=>({}),mapDispatchToProps=(a)=>({updateIDESetting(){a(settingsActions.updateIDESetting.apply(this,arguments))}});module.exports=connect(mapStateToProps,mapDispatchToProps)(ProxySetting);
+;}(require("lazyload"), require);

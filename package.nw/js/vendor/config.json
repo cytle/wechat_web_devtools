@@ -1,20 +1,20 @@
 {
 	"includedLibs": {
-    "2.0.4": {
-      "version": "2.0.4",
-      "numberVersion": 124,
-      "md5": "ZugfYQfm5j9wCo4OVYuyzHKPqr4hW9WfsMLqd6z5EBYwrPKtqQfCaAfn+Dp7E/IzVLoGoajPKSe7ixON+P14kLg8USVG0lgkIkxAhOTLpQL2RDOBWCRg/9D5YpfNGgW2uDok3IjHmZNuT3YyjmuHNM2P/dbavXp1haQh7OBPX4E=",
-      "url": "https://res.servicewechat.com/weapp/public/commlib/124.wxapkg"
-    }
-  },
-	"configVersion": 1543216350985,
+		"2.0.4": {
+			"version": "2.0.4",
+			"numberVersion": 124,
+			"md5": "ZugfYQfm5j9wCo4OVYuyzHKPqr4hW9WfsMLqd6z5EBYwrPKtqQfCaAfn+Dp7E/IzVLoGoajPKSe7ixON+P14kLg8USVG0lgkIkxAhOTLpQL2RDOBWCRg/9D5YpfNGgW2uDok3IjHmZNuT3YyjmuHNM2P/dbavXp1haQh7OBPX4E=",
+			"url": "https://res.servicewechat.com/weapp/public/commlib/124.wxapkg"
+		}
+	},
+	"configVersion": 1544705267495,
 	"libs": {
 		"alpha": {
-			"WACloud.js": "bb8f62764c16a531e7b70ddd6b5b37ec"
+			"WACloud.js": "7474030abe72b5924617dc6b878fe4c2"
 		}
 	},
 	"wcc": "d83d32c87aa6e0b136688e849cdd7573",
-	"wcsc": "b85b05164923ff1e50a30e3532ac8a80",
+	"wcsc": "712f4b1f4e2d74a035208a1c4840944e",
 	"wcc.exe": "f05167e064bd09d3916b244e5808ccf5",
-	"wcsc.exe": "6e62ac7188b70ca19a5cae9ff34e50ce"
+	"wcsc.exe": "2942cf3e6d31e73ffe08a763cde1b778"
 }

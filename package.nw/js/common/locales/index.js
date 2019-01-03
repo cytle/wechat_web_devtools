@@ -31,11 +31,16 @@ const onChangeLocale = cb => {
 const systemLocale = '$SYSTEM'
 const supportedLocales = ['zh', 'en']
 const toSupportedLocale = tag => {
-  if (tag === systemLocale) tag = navigator.language
+  if (tag === systemLocale) {
+    tag = navigator.language
+    if (tag === 'zh_CN') {
+      tag = 'zh'
+    }
+  }
   return supportedLocales.find(item => tag.toLowerCase().includes(item)) || 'zh'
 }
 const setMoment = (val=locale) => {
-  moment.locale(val === 'zh' ? 'zh_CN' : 'en') // moment 不支持 zh
+  moment.locale(val === 'zh' ? 'zh-cn' : 'en') // moment 不支持 zh
 }
 
 const initLocale = () => {
@@ -67,12 +72,39 @@ const setLocale = tag => {
   emitter.emit(changeLocaleEventName, locale, sourceLocale, prevLocale)
 }
 
+/**
+ * @locales.mixin
+ * class Test extents React.Component {
+ * }
+ * @param {*} target
+ */
+
+const mixin = (target) => {
+  let componentDidMount = target.prototype.componentDidMount
+  let componentWillUnmount = target.prototype.componentWillUnmount
+
+  target.prototype.componentDidMount = function() {
+    if (typeof componentDidMount === 'function') {
+      componentDidMount.apply(this, arguments)
+    }
+    this._cancalLocaleListener = onChangeLocale(() => this.forceUpdate())
+  }
+
+  target.prototype.componentWillUnmount = function() {
+    if (typeof componentWillUnmount === 'function') {
+      componentWillUnmount.apply(this, arguments)
+    }
+    this._cancalLocaleListener()
+  }
+}
+
 const localeExport = {
   systemLocale,
   getLocale,
   getSourceLocale,
   setLocale,
   onChangeLocale,
+  mixin,
   get config() {
     return require(`./${locale}/index.js`)
   },

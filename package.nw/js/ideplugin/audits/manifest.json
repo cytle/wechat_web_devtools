@@ -1,5 +1,5 @@
 {
-  "version": "0.0.12",
+  "version": "0.0.22",
   "manifest_version": "0.0.1",
   "name": "Audits",
   "main": "./index.html",

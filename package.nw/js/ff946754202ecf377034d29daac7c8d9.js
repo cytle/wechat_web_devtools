@@ -9,8 +9,10 @@ let wss, pingpongTimer
 let clientMap = {}
 let msgQueue = {}
 let tokenMap = {}
+let sessionToken = ''
 
 let _events = {}
+
 
 /**
  * 验证 protocol 中的token
@@ -23,19 +25,33 @@ const validateToken = (protocol) => {
    * WEBVIEW_1[md5token]
    */
   let match = protocol.match(/#(.*)#/)
-  if (match && match[1] && tokenMap[match[1]]) {
-    let validate = tokenMap[match[1]]
-    // 如果是 true 则是所有的 origin 都可以
-    if (validate === true) {
-      delete tokenMap[match[1]]
-      return true
-    } else {
-      // 否则 则只有 相等才可以
-      let [mainProtocol] = splitProtocol(protocol)
-      if (validate === mainProtocol) {
-        delete tokenMap[match[1]]
+  if (match && match[1]) {
+    const token = match[1]
+    const [mainProtocol] = splitProtocol(protocol)
+
+    if (tokenMap[token]) {
+      const validate = tokenMap[match[1]]
+      // 如果是 true 则是所有的 origin 都可以
+      if (validate === true) {
+        delete tokenMap[token]
         return true
       }
+
+      if (validate === mainProtocol) {
+        delete tokenMap[token]
+        return true
+      }
+
+      if (Object.prototype.toString.call(validate) === '[object Array]') {
+        if (validate.indexOf(mainProtocol) !== -1) {
+          delete tokenMap[token]
+          return true
+        }
+      }
+    }
+
+    if (sessionToken === token) {
+      return true
     }
   }
   return false
@@ -265,6 +281,12 @@ const broadcast = (mainProtocol, data) => {
   }
 }
 
+const generateToken = () => {
+  const md5sum = crypto.createHash('md5')
+  md5sum.update(Math.random() + '' + Date.now())
+  return md5sum.digest('hex')
+}
+
 
 /**
 protocol 对应的是 ws.protocol
@@ -302,9 +324,7 @@ module.exports = {
    * @return {string}
    */
   getToken: function(mainProtocol) {
-    let md5sum = crypto.createHash('md5')
-    md5sum.update(Math.random() + '' + Date.now())
-    let token = md5sum.digest('hex')
+    const token = generateToken()
 
     if (Object.keys(tokenMap).length > 100) {
       tokenMap = {}
@@ -312,5 +332,12 @@ module.exports = {
 
     tokenMap[token] = mainProtocol || true
     return token
+  },
+  // 这个是用户主动
+  getSessionToken: () => {
+    return sessionToken
+  },
+  setSessionToken: (token) => {
+    sessionToken = token
   }
 }

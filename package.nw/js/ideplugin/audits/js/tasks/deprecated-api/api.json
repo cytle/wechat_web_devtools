@@ -52,7 +52,11 @@
   },
   "createCanvasContext": {
     "1.0.0": [
-      "getActions"
+      {
+        "$method": [
+          "getActions"
+        ]
+      }
     ],
     "1.9.90": [
       {

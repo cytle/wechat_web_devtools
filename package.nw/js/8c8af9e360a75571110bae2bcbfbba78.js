@@ -65,7 +65,9 @@ Page({
 \t}
 })`,c=`<!--{{page}}.wxml-->
 <text>{{page}}.wxml</text>
-`,d=`// {{component}}.js
+`,d=`{
+  "usingComponents": {}
+}`,e=`// {{component}}.js
 Component({
 \t/**
 \t * ${a.config.COMPONENT_PROPERTIES}
@@ -88,12 +90,12 @@ Component({
 
 \t}
 })
-`,e=`{
+`,f=`{
 \t"component": true,
 \t"usingComponents": {}
-}`,f=`<!--{{component}}.wxml-->
+}`,g=`<!--{{component}}.wxml-->
 <text>{{component}}.wxml</text>
-`,g=`// 云函数入口文件
+`,h=`// 云函数入口文件
 const cloud = require('wx-server-sdk')
 
 cloud.init()
@@ -108,7 +110,7 @@ exports.main = async (event, context) => {
 \t\tappid: wxContext.APPID,
 \t\tunionid: wxContext.UNIONID,
 \t}
-}`,h=`{
+}`,i=`{
 \t"name": "{{name}}",
 \t"version": "1.0.0",
 \t"description": "",
@@ -121,4 +123,4 @@ exports.main = async (event, context) => {
 \t"dependencies": {
 \t\t"wx-server-sdk": "latest"
 \t}
-}`;module.exports={pageJS:b,pageJSON:'{}',pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:d,componentJSON:e,componentWXML:f,componentWXSS:'/* {{component}}.wxss */',tcbIndexJS:g,tcbCloudFunctionPackageJSON:h}}(require('lazyload'),require);
+}`;module.exports={pageJS:b,pageJSON:d,pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:e,componentJSON:f,componentWXML:g,componentWXSS:'/* {{component}}.wxss */',tcbIndexJS:h,tcbCloudFunctionPackageJSON:i}}(require('lazyload'),require);

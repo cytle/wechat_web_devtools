@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background: #ffffff;
+}
+
 .group {
     overflow: hidden;
     margin: 0 15px;
@@ -35,6 +39,8 @@
     padding: 5px;
     margin-right: 5px;
     border-radius: 2px;
+    background-color: transparent;
+    outline: 0;
 }
 
 .form-control input[type="checkbox"] {
@@ -69,4 +75,17 @@ iframe {
 
 .reset:hover {
     background-color: #f0f0f0;
+}
+
+body.dark {
+    background-color: #333;
+    color: rgba(255, 255, 255, .9);
+}
+
+body.dark .group {
+    border-bottom-color: #434343;
+}
+
+body.dark .form-control input[type="text"], body.dark .form-control input[type="number"] {
+    color: rgba(255, 255, 255, .9);
 }

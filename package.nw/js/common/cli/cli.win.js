@@ -24,4 +24,4 @@ const child = child_process.spawnSync(path.join(installDir, '.\\node.exe'), [CLI
   ]
 })
 
-process.exit(0)
+process.exit(child.status)

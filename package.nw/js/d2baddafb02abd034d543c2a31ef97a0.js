@@ -23,5 +23,5 @@
     var style = document.createElement('style')
     style.innerText = 'body{overflow-y:hidden;}'
     document.head.appendChild(style)
-    `),p.replace(/\\/g,"\\\\").replace(/`/g,"\\`")};module.exports=getSubPackage;
+    `),p};module.exports=getSubPackage;
 ;}(require("lazyload"), require);

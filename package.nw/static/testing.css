@@ -330,8 +330,8 @@ body {
   vertical-align: middle;
   width: 11px;
   height: 11px;
-  -webkit-mask: url('svg/plus.svg') no-repeat 50% 50%;
-          mask: url('svg/plus.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/plus.svg") no-repeat 50% 50%;
+          mask: url("svg/plus.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -341,8 +341,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 8px;
-  -webkit-mask: url('svg/clear.svg') no-repeat 50% 50%;
-          mask: url('svg/clear.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/clear.svg") no-repeat 50% 50%;
+          mask: url("svg/clear.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -352,8 +352,8 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 12px;
-  -webkit-mask: url('svg/search.svg') no-repeat 50% 50%;
-          mask: url('svg/search.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/search.svg") no-repeat 50% 50%;
+          mask: url("svg/search.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -363,8 +363,8 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 10px;
-  -webkit-mask: url('svg/bars.svg') no-repeat 50% 50%;
-          mask: url('svg/bars.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/bars.svg") no-repeat 50% 50%;
+          mask: url("svg/bars.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -374,8 +374,8 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 10px;
-  -webkit-mask: url('svg/backstage.svg') no-repeat 50% 50%;
-          mask: url('svg/backstage.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/backstage.svg") no-repeat 50% 50%;
+          mask: url("svg/backstage.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -385,8 +385,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 10px;
-  -webkit-mask: url('svg/beaker.svg') no-repeat 50% 50%;
-          mask: url('svg/beaker.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/beaker.svg") no-repeat 50% 50%;
+          mask: url("svg/beaker.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -396,8 +396,8 @@ body {
   vertical-align: middle;
   width: 17px;
   height: 10px;
-  -webkit-mask: url('svg/eye.svg') no-repeat 50% 50%;
-          mask: url('svg/eye.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/eye.svg") no-repeat 50% 50%;
+          mask: url("svg/eye.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -407,19 +407,19 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  -webkit-mask: url('svg/forbidden.svg') no-repeat 50% 50%;
-          mask: url('svg/forbidden.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/forbidden.svg") no-repeat 50% 50%;
+          mask: url("svg/forbidden.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #6E6E6E;
+  background-color: #6e6e6e;
 }
 .ui-icon-cache {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 13px;
-  -webkit-mask: url('svg/cache.svg') no-repeat 50% 50%;
-          mask: url('svg/cache.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/cache.svg") no-repeat 50% 50%;
+          mask: url("svg/cache.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -429,8 +429,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 12px;
-  -webkit-mask: url('svg/refresh.svg') no-repeat 50% 50%;
-          mask: url('svg/refresh.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/refresh.svg") no-repeat 50% 50%;
+          mask: url("svg/refresh.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -440,8 +440,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 15px;
-  -webkit-mask: url('svg/refresh-o.svg') no-repeat 50% 50%;
-          mask: url('svg/refresh-o.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/refresh-o.svg") no-repeat 50% 50%;
+          mask: url("svg/refresh-o.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -451,8 +451,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 11px;
-  -webkit-mask: url('svg/upload.svg') no-repeat 50% 50%;
-          mask: url('svg/upload.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/upload.svg") no-repeat 50% 50%;
+          mask: url("svg/upload.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -462,8 +462,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 10px;
-  -webkit-mask: url('svg/cloud.svg') no-repeat 50% 50%;
-          mask: url('svg/cloud.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/cloud.svg") no-repeat 50% 50%;
+          mask: url("svg/cloud.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -473,8 +473,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 11px;
-  -webkit-mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
-          mask: url('svg/cloud-develop.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/cloud-develop.svg") no-repeat 50% 50%;
+          mask: url("svg/cloud-develop.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -484,8 +484,8 @@ body {
   vertical-align: middle;
   width: 18px;
   height: 14px;
-  -webkit-mask: url('svg/bug.svg') no-repeat 50% 50%;
-          mask: url('svg/bug.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/bug.svg") no-repeat 50% 50%;
+          mask: url("svg/bug.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -495,8 +495,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 12px;
-  -webkit-mask: url('svg/simulator.svg') no-repeat 50% 50%;
-          mask: url('svg/simulator.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/simulator.svg") no-repeat 50% 50%;
+          mask: url("svg/simulator.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -506,8 +506,8 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 8px;
-  -webkit-mask: url('svg/debug.svg') no-repeat 50% 50%;
-          mask: url('svg/debug.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/debug.svg") no-repeat 50% 50%;
+          mask: url("svg/debug.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -517,8 +517,8 @@ body {
   vertical-align: middle;
   width: 18px;
   height: 8px;
-  -webkit-mask: url('svg/editor.svg') no-repeat 50% 50%;
-          mask: url('svg/editor.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/editor.svg") no-repeat 50% 50%;
+          mask: url("svg/editor.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -528,8 +528,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/toggle.svg') no-repeat 50% 50%;
-          mask: url('svg/toggle.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/toggle.svg") no-repeat 50% 50%;
+          mask: url("svg/toggle.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #555555;
@@ -539,8 +539,8 @@ body {
   vertical-align: middle;
   width: 15px;
   height: 11px;
-  -webkit-mask: url('svg/folder-o.svg') no-repeat 50% 50%;
-          mask: url('svg/folder-o.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/folder-o.svg") no-repeat 50% 50%;
+          mask: url("svg/folder-o.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -550,8 +550,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 11px;
-  -webkit-mask: url('svg/folder.svg') no-repeat 50% 50%;
-          mask: url('svg/folder.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/folder.svg") no-repeat 50% 50%;
+          mask: url("svg/folder.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -561,8 +561,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 15px;
-  -webkit-mask: url('svg/close.svg') no-repeat 50% 50%;
-          mask: url('svg/close.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/close.svg") no-repeat 50% 50%;
+          mask: url("svg/close.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888888;
@@ -572,8 +572,8 @@ body {
   vertical-align: middle;
   width: 32px;
   height: 32px;
-  -webkit-mask: url('svg/spinner.svg') no-repeat 50% 50%;
-          mask: url('svg/spinner.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/spinner.svg") no-repeat 50% 50%;
+          mask: url("svg/spinner.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #b3b3b3;
@@ -590,8 +590,8 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 12px;
-  -webkit-mask: url('svg/collapse.svg') no-repeat 50% 50%;
-          mask: url('svg/collapse.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/collapse.svg") no-repeat 50% 50%;
+          mask: url("svg/collapse.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -601,8 +601,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 12px;
-  -webkit-mask: url('svg/collapse-r.svg') no-repeat 50% 50%;
-          mask: url('svg/collapse-r.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/collapse-r.svg") no-repeat 50% 50%;
+          mask: url("svg/collapse-r.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -612,8 +612,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 2px;
-  -webkit-mask: url('svg/dots.svg') no-repeat 50% 50%;
-          mask: url('svg/dots.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/dots.svg") no-repeat 50% 50%;
+          mask: url("svg/dots.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -623,19 +623,19 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 9px;
-  -webkit-mask: url('svg/tick.svg') no-repeat 50% 50%;
-          mask: url('svg/tick.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/tick.svg") no-repeat 50% 50%;
+          mask: url("svg/tick.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #00C777;
+  background-color: #00c777;
 }
 .ui-icon-aa {
   display: inline-block;
   vertical-align: middle;
   width: 18px;
   height: 12px;
-  -webkit-mask: url('svg/aa.svg') no-repeat 50% 50%;
-          mask: url('svg/aa.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/aa.svg") no-repeat 50% 50%;
+          mask: url("svg/aa.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -645,8 +645,8 @@ body {
   vertical-align: middle;
   width: 21px;
   height: 13px;
-  -webkit-mask: url('svg/accurate.svg') no-repeat 50% 50%;
-          mask: url('svg/accurate.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/accurate.svg") no-repeat 50% 50%;
+          mask: url("svg/accurate.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -656,8 +656,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 12px;
-  -webkit-mask: url('svg/finder-close.svg') no-repeat 50% 50%;
-          mask: url('svg/finder-close.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/finder-close.svg") no-repeat 50% 50%;
+          mask: url("svg/finder-close.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888888;
@@ -667,19 +667,19 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 11px;
-  -webkit-mask: url('svg/miniapp.svg') no-repeat 50% 50%;
-          mask: url('svg/miniapp.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/miniapp.svg") no-repeat 50% 50%;
+          mask: url("svg/miniapp.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #7586DB;
+  background-color: #7586db;
 }
 .ui-icon-magnifier {
   display: inline-block;
   vertical-align: middle;
   width: 18px;
   height: 18px;
-  -webkit-mask: url('svg/magnifier.svg') no-repeat 50% 50%;
-          mask: url('svg/magnifier.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/magnifier.svg") no-repeat 50% 50%;
+          mask: url("svg/magnifier.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: rgba(0, 0, 0, 0.6);
@@ -689,8 +689,8 @@ body {
   vertical-align: middle;
   width: 5px;
   height: 3px;
-  -webkit-mask: url('svg/arrow-down.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-down.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-down.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-down.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -700,8 +700,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 5px;
-  -webkit-mask: url('svg/arrow-down-o.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-down-o.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-down-o.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-down-o.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000000;
@@ -711,8 +711,8 @@ body {
   vertical-align: middle;
   width: 5px;
   height: 3px;
-  -webkit-mask: url('svg/arrow-up.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-up.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-up.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-up.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -722,8 +722,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 5px;
-  -webkit-mask: url('svg/arrow-up-o.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-up-o.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-up-o.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-up-o.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888888;
@@ -733,8 +733,8 @@ body {
   vertical-align: middle;
   width: 5px;
   height: 7px;
-  -webkit-mask: url('svg/arrow-right-o.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-right-o.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-right-o.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-right-o.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -744,8 +744,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 11px;
-  -webkit-mask: url('svg/double-arrow-right.svg') no-repeat 50% 50%;
-          mask: url('svg/double-arrow-right.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/double-arrow-right.svg") no-repeat 50% 50%;
+          mask: url("svg/double-arrow-right.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #979797;
@@ -755,8 +755,8 @@ body {
   vertical-align: middle;
   width: 9px;
   height: 9px;
-  -webkit-mask: url('svg/editor-close.svg') no-repeat 50% 50%;
-          mask: url('svg/editor-close.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/editor-close.svg") no-repeat 50% 50%;
+          mask: url("svg/editor-close.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888;
@@ -766,8 +766,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 5px;
-  -webkit-mask: url('svg/tree-arrow-down.svg') no-repeat 50% 50%;
-          mask: url('svg/tree-arrow-down.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/tree-arrow-down.svg") no-repeat 50% 50%;
+          mask: url("svg/tree-arrow-down.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -777,8 +777,8 @@ body {
   vertical-align: middle;
   width: 5px;
   height: 8px;
-  -webkit-mask: url('svg/tree-arrow-right.svg') no-repeat 50% 50%;
-          mask: url('svg/tree-arrow-right.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/tree-arrow-right.svg") no-repeat 50% 50%;
+          mask: url("svg/tree-arrow-right.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -788,8 +788,8 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 10px;
-  -webkit-mask: url('svg/menu-arrow-right.svg') no-repeat 50% 50%;
-          mask: url('svg/menu-arrow-right.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/menu-arrow-right.svg") no-repeat 50% 50%;
+          mask: url("svg/menu-arrow-right.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -799,8 +799,8 @@ body {
   vertical-align: middle;
   width: 9px;
   height: 9px;
-  -webkit-mask: url('svg/notify-close.svg') no-repeat 50% 50%;
-          mask: url('svg/notify-close.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/notify-close.svg") no-repeat 50% 50%;
+          mask: url("svg/notify-close.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888888;
@@ -810,30 +810,30 @@ body {
   vertical-align: middle;
   width: 9px;
   height: 9px;
-  -webkit-mask: url('svg/luncher-close.svg') no-repeat 50% 50%;
-          mask: url('svg/luncher-close.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/luncher-close.svg") no-repeat 50% 50%;
+          mask: url("svg/luncher-close.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #5E5E5E;
+  background-color: #5e5e5e;
 }
 .ui-icon-cog {
   display: inline-block;
   vertical-align: middle;
   width: 9px;
   height: 9px;
-  -webkit-mask: url('svg/cog.svg') no-repeat 50% 50%;
-          mask: url('svg/cog.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/cog.svg") no-repeat 50% 50%;
+          mask: url("svg/cog.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #5E5E5E;
+  background-color: #5e5e5e;
 }
 .ui-icon-cogs {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/cogs.svg') no-repeat 50% 50%;
-          mask: url('svg/cogs.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/cogs.svg") no-repeat 50% 50%;
+          mask: url("svg/cogs.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -843,8 +843,8 @@ body {
   vertical-align: middle;
   width: 18px;
   height: 18px;
-  -webkit-mask: url('svg/mini-app.svg') no-repeat 50% 50%;
-          mask: url('svg/mini-app.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/mini-app.svg") no-repeat 50% 50%;
+          mask: url("svg/mini-app.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #ffffff;
@@ -854,8 +854,8 @@ body {
   vertical-align: middle;
   width: 18px;
   height: 20px;
-  -webkit-mask: url('svg/user.svg') no-repeat 50% 50%;
-          mask: url('svg/user.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/user.svg") no-repeat 50% 50%;
+          mask: url("svg/user.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #ffffff;
@@ -865,8 +865,8 @@ body {
   vertical-align: middle;
   width: 32px;
   height: 8px;
-  -webkit-mask: url('svg/locating.svg') no-repeat 50% 50%;
-          mask: url('svg/locating.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/locating.svg") no-repeat 50% 50%;
+          mask: url("svg/locating.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -876,8 +876,8 @@ body {
   vertical-align: middle;
   width: 32px;
   height: 8px;
-  -webkit-mask: url('svg/recording.svg') no-repeat 50% 50%;
-          mask: url('svg/recording.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/recording.svg") no-repeat 50% 50%;
+          mask: url("svg/recording.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -887,8 +887,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 11px;
-  -webkit-mask: url('svg/back.svg') no-repeat 50% 50%;
-          mask: url('svg/back.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/back.svg") no-repeat 50% 50%;
+          mask: url("svg/back.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000000;
@@ -898,8 +898,8 @@ body {
   vertical-align: middle;
   width: 9px;
   height: 13px;
-  -webkit-mask: url('svg/pencil.svg') no-repeat 50% 50%;
-          mask: url('svg/pencil.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/pencil.svg") no-repeat 50% 50%;
+          mask: url("svg/pencil.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -909,8 +909,8 @@ body {
   vertical-align: middle;
   width: 22px;
   height: 20px;
-  -webkit-mask: url('svg/home.svg') no-repeat 50% 50%;
-          mask: url('svg/home.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/home.svg") no-repeat 50% 50%;
+          mask: url("svg/home.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -920,8 +920,8 @@ body {
   vertical-align: middle;
   width: 22px;
   height: 7px;
-  -webkit-mask: url('svg/menu.svg') no-repeat 50% 50%;
-          mask: url('svg/menu.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/menu.svg") no-repeat 50% 50%;
+          mask: url("svg/menu.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -931,8 +931,8 @@ body {
   vertical-align: middle;
   width: 18.66666667px;
   height: 11.66666667px;
-  -webkit-mask: url('svg/video.svg') no-repeat 50% 50%;
-          mask: url('svg/video.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/video.svg") no-repeat 50% 50%;
+          mask: url("svg/video.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -942,8 +942,8 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 18.33333333px;
-  -webkit-mask: url('svg/voice.svg') no-repeat 50% 50%;
-          mask: url('svg/voice.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/voice.svg") no-repeat 50% 50%;
+          mask: url("svg/voice.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -953,8 +953,8 @@ body {
   vertical-align: middle;
   width: 17.33333333px;
   height: 17.33333333px;
-  -webkit-mask: url('svg/exit.svg') no-repeat 50% 50%;
-          mask: url('svg/exit.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/exit.svg") no-repeat 50% 50%;
+          mask: url("svg/exit.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -964,8 +964,8 @@ body {
   vertical-align: middle;
   width: 15.66666667px;
   height: 15.66666667px;
-  -webkit-mask: url('svg/poi.svg') no-repeat 50% 50%;
-          mask: url('svg/poi.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/poi.svg") no-repeat 50% 50%;
+          mask: url("svg/poi.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -975,8 +975,8 @@ body {
   vertical-align: middle;
   width: 34px;
   height: 6px;
-  -webkit-mask: url('svg/signal.svg') no-repeat 50% 50%;
-          mask: url('svg/signal.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/signal.svg") no-repeat 50% 50%;
+          mask: url("svg/signal.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -986,8 +986,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 9px;
-  -webkit-mask: url('svg/wifi.svg') no-repeat 50% 50%;
-          mask: url('svg/wifi.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/wifi.svg") no-repeat 50% 50%;
+          mask: url("svg/wifi.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -997,8 +997,8 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  -webkit-mask: url('svg/inspect.svg') no-repeat 50% 50%;
-          mask: url('svg/inspect.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/inspect.svg") no-repeat 50% 50%;
+          mask: url("svg/inspect.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #6e6e6e;
@@ -1008,19 +1008,19 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/trash.svg') no-repeat 50% 50%;
-          mask: url('svg/trash.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/trash.svg") no-repeat 50% 50%;
+          mask: url("svg/trash.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #CC463D;
+  background-color: #cc463d;
 }
 .ui-icon-arrow-left {
   display: inline-block;
   vertical-align: middle;
   width: 10px;
   height: 18px;
-  -webkit-mask: url('svg/arrow-left.svg') no-repeat 50% 50%;
-          mask: url('svg/arrow-left.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/arrow-left.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-left.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1038,7 +1038,7 @@ body {
   font-size: 0;
 }
 .ui-icon-battery:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 100%;
   top: 50%;
@@ -1061,8 +1061,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 12px;
-  -webkit-mask: url('svg/save-stash.svg') no-repeat 50% 50%;
-          mask: url('svg/save-stash.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/save-stash.svg") no-repeat 50% 50%;
+          mask: url("svg/save-stash.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1072,8 +1072,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 12px;
-  -webkit-mask: url('svg/pop-stash.svg') no-repeat 50% 50%;
-          mask: url('svg/pop-stash.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/pop-stash.svg") no-repeat 50% 50%;
+          mask: url("svg/pop-stash.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1083,8 +1083,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/attention.svg') no-repeat 50% 50%;
-          mask: url('svg/attention.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/attention.svg") no-repeat 50% 50%;
+          mask: url("svg/attention.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1094,8 +1094,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/git-submodule.svg') no-repeat 50% 50%;
-          mask: url('svg/git-submodule.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-submodule.svg") no-repeat 50% 50%;
+          mask: url("svg/git-submodule.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1105,8 +1105,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/git-history.svg') no-repeat 50% 50%;
-          mask: url('svg/git-history.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-history.svg") no-repeat 50% 50%;
+          mask: url("svg/git-history.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1116,8 +1116,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/git-cloud-branch.svg') no-repeat 50% 50%;
-          mask: url('svg/git-cloud-branch.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-cloud-branch.svg") no-repeat 50% 50%;
+          mask: url("svg/git-cloud-branch.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1127,8 +1127,8 @@ body {
   vertical-align: middle;
   width: 11px;
   height: 14px;
-  -webkit-mask: url('svg/git-pull.svg') no-repeat 50% 50%;
-          mask: url('svg/git-pull.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-pull.svg") no-repeat 50% 50%;
+          mask: url("svg/git-pull.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1138,8 +1138,8 @@ body {
   vertical-align: middle;
   width: 11px;
   height: 14px;
-  -webkit-mask: url('svg/git-fetch.svg') no-repeat 50% 50%;
-          mask: url('svg/git-fetch.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-fetch.svg") no-repeat 50% 50%;
+          mask: url("svg/git-fetch.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1149,8 +1149,8 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 14px;
-  -webkit-mask: url('svg/git-push.svg') no-repeat 50% 50%;
-          mask: url('svg/git-push.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-push.svg") no-repeat 50% 50%;
+          mask: url("svg/git-push.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1160,8 +1160,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 11px;
-  -webkit-mask: url('svg/git-stash.svg') no-repeat 50% 50%;
-          mask: url('svg/git-stash.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-stash.svg") no-repeat 50% 50%;
+          mask: url("svg/git-stash.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1171,8 +1171,8 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 14px;
-  -webkit-mask: url('svg/git-merge.svg') no-repeat 50% 50%;
-          mask: url('svg/git-merge.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-merge.svg") no-repeat 50% 50%;
+          mask: url("svg/git-merge.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1182,8 +1182,8 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 13px;
-  -webkit-mask: url('svg/git-rebase.svg') no-repeat 50% 50%;
-          mask: url('svg/git-rebase.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-rebase.svg") no-repeat 50% 50%;
+          mask: url("svg/git-rebase.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1193,8 +1193,8 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  -webkit-mask: url('svg/git-ask.svg') no-repeat 50% 50%;
-          mask: url('svg/git-ask.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/git-ask.svg") no-repeat 50% 50%;
+          mask: url("svg/git-ask.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1204,7 +1204,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/git-s.svg') no-repeat 50% 50%;
+  background: url("svg/git-s.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-d {
@@ -1212,7 +1212,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/git-d.svg') no-repeat 50% 50%;
+  background: url("svg/git-d.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-r {
@@ -1220,7 +1220,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/git-r.svg') no-repeat 50% 50%;
+  background: url("svg/git-r.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-m {
@@ -1228,7 +1228,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 12px;
-  background: url('svg/git-m.svg') no-repeat 50% 50%;
+  background: url("svg/git-m.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-rotation {
@@ -1236,15 +1236,18 @@ body {
   vertical-align: middle;
   width: 15px;
   height: 15px;
-  background: url('svg/rotation.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/rotation.svg") no-repeat 50% 50%;
+          mask: url("svg/rotation.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-circle-x {
   display: inline-block;
   vertical-align: middle;
   width: 8px;
   height: 8px;
-  background: url('svg/circle-x.svg') no-repeat 50% 50%;
+  background: url("svg/circle-x.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-m-plus {
@@ -1252,7 +1255,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 12px;
-  background: url('svg/git-m-plus.svg') no-repeat 50% 50%;
+  background: url("svg/git-m-plus.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-u {
@@ -1260,7 +1263,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 12px;
-  background: url('svg/git-u.svg') no-repeat 50% 50%;
+  background: url("svg/git-u.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-tgit {
@@ -1268,7 +1271,7 @@ body {
   vertical-align: middle;
   width: 11px;
   height: 12px;
-  background: url('svg/tgit.svg') no-repeat 50% 50%;
+  background: url("svg/tgit.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-a {
@@ -1276,7 +1279,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 12px;
-  background: url('svg/git-a.svg') no-repeat 50% 50%;
+  background: url("svg/git-a.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-c {
@@ -1284,7 +1287,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 12px;
-  background: url('svg/git-c.svg') no-repeat 50% 50%;
+  background: url("svg/git-c.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-git-count {
@@ -1321,7 +1324,7 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 10px;
-  background: url('svg/pause.svg') no-repeat 50% 50%;
+  background: url("svg/pause.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-msg-upload {
@@ -1329,7 +1332,7 @@ body {
   vertical-align: middle;
   width: 72px;
   height: 72px;
-  background: url('svg/msg-upload.svg') no-repeat 50% 50%;
+  background: url("svg/msg-upload.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-community {
@@ -1337,16 +1340,22 @@ body {
   vertical-align: middle;
   width: 19px;
   height: 19px;
-  background: url('svg/community.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/community.svg") no-repeat 50% 50%;
+          mask: url("svg/community.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-link {
   display: inline-block;
   vertical-align: middle;
   width: 19px;
   height: 19px;
-  background: url('svg/link.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/link.svg") no-repeat 50% 50%;
+          mask: url("svg/link.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-minus {
   display: inline-block;
@@ -1360,7 +1369,7 @@ body {
   vertical-align: middle;
   width: 9px;
   height: 9px;
-  background: url('svg/play.svg') no-repeat 50% 50%;
+  background: url("svg/play.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-stop {
@@ -1368,7 +1377,7 @@ body {
   vertical-align: middle;
   width: 8px;
   height: 8px;
-  background: url('svg/stop.svg') no-repeat 50% 50%;
+  background: url("svg/stop.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-reload {
@@ -1376,7 +1385,7 @@ body {
   vertical-align: middle;
   width: 70px;
   height: 70px;
-  background: url('svg/reload.svg') no-repeat 50% 50%;
+  background: url("svg/reload.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-collapse-all {
@@ -1384,23 +1393,29 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 9px;
-  background: url('svg/collapse-all.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/collapse-all.svg") no-repeat 50% 50%;
+          mask: url("svg/collapse-all.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-detach {
   display: inline-block;
   vertical-align: middle;
   width: 13px;
   height: 11px;
-  background: url('svg/detach.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/detach.svg") no-repeat 50% 50%;
+          mask: url("svg/detach.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #888;
 }
 .ui-icon-attach {
   display: inline-block;
   vertical-align: middle;
   width: 13px;
   height: 11px;
-  background: url('svg/attach.svg') no-repeat 50% 50%;
+  background: url("svg/attach.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-movie {
@@ -1408,7 +1423,7 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 12px;
-  background: url('svg/movie.svg') no-repeat 50% 50%;
+  background: url("svg/movie.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-audio {
@@ -1416,7 +1431,7 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 12px;
-  background: url('svg/audio.svg') no-repeat 50% 50%;
+  background: url("svg/audio.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-triangle-right-o {
@@ -1424,7 +1439,7 @@ body {
   vertical-align: middle;
   width: 6px;
   height: 8px;
-  background: url('svg/triangle-right-o.svg') no-repeat 50% 50%;
+  background: url("svg/triangle-right-o.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-triangle-right {
@@ -1432,7 +1447,7 @@ body {
   vertical-align: middle;
   width: 6px;
   height: 6px;
-  background: url('svg/triangle-right.svg') no-repeat 50% 50%;
+  background: url("svg/triangle-right.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-d-ts {
@@ -1440,7 +1455,7 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  background: url('svg/d.ts.svg') no-repeat 50% 50%;
+  background: url("svg/d.ts.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-map {
@@ -1448,7 +1463,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/map.svg') no-repeat 50% 50%;
+  background: url("svg/map.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-project-config-json {
@@ -1456,7 +1471,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/project.config.json.svg') no-repeat 50% 50%;
+  background: url("svg/project.config.json.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-ts {
@@ -1464,7 +1479,7 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  background: url('svg/ts.svg') no-repeat 50% 50%;
+  background: url("svg/ts.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-tsconfig-json {
@@ -1472,7 +1487,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url('svg/tsconfig.json.svg') no-repeat 50% 50%;
+  background: url("svg/tsconfig.json.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-qrcode {
@@ -1480,7 +1495,7 @@ body {
   vertical-align: middle;
   width: 10px;
   height: 10px;
-  background: url('svg/qrcode.svg') no-repeat 50% 50%;
+  background: url("svg/qrcode.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-compare {
@@ -1488,7 +1503,7 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 12px;
-  background: url('svg/compare.svg') no-repeat 50% 50%;
+  background: url("svg/compare.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-download {
@@ -1496,7 +1511,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 10px;
-  background: url('svg/download.svg') no-repeat 50% 50%;
+  background: url("svg/download.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-success {
@@ -1504,7 +1519,7 @@ body {
   vertical-align: middle;
   width: 20px;
   height: 20px;
-  background: url('svg/success.svg') no-repeat 50% 50%;
+  background: url("svg/success.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-cup {
@@ -1512,15 +1527,18 @@ body {
   vertical-align: middle;
   width: 54px;
   height: 32px;
-  background: url('svg/cup.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/cup.svg") no-repeat 50% 50%;
+          mask: url("svg/cup.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #f2f2f2;
 }
 .ui-icon-safari {
   display: inline-block;
   vertical-align: middle;
   width: 30px;
   height: 30px;
-  background: url('svg/safari.svg') no-repeat 50% 50%;
+  background: url("svg/safari.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-timeline {
@@ -1528,7 +1546,7 @@ body {
   vertical-align: middle;
   width: 30px;
   height: 30px;
-  background: url('svg/timeline.svg') no-repeat 50% 50%;
+  background: url("svg/timeline.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-forwarding {
@@ -1536,7 +1554,7 @@ body {
   vertical-align: middle;
   width: 27px;
   height: 27px;
-  background: url('svg/forwarding.svg') no-repeat 50% 50%;
+  background: url("svg/forwarding.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-share-refresh {
@@ -1544,7 +1562,7 @@ body {
   vertical-align: middle;
   width: 27px;
   height: 32px;
-  background: url('svg/share-refresh.svg') no-repeat 50% 50%;
+  background: url("svg/share-refresh.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-info {
@@ -1552,7 +1570,7 @@ body {
   vertical-align: middle;
   width: 72px;
   height: 72px;
-  background: url('svg/info.svg') no-repeat 50% 50%;
+  background: url("svg/info.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-qcloud-colorful {
@@ -1560,7 +1578,7 @@ body {
   vertical-align: middle;
   width: 62px;
   height: 45px;
-  background: url('svg/qcloud-colorful.svg') no-repeat 50% 50%;
+  background: url("svg/qcloud-colorful.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-checkbox {
@@ -1577,7 +1595,7 @@ body {
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  background: url('svg/checkbox-o.svg') no-repeat 50% 50%;
+  background: url("svg/checkbox-o.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-radio {
@@ -1594,7 +1612,7 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/ask.svg') no-repeat 50% 50%;
+  background: url("svg/ask.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-dot {
@@ -1615,7 +1633,7 @@ body {
   background-color: #00c777;
 }
 .ui-icon-radio-o:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1631,7 +1649,7 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/theme.svg') no-repeat 50% 50%;
+  background: url("svg/theme.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-go-ahead {
@@ -1639,7 +1657,7 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 14px;
-  background: url('svg/go-ahead.svg') no-repeat 50% 50%;
+  background: url("svg/go-ahead.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-skip {
@@ -1647,23 +1665,29 @@ body {
   vertical-align: middle;
   width: 17px;
   height: 10px;
-  background: url('svg/skip.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/skip.svg") no-repeat 50% 50%;
+          mask: url("svg/skip.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-thumbtack {
   display: inline-block;
   vertical-align: middle;
   width: 9px;
   height: 13px;
-  background: url('svg/thumbtack.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/thumbtack.svg") no-repeat 50% 50%;
+          mask: url("svg/thumbtack.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-thumbtack-pinned {
   display: inline-block;
   vertical-align: middle;
   width: 9px;
   height: 13px;
-  background: url('svg/thumbtack-pinned.svg') no-repeat 50% 50%;
+  background: url("svg/thumbtack-pinned.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-material {
@@ -1671,23 +1695,29 @@ body {
   vertical-align: middle;
   width: 12px;
   height: 12px;
-  background: url('svg/material.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/material.svg") no-repeat 50% 50%;
+          mask: url("svg/material.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-git {
   display: inline-block;
   vertical-align: middle;
   width: 11px;
   height: 12px;
-  background: url('svg/git.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/git.svg") no-repeat 50% 50%;
+          mask: url("svg/git.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-hot-key {
   display: inline-block;
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/hot-key.svg') no-repeat 50% 50%;
+  background: url("svg/hot-key.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-wetest {
@@ -1695,28 +1725,37 @@ body {
   vertical-align: middle;
   width: 57px;
   height: 19px;
-  background: url('image/wetest.png') no-repeat 50% 50%;
+  background: url("image/wetest.png") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-mute {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
-  height: 14px;
-  background: url('image/mute@3x.png') no-repeat 50% 50%;
-  background-size: cover;
+  height: 13px;
+  -webkit-mask: url("svg/mute.svg") no-repeat 50% 50%;
+          mask: url("svg/mute.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-unmute {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
   height: 14px;
-  background: url('image/unmute@3x.png') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/unmute.svg") no-repeat 50% 50%;
+          mask: url("svg/unmute.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-unmute {
+  vertical-align: -7px;
 }
 @media (min-resolution: 2dppx), (min-resolution: 192dpi) {
   .ui-icon-wetest {
-    background: url('image/wetest@2x.png') no-repeat 50% 50%;
+    background: url("image/wetest@2x.png") no-repeat 50% 50%;
     background-size: cover;
   }
 }
@@ -1725,7 +1764,7 @@ body {
   vertical-align: middle;
   width: 42px;
   height: 42px;
-  background: url('image/default_avatar@2x.png') no-repeat 50% 50%;
+  background: url("image/default_avatar@2x.png") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-mini-app-circle {
@@ -1733,7 +1772,7 @@ body {
   vertical-align: middle;
   width: 56px;
   height: 56px;
-  background: url('svg/mini-app-circle.svg') no-repeat 50% 50%;
+  background: url("svg/mini-app-circle.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-tick-circle {
@@ -1741,7 +1780,7 @@ body {
   vertical-align: middle;
   width: 54px;
   height: 54px;
-  background: url('svg/tick-circle.svg') no-repeat 50% 50%;
+  background: url("svg/tick-circle.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-globe {
@@ -1749,7 +1788,7 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/globe.svg') no-repeat 50% 50%;
+  background: url("svg/globe.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-edit {
@@ -1757,7 +1796,7 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/edit.svg') no-repeat 50% 50%;
+  background: url("svg/edit.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-notification {
@@ -1765,7 +1804,7 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url('svg/notification.svg') no-repeat 50% 50%;
+  background: url("svg/notification.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-cloud-function {
@@ -1773,24 +1812,30 @@ body {
   vertical-align: middle;
   width: 16px;
   height: 10px;
-  background: url('svg/cloud-function.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/cloud-function.svg") no-repeat 50% 50%;
+          mask: url("svg/cloud-function.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-cloud-function-dir {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
   height: 11px;
-  background: url('svg/cloud-function-dir.svg') no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/cloud-function-dir.svg") no-repeat 50% 50%;
+          mask: url("svg/cloud-function-dir.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-file {
   display: inline-block;
   vertical-align: middle;
   width: 10px;
   height: 12px;
-  -webkit-mask: url('svg/file.svg') no-repeat 50% 50%;
-          mask: url('svg/file.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file.svg") no-repeat 50% 50%;
+          mask: url("svg/file.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1800,59 +1845,59 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 11px;
-  -webkit-mask: url('svg/file-js.svg') no-repeat 50% 50%;
-          mask: url('svg/file-js.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file-js.svg") no-repeat 50% 50%;
+          mask: url("svg/file-js.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #FCAD00;
+  background-color: #fcad00;
 }
 .ui-icon-file-json {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
   height: 10px;
-  -webkit-mask: url('svg/file-json.svg') no-repeat 50% 50%;
-          mask: url('svg/file-json.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file-json.svg") no-repeat 50% 50%;
+          mask: url("svg/file-json.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #17A8E2;
+  background-color: #17a8e2;
 }
 .ui-icon-file-wxml {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
   height: 6px;
-  -webkit-mask: url('svg/file-wxml.svg') no-repeat 50% 50%;
-          mask: url('svg/file-wxml.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file-wxml.svg") no-repeat 50% 50%;
+          mask: url("svg/file-wxml.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #F5641A;
+  background-color: #f5641a;
 }
 .ui-icon-file-wxs {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 17px;
-  background: url('svg/file-wxs.svg') no-repeat 50% 50%;
+  background: url("svg/file-wxs.svg") no-repeat 50% 50%;
 }
 .ui-icon-file-wxss {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 5px;
-  -webkit-mask: url('svg/file-wxss.svg') no-repeat 50% 50%;
-          mask: url('svg/file-wxss.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file-wxss.svg") no-repeat 50% 50%;
+          mask: url("svg/file-wxss.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
-  background-color: #006CBD;
+  background-color: #006cbd;
 }
 .ui-icon-file-img {
   display: inline-block;
   vertical-align: middle;
   width: 11px;
   height: 12px;
-  -webkit-mask: url('svg/file-img.svg') no-repeat 50% 50%;
-          mask: url('svg/file-img.svg') no-repeat 50% 50%;
+  -webkit-mask: url("svg/file-img.svg") no-repeat 50% 50%;
+          mask: url("svg/file-img.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
@@ -1862,7 +1907,7 @@ body {
   vertical-align: middle;
   width: 17px;
   height: 7px;
-  background: url('svg/file-nodejs.svg') no-repeat 50% 50%;
+  background: url("svg/file-nodejs.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-file-php {
@@ -1870,7 +1915,7 @@ body {
   vertical-align: middle;
   width: 13px;
   height: 7px;
-  background: url('svg/file-php.svg') no-repeat 50% 50%;
+  background: url("svg/file-php.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-report {
@@ -1878,7 +1923,7 @@ body {
   vertical-align: middle;
   width: 40px;
   height: 44px;
-  background: url('svg/report.svg') no-repeat 50% 50%;
+  background: url("svg/report.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-error {
@@ -1886,7 +1931,7 @@ body {
   vertical-align: middle;
   width: 18px;
   height: 18px;
-  background: url('svg/error.svg') no-repeat 50% 50%;
+  background: url("svg/error.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-iPhone7Plus {
@@ -1894,7 +1939,7 @@ body {
   vertical-align: middle;
   width: 50px;
   height: 100px;
-  background: url('image/iPhone7Plus.png') no-repeat;
+  background: url("image/iPhone7Plus.png") no-repeat;
   background-size: cover;
 }
 .ui-button {
@@ -1914,11 +1959,11 @@ body {
   box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5), 0 1px 1px 0 rgba(0, 0, 0, 0.01);
 }
 .ui-button[disabled] {
-  opacity: .3;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 .ui-button:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -1961,6 +2006,10 @@ body {
 .ui-button-warn:active:before {
   background-color: rgba(0, 0, 0, 0.2);
 }
+body.dark .ui-button-default {
+  background: linear-gradient(to bottom, #7b7b7b, #737373);
+  color: rgba(255, 255, 255, 0.8);
+}
 .ui-select-list {
   position: relative;
   padding: 5px 0;
@@ -1996,28 +2045,83 @@ body {
   background-color: rgba(0, 0, 0, 0.06);
 }
 .ui-notice {
-  display: flex;
   position: absolute;
-  padding: 12px 22px;
   background-color: #fcfcfc;
   z-index: 9000;
   border: 1px solid rgba(0, 0, 0, 0.1);
   right: 20px;
   top: 82px;
   border-radius: 4px;
+  min-width: 216px;
+  max-width: 300px;
   box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+}
+.ui-notice-bd {
+  padding: 12px 22px;
 }
 .ui-notice-icon {
   margin-right: 22px;
 }
 .ui-notice-content {
+  display: flex;
+  align-items: center;
+}
+.ui-notice-content-bd {
+  max-width: 400px;
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+  padding: 0 8px;
+}
+.ui-notice-content-ft {
+  color: #888888;
+  font-size: 12px;
+}
+.ui-notice-content-ft .ui-icon-close {
+  width: 10px;
+  height: 10px;
+}
+.ui-notice-content-title {
   max-width: 400px;
   font-size: 14px;
   font-weight: 500;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi) {
+.ui-notice-msg {
+  color: #888888;
+  margin-top: 8px;
+  display: flex;
+}
+.ui-notice-msg-bd {
+  flex: 1;
+}
+.ui-notice-msg-ft {
+  padding-left: 12px;
+}
+.ui-notice-ft {
+  position: relative;
+  display: flex;
+  border-top: 1px solid #d8d8d8;
+}
+.ui-notice-button {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  padding: 6px;
+}
+.ui-notice-button:not(:first-child) {
+  border-left: 1px solid #d8d8d8;
+}
+.ui-notice-button:active {
+  opacity: 0.8;
+}
+.ui-notice-button-primary {
+  color: #00c777;
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
   .ui-notice {
     border: 0;
+    box-shadow: none;
   }
   .ui-notice:before {
     content: " ";
@@ -2031,7 +2135,67 @@ body {
     border-radius: 8px;
     transform-origin: 0 0;
     transform: scale(0.5);
-    z-index: -1;
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+  }
+  .ui-notice-ft {
+    border: 0;
+  }
+  .ui-notice-ft:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #d8d8d8;
+    color: #d8d8d8;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }
+  .ui-notice-button:not(:first-child) {
+    border: 0;
+  }
+  .ui-notice-button:not(:first-child):before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #d8d8d8;
+    color: #d8d8d8;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+  }
+}
+body.dark .ui-notice {
+  background-color: #333333;
+}
+body.dark .ui-notice-button-default {
+  color: #ffffff;
+}
+body.dark .ui-notice-msg-ft [class^="ui-icon-arrow"] {
+  background-color: #888888;
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  body.dark .ui-notice {
+    border-color: #434343;
+  }
+  body.dark .ui-notice:before {
+    border-color: #434343;
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+  }
+  body.dark .ui-notice-ft {
+    border-top-color: #434343;
+  }
+  body.dark .ui-notice-ft:before {
+    border-top-color: #434343;
+  }
+  body.dark .ui-notice-button:not(:first-child) {
+    border-color: #434343;
+  }
+  body.dark .ui-notice-button:not(:first-child):before {
+    border-left-color: #434343;
   }
 }
 .ui-dropdown {
@@ -2039,6 +2203,7 @@ body {
   padding: 5px 0;
   overflow-y: auto;
   z-index: 2;
+  border-radius: 3px;
 }
 .ui-dropdown-item {
   display: flex;
@@ -2057,12 +2222,12 @@ body {
 .ui-dropdown-item.ui-dropdown-item-active .ui-dropdown-item-ft {
   display: block;
 }
-.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > .ui-dropdown-item-hd > [class^=ui-icon],
-.ui-dropdown-item.ui-dropdown-item-active > .ui-dropdown-item-hd > [class^=ui-icon],
-.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > * > [class^=ui-icon],
-.ui-dropdown-item.ui-dropdown-item-active > * > [class^=ui-icon],
-.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > .ui-dropdown-item-ft > [class^=ui-icon],
-.ui-dropdown-item.ui-dropdown-item-active > .ui-dropdown-item-ft > [class^=ui-icon] {
+.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > .ui-dropdown-item-hd > [class^="ui-icon"],
+.ui-dropdown-item.ui-dropdown-item-active > .ui-dropdown-item-hd > [class^="ui-icon"],
+.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > * > [class^="ui-icon"],
+.ui-dropdown-item.ui-dropdown-item-active > * > [class^="ui-icon"],
+.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > .ui-dropdown-item-ft > [class^="ui-icon"],
+.ui-dropdown-item.ui-dropdown-item-active > .ui-dropdown-item-ft > [class^="ui-icon"] {
   background-color: #fff;
 }
 .ui-dropdown-item:hover:not(.ui-dropdown-item-simple) > .ui-dropdown-item-bd .ui-desc,
@@ -2121,7 +2286,7 @@ body {
 .ui-dropdown-opr:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.ui-dropdown-opr [class^=ui-icon-close] {
+.ui-dropdown-opr [class^="ui-icon-close"] {
   width: 10px;
   height: 10px;
 }
@@ -2151,6 +2316,25 @@ body {
 }
 .ui-dropdown-status-item a + a {
   margin-left: 10px;
+}
+body.dark .ui-dropdown {
+  background-color: #333333;
+}
+body.dark .ui-dropdown-item-hd [class^="ui-icon-plus"],
+body.dark .ui-dropdown-item-hd [class^="ui-icon-qrcode"],
+body.dark .ui-dropdown-item-hd [class^="ui-icon-folder"],
+body.dark .ui-dropdown-item-hd [class^="ui-icon-menu-arrow-right"] {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-dropdown-item {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-dropdown-item [class^="ui-icon-menu-arrow-right"],
+body.dark .ui-dropdown-item [class^="ui-icon-pencil"] {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-dropdown-divider {
+  background-color: #434343;
 }
 .ui-popover {
   position: fixed;
@@ -2185,8 +2369,8 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.06), 0 6px 10px 0 rgba(0, 0, 0, 0.06);
 }
-.ui-popover2[x-placement^=bottom] .ui-popover2-arrow:before {
-  content: '';
+.ui-popover2[x-placement^="bottom"] .ui-popover2-arrow:before {
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -2194,8 +2378,8 @@ body {
   border: 8px solid transparent;
   border-bottom-color: #b4b4b4;
 }
-.ui-popover2[x-placement^=bottom] .ui-popover2-arrow:after {
-  content: '';
+.ui-popover2[x-placement^="bottom"] .ui-popover2-arrow:after {
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -2204,8 +2388,8 @@ body {
   border: 8px solid transparent;
   border-bottom-color: #fff;
 }
-.ui-popover2[x-placement^=top] .ui-popover2-arrow:before {
-  content: '';
+.ui-popover2[x-placement^="top"] .ui-popover2-arrow:before {
+  content: "";
   position: absolute;
   top: 100%;
   left: 50%;
@@ -2213,8 +2397,8 @@ body {
   border: 8px solid transparent;
   border-top-color: #b4b4b4;
 }
-.ui-popover2[x-placement^=top] .ui-popover2-arrow:after {
-  content: '';
+.ui-popover2[x-placement^="top"] .ui-popover2-arrow:after {
+  content: "";
   position: absolute;
   top: 100%;
   left: 50%;
@@ -2223,8 +2407,8 @@ body {
   border: 8px solid transparent;
   border-top-color: #fff;
 }
-.ui-popover2[x-placement^=left] .ui-popover2-arrow:before {
-  content: '';
+.ui-popover2[x-placement^="left"] .ui-popover2-arrow:before {
+  content: "";
   position: absolute;
   left: 100%;
   top: 50%;
@@ -2232,8 +2416,8 @@ body {
   border: 8px solid transparent;
   border-left-color: #b4b4b4;
 }
-.ui-popover2[x-placement^=left] .ui-popover2-arrow:after {
-  content: '';
+.ui-popover2[x-placement^="left"] .ui-popover2-arrow:after {
+  content: "";
   position: absolute;
   left: 100%;
   top: 50%;
@@ -2242,8 +2426,8 @@ body {
   border: 8px solid transparent;
   border-left-color: #fff;
 }
-.ui-popover2[x-placement^=right] .ui-popover2-arrow:before {
-  content: '';
+.ui-popover2[x-placement^="right"] .ui-popover2-arrow:before {
+  content: "";
   position: absolute;
   right: 100%;
   top: 50%;
@@ -2251,8 +2435,8 @@ body {
   border: 8px solid transparent;
   border-right-color: #b4b4b4;
 }
-.ui-popover2[x-placement^=right] .ui-popover2-arrow:after {
-  content: '';
+.ui-popover2[x-placement^="right"] .ui-popover2-arrow:after {
+  content: "";
   position: absolute;
   right: 100%;
   top: 50%;
@@ -2279,7 +2463,7 @@ body {
     border: 0;
   }
   .ui-popover2:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -2290,6 +2474,24 @@ body {
     transform-origin: 0 0;
     transform: scale(0.5);
   }
+}
+body.dark .ui-popover2 {
+  background-color: #333333;
+}
+body.dark .ui-popover2:before {
+  border-color: #434343;
+}
+body.dark .ui-popover2-hd {
+  border-bottom-color: #434343;
+}
+body.dark .ui-popover2-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-popover2[x-placement^="bottom"] .ui-popover2-arrow:before {
+  border-bottom-color: #434343;
+}
+body.dark .ui-popover2[x-placement^="bottom"] .ui-popover2-arrow:after {
+  border-bottom-color: #333333;
 }
 .ui-dialog {
   display: flex;
@@ -2310,7 +2512,7 @@ body {
     border: 0;
   }
   .ui-dialog:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -2326,7 +2528,7 @@ body {
 }
 .ui-dialog-hd {
   padding: 9px 29px;
-  margin: 1px;
+  margin: 1px 1px 0;
   background-color: #fff;
   border-bottom: 1px solid #d8d8d8;
   cursor: default;
@@ -2351,7 +2553,7 @@ body {
   box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.08);
 }
 .ui-dialog-ft:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 1px;
   top: 0;
@@ -2369,6 +2571,22 @@ body {
 }
 .ui-dialog-action:last-child {
   text-align: right;
+}
+body.dark .ui-dialog-ft,
+body.dark .ui-dialog-bd,
+body.dark .ui-dialog-hd,
+body.dark .ui-dialog {
+  background-color: #333333;
+}
+body.dark .ui-dialog-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-dialog-hd,
+body.dark .ui-dialog:before {
+  border-color: #434343;
+}
+body.dark .ui-dialog-ft {
+  box-shadow: inset 0 1px 0 0 #434343;
 }
 .ui-miniapp {
   position: relative;
@@ -2476,6 +2694,9 @@ body {
 }
 .ui-msg-action button + button {
   margin-left: 10px;
+}
+body.dark .ui-msg-content > h4 {
+  color: rgba(255, 255, 255, 0.8);
 }
 .ui-mask {
   position: absolute;
@@ -2641,16 +2862,15 @@ body {
   flex: 1;
   border-radius: 2px;
   overflow: hidden;
-  box-shadow: inset 0 0 0 .5px #b0b0b0;
+  box-shadow: inset 0 0 0 0.5px #b0b0b0;
 }
 .ui-input-box:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
   z-index: -1;
 }
 .ui-input-box + .ui-selector {
@@ -2704,10 +2924,21 @@ body {
   transform-origin: 0 0;
   transform: scaleX(0.5);
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+body.dark .ui-input {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #454545;
+  box-shadow: 0 0 0 0.5px #575657;
+}
+body.dark .ui-input-opr [class^="ui-icon"] {
+  background-color: #fff;
+}
+body.dark .ui-textarea {
+  color: rgba(255, 255, 255, 0.8);
 }
 .ui-radio {
   display: inline-flex;
@@ -2721,11 +2952,14 @@ input[type=number]::-webkit-outer-spin-button {
 .ui-radio-vt {
   align-items: flex-start;
 }
-.ui-radio-vt > [class^=ui-icon-radio] {
+.ui-radio-vt > [class^="ui-icon-radio"] {
   margin-top: 2px;
 }
 .ui-radio-text {
   margin-left: 10px;
+}
+body.dark .ui-radio-text {
+  color: rgba(255, 255, 255, 0.8);
 }
 .ui-checkbox {
   display: inline-flex;
@@ -2735,17 +2969,23 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-tap-highlight-color: transparent;
 }
 .ui-checkbox:active {
-  opacity: .8;
+  opacity: 0.8;
 }
 .ui-checkbox input {
   position: absolute;
   left: -9999px;
 }
-.ui-checkbox [class^=ui-icon-checkbox] {
+.ui-checkbox [class^="ui-icon-checkbox"] {
   min-width: 14px;
 }
 .ui-checkbox-text {
   margin-left: 10px;
+}
+body.dark .ui-icon-checkbox {
+  background-color: #454545;
+}
+body.dark .ui-checkbox-text {
+  color: rgba(255, 255, 255, 0.8);
 }
 .ui-selector {
   position: relative;
@@ -2754,13 +2994,12 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 2px;
 }
 .ui-selector:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
   z-index: -1;
 }
 .ui-selector-plain {
@@ -2808,6 +3047,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .ui-selector-primary .ui-selector-dropdown i {
   background-color: #fff;
+}
+body.dark .ui-selector {
+  background-color: #454545;
+  box-shadow: 0 0 0 0.5px #575657;
+}
+body.dark .ui-selector-dropdown i {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .ui-form-item {
   margin-bottom: 10px;
@@ -2857,14 +3103,20 @@ input[type=number]::-webkit-outer-spin-button {
   color: #2133ff;
   cursor: pointer;
 }
+body.dark .ui-form-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-form-tips a {
+  color: #586c94;
+}
 .ui-location {
   display: flex;
   padding: 5px 10px;
   background-color: #ffffff;
   border: 2px solid #f0f0f0;
-  box-shadow: inset 0 0 0 .5px #b0b0b0;
+  box-shadow: inset 0 0 0 0.5px #b0b0b0;
   border-radius: 4px;
-  transition: all ease .1s;
+  transition: all ease 0.1s;
 }
 .ui-location.ui-location-focus {
   border: 2px solid #00d288;
@@ -2879,12 +3131,22 @@ input[type=number]::-webkit-outer-spin-button {
   outline: 0;
   font-size: 12px;
   color: #111111;
+  background-color: transparent;
 }
 .ui-location-input::selection {
   background-color: #bbe6d7;
 }
 .ui-location-icon {
   margin-left: 10px;
+}
+body.dark .ui-location {
+  background-color: #333333;
+}
+body.dark .ui-location-input {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-location-icon [class^="ui-icon"] {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .devtools-inspector-bg {
   background-color: #F3F3F3;
@@ -2935,6 +3197,69 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .ui-segmented-control-item-active:active {
   background: linear-gradient(to bottom, #606060, #5d5d5d);
+}
+.ui-title-bar {
+  user-select: none;
+  -webkit-app-region: drag;
+  cursor: default;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 22px;
+  background-image: -webkit-linear-gradient(top, #ededed 0px, #ededed 1px, #e7e7e7 2px, #d1d1d1 100%);
+  padding-left: 3px;
+  padding-right: 3px;
+  border-top: 1px solid #f6f6f6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.ui-title-bar-option {
+  display: flex;
+}
+.ui-title-bar-option > a {
+  -webkit-app-region: no-drag;
+  cursor: default;
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-top: 1px;
+  margin-left: 4px;
+  margin-right: 4px;
+  line-height: 0;
+}
+.ui-title-bar-option > a svg {
+  opacity: 0;
+}
+.ui-title-bar-option > a:hover svg {
+  opacity: 1;
+}
+.ui-title-bar-close {
+  background-color: #ff6159;
+  border-color: rgba(246, 12, 0, 0.9);
+}
+.ui-title-bar-min {
+  background-color: #ffbe2f;
+  border-color: rgba(227, 156, 0, 0.9);
+}
+.ui-title-bar-max {
+  background-color: #28ca41;
+  border-color: rgba(31, 182, 54, 0.9);
+}
+.ui-title-bar-title {
+  flex: 1;
+  padding-right: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  color: #4d4d4d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 .application-hd {
   padding: 26px 20px;

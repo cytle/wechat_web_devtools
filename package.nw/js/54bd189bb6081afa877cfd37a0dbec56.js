@@ -1,0 +1,2 @@
+;!function(require, directRequire){;'use strict';const projectManager=require('./3bfffbe88b3d923921f851c0697974fe.js'),getNavigationStyle=(a)=>{const b=projectManager.getLibVersionNumber(),c=a.simulator.appConfig||{};if(2004003<=b){const b=a.simulator.currentWebviewID,c=a.simulator.webviewInfos[b],d=c&&c.navigationBar||{};return d.navigationStyle||'default'}return 1007000<=b?((c.global||{}).window||{}).navigationStyle||'default':'default'};module.exports={getNavigationStyle};
+;}(require("lazyload"), require);
