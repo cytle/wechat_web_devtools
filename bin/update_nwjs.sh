@@ -1,6 +1,37 @@
 #! /bin/bash
 # 下载nwjs，构建项目
 
+set -e # 命令出错就退出
+trap 'catchError $LINENO $BASH_COMMAND' SIGHUP SIGINT SIGQUIT EXIT # 捕获错误情况
+
+catchError() {
+    exit_code=$?
+    if [ $exit_code -ne 0 ]; then
+        fail "\033[31mcommand: $2\n  at $0:$1\n  at $STEP\033[0m"
+    fi
+    exit $exit_code
+}
+
+success() {
+    echo -e "\033[42;37m 成功 \033[0m $1"
+}
+
+fail() {
+    echo -e "\033[41;37m 失败 \033[0m $1"
+}
+
+start_step() {
+    if [ -n "$STEP" ]; then success "$STEP"; fi
+    STEP="$1"
+    echo -e "\033[34m------------------------------------------------------------------\033[0m"
+    echo -e "\033[34m$STEP\033[0m"
+    echo -e "\033[34m------------------------------------------------------------------\033[0m"
+
+}
+
+# 显示nwjs版本等信息
+start_step '0. 概括'
+
 if [ $(getconf WORD_BIT) = '32' ] && [ $(getconf LONG_BIT) = '64' ] ; then
     bit="x64"
 else
@@ -18,6 +49,13 @@ nwjs_download="https://npm.taobao.org/mirrors/nwjs/v$nwjs_v/nwjs-sdk-v${nwjs_v}-
 
 dist_dir="$root_dir/dist"
 
+echo "  nwjs version: $nwjs_v $bit
+  nwjs download path: $nwjs_download
+  dist dir: $dist_dir"
+
+# 下载nwjs，如果本地已经下载则直接解压
+start_step '1. 下载nwjs'
+
 mkdir -p $tmp_dir
 if [ ! -d "$nwjs_dir" ]; then
   if [ ! -f "$nwjs_file" ]; then
@@ -29,12 +67,15 @@ if [ ! -d "$nwjs_dir" ]; then
   fi
 
   tar -xf "$nwjs_file" -C $tmp_dir
-  cd "$nwjs_dir/locales" || exit "$?"
+  success '解压nwjs'
+
   # 移除其他语言
-  ls -I "zh*" -I "en*" | xargs rm
-  cd "$root_dir"
+  find "$nwjs_dir/locales" -not -name 'zh-CN.pak' -not -name 'en-US.pak' -name '*.pak' | xargs rm
+  success '移除其他语言'
 fi
 
+# 将nwjs和package.nw放入dist文件夹
+start_step '2. 合并nwjs和package.nw'
 
 rm -rf "$dist_dir"
 mkdir -p "$dist_dir"
@@ -46,4 +87,4 @@ ln -sf $root_dir/bin/node $root_dir/dist/node.exe
 
 echo "$nwjs_v" > "$dist_dir/nwjs_version"
 
-echo "update nwjs success"
+success "update nwjs success"
