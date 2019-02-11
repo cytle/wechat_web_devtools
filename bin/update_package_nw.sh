@@ -43,9 +43,14 @@ if [ ! -f "$wcwd_file" ]; then
 fi
 
 wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
-wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信web开发者工具/package.nw"
+wcwd_file_package_nw_dir="Tencent/微信web开发者工具/package.nw"
 
 7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
+
+if [ $? != 0 ]; then
+  echo "解压出错，升级失败"
+  exit -1;
+fi
 
 wcwd_package_dir="$wcwd_file_target/$wcwd_file_package_nw_dir"
 
