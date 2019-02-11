@@ -53,7 +53,6 @@ rm -rf "$root_dir/package.nw"
 echo "$wcwd_package_dir"
 cp -r "$wcwd_package_dir" "$root_dir"
 
-sh "$root_dir/bin/replace_package_nw.sh"
 sh "$root_dir/bin/fix_node_sync_ipc.sh"
 # sh "$root_dir/bin/fix_load_extension.sh"
 
