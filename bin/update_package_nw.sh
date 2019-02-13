@@ -42,7 +42,6 @@ dist_dir="$root_dir/dist"
 cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
-vendor_dir="$root_dir/package.nw/js/vendor"
 wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
 wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
 
@@ -97,12 +96,6 @@ success '拷贝新的package.nw'
 start_step '重新编译node-sync-ipc'
 
 sh "$root_dir/bin/fix_node_sync_ipc.sh"
-
-# 链接wcc.exe wcsc.exe
-start_step '链接wcc.exe wcsc.exe'
-
-ln -f "$vendor_dir/wcc.exe" "$root_dir/bin/WeappVendor/s"
-ln -f "$vendor_dir/wcsc.exe" "$root_dir/bin/WeappVendor/s"
 
 echo $wechat_v > $root_dir/wechat_v
 echo "更新版本为: $(cat $root_dir/wechat_v)"
