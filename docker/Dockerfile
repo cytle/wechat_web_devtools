@@ -1,3 +1,5 @@
+# wine-desktop
+
 FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
 RUN sed -i 's#http://\(archive\|security\).ubuntu.com/#http://mirrors.aliyun.com/#' /etc/apt/sources.list \
   && cat /etc/apt/sources.list
@@ -6,7 +8,9 @@ RUN apt-get update \
     wget \
     curl \
     p7zip \
-    gpg-agent
+    gpg-agent \
+    dbus \
+    libgconf-2-4
 
 # # install wine-binfmt
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
@@ -22,10 +26,3 @@ RUN dpkg --add-architecture i386 \
   && apt-get install -y --no-install-recommends --allow-unauthenticated winehq-stable \
   && mkdir -p $HOME/.wine32 \
   && WINEARCH=win32 WINEPREFIX=$HOME/.wine32 winecfg
-
-# add wxdt
-COPY . $HOME/wxdt
-WORKDIR $HOME/wxdt
-RUN sh bin/wxdt install
-
-ENTRYPOINT ["$HOME/wxdt/docker-entrypoint.sh"]
