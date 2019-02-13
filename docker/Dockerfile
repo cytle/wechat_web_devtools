@@ -1,13 +1,16 @@
-# wine-desktop
-
+# wxdt-desktop
+# docker run -P -p 6080:80 --mount type=bind,source=/Users/xsp/src/js,target=/weapps --mount type=bind,source=$PWD,target=/wxdt wxdt-desktop
 FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
+
+ENV LANG C.UTF-8
+
 RUN sed -i 's#http://\(archive\|security\).ubuntu.com/#http://mirrors.aliyun.com/#' /etc/apt/sources.list \
   && cat /etc/apt/sources.list
 RUN apt-get update \
   && apt-get install -y --no-install-recommends --allow-unauthenticated \
     wget \
     curl \
-    p7zip \
+    p7zip-full \
     gpg-agent \
     dbus \
     libgconf-2-4
