@@ -29,7 +29,7 @@ start_step() {
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-dev_tools_config_dir="$HOME/.config/微信web开发者工具"
+dev_tools_config_dir="$HOME/.config/wechat_web_devtools"
 
 start_step "生成"$dev_tools_config_dir
 
