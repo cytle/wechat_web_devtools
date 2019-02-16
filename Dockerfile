@@ -1,6 +1,44 @@
 # canyoutle/wxdt-desktop
-# docker run -P -p 6080:80 --mount type=bind,source=/Users/xsp/src/js,target=/weapps --mount type=bind,source=$PWD,target=/wxdt canyoutle/wxdt-desktop
-FROM canyoutle/wxdt-desktop:base
+# docker run -P -p 6080:80 --mount type=bind,source=$PWD,target=/weapps wxdt-desktop
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
+
+ENV LANG C.UTF-8
+ENV DISPLAY :1.0
+ENV HOME /root
+RUN echo "Asia/Shanghai" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
+
+RUN sed -i 's#http://\(archive\|security\).ubuntu.com/#http://mirrors.aliyun.com/#' /etc/apt/sources.list \
+  && cat /etc/apt/sources.list
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends --allow-unauthenticated \
+    wget \
+    curl \
+    p7zip-full \
+    gpg-agent \
+    dbus \
+    libgconf-2-4 \
+    build-essential \
+    ca-certificates \
+    openssl \
+    python2.7 \
+    gnupg2
+
+RUN echo "\n\
+[program:wxdt]\n\
+priority=25\n\
+directory=/wxdt/bin/\n\
+command=bash wxdt start\n\
+stderr_logfile=/var/log/wxdt.err.log\n\
+stdout_logfile=/var/log/wxdt.out.log\n\
+" >> /etc/supervisor/conf.d/supervisord.conf
+
+# # install nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+# RUN apt-get install -y --no-install-recommends nodejs
+
+# # install npm
+# RUN curl -0 -L https://npmjs.com/install.sh | sh
 
 # # install wine-binfmt
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
@@ -17,3 +55,5 @@ RUN dpkg --add-architecture i386 \
 
 # RUN mkdir -p $HOME/.wine32 \
 #   && WINEARCH=win32 WINEPREFIX=$HOME/.wine32 winecfg
+
+COPY . /wxdt
