@@ -95,7 +95,8 @@ success '拷贝新的package.nw'
 # 重新编译node-sync-ipc
 start_step '重新编译node-sync-ipc'
 
-sh "$root_dir/bin/fix_node_sync_ipc.sh"
+exec "$root_dir/bin/fix_node_sync_ipc.sh"
+exec "$root_dir/bin/fix_cli.sh"
 
 echo $wechat_v > $root_dir/wechat_v
 echo "更新版本为: $(cat $root_dir/wechat_v)"
