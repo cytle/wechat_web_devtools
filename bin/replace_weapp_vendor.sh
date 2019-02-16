@@ -49,9 +49,11 @@ if [ ! -d "$dev_tools_config_dir" ]; then
 fi
 
 if [ -d "$dev_tools_config_dir" ]; then
-  echo "cp -rf $root_dir/bin/WeappVendor/* $dev_tools_config_dir/WeappVendor"
-  cp -rf $root_dir/bin/WeappVendor/* "$dev_tools_config_dir/WeappVendor" 2> /dev/null
-  cp -rf $vendor_dir/wcc.exe $vendor_dir/wcsc.exe "$dev_tools_config_dir/WeappVendor/s" 2> /dev/null
+  echo "cp -rf $root_dir/bin/WeappVendor/* $dev_tools_config_dir/WeappVendor/"
+  cp -rf $root_dir/bin/WeappVendor/* "$dev_tools_config_dir/WeappVendor/"
+  mkdir -p "$dev_tools_config_dir/WeappVendor/s"
+  echo cp -rf $vendor_dir/wcc.exe $vendor_dir/wcsc.exe "$dev_tools_config_dir/WeappVendor/s/"
+  cp -rf $vendor_dir/wcc.exe $vendor_dir/wcsc.exe "$dev_tools_config_dir/WeappVendor/s/"
   success "Success"
 else
   success "开发者工具未生成文件夹 $dev_tools_config_dir, 可能是权限问题, 请参考项目issue"
