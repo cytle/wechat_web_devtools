@@ -20,20 +20,17 @@ fi
 cd "$root_dir/dist"
 
 want=${1:-"start"}
-if [ $want = "start" ]; then
-  `./nw -load-extension=./package.nw/js/ideplugin`
-elif [ $want = "install" ]; then
-  bash "$root_dir/bin/replace_weapp_vendor.sh"
-  bash "$root_dir/bin/install_desktop.sh"
+if [ $want = "install" ]; then
+  exec "$root_dir/bin/replace_weapp_vendor.sh"
+  exec "$root_dir/bin/install_desktop.sh"
   echo "安装完成"
 elif [ $want = "debug" ]; then
   port=9222
   echo "remote-debugging-port:$port"
-  `./nw --remote-debugging-port=$port`
+  exec ./nw --remote-debugging-port=$port
 elif [ $want = "uninstall" ]; then
-  bash "$root_dir/bin/uninstall.sh"
+  exec "$root_dir/bin/uninstall.sh"
   echo "卸载完成,请在退出开发者工具后手动删除此项目目录"
 else
-  echo "不支持$want操作"
-  exit 127
+  exec ./nw -load-extension=./package.nw/js/ideplugin $@
 fi
