@@ -1,0 +1,9 @@
+#! /bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+if [ "$1" = "install" ] || [ "$1" = "debug" ] || [ "$1" = "uninstall" ] || [ "$1" = "start" ]; then
+  exec "$root_dir/bin/wxdt" $@
+else
+  exec "$root_dir/bin/node" "$root_dir/dist/package.nw/js/common/cli/index.js" $@
+fi

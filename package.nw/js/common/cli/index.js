@@ -451,9 +451,9 @@ module.exports = (function(e) {
                   (global.appname = e.name),
                   (global.userDirPath = i.join(
                     process.env.HOME || "~",
-                    `.config/${global.userDirName}Default`
+                    `.config/${global.userDirName}/Default`
                   )),
-                  (global.appPath = `./${global.appname}.exe`);
+                  (global.appPath = i.join(__dirname, "../../../../bin/wxdt"));
               }
             else if (p) {
               const e = JSON.parse(
@@ -483,9 +483,9 @@ module.exports = (function(e) {
                 (global.appname = e.name),
                 (global.userDirPath = i.join(
                   process.env.HOME || "~",
-                  `.config/${global.userDirName}Default`
+                  `.config/${global.userDirName}/Default`
                 )),
-                (global.appPath = `./${global.appname}.exe`);
+                (global.appPath = i.join(__dirname, "../../../../bin/wxdt"));
             }
           } catch (e) {
             console.log("File corrupted, please re-install");
