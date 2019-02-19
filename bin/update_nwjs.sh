@@ -80,9 +80,9 @@ rm -rf "$dist_dir"
 mkdir -p "$dist_dir"
 
 cp -r "$nwjs_dir"/* "$dist_dir"
-ln -sf "../package.nw" "$dist_dir/package.nw"
-ln -sf $root_dir/bin/node $root_dir/dist
-ln -sf $root_dir/bin/node $root_dir/dist/node.exe
+ln -sf ../package.nw "$dist_dir/package.nw"
+ln -sf ../bin/node "$root_dir/dist/node"
+ln -sf ../bin/node "$root_dir/dist/node.exe"
 
 echo "$nwjs_v" > "$dist_dir/nwjs_version"
 
