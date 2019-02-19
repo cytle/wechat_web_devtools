@@ -24,7 +24,6 @@ linux 下使用微信web开发者工具.
 请先安装 [Wine](https://wiki.winehq.org/Download)
 以 `Ubuntu` 为例: https://wiki.winehq.org/Ubuntu
 
-
 ## 下载并安装 微信web开发者工具
 
 1. 下载项目
@@ -52,11 +51,23 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 ./bin/wxdt install
 ```
 
-## 运行
+## Usage
+
+### 启动ide
 
 ``` bash
 ./bin/wxdt
 ```
+
+### 命令行调用
+
+命令行工具所在位置: `<安装路径>/bin/cli`
+
+### HTTP 调用
+
+端口号文件位置：`~/.config/微信web开发者工具/Default/.ide`
+
+文档参考: [HTTP 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/http.html)
 
 ## 错误排除
 
