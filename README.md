@@ -24,28 +24,23 @@ linux 下使用微信web开发者工具.
 请先安装 [Wine](https://wiki.winehq.org/Download)
 以 `Ubuntu` 为例: https://wiki.winehq.org/Ubuntu
 
-## 下载并安装 微信web开发者工具
+## 下载并安装相关依赖
 
-1. 下载项目
-
-``` bash
-git clone https://github.com/cytle/wechat_web_devtools.git
-```
-
-2. 进入目录
-
-``` bash
-cd wechat_web_devtools
-```
-
-3. 安装`wine`
+1. 安装`wine`
 
 ``` bash
 sudo apt-get install wine-binfmt
 sudo update-binfmts --import /usr/share/binfmts/wine
 ```
 
-4. 自动下载最新 `nw.js` , 同时部署目录 `~/.config/wechat_web_devtools/`
+2. 下载项目
+
+``` bash
+git clone https://github.com/cytle/wechat_web_devtools.git
+cd wechat_web_devtools
+```
+
+3. 自动下载最新 `nw.js` , 同时部署目录 `~/.config/wechat_web_devtools/`
 
 ``` bash
 ./bin/wxdt install
@@ -62,6 +57,8 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 ### 命令行调用
 
 命令行工具所在位置: `<安装路径>/bin/cli`
+
+文档参考: [命令行 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
 
 ### HTTP 调用
 
