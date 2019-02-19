@@ -92,10 +92,16 @@ success '删除旧文件夹'
 cp -r "$wcwd_package_dir" "$root_dir" # 拷贝新的package.nw
 success '拷贝新的package.nw'
 
-# 重新编译node-sync-ipc
-start_step '重新编译node-sync-ipc'
-
+# cli相关修改
+start_step 'fix: cli相关修改'
 bash "$root_dir/bin/fix_cli.sh"
+
+# 修改项目名字, 修复标题栏乱码问题
+start_step 'fix: 修改项目名字, 修复标题栏乱码问题'
+bash "$root_dir/bin/fix_package_name.sh"
+
+# 重新编译node-sync-ipc
+start_step 'fix: 重新编译node-sync-ipc'
 bash "$root_dir/bin/fix_node_sync_ipc.sh"
 
 echo $wechat_v > $root_dir/wechat_v
