@@ -45,7 +45,7 @@ sudo apt-get install wine-binfmt
 sudo update-binfmts --import /usr/share/binfmts/wine
 ```
 
-4. 自动下载最新 `nw.js` , 同时部署目录 `~/.config/微信web开发者工具/`
+4. 自动下载最新 `nw.js` , 同时部署目录 `~/.config/wechat_web_devtools/`
 
 ``` bash
 ./bin/wxdt install
@@ -65,7 +65,7 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 
 ### HTTP 调用
 
-端口号文件位置：`~/.config/微信web开发者工具/Default/.ide`
+端口号文件位置：`~/.config/wechat_web_devtools/Default/.ide`
 
 文档参考: [HTTP 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/http.html)
 

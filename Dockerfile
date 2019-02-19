@@ -33,13 +33,6 @@ stderr_logfile=/var/log/wxdt.err.log\n\
 stdout_logfile=/var/log/wxdt.out.log\n\
 " >> /etc/supervisor/conf.d/supervisord.conf
 
-# # install nodejs
-# RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-# RUN apt-get install -y --no-install-recommends nodejs
-
-# # install npm
-# RUN curl -0 -L https://npmjs.com/install.sh | sh
-
 # # install wine-binfmt
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
 #     wine-binfmt
@@ -53,7 +46,13 @@ RUN dpkg --add-architecture i386 \
   && apt-get update \
   && apt-get install -y --no-install-recommends --allow-unauthenticated winehq-stable
 
+# install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+
 # RUN mkdir -p $HOME/.wine32 \
 #   && WINEARCH=win32 WINEPREFIX=$HOME/.wine32 winecfg
 
-COPY . /wxdt
+# COPY . /wxdt
+# RUN /wxdt/bin/WeappVendor/wcc.exe
+# RUN /wxdt/bin/wxdt install
