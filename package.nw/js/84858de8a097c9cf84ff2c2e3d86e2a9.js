@@ -3,8 +3,10 @@
 (function () {
   // 这里不再使用 localStorage 而是存储文件，避免 nw 升级后数据丢失
   var fs = require('fs');
+  var fsExtra = require('fs-extra');
   var path = require('path');
   var mkdir = require('mkdir-p');
+  var crypto = require('crypto');
 
   var config = require('./d56923640b8ac272d7cb4e171975fdc5.js');
   var dataPath = path.join(nw.App.getDataPath(), '..');
@@ -16,19 +18,58 @@
     return localDataPathPrefx + key + localDataPathPostfix;
   };
 
+  var LOCAL_DATA_STORAGE_META_FILE_PATH = path.join(WeappLocalData, 'storage_meta.json');
+  var LOCAL_DATA_STORAGE_HASH_KEY_MAP_FILE_PATH = path.join(WeappLocalData, 'hash_key_map.json');
+
+  var LOCAL_DATA_STORAGE_VERSIONS = {
+    V1: 1, // 'native localStorage', // v1: 最早的直接存浏览器 localStorage
+    V2: 2, // 'localstorage.json', // v2: 存 localstorage.json 单文件，过大
+    V3: 3, // 'localstorage_[<key_segment_n>].json', // v3. 存 json 文件，但有可能遇到超长文件名问题
+    V4: 4 // 'localstorage_<hash_of_key_segments>.json', // v4. 存 json 文件，维护 hash 到原始 key 的映射文件 hash_key_map.json，并在 WeappLocalData 下有 storage_meta.json 存放了当前存储策略的版本
+
+
+    // 这个字段在以后要更新存储方案的时候需要更新，并更新 initLocalData 方法
+  };var LOCAL_DATA_STORAGE_LATEST_VERSION = LOCAL_DATA_STORAGE_VERSIONS.V4;
+
+  var WRITE_FILE_DEBOUNCE_TIME = 0;
+
   var _localData = {};
   var localData = void 0;
+  var hashKeyMap = {};
+  var keyHashMap = {};
+
+  function generateMD5(string) {
+    var md5sum = crypto.createHash('md5');
+    md5sum.update(string);
+    return md5sum.digest('hex');
+  }
 
   function proxify(object) {
+
+    var writeHashKeyMapTimer = void 0;
+
     return new Proxy(object, {
       set: function set(target, prop, value) {
+        var hash = keyHashMap[prop];
+        if (!hash) {
+          // new key, should generate hash
+          hash = generateMD5(prop);
+          keyHashMap[prop] = hash;
+          hashKeyMap[hash] = prop;
+          clearTimeout(writeHashKeyMapTimer);
+          writeHashKeyMapTimer = setTimeout(function () {
+            // no try catch, let it throw and print :)
+            fs.writeFileSync(LOCAL_DATA_STORAGE_HASH_KEY_MAP_FILE_PATH, JSON.stringify(hashKeyMap), 'utf8');
+          }, WRITE_FILE_DEBOUNCE_TIME);
+        }
+
         if (typeof value !== 'string') {
           try {
-            fs.writeFileSync(getDataFilePath(prop), JSON.stringify(value));
+            fs.writeFileSync(getDataFilePath(hash), JSON.stringify(value));
           } catch (e) {}
         } else {
           try {
-            fs.writeFileSync(getDataFilePath(prop), value);
+            fs.writeFileSync(getDataFilePath(hash), value);
           } catch (e) {}
         }
         target[prop] = value;
@@ -37,6 +78,16 @@
       deleteProperty: function deleteProperty(target, prop) {
         if (prop in target) {
           delete target[prop];
+
+          var hash = keyHashMap[prop];
+          if (hash) {
+            delete keyHashMap[prop];
+            delete hashKeyMap[hash];
+            try {
+              fs.writeFileSync(LOCAL_DATA_STORAGE_HASH_KEY_MAP_FILE_PATH, JSON.stringify(hashKeyMap), 'utf8');
+            } catch (e) {}
+          }
+
           try {
             fs.unlinkSync(getDataFilePath(prop));
           } catch (e) {}
@@ -56,61 +107,98 @@
     mkdir.sync(WeappLocalData);
     _localData = {};
 
-    // 兼容使用 localstorage.json 的版本
-    if (fs.existsSync(localDataPath)) {
-      try {
-        _localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
-        fs.unlinkSync(localDataPath);
-      } catch (e) {}
-    }
+    var currentVersion = 0;
+    var storageMeta = void 0;
 
     try {
-      if (!localStorage.hasUpgradedFromPureLocalStorage || localStorage.hasUpgradedFromPureLocalStorage !== global.appVersion) {
-        // 兼容使用 localstorage.json 之前的版本，使用 localStorage 直接存
-        for (var key in localStorage) {
-          if (!_localData[key] && key.startsWith(config.PROJECT_PREFIX)) {
-            // 保留旧项目
-            _localData[key] = localStorage[key];
-          }
-        }
-        localStorage.hasUpgradedFromPureLocalStorage = global.appVersion;
-      }
+      storageMeta = JSON.parse(fs.readFileSync(LOCAL_DATA_STORAGE_META_FILE_PATH));
+      currentVersion = storageMeta.version;
     } catch (e) {}
 
-    // 现在的逻辑，每个 key 一个 json
-    var files = fs.readdirSync(WeappLocalData);
-    var keys = {};
-    files.forEach(function (file) {
-      var m = file.match(/^localstorage_(.+)\.json$/);
-      if (m && m[1]) {
-        keys[m[1]] = true;
-        _localData[m[1]] = fs.readFileSync(getDataFilePath(m[1]), 'utf8');
+    if (currentVersion < LOCAL_DATA_STORAGE_VERSIONS.V4) {
+      // storage_meta.json 不存在或损坏，认为是 v4 以下的版本
+
+      try {
+        // v1 upgrage
+        if (!localStorage.hasUpgradedFromPureLocalStorage) {
+          currentVersion = LOCAL_DATA_STORAGE_VERSIONS.V1;
+          // 兼容使用 localstorage.json 之前的版本，使用 localStorage 直接存 (v1)
+          for (var key in localStorage) {
+            if (!_localData[key] && key.startsWith(config.PROJECT_PREFIX)) {
+              // 保留旧项目
+              _localData[key] = localStorage[key];
+            }
+          }
+          localStorage.hasUpgradedFromPureLocalStorage = global.appVersion;
+        }
+      } catch (e) {}
+
+      // 兼容使用 localstorage.json 的版本 (v2)
+      // v2 upgrage
+      if (fs.existsSync(localDataPath)) {
+        try {
+          currentVersion = LOCAL_DATA_STORAGE_VERSIONS.V2;
+          _localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8'));
+          fs.unlinkSync(localDataPath);
+        } catch (e) {}
       }
-    });
 
-    localData = proxify(_localData);
+      // v3 upgrage
+      // devtools/main#1255
+      // json 文件名从 localstorage_<key_path_1>_<key_path_2>_<key_path_xxx>.json 改成 localstorage_<hash>.json
+      // 同时维护 hash_key_map.json 文件，因此需兼容旧逻辑，如果不存在 hash_key_map.json 则需创建
+      // v3 的逻辑，每个 key 一个 json
+      var files = fs.readdirSync(WeappLocalData);
+      var keys = {};
+      files.forEach(function (file) {
+        var m = file.match(/^localstorage_(.+)\.json$/);
+        if (m && m[1]) {
+          keys[m[1]] = true;
+          _localData[m[1]] = fs.readFileSync(getDataFilePath(m[1]), 'utf8');
+        }
+      });
 
-    // 把升级后的数据写回
-    for (var _key in _localData) {
-      if (!keys[_key]) {
+      localData = proxify(_localData);
+
+      // 数据从 v3 升级需要以 hash 重写新 json 文件
+      for (var _key in _localData) {
         localData[_key] = _localData[_key];
       }
-    }
 
-    /*
-    if (!fs.existsSync(localDataPath)) {
-      _localData = {}
-      for (let key in localStorage) {
-        _localData[key] = localStorage[key]
-      }
-      localData = proxify(_localData)
-    } else {
+      // 写 storage_meta.json
       try {
-        localData = proxify(_localData = JSON.parse(fs.readFileSync(localDataPath, 'utf8')))
-      } catch(e) {
-        localData = proxify(_localData)
+        fs.writeFileSync(LOCAL_DATA_STORAGE_META_FILE_PATH, JSON.stringify({
+          version: LOCAL_DATA_STORAGE_LATEST_VERSION
+        }), 'utf8');
+      } catch (e) {}
+    } else if (storageMeta) {
+      // 有 storage_meta.json，是 v4 或以上
+      // v4: 读取 hash_key_map.json 并换出所有真实 key
+      try {
+        hashKeyMap = JSON.parse(fs.readFileSync(LOCAL_DATA_STORAGE_HASH_KEY_MAP_FILE_PATH, 'utf8'));
+      } catch (e) {
+        hashKeyMap = {};
       }
-    }*/
+
+      for (var hash in hashKeyMap) {
+        try {
+          _localData[hashKeyMap[hash]] = fs.readFileSync(getDataFilePath(hash), 'utf8');
+          keyHashMap[hashKeyMap[hash]] = hash;
+        } catch (e) {}
+      }
+
+      localData = proxify(_localData);
+
+      // 如果 storage meta 记录的不是最新版本号，更新
+      if (storageMeta.version !== LOCAL_DATA_STORAGE_LATEST_VERSION) {
+        storageMeta.version = LOCAL_DATA_STORAGE_LATEST_VERSION;
+        fs.writeFileSync(LOCAL_DATA_STORAGE_META_FILE_PATH, JSON.stringify(storageMeta), 'utf8');
+      }
+    } else {
+      // 没有 storage_meta.json，认为是数据损坏了
+      // 按理来说应该走进第一个 if 分支，这里不会进入，只是预留个 backup
+      localData = proxify({});
+    }
   }
   initLocalData();
 

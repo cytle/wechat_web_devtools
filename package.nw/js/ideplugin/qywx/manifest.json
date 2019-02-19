@@ -1,0 +1,53 @@
+{
+    "version": "0.0.1",
+    "name": {
+        "zh": "企业微信",
+        "en": "WeChat work"
+    },
+    "manifest_version": "0.0.1",
+    "simulator": true,
+    "main": "./index.html",
+    "oncache": true,
+    "libsPath": "libs",
+    "appid": "wx4706a9fcbbca10f2",
+    "libs": {
+        "1.2.0": {
+            "version": "1.2.0",
+            "signature": "LPkEIJsd20fMP/jdZok3NW0pBiT0mNTSeoeBYK+z2F8n7xKEqHllYWd0fFbZa0xI650+Umuj/Ohfh/3vbSGuvV9u/qD8u8EYD0GZHWIG0nGRfFIZfWu0r3T0YpX0T7ncuaVZmgsULun9+AVoo6IxsVF3ICep4bUPsCCGkaTgWkA=",
+            "url": ""
+        }
+    },
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDgNkLqblmz/1/JmBEJSMtg1Tv9\n1CuUkK1vBBuTHI+rXqcKcBN4ct3LuXWbE+Po1UjM/R06ULzS/H33Sn2glMOoheKp\nQjFZMILGrH/gJcuYYF0OZDNTB4btjeDxKtqyWPnRqZTqaOP0eHEbfGQCgVot2czi\n5GCdlZiSqBG3FoMdqQIDAQAB\n-----END PUBLIC KEY-----",
+    "referer": {
+        "webview": "http://servicewechat.com/${appid}/qywx",
+        "appservice": "http://servicewechat.com/${appid}/qywx",
+        "native": "https://work.weixin.qq.com/${appid}/devtool/plugin"
+    },
+    "settingActions": [
+        {
+            "key": "select_cop",
+            "value": "选择企业"
+        },
+        {
+            "key": "clear_authrize",
+            "value": "清除授权数据"
+        },
+        {
+            "key": "clear_userinfo",
+            "value": "清除企业身份"
+        },
+        {
+            "key": "open_document",
+            "value": "企业微信文档"
+        }
+    ],
+    "permission": {
+        "xmlhttprequest": [
+            "<all_urls>"
+        ],
+        "image": [
+            "<all_urls>"
+        ]
+    },
+    "nocache": true
+}

@@ -490,6 +490,28 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-arrow-down-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/arrow-down-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-down-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-arrow-up-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/arrow-up-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-up-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-simulator {
   display: inline-block;
   vertical-align: middle;
@@ -577,6 +599,17 @@ body {
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #b3b3b3;
+}
+.ui-icon-circle-cross {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url("svg/circle-cross.svg") no-repeat 50% 50%;
+          mask: url("svg/circle-cross.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-circle {
   display: inline-block;
@@ -1199,6 +1232,22 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-square {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  background: url("svg/square.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-square-h {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  background: url("svg/square-h.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
 .ui-icon-git-s {
   display: inline-block;
   vertical-align: middle;
@@ -1229,6 +1278,46 @@ body {
   width: 16px;
   height: 12px;
   background: url("svg/git-m.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-state-l-gray {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 12px;
+  background: url("svg/state-l-gray.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-state-c {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 12px;
+  background: url("svg/state-c.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-state-l {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 12px;
+  background: url("svg/state-l.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-state-c-gray {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 12px;
+  background: url("svg/state-c-gray.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-shell {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 26px;
+  background: url("svg/shell.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-rotation {
@@ -1402,8 +1491,8 @@ body {
 .ui-icon-detach {
   display: inline-block;
   vertical-align: middle;
-  width: 13px;
-  height: 11px;
+  width: 12px;
+  height: 10px;
   -webkit-mask: url("svg/detach.svg") no-repeat 50% 50%;
           mask: url("svg/detach.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -2045,16 +2134,20 @@ body.dark .ui-button-default {
   background-color: rgba(0, 0, 0, 0.06);
 }
 .ui-notice {
-  position: absolute;
+  position: relative;
   background-color: #fcfcfc;
   z-index: 9000;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  right: 20px;
-  top: 82px;
   border-radius: 4px;
   min-width: 216px;
   max-width: 300px;
   box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+}
+.ui-notice:not(:last-child) {
+  margin-bottom: 20px;
+}
+.ui-notice:hover .ui-notice-content-ft a {
+  visibility: visible;
 }
 .ui-notice-bd {
   padding: 12px 22px;
@@ -2080,6 +2173,10 @@ body.dark .ui-button-default {
 .ui-notice-content-ft .ui-icon-close {
   width: 10px;
   height: 10px;
+}
+.ui-notice-content-ft a {
+  margin-left: 5px;
+  visibility: hidden;
 }
 .ui-notice-content-title {
   max-width: 400px;
@@ -3197,6 +3294,16 @@ body.dark .ui-location-icon [class^="ui-icon"] {
 }
 .ui-segmented-control-item-active:active {
   background: linear-gradient(to bottom, #606060, #5d5d5d);
+}
+body.dark .ui-segmented-control-item {
+  background: linear-gradient(to bottom, #7b7b7b, #737373);
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark .ui-segmented-control-item:not(.ui-segmented-control-item-active):active {
+  background: linear-gradient(to bottom, #7b7b7b, #737373);
+}
+body.dark .ui-segmented-control-item-active {
+  background: linear-gradient(to bottom, #00c777, #00ba70);
 }
 .ui-title-bar {
   user-select: none;

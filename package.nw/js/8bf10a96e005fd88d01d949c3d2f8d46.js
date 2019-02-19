@@ -1,1 +1,0 @@
-'use strict';!function(require,directRequire){const a=require('fs');let b={};module.exports={clean:()=>{b={}},set:(a,c,d)=>{b[a]={value:c,type:d}},get:(c)=>{const d=b[c];if(d){if('raw'==d.type)return d.value;if('file'==d.type)try{return a.readFileSync(d.value)}catch(a){}}return''}}}(require('lazyload'),require);

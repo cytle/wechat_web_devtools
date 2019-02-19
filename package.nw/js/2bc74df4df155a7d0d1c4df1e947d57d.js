@@ -44,6 +44,7 @@ function compareLibVersion(x, y) {
 }
 
 function reply(error, result, ext) {
+  /* eslint-disable-next-line */
   self.postMessage({
     error,
     result,
@@ -153,6 +154,7 @@ function evaluate(message, context, ext) {
   }
 }
 
+/* eslint-disable-next-line */
 self.onmessage = event => {
   if (event.data) {
     switch (event.data.msgType) {

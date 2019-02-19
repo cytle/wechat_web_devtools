@@ -16,6 +16,7 @@ let networkApiInjected = false;
 let systemInfoCache = null;
 let usingLocalStorage = false;
 const SyncSDKNames = {
+    getMenuButtonBoundingClientRect: true,
     measureText: true,
     getSystemInfo: () => {
         return typeof systemInfoCache !== 'string';

@@ -1,0 +1,2 @@
+;!function(require, directRequire){;'use strict';const{connect}=require('react-redux'),settingsActions=require('./e98c60a262d8d98e69e574a9d12a21df.js'),SecuritySetting=require('./867cca8b731cb1a252c0348d67d9cae2.js'),mapStateToProps=()=>({}),mapDispatchToProps=(a)=>({updateIDESetting(){a(settingsActions.updateIDESetting.apply(this,arguments))}});module.exports=connect(mapStateToProps,mapDispatchToProps)(SecuritySetting);
+;}(require("lazyload"), require);

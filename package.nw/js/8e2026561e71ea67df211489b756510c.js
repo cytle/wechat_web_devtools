@@ -21,19 +21,42 @@ class FileUtils extends EventEmitter {
       fileInfo: {}
     }
 
-    this._getAllFile = this._getAllFile.bind(this)
-    this.getFilesByExtName = this.getFilesByExtName.bind(this)
-    this._all = this._all.bind(this)
-    this.ready = this.ready.bind(this)
+    this._initWatch()
 
+    const target = path.basename(this.dirPath)
+    const parentDir = path.dirname(this.dirPath)
+
+    // devtools/main#141 增加一个对父目录的监听
+    this._parentWatcher = fs.watch(parentDir, {
+      recursive: false
+    }, (eventType, fileName) => {
+      if (eventType === 'rename' && fileName === target) {
+        clearTimeout(this._reinitTimer)
+        this._reinitTimer = setTimeout(() => {
+          this._watcher.close()
+
+          this._cache = {
+            fileList: [],
+            fileData: {},
+            fileInfo: {}
+          }
+
+          this._ready = false
+          this._initWatch()
+        }, 1000)
+      }
+    })
+  }
+
+  _initWatch() {
     this._getAllFile()
-
-    this._watcher = chokidar.watch(dirPath, chokidarConfig)
+    this._watcher = chokidar.watch(this.dirPath, chokidarConfig)
 
     this._watcher.on('ready', () => {
       this._ready = true
     })
-    this._watcher.on('all', this._all)
+
+    this._watcher.on('all', this._all.bind(this))
   }
 
   _getAllFile() {
@@ -130,7 +153,7 @@ class FileUtils extends EventEmitter {
       completeFileList.push(path.posix.relative(this.dirPath, fileName) + '/')
     } else if(eventType === 'change'){
       let p = path.posix.relative(this.dirPath, fileName)
-      
+
       // 一些用户反馈在 部分 win10 1803下会自动编译，找用户定位后确认 是会触发文件改变但是 modifiy time并没有更新
       if(process.platform !== 'darwin' && fileInfo[p] && fileInfo[p].mtimeMs === details.mtimeMs) {
         return
@@ -141,7 +164,6 @@ class FileUtils extends EventEmitter {
 
     this.emit('all', eventType, fileName, details)
   }
-
 
   ready(callback) {
     if (this._ready) {
@@ -156,7 +178,15 @@ class FileUtils extends EventEmitter {
   stopWatch() {
     this._watcher.close()
 
-    this._cache = {}
+    this._cache = {
+      fileList: [],
+      fileData: {},
+      fileInfo: {}
+    }
+
+    this._ready = false
+
+    this._parentWatcher.close()
 
     this.emit('close')
   }

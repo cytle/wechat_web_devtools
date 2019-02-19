@@ -30,6 +30,23 @@
         console.groupEnd()
       }
       })()
+      `}catch(b){a.error('info.display.js error while trying to display bbs information',e)}b.executeScript({code:f})},[b.DISPLAY_TYPES.BBS_API_LINK]:(b,d,e)=>{let f='',g='';try{g='bbs'===e.linkType?c.config.COMMUNITY_RELATED_POST_RECOMMENDATION:'doc'===e.linkType?c.config.DOCUMENT_RECOMMENDATION:c.config.ARTICLE_RECOMMENDS,f=`
+      (function() {
+      try {
+        console.group(\`${new Date} ${g}\`)
+
+        console.${1===e.messageLevel?'warn':'error'}('%c${c.config.INFO_DISPLAY_API_NOTICE.format(e.api)}', 'font-weight: bold;')
+
+        ${e.explanation?'console.log(decodeURIComponent(\''+encodeURIComponent(e.explanation).replace(/'/g,'\\\'')+'\'))':''}
+        console.log('${c.config.INFO_DISPLAY_MORE_INFORMATION.format([1===e.messageLevel?c.config.EMBED_WARNINGS:c.config.EMBED_ERRORS,e.link])}')
+
+        console.groupEnd()
+      } catch(err) {
+        // do not show error in case of error during printing
+        console.groupEnd()
+        console.groupEnd()
+      }
+      })()
       `}catch(b){a.error('info.display.js error while trying to display bbs information',e)}b.executeScript({code:f})},[b.DISPLAY_TYPES.DOMAIN_ERROR]:(a,b,d)=>{const{url:e,domains:f}=d,g=d.type,h=`
     (function() {
     console.group(\`${new Date} ${g} ${c.config.ERROR_VERIFY_VALID_DOMAIN}\`)

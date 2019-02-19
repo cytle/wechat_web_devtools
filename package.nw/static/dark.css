@@ -49,6 +49,10 @@ body.dark .simulator-status-bar {
   background: linear-gradient(#424242, #3c3c3c);
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark .simulator-status-bar .ui-icon-arrow-down-circle,
+body.dark .simulator-status-bar .ui-icon-arrow-up-circle {
+  background-color: #fff;
+}
 body.dark .simulator-status-bar > .ui-flex + .ui-flex {
   border-left-color: #5a5a5a;
 }

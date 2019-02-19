@@ -93,7 +93,7 @@ function initGlobal() {
         global.devInfo.appid = query.appid
         global.devInfo.projectname = query.projectname
         global.devInfo.projectpath = query.projectpath
-        global.devInfo.projectid = `${global.devInfo.appid}_${encodeURIComponent(global.devInfo.projectname)}`
+        global.devInfo.projectid = query.projectid
 
         global.devInfo.isTemp = Boolean(query.isTemp)
         global.devInfo.isOnline = Boolean(query.isOnline)
