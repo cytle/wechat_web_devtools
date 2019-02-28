@@ -54,17 +54,21 @@ cd wechat_web_devtools
 ./bin/wxdt
 ```
 
-### 命令行调用
+### 命令行和HTTP调用
+
+运行条件: 
+
+1. `GUI`环境，会自动启动`ide`(服务器没条件的可以使用`docker`)
+2. 并且已经执行过`./bin/wxdt install`
+3. 在`ide`的设置中开启服务端口： 设置 -> 安全 -> 服务端口(开启)
 
 命令行工具所在位置: `<安装路径>/bin/cli`
 
-文档参考: [命令行 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
-
-### HTTP 调用
-
 端口号文件位置：`~/.config/wechat_web_devtools/Default/.ide`
 
-文档参考: [HTTP 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/http.html)
+微信文档参考: 
+- [命令行 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+- [HTTP 调用 · 小程序](https://developers.weixin.qq.com/miniprogram/dev/devtools/http.html)
 
 ## 错误排除
 
