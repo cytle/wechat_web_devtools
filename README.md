@@ -58,7 +58,7 @@ cd wechat_web_devtools
 
 运行条件: 
 
-1. `GUI`环境，会自动启动`ide`(服务器没条件的可以使用`docker`)
+1. `GUI`环境，`命令行和HTTP调用`会自动启动`ide`(服务器没条件的可以使用`docker`)
 2. 并且已经执行过`./bin/wxdt install`
 3. 在`ide`的设置中开启服务端口： 设置 -> 安全 -> 服务端口(开启)
 
