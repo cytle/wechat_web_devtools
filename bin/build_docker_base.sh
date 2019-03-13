@@ -13,7 +13,6 @@ catchError() {
 
 cd "`dirname $0`/.."
 
-
 port=6082
 prebase_container="wxdt-base"
 prebase_image="canyoutle/wxdt:prebase"
@@ -39,3 +38,5 @@ sleep 10s
 docker exec -it $prebase_container /wxdt/bin/wxdt install
 docker exec -it $prebase_container /root/.config/wechat_web_devtools/WeappVendor/wcsc.exe # 会自动启动wine配置
 docker commit $prebase_container $base_image
+
+docker kill $prebase_container

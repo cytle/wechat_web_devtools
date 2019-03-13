@@ -36,3 +36,5 @@ wechat_v=`cat ./wechat_v`
 # 构建dockerfile
 docker build -t $target_image .
 docker tag $target_image "$target_image:$wechat_v"
+
+docker kill $update_container
