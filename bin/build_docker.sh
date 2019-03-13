@@ -26,13 +26,12 @@ docker run -d --rm \
     $container_image
 
 # 然后在浏览器中打开 http://ip:6080 `docker-machine ip`获得的ip
-echo "Please open this link(http://$(docker-machine ip):$container_port/) and continue after the installation"
+echo "Please open this link(http://$(docker-machine ip):$container_port/) and preview devtools"
 
 # 在容器内安装
 docker exec -it wxdt-base /wxdt/bin/update_package_nw.sh
 wechat_v=`cat ./wechat_v`
 
-echo $wechat_v
-
 # 构建dockerfile
 docker build -t canyoutle/wxdt .
+docker tag canyoutle/wxdt "canyoutle/wxdt:$wechat_v"

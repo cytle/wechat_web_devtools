@@ -104,6 +104,15 @@ bash "$root_dir/bin/fix_package_name.sh"
 start_step 'fix: 重新编译node-sync-ipc'
 bash "$root_dir/bin/fix_node_sync_ipc.sh"
 
+start_step 'doc: 更新文档'
+
+sed -ri \
+    -e "s#\(wechat-devtools v\)[0-9][0-9.]*#\1$wechat_v#g" \
+    -e "s#\(wechat_devtools-\)[0-9][0-9.]*#\1$wechat_v#g" \
+    "$root_dir/README.md"
+
+echo "- $(date +%Y/%m/%d) 更新:微信小程序升级到$wechat_v" >> "$root_dir/CHANGELOG.md"
+
 echo $wechat_v > $root_dir/wechat_v
 echo "更新版本为: $(cat $root_dir/wechat_v)"
 
