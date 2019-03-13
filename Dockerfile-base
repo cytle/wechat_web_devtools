@@ -1,5 +1,4 @@
-# canyoutle/wxdt-desktop:base
-# docker run -P -p 6080:80 --mount type=bind,source=$PWD,target=/wxdt canyoutle/wxdt-desktop
+# canyoutle/wxdt:base
 FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
 
 ENV LANG C.UTF-8
@@ -50,6 +49,13 @@ RUN dpkg --add-architecture i386 \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
-# RUN mkdir -p $HOME/.wine32 \
-#   && WINEARCH=win32 WINEPREFIX=$HOME/.wine32 winecfg
-# RUN /wxdt/bin/wxdt install
+# # 构建dockerfile
+# docker build -t canyoutle/wxdt-desktop:prebase -f Dockerfile-base .
+# docker-machine ip # 获得ip
+# # 运行容器
+# docker run -d --rm -name wxdt-base -P -p 6080:80 --mount type=bind,source=$PWD,target=/wxdt canyoutle/wxdt-desktop:prebase
+# # 然后在浏览器中打开 http://ip:6080 `docker-machine ip`获得的ip
+# # 在容器内安装
+# docker exec -it wxdt-base /wxdt/bin/wxdt install
+# docker exec -it wxdt-base /root/.config/wechat_web_devtools/WeappVendor/wcc.exe # 会自动启动wine配置
+# docker commit wxdt-base canyoutle/wxdt:base

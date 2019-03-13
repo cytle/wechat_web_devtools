@@ -1,6 +1,6 @@
-# canyoutle/wxdt-desktop
-# docker run -P -p 6080:80 --mount type=bind,source=$PWD,target=/weapps canyoutle/wxdt-desktop
-FROM canyoutle/wxdt-desktop:base
+# canyoutle/wxdt
+# docker run -P -p 6080:80 --mount type=bind,source=$PWD,target=/weapps canyoutle/wxdt
+FROM canyoutle/wxdt:base
 
 COPY . /wxdt
 
