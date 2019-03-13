@@ -13,25 +13,26 @@ catchError() {
 
 cd "`dirname $0`/.."
 
-container_port=6081
-container_name="wxdt-update"
-container_image="canyoutle/wxdt:base"
+port=6081
+update_container="wxdt-update"
+update_image="canyoutle/wxdt:base"
+target_image="canyoutle/wxdt"
 
 # kill wxdt-base
-docker kill $container_name || echo "$container_name is not running"
+docker kill $update_container || echo "$update_container is not running"
 # 运行容器
 docker run -d --rm \
-    --name $container_name -P -p $container_port:80 \
+    --name $update_container -P -p $port:80 \
     --mount type=bind,source=$PWD,target=/wxdt \
-    $container_image
+    $update_image
 
 # 然后在浏览器中打开 http://ip:6080 `docker-machine ip`获得的ip
-echo "Please open this link(http://$(docker-machine ip):$container_port/) and preview devtools"
+echo "Please open this link(http://$(docker-machine ip):$port/) and preview devtools"
 
 # 在容器内安装
 docker exec -it wxdt-base /wxdt/bin/update_package_nw.sh
 wechat_v=`cat ./wechat_v`
 
 # 构建dockerfile
-docker build -t canyoutle/wxdt .
-docker tag canyoutle/wxdt "canyoutle/wxdt:$wechat_v"
+docker build -t $target_image .
+docker tag $target_image "$target_image:$wechat_v"

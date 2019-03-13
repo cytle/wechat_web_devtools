@@ -14,27 +14,28 @@ catchError() {
 cd "`dirname $0`/.."
 
 
-container_port=6080
-container_name=wxdt-update
-container_image="canyoutle/wxdt:prebase"
+port=6082
+prebase_container="wxdt-base"
+prebase_image="canyoutle/wxdt:prebase"
+base_image="canyoutle/wxdt:base"
 
 # 构建dockerfile
-docker build -t $container_image -f Dockerfile-base .
+docker build -t $prebase_image -f Dockerfile-base .
 
 # kill wxdt-base
-docker kill $container_name || echo "$container_name is not running"
+docker kill $prebase_container || echo "$prebase_container is not running"
 # 运行容器
 docker run -d --rm \
-    --name $container_name -P -p $container_port:80 \
+    --name $prebase_container -P -p $port:80 \
     --mount type=bind,source=$PWD,target=/wxdt \
-    $container_image
+    $prebase_image
 
 # 然后在浏览器中打开 http://ip:6080 `docker-machine ip`获得的ip
-echo "Please open this link(http://$(docker-machine ip):$container_port/) and continue after the installation"
+echo "Please open this link(http://$(docker-machine ip):$port/) and continue after the installation"
 
 echo "sleep 10s"
 sleep 10s
 # 在容器内安装
-docker exec -it wxdt-base /wxdt/bin/wxdt install
-docker exec -it wxdt-base /root/.config/wechat_web_devtools/WeappVendor/wcsc.exe # 会自动启动wine配置
-docker commit wxdt-base canyoutle/wxdt:base
+docker exec -it $prebase_container /wxdt/bin/wxdt install
+docker exec -it $prebase_container /root/.config/wechat_web_devtools/WeappVendor/wcsc.exe # 会自动启动wine配置
+docker commit $prebase_container $base_image
