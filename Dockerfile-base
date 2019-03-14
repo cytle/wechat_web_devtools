@@ -26,15 +26,6 @@ RUN apt-get update \
     python2.7 \
     gnupg2
 
-RUN echo "\n\
-[program:wxdt]\n\
-priority=25\n\
-directory=/wxdt/bin/\n\
-command=bash wxdt start\n\
-stderr_logfile=/var/log/wxdt.err.log\n\
-stdout_logfile=/var/log/wxdt.out.log\n\
-" >> /etc/supervisor/conf.d/supervisord.conf
-
 # # install wine-binfmt
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
 #     wine-binfmt
