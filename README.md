@@ -65,11 +65,11 @@ cd wechat_web_devtools
 
 ``` bash
 docker run --name wxdt -d -P -p 6080:80 --mount type=bind,source=$PWD,target=/weapps canyoutle/wxdt
+# 必须: 打开 http://localhost:6080 进入图形界面
 docker exec -it wxdt cli -l # 登录
 docker exec -it wxdt cli -p /weapps/wechat-v2ex # 预览工程
 ```
 
-打开 http://localhost:6080 进入图形界面
 
 ## 其它说明
 
