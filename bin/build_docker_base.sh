@@ -22,23 +22,21 @@ base_image="canyoutle/wxdt:base"
 docker build -t $prebase_image -f Dockerfile-base .
 
 # kill wxdt-base
-docker kill $prebase_container || echo "$prebase_container is not running"
-docker rm $prebase_container || echo "$prebase_container dont use"
+docker rm -f $prebase_container || echo "$prebase_container dont use"
 # 运行容器
-docker run -d --rm \
+docker run -d \
     --name $prebase_container -P -p $port:80 \
     --mount type=bind,source=$PWD,target=/wxdt \
     $prebase_image
 
 # 然后在浏览器中打开 http://ip:6080 `docker-machine ip`获得的ip
 echo "Please open this link(http://$(docker-machine ip):$port/) and continue after the installation"
-echo "进入图形界面后记得: 打开工具 -> 设置 -> 安全设置，将服务端口开启"
-echo "sleep 20s"
-sleep 20s
+echo "sleep 10s"
+sleep 10s
 # 在容器内安装
+docker exec -it $prebase_container env LC_ALL=zh_CN.UTF-8 wine /wxdt/package.nw/js/vendor/wcsc.exe # 会自动启动wine配置
 docker exec -it $prebase_container /wxdt/bin/wxdt install
 docker exec -it $prebase_container rm -rf /tmp/wxdt_xsp
-docker exec -it $prebase_container /root/.config/wechat_web_devtools/WeappVendor/wcsc.exe # 会自动启动wine配置
 docker commit $prebase_container $base_image
 
 docker kill $prebase_container
