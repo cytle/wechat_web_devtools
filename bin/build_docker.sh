@@ -30,7 +30,7 @@ docker run -d --rm \
 echo "Please open this link(http://$(docker-machine ip):$port/) and preview devtools"
 
 # 在容器内安装
-docker exec -it wxdt-base /wxdt/bin/update_package_nw.sh
+docker exec -it $update_container /wxdt/bin/update_package_nw.sh
 wechat_v=`cat ./wechat_v`
 
 # 构建dockerfile

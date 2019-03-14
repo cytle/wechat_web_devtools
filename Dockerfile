@@ -6,6 +6,8 @@
 
 FROM canyoutle/wxdt:base
 
+ENV PATH="/wxdt/bin:${PATH}"
 COPY . /wxdt
+RUN wxdt install
 
 # RUN /root/.config/wechat_web_devtools/WeappVendor/wcc.exe
