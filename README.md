@@ -14,7 +14,7 @@ linux 下使用微信web开发者工具.
 
 ## Usage
 
-### 1. 下载项目和初始化
+下载项目和初始化
 
 ``` bash
 git clone https://github.com/cytle/wechat_web_devtools.git
