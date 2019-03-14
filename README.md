@@ -14,7 +14,7 @@ linux 下使用微信web开发者工具.
 
 ## Usage
 
-下载项目和初始化
+### 下载项目和初始化
 
 ``` bash
 git clone https://github.com/cytle/wechat_web_devtools.git
@@ -23,7 +23,7 @@ cd wechat_web_devtools
 ./bin/wxdt install
 ```
 
-### 启动ide, 开发和调试网页
+### 启动ide，开发和调试网页
 
 运行准备:
 
@@ -33,7 +33,7 @@ cd wechat_web_devtools
 ./bin/wxdt # 启动
 ```
 
-### 启动ide, 开发和预览小程序
+### 启动ide，开发和预览小程序
 
 运行准备:
 
@@ -70,21 +70,20 @@ docker exec -it wxdt cli -l # 登录
 docker exec -it wxdt cli -p /weapps/wechat-v2ex # 预览工程
 ```
 
-
 ## 其它说明
 
 ### 安装Wine
 
 请参考搜索引擎安装 [Wine](https://wiki.winehq.org/Download)，以下是`Ubuntu`下两种安装
 
-1. 安装`wine-binfmt`
+#### 1. 安装`wine-binfmt`
 
 ``` bash
 sudo apt-get install wine-binfmt
 sudo update-binfmts --import /usr/share/binfmts/wine
 ```
 
-2. 正常安装`wine`
+#### 2. 正常安装`wine`
 
 ``` bash
 dpkg --add-architecture i386 \
@@ -118,12 +117,10 @@ rm -rf /tmp/wxdt_xsp
 
 ### `wcc` 和 `wcsc` 编译错误
 
-执行
+是`wine`没安装好导致的，或是没有成功替换`wcc` 和 `wcsc`两个二进制文件
 
-``` bash
-sudo apt-get install wine-binfmt
-sudo update-binfmts --import /usr/share/binfmts/wine
-```
+- 方案一: 安装`wine`并且执行`./bin/wxdt install`
+- 方案二: 安装`wine-binfmt`
 
 完成后, 点击 <kbd>编译</kbd> 即可.
 
@@ -134,13 +131,13 @@ sudo update-binfmts --import /usr/share/binfmts/wine
 
 ### 更新到最新版
 
-#### 方法 1: 直接从当前项目源码 进行 更新 (稳定, 推荐)
+#### 方案一: 直接从当前项目源码 进行 更新 (稳定, 推荐)
 
 ``` bash
 git pull origin
 ```
 
-#### 方法 2: 使用腾讯原始安装程序 进行 自助复制更新 (及时, 自行折腾)
+#### 方案二: 使用腾讯原始安装程序 进行 自助复制更新 (及时, 自行折腾)
 
 **注**: 如果抽风了, 可以尝试使用 `git reset --hard` 等操作, 还原到最初的状态.
 
