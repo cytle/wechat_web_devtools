@@ -38,8 +38,8 @@ if [ ! -d "$dev_tools_config_dir" ]; then
 
   nw_pid=$!
 
-  echo "please wait 5s!"
-  for k in $( seq 1 5 ); do
+  for k in $( seq 1 10 ); do
+    if [ -d "$dev_tools_config_dir" ]; then break; fi
     sleep 1s && echo "${k}s"
   done
   echo "kill nw"
