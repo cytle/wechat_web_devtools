@@ -19,14 +19,6 @@ RUN apt-get update \
     openssl \
     gnupg2
 
-# install wine and config wine
-RUN dpkg --add-architecture i386 \
-  && wget -nc https://dl.winehq.org/wine-builds/winehq.key \
-  && apt-key add winehq.key \
-  && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends --allow-unauthenticated winehq-stable
-
 ENV LANG C.UTF-8
 ENV DISPLAY :1.0
 ENV HOME /root
@@ -35,9 +27,6 @@ RUN echo "Asia/Shanghai" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 COPY . /wxdt
-
-# 配置wine
-RUN env LC_ALL=zh_CN.UTF-8 wine /wxdt/package.nw/js/vendor/wcsc.exe
 
 # 将开发者工具加入supervisord
 RUN echo "\n\
@@ -58,8 +47,4 @@ RUN sed -i \
 RUN update_nwjs.sh \
     && rm -rf /tmp/wxdt_xsp
 
-RUN docker-entrypoint.sh wxdt install \
-    && rm -rf /root/.config/wechat_web_devtools/Default/.ide
-
-# VOLUME /root/.config/wechat_web_devtools
 ENTRYPOINT [ "/wxdt/bin/docker-entrypoint.sh" ]

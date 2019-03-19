@@ -1,5 +1,16 @@
 #!/bin/sh
-set -e
+
+trap clean EXIT
+
+clean() {
+    if [ -d '/root/.config/wechat_web_devtools' ]; then
+        echo 'clean'
+        rm -rf /root/.config/wechat_web_devtools/Default/.ide
+        rm -rf /root/.config/wechat_web_devtools/Singleton*
+    fi
+}
+
+clean
 
 exec /startup.sh > "/var/log/startup.log" 2>&1 &
 

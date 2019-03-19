@@ -13,9 +13,23 @@ run:
 		-p 6080:80 \
 		-v $(WEAPPS):/weapps \
 		-v $(PWD)/bin/docker-entrypoint.sh:/wxdt/bin/docker-entrypoint.sh \
+		-v wxdt:/root/.config/wechat_web_devtools \
+		--name wxdt-test \
+		$(REPO):$(TAG) \
+		cli -p /weapps/wechat-v2ex
+
+login:
+	docker run --rm \
+		-p 6080:80 \
+		-v $(WEAPPS):/weapps \
+		-v $(PWD)/bin/docker-entrypoint.sh:/wxdt/bin/docker-entrypoint.sh \
+		-v wxdt:/root/.config/wechat_web_devtools \
 		--name wxdt-test \
 		$(REPO):$(TAG) \
 		cli -l
+
+log:
+	docker exec -it wxdt-test cat /var/log/wxdt.err.log
 
 shell:
 	docker exec -it wxdt-test bash
