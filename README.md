@@ -63,11 +63,31 @@ cd wechat_web_devtools
 
 ### Docker
 
+未安装`wine`，仅限`cli`调用
+
+可以直接`run`
+
 ``` bash
-docker run --name wxdt -d -P -p 6080:80 --mount type=bind,source=$PWD,target=/weapps canyoutle/wxdt
-# 必须: 打开 http://localhost:6080 进入图形界面
+docker run -it \
+    -v $(PWD):/projects \
+    $(REPO):$(TAG) \
+    sh -c "cli -l && cli -p /projects/your-project"
+```
+
+或是启动一个持久的容器
+
+``` bash
+docker run -d \
+    --name wxdt \
+    -p 6080:80 \
+    -v $PWD:/projects \
+    canyoutle/wxdt
+
 docker exec -it wxdt cli -l # 登录
-docker exec -it wxdt cli -p /weapps/wechat-v2ex # 预览工程
+docker exec -it wxdt cli -p /projects/your-project # 预览工程
+
+docker stop wxdt # 暂停容器
+docker start wxdt # 下次使用，不用再run，可以直接exec
 ```
 
 ## 其它说明
