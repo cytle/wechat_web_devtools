@@ -9,7 +9,6 @@ const db = cloud.database()
 
 // 数据库查询更新指令对象
 const _ = db.command
-wx.cloud = false
 
 // 云函数入口函数
 exports.main = async (event, context) => {

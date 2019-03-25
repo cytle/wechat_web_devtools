@@ -1,5 +1,5 @@
 /*! *****************************************************************************
-Copyright (c) 2018 Tencent, Inc. All rights reserved. 
+Copyright (c) 2018 Tencent, Inc. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -22,38 +22,6 @@ declare type KVInfer<T> = {
 declare type Void<T> = T | undefined | null
 
 type PartialOptional<T, K extends keyof T> = Partial<Pick<T, K>> & Pick<T, Exclude<keyof T, K>>
-
-/**
-* Make all properties in T required
-*/
-type Required<T> = {
-  [P in keyof T]-?: T[P];
-};
-
-/**
-* Exclude from T those types that are assignable to U
-*/
-type Exclude<T, U> = T extends U ? never : T;
-
-/**
-* Extract from T those types that are assignable to U
-*/
-type Extract<T, U> = T extends U ? T : never;
-
-/**
-* Exclude null and undefined from T
-*/
-type NonNullable<T> = T extends null | undefined ? never : T;
-
-/**
-* Obtain the return type of a function type
-*/
-type ReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : any;
-
-/**
-* Obtain the return type of a constructor function type
-*/
-type InstanceType<T extends new (...args: any[]) => any> = T extends new (...args: any[]) => infer R ? R : any;
 
 type Optional<T> = {
   [K in keyof T]+?: T[K]

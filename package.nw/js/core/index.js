@@ -6,7 +6,6 @@ const locales = require('../js/common/locales/index.js')
 const isMac = (process.platform === 'darwin')
 const query = tools.getQuery(location.search)
 
-
 // 记录工具开始运行的时间
 global.beginTime = Date.now()
 
@@ -285,6 +284,8 @@ if (!global.isDevWindow && !global.online) {
   const idepluginUpdater = require('../js/8a1cb9f18551c9fced04d3b87ddfa687.js')
 
   checkUpdate.loop()
+
+  // 更新/下载插件
   idepluginUpdater.loop()
 
   // 检查是否需要更新
@@ -294,4 +295,6 @@ if (!global.isDevWindow && !global.online) {
     })
 } else {
   init()
+  const idepluginUpdater = require('../js/8a1cb9f18551c9fced04d3b87ddfa687.js')
+  idepluginUpdater.loop()
 }

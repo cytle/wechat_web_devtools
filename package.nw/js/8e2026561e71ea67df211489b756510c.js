@@ -273,15 +273,48 @@ class FileUtils extends EventEmitter {
       fileData[filePath] = {}
     }
 
-    if (!fileData[filePath][
-        [cacheKey]
-      ]) {
-      fileData[filePath][
-        [cacheKey]
-      ] = fs.readFileSync(filePath, encode)
+    if (!fileData[filePath][cacheKey]) {
+      fileData[filePath][cacheKey] = fs.readFileSync(filePath, encode)
     }
 
     return fileData[filePath][cacheKey]
+  }
+
+  async getFileAsync(filePath, encode = 'utf8') {
+    return new Promise((resolve, reject) => {
+      let isAbsolute = path.isAbsolute(filePath)
+      if (isAbsolute) {
+        return
+      }
+
+      let cacheKey = encode === null? 'null': encode
+
+      filePath = path.posix.join(this.dirPath, filePath.replace(/\\/g, '/'))
+      if (this.dirPath.startsWith('//') && !filePath.startsWith('//')) {
+        // windows style shared directory
+        // leading double slash missed
+        filePath = '/' + filePath
+      }
+
+      let fileData = this._cache.fileData
+
+      if (!fileData[filePath]) {
+        fileData[filePath] = {}
+      }
+
+      if (!fileData[filePath][[cacheKey]]) {
+        fs.readFile(filePath, encode, (err, data) => {
+          if (err) {
+            return reject(err)
+          }
+
+          fileData[filePath][[cacheKey]] = data
+          resolve(data)
+        })
+      } else {
+        resolve(fileData[filePath][cacheKey])
+      }
+    })
   }
 
   exists(filePath) {

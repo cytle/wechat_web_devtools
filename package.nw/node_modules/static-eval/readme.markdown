@@ -6,6 +6,10 @@ evaluate statically-analyzable expressions
 
 [![build status](https://secure.travis-ci.org/substack/static-eval.png)](http://travis-ci.org/substack/static-eval)
 
+# security
+
+static-eval is like `eval`. It is intended for use in build scripts and code transformations, doing some evaluation at build time—it is **NOT** suitable for handling arbitrary untrusted user input. Malicious user input _can_ execute arbitrary code.
+
 # example
 
 ``` js

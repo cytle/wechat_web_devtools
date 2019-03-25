@@ -1,4 +1,22 @@
 ## Changelog
+##### 2.6.5 - 2019.02.15
+- Fixed buggy `String#padStart` and `String#padEnd` mobile Safari implementations, [#414](https://github.com/zloirock/core-js/issues/414).
+
+##### 2.6.4 - 2019.02.07
+- Added a workaround against crushing an old IE11.0.9600.16384 build, [#485](https://github.com/zloirock/core-js/issues/485).
+
+##### 2.6.3 - 2019.01.22
+- Added a workaround for `babel-minify` bug, [#479](https://github.com/zloirock/core-js/issues/479)
+
+##### 2.6.2 - 2019.01.10
+- Fixed handling of `$` in `String#replace`, [#471](https://github.com/zloirock/core-js/issues/471)
+
+##### 2.6.1 - 2018.12.18
+- Fixed an issue with minified version, [#463](https://github.com/zloirock/core-js/issues/463)
+
+##### 2.6.0 - 2018.12.05
+- Add direct .exec calling to `RegExp#{@@replace, @@split, @@match, @@search}`. Also, added fixes for `RegExp#exec` method. [#411](https://github.com/zloirock/core-js/issues/411), [#428](https://github.com/zloirock/core-js/issues/428), [#434](https://github.com/zloirock/core-js/issues/434), [#435](https://github.com/zloirock/core-js/issues/435), [#453](https://github.com/zloirock/core-js/issues/453), [#458](https://github.com/zloirock/core-js/issues/458), thanks [**@nicolo-ribaudo**](https://github.com/nicolo-ribaudo).
+
 ##### 2.5.7 - 2018.05.26
 - Get rid of reserved variable name `final`, related [#400](https://github.com/zloirock/core-js/issues/400)
 

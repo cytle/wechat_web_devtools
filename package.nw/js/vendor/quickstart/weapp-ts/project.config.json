@@ -3,12 +3,13 @@
 	"packOptions": {
 		"ignore": []
 	},
+	"miniprogramRoot": "./miniprogram",
 	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
 	"projectname": "demo",
 	"scripts": {
-		"beforeCompile": "npm run compile",
-		"beforePreview": "npm run compile",
-		"beforeUpload": "npm run compile"
+		"beforeCompile": "npm run tsc",
+		"beforePreview": "npm run tsc",
+		"beforeUpload": "npm run tsc"
 	}
 }

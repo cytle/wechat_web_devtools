@@ -1,1 +1,2 @@
-"use strict";!function(require,directRequire){const a=require('./9608cdbdcb0fe9821ec87d0a6bec239b.js');module.exports={getRandomGeo:function(){return a[Math.floor(Math.random()*a.length)]},getDefault:function(){return{latitude:23.129163,longitude:113.264435,speed:-1,accuracy:65,altitude:0,verticalAccuracy:65,horizontalAccuracy:65}}}}(require("lazyload"),require);
+;!function(require, directRequire){;"use strict";const geoList=require('./9608cdbdcb0fe9821ec87d0a6bec239b.js');function getRandomGeo(){return geoList[Math.floor(Math.random()*geoList.length)]}function getDefault(){return{latitude:23.129163,longitude:113.264435,speed:-1,accuracy:65,altitude:0,verticalAccuracy:65,horizontalAccuracy:65}}module.exports={getRandomGeo,getDefault};
+;}(require("lazyload"), require);

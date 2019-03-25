@@ -1,4 +1,17 @@
-'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c=require('./common/locales/index.js'),d={[b.DISPLAY_TYPES.PLUGIN_UPDATE_INFO]:(b,d,e)=>{let f='';try{f=`
+'use strict';!function(require,directRequire){const a=require('./72653d4b93cdd7443296229431a7aa9a.js'),b=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),c=require('./common/locales/index.js'),d={[b.DISPLAY_TYPES.SCF_DEBUG]:(b,d,e)=>{let f='';const g='error'===e.level;let h,i;Array.isArray(e.msg)?(h=e.msg[0],i=e.msg.slice(1)):(h=e.msg,i=[]);const j=i.map((a)=>`console.log(decodeURIComponent(\' ${encodeURIComponent(a).replace(/'/g,'\\\'')} \'))`).join('\n');try{f=`
+      function print() {
+        try {
+          console.group(\`${new Date} ${c.config.SCF_LOCAL_DEBUG}\`)
+          console.log('%c[${e.tag}] [${g?'error':'info'}]', '${g?'color: red':'color: blue'}', decodeURIComponent(\' ${encodeURIComponent(h).replace(/'/g,'\\\'')} \'))
+          ${j}
+          console.groupEnd()
+        } catch (err) {
+          // do not show error in case of error during printing
+          console.groupEnd()
+        }
+      }
+      print()
+      `}catch(b){a.error('info.display.js error while trying to display cloud functions local debug information',e)}b.executeScript({code:f})},[b.DISPLAY_TYPES.PLUGIN_UPDATE_INFO]:(b,d,e)=>{let f='';try{f=`
       (function() {
       try {
         console.group(\`${new Date} ${c.config.PLUG_IN_UPDATE_PROMPTS}\`)

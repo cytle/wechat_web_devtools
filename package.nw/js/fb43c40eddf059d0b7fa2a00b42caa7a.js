@@ -1,0 +1,2 @@
+;!function(require, directRequire){;"use strict";const actions=require('./0634ee2ebd3e560d9d4804ecc960160f.js'),togglePanelVisibility=()=>({type:actions.PLUGIN_TOGGLE_PANEL_SHOW}),setOnlinePluginManifests=(a)=>({type:actions.PLUGIN_SET_ONLINE_MANIFESTS,data:a}),setPluginManifests=(a)=>({type:actions.PLUGIN_SET_INSTALLED_MANIFESTS,data:a});module.exports={togglePanelVisibility,setOnlinePluginManifests,setPluginManifests};
+;}(require("lazyload"), require);

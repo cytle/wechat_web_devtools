@@ -2157,7 +2157,6 @@ body.dark .ui-button-default {
 }
 .ui-notice-content {
   display: flex;
-  align-items: center;
 }
 .ui-notice-content-bd {
   max-width: 400px;
@@ -2169,6 +2168,7 @@ body.dark .ui-button-default {
 .ui-notice-content-ft {
   color: #888888;
   font-size: 12px;
+  line-height: 22px;
 }
 .ui-notice-content-ft .ui-icon-close {
   width: 10px;
@@ -2190,6 +2190,9 @@ body.dark .ui-button-default {
 }
 .ui-notice-msg-bd {
   flex: 1;
+}
+.ui-notice-msg-bd p {
+  word-break: break-word;
 }
 .ui-notice-msg-ft {
   padding-left: 12px;

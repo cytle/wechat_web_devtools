@@ -1,1 +1,2 @@
-'use strict';!function(require,directRequire){const a=require('./0634ee2ebd3e560d9d4804ecc960160f.js'),b=require('./19b8d2537e2a8fa3bfdb9f7f498378a9.js');module.exports={exec:function(a,c){const{api:d,callbackID:e}=a;return async(e,f)=>{try{if(!b[d])throw new Error('not support');return await b[d](e,a,c,f)}catch(a){return{errMsg:`${d}:fail ${a.message||a}`}}}}}}(require('lazyload'),require);
+;!function(require, directRequire){;'use strict';const implement=require('./19b8d2537e2a8fa3bfdb9f7f498378a9.js'),exec=function(a,b){const{api:c}=a;return async(d,e)=>{try{if(!implement[c])throw new Error('not support');return await implement[c](d,a,b,e)}catch(a){return{errMsg:`${c}:fail ${a.message||a}`}}}};module.exports={exec};
+;}(require("lazyload"), require);

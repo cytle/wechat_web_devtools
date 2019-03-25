@@ -54,8 +54,12 @@ PrivateKey.prototype.toBuffer = function (format, options) {
 	return (formats[format].write(this, options));
 };
 
-PrivateKey.prototype.hash = function (algo) {
-	return (this.toPublic().hash(algo));
+PrivateKey.prototype.hash = function (algo, type) {
+	return (this.toPublic().hash(algo, type));
+};
+
+PrivateKey.prototype.fingerprint = function (algo, type) {
+	return (this.toPublic().fingerprint(algo, type));
 };
 
 PrivateKey.prototype.toPublic = function () {
@@ -225,8 +229,9 @@ PrivateKey.generate = function (type, options) {
  * [1,3] -- added derive, ed, createDH
  * [1,4] -- first tagged version
  * [1,5] -- changed ed25519 part names and format
+ * [1,6] -- type arguments for hash() and fingerprint()
  */
-PrivateKey.prototype._sshpkApiVersion = [1, 5];
+PrivateKey.prototype._sshpkApiVersion = [1, 6];
 
 PrivateKey._oldVersionDetect = function (obj) {
 	assert.func(obj.toPublic);

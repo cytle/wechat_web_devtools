@@ -1,1 +1,2 @@
-'use strict';!function(require,directRequire){const a=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),b=new a('DEVTOOLS_REMOTEWXML');module.exports=b}(require('lazyload'),require);
+;!function(require, directRequire){;'use strict';const BaseMessager=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),remoteWxmlMessager=new BaseMessager('DEVTOOLS_REMOTEWXML');module.exports=remoteWxmlMessager;
+;}(require("lazyload"), require);

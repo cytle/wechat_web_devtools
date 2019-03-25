@@ -1,1 +1,2 @@
-'use strict';!function(require,directRequire){const a=require('./a1dd553cc059d528bb0ef56afed53968.js'),b=require('./e3681b47a6ce46a8998b8cdff40bdb12.js'),c=require('./3bfffbe88b3d923921f851c0697974fe.js');module.exports=(d={})=>{return c.isGameApp()?b:a}}(require('lazyload'),require);
+;!function(require, directRequire){;'use strict';const appserviceMessager=require('./a1dd553cc059d528bb0ef56afed53968.js'),gameserviceMessager=require('./e3681b47a6ce46a8998b8cdff40bdb12.js'),projectManager=require('./3bfffbe88b3d923921f851c0697974fe.js'),getMessager=()=>{return projectManager.isGameApp()?gameserviceMessager:appserviceMessager};module.exports=getMessager;
+;}(require("lazyload"), require);

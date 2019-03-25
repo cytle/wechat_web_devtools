@@ -2157,7 +2157,6 @@ body.dark .ui-button-default {
 }
 .ui-notice-content {
   display: flex;
-  align-items: center;
 }
 .ui-notice-content-bd {
   max-width: 400px;
@@ -2169,6 +2168,7 @@ body.dark .ui-button-default {
 .ui-notice-content-ft {
   color: #888888;
   font-size: 12px;
+  line-height: 22px;
 }
 .ui-notice-content-ft .ui-icon-close {
   width: 10px;
@@ -2190,6 +2190,9 @@ body.dark .ui-button-default {
 }
 .ui-notice-msg-bd {
   flex: 1;
+}
+.ui-notice-msg-bd p {
+  word-break: break-word;
 }
 .ui-notice-msg-ft {
   padding-left: 12px;
@@ -9254,6 +9257,85 @@ body.dark .loading-ext a {
 }
 body.dark .loading-ext [class^="ui-icon-arrow"] {
   background-color: #808080;
+}
+.ide-plugins-dialog .ui-dialog-bd {
+  padding: 0;
+}
+.ide-plugins {
+  padding: 0 1px;
+  max-height: 436px;
+  overflow-y: auto;
+}
+.ide-plugin-item {
+  display: flex;
+  padding: 25px 20px;
+  align-items: center;
+  background: #fbfbfb;
+}
+.ide-plugin-item:nth-child(2n + 1) {
+  background-color: #eef0f1;
+}
+.ide-plugin-item-bd {
+  flex: 1;
+  min-width: 0;
+}
+.ide-plugin-metas {
+  display: flex;
+  align-items: center;
+}
+.ide-plugin-name {
+  font-size: 13px;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ide-plugin-version {
+  font-size: 12px;
+  color: #888888;
+  margin-left: 5px;
+  white-space: nowrap;
+}
+.ide-plugin-tag {
+  font-size: 10px;
+  color: #888888;
+  background-color: #dfdfdf;
+  padding: 2px;
+  border-radius: 2px;
+  line-height: 1;
+  margin-left: 5px;
+  white-space: nowrap;
+}
+.ide-plugin-desc {
+  font-size: 11px;
+  color: #888888;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+}
+.ide-plugin-desc a {
+  color: #576b95;
+  margin-left: 5px;
+}
+.ide-plugin-item-ft {
+  padding-left: 20px;
+}
+.ide-plugin-item-ft .ui-button {
+  min-width: 87px;
+}
+body.dark .ide-plugin-item {
+  background: #434343;
+}
+body.dark .ide-plugin-item:nth-child(2n + 1) {
+  background-color: #545454;
+}
+body.dark .ide-plugin-tag {
+  background-color: #424242;
+}
+body.dark .ide-plugin-name {
+  color: #d4d4d4;
 }
 
 /*# sourceMappingURL=app.css.map */
