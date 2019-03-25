@@ -8,35 +8,31 @@ build: wechat_v Dockerfile
 	docker build -t $(REPO):$(TAG) .
 	docker tag $(REPO):$(TAG) $(REPO):$$(cat wechat_v)
 
+run-preview:
+	docker run -it \
+		-v $(WEAPPS):/projects \
+		-v $(PWD)/bin/docker-entrypoint.sh:/wxdt/bin/docker-entrypoint.sh \
+		$(REPO):$(TAG) \
+		sh -c "cli -l && cli -p /projects/wechat-v2ex"
+
 run:
 	docker run --rm \
 		-p 6080:80 \
-		-v $(WEAPPS):/weapps \
-		-v $(PWD)/bin/docker-entrypoint.sh:/wxdt/bin/docker-entrypoint.sh \
-		-v wxdt:/root/.config/wechat_web_devtools \
+		-v $(WEAPPS):/projects \
 		--name wxdt-test \
-		$(REPO):$(TAG) \
-		cli -p /weapps/wechat-v2ex
+		$(REPO):$(TAG)
 
 login:
-	docker run --rm \
-		-p 6080:80 \
-		-v $(WEAPPS):/weapps \
-		-v $(PWD)/bin/docker-entrypoint.sh:/wxdt/bin/docker-entrypoint.sh \
-		-v wxdt:/root/.config/wechat_web_devtools \
-		--name wxdt-test \
-		$(REPO):$(TAG) \
-		cli -l
+	docker exec -it wxdt-test cli -l
+
+preview:
+	docker exec -it wxdt-test cli -p /projects/wechat-v2ex
 
 log:
 	docker exec -it wxdt-test cat /var/log/wxdt.err.log
 
 shell:
 	docker exec -it wxdt-test bash
-
-build-base: docker/Dockerfile-update
-	cd docker; \
-	docker build -f Dockerfile-update -t $(REPO):update .
 
 update:
 	docker run \
