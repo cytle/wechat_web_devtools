@@ -4,7 +4,7 @@ var paethPredictor = require('./paeth-predictor');
 
 function filterNone(pxData, pxPos, byteWidth, rawData, rawPos) {
 
-  for (var x = 0; x < byteWidth; x++) {    
+  for (var x = 0; x < byteWidth; x++) {
     rawData[rawPos + x] = pxData[pxPos + x];
   }
 }
@@ -155,7 +155,9 @@ module.exports = function(pxData, width, height, options, bpp) {
     throw new Error('unrecognised filter types');
   }
 
-  if (options.bitDepth === 16) bpp *= 2;
+  if (options.bitDepth === 16) {
+    bpp *= 2;
+  }
   var byteWidth = width * bpp;
   var rawPos = 0;
   var pxPos = 0;

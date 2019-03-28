@@ -68,5 +68,6 @@
     "v8/tools/splaytree": [">= 4.4.0 && < 5", ">= 5.2.0"],
     "v8": ">= 1",
     "vm": true,
+    "worker_threads": ">= 11.7",
     "zlib": true
 }

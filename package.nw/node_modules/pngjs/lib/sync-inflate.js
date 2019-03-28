@@ -108,12 +108,12 @@ Inflate.prototype._processChunk = function(chunk, flushFlag, asyncCb) {
   assert(this._handle, 'zlib binding closed');
   do {
     var res = this._handle.writeSync(flushFlag,
-                                     chunk, // in
-                                     inOff, // in_off
-                                     availInBefore, // in_len
-                                     this._buffer, // out
-                                     this._offset, //out_off
-                                     availOutBefore); // out_len
+      chunk, // in
+      inOff, // in_off
+      availInBefore, // in_len
+      this._buffer, // out
+      this._offset, //out_off
+      availOutBefore); // out_len
     // Node 8 --> 9 compatibility check
     res = res || this._writeState;
   } while (!this._hadError && handleChunk(res[0], res[1]));

@@ -1,11 +1,11 @@
 {
   "name": "demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
-    "tsc": "./node_modules/typescript/bin/tsc",
-    "compile": "tsc"
+    "compile": "./node_modules/typescript/bin/tsc",
+    "tsc": "node ./node_modules/typescript/lib/tsc.js"
   },
   "devDependencies": {
-    "typescript": "^3.1.6"
+    "typescript": "^3.3.3333"
   }
 }

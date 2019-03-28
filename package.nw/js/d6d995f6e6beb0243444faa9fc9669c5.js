@@ -1,1 +1,2 @@
-"use strict";!function(require,directRequire){module.exports={}}(require("lazyload"),require);
+;!function(require, directRequire){;"use strict";module.exports={};
+;}(require("lazyload"), require);

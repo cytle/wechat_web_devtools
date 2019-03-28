@@ -19,11 +19,11 @@
     "pretty": true,
     "strictPropertyInitialization": true,
     "typeRoots": [
-      "typings"
+      "./typings"
     ]
   },
   "include": [
-    "./**/*.ts"
+    "./miniprogram/**/*.ts"
   ],
   "exclude": [
     "node_modules",

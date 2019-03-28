@@ -182,6 +182,7 @@ module.exports = {
   SETTING_SECURITY_DETAILS: '详细信息：',
   SETTING_SECURITY_DOCUMENT: '文档',
   SETTING_SECURITY_PORT: '端口号：',
+  CURRENT_PROJECT_SECURITY_PORT: '当前项目窗口',
   SETTING_SECURITY_SETTINGS: '设置',
   SETTING_SECURITY_CANCEL: '取消',
 
@@ -423,6 +424,10 @@ module.exports = {
   RUNTIME: '运行时',
   RUNTIME_ENVIRONMENT: '运行环境',
   LANGUAGE: '语言',
+  WECHAT: '微信',
+  WECHAT_WORK: '企业微信',
+  WECHAT_WORK_MINIPROGRAM: '企业微信小程序',
+  LEARN_MORE: '了解详情',
 
   // Account box
   ACCOUNT_BOX_EMPTY: '暂无可用测试号，',
@@ -496,6 +501,7 @@ module.exports = {
   PREVIEW_MSG_NOT_UPLOAD_FILES: '以下文件没有上传。',
   PREVIEW_MSG_BIG_FILE: '体积过大的文件',
   PREVIEW_MSG_BIG_FILE_DETAILS: '以下文件体积超过 500KB，已跳过压缩以及 ES6 转 ES5 的处理。',
+  PREVIEW_MSG_BABEL_IGNORE_FILES: '以下文件通过自定义配置，已跳过 ES6 转 ES5 的处理',
 
   CONSOLE_PREPROCESS_START: '开始执行自定义预览前预处理命令...',
   CONSOLE_PREPROCESS_ERROR: '执行自定义预览前预处理命令失败!',
@@ -609,6 +615,7 @@ module.exports = {
   BUSINESS_DOMAIN_NAME: '业务域名',
   NOT_SET: '未设置',
   MAIN_PACKAGE: '主包',
+  FULL_PACKAGE: '整包',
   OPEN: '打开',
   COPY: '复制',
   MODIFY: '修改',
@@ -1050,7 +1057,10 @@ module.exports = {
   RECORDING_DEVICE_ERROR: '未找到或者无权限调用录音设备',
 
   COMPLING_OTHER_FILES: '正在编译其他文件',
+  COMPLING_SOME_FILES: '正在编译 %s 文件',
   OTHER_FILES_COMPILATION_COMPLETED: '编译其他文件完成',
+  SOME_FILES_COMPILATION_COMPLETED: '编译 %s 文件完成',
+
   PROCESSING: '正在处理 %s',
   GAME_KEYBOARD_DONE: '完成',
   GAME_KEYBOARD_SEARCH: '搜索',
@@ -1209,6 +1219,7 @@ module.exports = {
   MINI_CLOUD_INTRO: '小程序·云开发为开发者提供数据库、存储和云函数等完整的云端支持。无需搭建服务器，使用平台提供的 API 进行核心业务开发，即可实现小程序快速上线和迭代。',
   ENTER_MINI_PROGRAM_APPID_NOTICE: '请填写小程序 AppID',
   ENTER_MINI_GAME_APPID_NOTICE: '请填写小游戏 AppID',
+  ENTER_WRONG_APPID_DETAILED_NOTICE: '%s 是%s AppID，请填写%s AppID',
 
   COMMON_SECONDS_AGO: '%s 秒前',
   COMMON_MINUTES_AGO: '%s 分钟前',
@@ -1221,4 +1232,40 @@ module.exports = {
 
   API_UPDATE_TIP_TITLE: '接口更新提示',
   BACK_GROUND_AUDIO_UPGRADE: '若需要小程序在退到后台后继续播放音频，你需要在 app.json 中配置 requiredBackgroundModes 属性，详见: https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#requiredbackgroundmodes',
+
+  ICON_MUTE: '静音',
+  ICON_UNMUTE: '取消静音',
+  ICON_ATTACH: '固定窗口',
+  ICON_DETACH: '分离窗口',
+  ICON_ROTATE: '旋转',
+  ICON_PIN: '置顶窗口',
+  ICON_UNPIN: '取消置顶窗口',
+  ICON_MOVE_SIMULATOR_LEFT: '左移模拟器',
+  ICON_MOVE_SIMULATOR_RIGHT: '右移模拟器',
+
+  // Plugin panel
+  PLUGIN_ADD: '添加',
+  PLUGIN_ADDING: '添加中',
+  PLUGIN_REMOVE: '移除',
+  PLUGIN_REMOVING: '移除中',
+  PLUGIN_ADD_PROGRESS_RECORDER_NAME: '插件下载',
+  RELOAD_MODAL_TEXT: '插件发生变动，请重启微信开发者工具以确保功能正常运行。',
+  PLUGIN_DOWNLOAD_TIMEOUT: '下载超时，请重试',
+  PLUGIN_DOWNLOAD_FAILED: '下载失败，请重试',
+  PLUGIN_REMOVE_FAILED: '删除失败，请重试',
+  PLUGIN_ADD_PROGRESS_SUCCESS_NAME: '插件添加成功',
+  PLUGIN_ADD_PROGRESS_FAILED_NAME: '插件添加失败',
+  PLUGIN_REMOVE_PROGRESS_SUCCESS_NAME: '插件移除成功',
+  PLUGIN_REMOVE_PROGRESS_FAILED_NAME: '插件移除失败',
+
+  // WebSocket connection error
+  UNCOMPLETED_OPERATION: '未完成的操作',
+
+  LIBRARY_VERSION_TIP: '此处选择的基础库为%s中的基础库版本，且仅用于开发者工具内的调试，与移动设备中的基础库版本无关。',
+
+  IGNORE_RESERVED_DIRECTORY: '%s 为保留目录。%s 目录下的所有文件将会被忽略。',
+
+  CONFIRM_CLOSE_PROJECT_BY_EXTERNAL: 'CLI/HTTP 调用正在关闭项目，%s 秒后将自动关闭，是否阻止？',
+  CONFIRM_QUIT_IDE_BY_EXTERNAL: 'CLI/HTTP 调用正在关闭工具，%s 秒后将自动关闭，是否阻止？',
+  BLOCK: '阻止',
 }

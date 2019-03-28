@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/// <reference path="./index.d.ts" />
+/// <reference path="../../../@types/devtools/index.d.ts" />
+/// <reference path="../core/utils/remote-debug/index.d.ts" />
 const vm = require("vm");
 const fs = require("fs");
 const path = require("path");
@@ -1134,7 +1135,10 @@ function handleSetupContext(data) {
         getCurrentPages = vmGlobal.getCurrentPages || null;
         Object.defineProperty(vmGlobal.WeixinJSBridge, 'subscribeHandler', {
             value: function (...args) {
-                if (args[0] === 'onRequestTaskStateChange' && args[1] && args[1].requestTaskId) {
+                if (args[0] === 'onAppRouteResized' || args[0] === 'onViewDidResize') {
+                    systemInfoCache = null;
+                }
+                else if (args[0] === 'onRequestTaskStateChange' && args[1] && args[1].requestTaskId) {
                     onRequestTaskStateChange(args);
                     const realId = args[1].requestTaskId;
                     if (networkTaskIdRealFakeMap.request[realId]) {

@@ -9,7 +9,7 @@ var SyncReader = module.exports = function(buffer) {
 SyncReader.prototype.read = function(length, callback) {
 
   this._reads.push({
-    length: Math.abs(length),  // if length < 0 then at most this length
+    length: Math.abs(length), // if length < 0 then at most this length
     allowLess: length < 0,
     func: callback
   });

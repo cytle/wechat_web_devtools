@@ -5,9 +5,9 @@ module.exports = {
   FILE_NOT_FOUND: 'The entry %s file was not found, or the file read failed. Please check and recompile it.',
   JSON_PARSE_ERROR: '%s File parsing error',
   ENTRANCE_NOT_FOUND: 'No pages : %s defined in the entry page \napp.json is found',
-  JSON_PAGE_WXML_NOT_EXISTS: 'No WXML file corresponding to %s "%s" defined in %s is found',
-  JSON_PAGE_JS_NOT_EXISTS: 'No JS file corresponding to %s "%s" defined in %s is found',
-  JSON_PAGE_FILE_NOT_EXISTS: 'No %s file corresponding to %s "%s" defined in %s is found',
+  JSON_PAGE_WXML_NOT_EXISTS: '%s %s "%s" could not find the corresponding WXML file',
+  JSON_PAGE_JS_NOT_EXISTS: '%s %s "%s" could not find the corresponding JS file',
+  JSON_PAGE_FILE_NOT_EXISTS: '%s %s "%s" could not find the corresponding %s file',
   JSON_PAGE_SHOULD_NOT_IN_SUBPACKAGE: '%s Should not exist in the subcontract %s',
   JSON_PLUGIN_SHOULD_NOT_IN_SUBPACKAGE: '%s Should not exist in the subcontract %s',
   JSON_CUSTOM_COMPILE_PATH_NOT_EXISTS_TITLE: 'app.json or custom compilation condition error',
@@ -423,6 +423,10 @@ module.exports = {
   RUNTIME: 'Runtime',
   RUNTIME_ENVIRONMENT: 'Runtime Environment',
   LANGUAGE: 'Language',
+  WECHAT: 'Wechat',
+  WECHAT_WORK: 'Wechat Work',
+  WECHAT_WORK_MINIPROGRAM: 'Wechat Work Miniprogram',
+  LEARN_MORE: 'Learn more',
 
   // Account box
   ACCOUNT_BOX_EMPTY: 'There are no available test accounts,',
@@ -496,6 +500,7 @@ module.exports = {
   PREVIEW_MSG_NOT_UPLOAD_FILES: 'The following files were not uploaded.',
   PREVIEW_MSG_BIG_FILE: 'Oversized Files',
   PREVIEW_MSG_BIG_FILE_DETAILS: 'The following files, which are greater than 500kb, has jumped the compression and conversion from es6 to es5',
+  PREVIEW_MSG_BABEL_IGNORE_FILES: 'The following files, which are custom config, to skip the es6 to es5 process',
 
   CONSOLE_PREPROCESS_START: 'Start executing the custom preprocessor before preview...',
   CONSOLE_PREPROCESS_ERROR: 'Failed to execute the custom preprocessor before preview!',
@@ -610,6 +615,7 @@ module.exports = {
   BUSINESS_DOMAIN_NAME: 'Business Domain Name',
   NOT_SET: 'not set',
   MAIN_PACKAGE: 'Main Package',
+  FULL_PACKAGE: 'Full Package',
   OPEN: 'Open',
   COPY: 'Copy',
   MODIFY: 'Modify',
@@ -1051,7 +1057,9 @@ module.exports = {
   RECORDING_DEVICE_ERROR: 'Recording equipment is not found or unauthorized to call',
 
   COMPLING_OTHER_FILES: 'Compling Other Files',
+  COMPLING_SOME_FILES: 'Compling %s Files',
   OTHER_FILES_COMPILATION_COMPLETED: 'Other files compilation completed',
+  SOME_FILES_COMPILATION_COMPLETED: '%s files compilation completed',
   PROCESSING: 'Processing %s',
   GAME_KEYBOARD_DONE: 'Done',
   GAME_KEYBOARD_SEARCH: 'Search',
@@ -1210,6 +1218,7 @@ module.exports = {
   MINI_CLOUD_INTRO: 'Mini Program Cloud Base provides sophisticated cloud support. By using the Cloud API provided by wechat mini program platform, we can develop and deploy mini program in no time, and enjoy fast iterative development',
   ENTER_MINI_PROGRAM_APPID_NOTICE: 'Please enter Mini Program AppID',
   ENTER_MINI_GAME_APPID_NOTICE: 'Please enter Mini Game AppID',
+  ENTER_WRONG_APPID_DETAILED_NOTICE: '%s is %s AppID, please enter %s AppID',
 
   COMMON_SECONDS_AGO: '%s seconds ago',
   COMMON_MINUTES_AGO: '%s minutes ago',
@@ -1222,4 +1231,40 @@ module.exports = {
 
   API_UPDATE_TIP_TITLE: 'API Upgrade Tips',
   BACK_GROUND_AUDIO_UPGRADE: 'If you need to continue playing audio after the Mini Program has returned to the background, you need to configure \'requiredBackgroundModes\' in app.json. For details: https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#requiredbackgroundmodes',
+
+  ICON_MUTE: 'Mute',
+  ICON_UNMUTE: 'Unmute',
+  ICON_ATTACH: 'Attach',
+  ICON_DETACH: 'Detach',
+  ICON_ROTATE: 'Rotate',
+  ICON_PIN: 'Pin',
+  ICON_UNPIN: 'Unpin',
+  ICON_MOVE_SIMULATOR_LEFT: 'Simulator Left',
+  ICON_MOVE_SIMULATOR_RIGHT: 'Simulator Right',
+
+  // Plugin panel
+  PLUGIN_ADD: 'Add',
+  PLUGIN_ADDING: 'Adding',
+  PLUGIN_REMOVE: 'Remove',
+  PLUGIN_REMOVING: 'Removing',
+  PLUGIN_ADD_PROGRESS_RECORDER_NAME: 'Plugin Download',
+  RELOAD_MODAL_TEXT: 'Plugins have been modified, please reload WeChat DevTool Tool to ensure functionalities are running properly.',
+  PLUGIN_DOWNLOAD_TIMEOUT: 'Timeout, try again',
+  PLUGIN_DOWNLOAD_FAILED: 'Failed, try again',
+  PLUGIN_REMOVE_FAILED: 'Failed, try again',
+  PLUGIN_ADD_PROGRESS_SUCCESS_NAME: 'Plugin adding successful',
+  PLUGIN_ADD_PROGRESS_FAILED_NAME: 'Plugin adding failed',
+  PLUGIN_REMOVE_PROGRESS_SUCCESS_NAME: 'Plugin removing successful',
+  PLUGIN_REMOVE_PROGRESS_FAILED_NAME: 'Plugin removing failed',
+
+  // WebSocket connection error
+  UNCOMPLETED_OPERATION: 'The operation couldn\'t be completed.',
+
+  LIBRARY_VERSION_TIP: 'The chosen base library here is for %s, which is only used for developping and debugging, not relevant to the base library on mobile devices.',
+
+  IGNORE_RESERVED_DIRECTORY: '%s is a reserved directory. All files in %s will be ignored.',
+
+  CONFIRM_CLOSE_PROJECT_BY_EXTERNAL: 'CLI/HTTP Call is attempting to close project after %s seconds. Block this behavior?',
+  CONFIRM_QUIT_IDE_BY_EXTERNAL: 'CLI/HTTP Call is attempting to quit IDE after %s seconds. Block this behavior?',
+  BLOCK: 'Block',
 }

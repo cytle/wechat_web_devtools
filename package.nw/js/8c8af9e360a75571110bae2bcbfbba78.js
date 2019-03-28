@@ -1,101 +1,101 @@
-'use strict';!function(require,directRequire){const a=require('./common/locales/index.js'),b=`// {{page}}.js
+;!function(require, directRequire){;"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const locales=require('./common/locales/index.js');exports.pageJS=`// {{page}}.js
 Page({
 
 \t/**
-\t * ${a.config.PAGE_DATA}
+\t * ${locales.config.PAGE_DATA}
 \t */
 \tdata: {
 
 \t},
 
 \t/**
-\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONLOAD}
+\t * ${locales.config.LIFECYCLE_FUNCTION}--${locales.config.PAGE_ONLOAD}
 \t */
 \tonLoad: function (options) {
 
 \t},
 
 \t/**
-\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONREADY}
+\t * ${locales.config.LIFECYCLE_FUNCTION}--${locales.config.PAGE_ONREADY}
 \t */
 \tonReady: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONSHOW}
+\t * ${locales.config.LIFECYCLE_FUNCTION}--${locales.config.PAGE_ONSHOW}
 \t */
 \tonShow: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONHIDE}
+\t * ${locales.config.LIFECYCLE_FUNCTION}--${locales.config.PAGE_ONHIDE}
 \t */
 \tonHide: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.LIFECYCLE_FUNCTION}--${a.config.PAGE_ONUNLOAD}
+\t * ${locales.config.LIFECYCLE_FUNCTION}--${locales.config.PAGE_ONUNLOAD}
 \t */
 \tonUnload: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.PAGE_EVENT_HANDLER_FUNCTION}--${a.config.PAGE_ONPULLDOWNREFRESH}
+\t * ${locales.config.PAGE_EVENT_HANDLER_FUNCTION}--${locales.config.PAGE_ONPULLDOWNREFRESH}
 \t */
 \tonPullDownRefresh: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.PAGE_ONREACHBOTTOM}
+\t * ${locales.config.PAGE_ONREACHBOTTOM}
 \t */
 \tonReachBottom: function () {
 
 \t},
 
 \t/**
-\t * ${a.config.PAGE_ONSHAREAPPMESSAGE}
+\t * ${locales.config.PAGE_ONSHAREAPPMESSAGE}
 \t */
 \tonShareAppMessage: function () {
 
 \t}
-})`,c=`<!--{{page}}.wxml-->
+})`,exports.pageWXSS="/* {{page}}.wxss */",exports.pageWXML=`<!--{{page}}.wxml-->
 <text>{{page}}.wxml</text>
-`,d=`{
+`,exports.pageJSON=`{
   "usingComponents": {}
-}`,e=`// {{component}}.js
+}`,exports.componentJS=`// {{component}}.js
 Component({
 \t/**
-\t * ${a.config.COMPONENT_PROPERTIES}
+\t * ${locales.config.COMPONENT_PROPERTIES}
 \t */
 \tproperties: {
 
 \t},
 
 \t/**
-\t * ${a.config.COMPONENT_DATA}
+\t * ${locales.config.COMPONENT_DATA}
 \t */
 \tdata: {
 
 \t},
 
 \t/**
-\t * ${a.config.COMPONENT_METHODS}
+\t * ${locales.config.COMPONENT_METHODS}
 \t */
 \tmethods: {
 
 \t}
 })
-`,f=`{
+`,exports.componentJSON=`{
 \t"component": true,
 \t"usingComponents": {}
-}`,g=`<!--{{component}}.wxml-->
+}`,exports.componentWXML=`<!--{{component}}.wxml-->
 <text>{{component}}.wxml</text>
-`,h=`// 云函数入口文件
+`,exports.componentWXSS="/* {{component}}.wxss */",exports.tcbIndexJS=`// 云函数入口文件
 const cloud = require('wx-server-sdk')
 
 cloud.init()
@@ -110,7 +110,7 @@ exports.main = async (event, context) => {
 \t\tappid: wxContext.APPID,
 \t\tunionid: wxContext.UNIONID,
 \t}
-}`,i=`{
+}`,exports.tcbCloudFunctionPackageJSON=`{
 \t"name": "{{name}}",
 \t"version": "1.0.0",
 \t"description": "",
@@ -123,4 +123,11 @@ exports.main = async (event, context) => {
 \t"dependencies": {
 \t\t"wx-server-sdk": "latest"
 \t}
-}`;module.exports={pageJS:b,pageJSON:d,pageWXML:c,pageWXSS:'/* {{page}}.wxss */',componentJS:e,componentJSON:f,componentWXML:g,componentWXSS:'/* {{component}}.wxss */',tcbIndexJS:h,tcbCloudFunctionPackageJSON:i}}(require('lazyload'),require);
+}`,exports.siteMap=`{
+\t"desc": "关于本文件的更多信息，请参考文档 https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html",
+\t"rules": [{
+\t"action": "allow",
+\t"page": "*"
+\t}]
+}`;
+;}(require("lazyload"), require);

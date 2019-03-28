@@ -12,8 +12,8 @@ module.exports = function(dataIn, width, height, options) {
       return new Int16Array(buffer)[0] !== 256;
     })();
     // If no need to convert to grayscale and alpha is present/absent in both, take a fast route
-     if (options.bitDepth === 8 || (options.bitDepth === 16 && bigEndian)){
-         return dataIn;
+    if (options.bitDepth === 8 || (options.bitDepth === 16 && bigEndian)) {
+      return dataIn;
     }
   }
 
@@ -22,7 +22,9 @@ module.exports = function(dataIn, width, height, options) {
 
   var maxValue = 255;
   var inBpp = constants.COLORTYPE_TO_BPP_MAP[options.inputColorType];
-  if (inBpp == 4 && !options.inputHasAlpha) inBpp = 3;
+  if (inBpp === 4 && !options.inputHasAlpha) {
+    inBpp = 3;
+  }
   var outBpp = constants.COLORTYPE_TO_BPP_MAP[options.colorType];
   if (options.bitDepth === 16) {
     maxValue = 65535;
@@ -44,19 +46,22 @@ module.exports = function(dataIn, width, height, options) {
     bgColor.blue = maxValue;
   }
 
-  function getRGBA(data, inIndex) {
-    var red, green, blue, alpha = maxValue;
+  function getRGBA() {
+    var red;
+    var green;
+    var blue;
+    var alpha = maxValue;
     switch (options.inputColorType) {
       case constants.COLORTYPE_COLOR_ALPHA:
         alpha = data[inIndex + 3];
         red = data[inIndex];
-        green = data[inIndex+1];
-        blue = data[inIndex+2];
+        green = data[inIndex + 1];
+        blue = data[inIndex + 2];
         break;
       case constants.COLORTYPE_COLOR:
         red = data[inIndex];
-        green = data[inIndex+1];
-        blue = data[inIndex+2];
+        green = data[inIndex + 1];
+        blue = data[inIndex + 2];
         break;
       case constants.COLORTYPE_ALPHA:
         alpha = data[inIndex + 1];
@@ -81,7 +86,7 @@ module.exports = function(dataIn, width, height, options) {
         blue = Math.min(Math.max(Math.round((1 - alpha) * bgColor.blue + alpha * blue), 0), maxValue);
       }
     }
-    return {red: red, green: green, blue: blue, alpha: alpha};
+    return { red: red, green: green, blue: blue, alpha: alpha };
   }
 
   for (var y = 0; y < height; y++) {
@@ -98,7 +103,8 @@ module.exports = function(dataIn, width, height, options) {
             if (outHasAlpha) {
               outData[outIndex + 3] = rgba.alpha;
             }
-          } else {
+          }
+          else {
             outData.writeUInt16BE(rgba.red, outIndex);
             outData.writeUInt16BE(rgba.green, outIndex + 2);
             outData.writeUInt16BE(rgba.blue, outIndex + 4);
@@ -116,13 +122,16 @@ module.exports = function(dataIn, width, height, options) {
             if (outHasAlpha) {
               outData[outIndex + 1] = rgba.alpha;
             }
-          } else {
+          }
+          else {
             outData.writeUInt16BE(grayscale, outIndex);
             if (outHasAlpha) {
               outData.writeUInt16BE(rgba.alpha, outIndex + 2);
             }
           }
           break;
+        default:
+          throw new Error('unrecognised color Type ' + options.colorType);
       }
 
       inIndex += inBpp;

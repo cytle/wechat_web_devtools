@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/through2.png?downloads&downloadRank)](https://nodei.co/npm/through2/)
 
-**A tiny wrapper around Node streams.Transform (Streams2) to avoid explicit subclassing noise**
+**A tiny wrapper around Node streams.Transform (Streams2/3) to avoid explicit subclassing noise**
 
 Inspired by [Dominic Tarr](https://github.com/dominictarr)'s [through](https://github.com/dominictarr/through) in that it's so much easier to make a stream out of a function than it is to set up the prototype chain properly: `through(function (chunk) { ... })`.
 
@@ -20,9 +20,7 @@ fs.createReadStream('ex.txt')
     callback()
    }))
   .pipe(fs.createWriteStream('out.txt'))
-  .on('finish', function () {
-    doSomethingSpecial()
-  })
+  .on('finish', () => doSomethingSpecial())
 ```
 
 Or object streams:
@@ -42,10 +40,10 @@ fs.createReadStream('data.csv')
 
     callback()
   }))
-  .on('data', function (data) {
+  .on('data', (data) => {
     all.push(data)
   })
-  .on('end', function () {
+  .on('end', () => {
     doSomethingSpecial(all)
   })
 ```
@@ -67,7 +65,7 @@ The `options` argument is first, unlike standard convention, because if I'm pass
 ```js
 fs.createReadStream('/tmp/important.dat')
   .pipe(through2({ objectMode: true, allowHalfOpen: false },
-    function (chunk, enc, cb) {
+    (chunk, enc, cb) => {
       cb(null, 'wut?') // note we can use the second argument on the callback
                        // to provide data as an alternative to this.push('wut?')
     }
@@ -92,7 +90,7 @@ The optional `flushFunction` is provided as the last argument (2nd or 3rd, depen
 ```js
 fs.createReadStream('/tmp/important.dat')
   .pipe(through2(
-    function (chunk, enc, cb) { cb(null, chunk) }, // transform is a noop
+    (chunk, enc, cb) => cb(null, chunk), // transform is a noop
     function (cb) { // flush function
       this.push('tacking on an extra buffer to the end');
       cb();
@@ -133,4 +131,4 @@ var converter = FToC({objectMode: true})
 
 ## License
 
-**through2** is Copyright (c) 2013 Rod Vagg [@rvagg](https://twitter.com/rvagg) and licensed under the MIT license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
+**through2** is Copyright (c) Rod Vagg [@rvagg](https://twitter.com/rvagg) and additional contributors and licensed under the MIT license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.

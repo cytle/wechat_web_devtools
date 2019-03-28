@@ -77,15 +77,26 @@ DecompressZip.prototype.extract = function (options) {
     var self = this;
 
     options = options || {};
-    options.path = options.path || '.';
+    options.path = options.path || process.cwd();
     options.filter = options.filter || null;
     options.follow = !!options.follow;
     options.strip = +options.strip || 0;
+    options.restrict = options.restrict !== false;
+
 
     this.getFiles()
     .then(function (files) {
         var copies = [];
-
+        if (options.restrict) {
+          files = files.map(function (file) {
+            var destination = path.join(options.path, file.path);
+            // The destination path must not be outside options.path
+            if (destination.indexOf(options.path) !== 0) {
+              throw new Error('You cannot extract a file outside of the target path');
+            }
+            return file;
+          });
+        }
         if (options.filter) {
             files = files.filter(options.filter);
         }

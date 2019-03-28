@@ -1,4 +1,4 @@
-var trim = require('trim')
+var trim = require('string.prototype.trim')
   , forEach = require('for-each')
   , isArray = function(arg) {
       return Object.prototype.toString.call(arg) === '[object Array]';

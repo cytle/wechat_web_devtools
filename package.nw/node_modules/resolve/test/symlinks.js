@@ -15,10 +15,10 @@ try {
 }
 
 test('symlink', function (t) {
-    t.plan(1);
+    t.plan(2);
 
     resolve('foo', { basedir: symlinkDir, preserveSymlinks: false }, function (err, res, pkg) {
-        if (err) t.fail(err);
+        t.error(err);
         t.equal(res, path.join(__dirname, 'resolver', 'symlinked', '_', 'node_modules', 'foo.js'));
     });
 });

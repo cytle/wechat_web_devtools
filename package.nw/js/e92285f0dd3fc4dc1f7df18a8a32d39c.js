@@ -35,7 +35,7 @@
     script.onerror = scriptLoaded.bind(script)
     document.head.appendChild(script)
   }
-})()`};module.exports=async function(a){if(a.isOnline)return await getOnlineMainPackage(a);const b=await contentWatcher(a),c=b.getAllJSFiles(),d=await checkAppConfig(a),e={},f=[],g=[],h=[],i=[],j=[],k=[];if(d.mainPlugins)for(const a in d.mainPlugins){const{provider:b,version:c}=d.mainPlugins[a];'dev'===c?g.push(encodeURI(`__devplugin__/${b}/${c}/appservice.js`)):g.push(encodeURI(`__onlineplugin__/${b}/${c}/appservice.js`))}const l=await getWxAppCode(a);k.push(l);const m=await checkCustomComponent.getFileList(a,d);m.forEach((a)=>{if(!e[a]){e[a]=!0;const b=encodeURI(a);i.push(`${b}.js`),k.push(`
+})()`};module.exports=async function(a){if(a.isOnline)return await getOnlineMainPackage(a);const b=await contentWatcher(a),c=b.getAllJSFiles(),d=await checkAppConfig(a),e={},f=[],g=[],h=[],i=[],j=[],k=[];if(d.mainPlugins)for(const a in d.mainPlugins){const{provider:b,version:c}=d.mainPlugins[a];'dev'===c?g.push(encodeURI(`__devplugin__/${b}/${c}/appservice.js`)):g.push(encodeURI(`__onlineplugin__/${b}/${c}/appservice.js`))}const l=await getWxAppCode(a);k.push(l);const m=await checkCustomComponent.getFileList(a,d);d.functionalPages&&(m.push('__wx__/functional-page'),c.forEach((a,b)=>{a.startsWith('functional-pages/')&&(c[b]=`__wx__/${a}`)})),m.forEach((a)=>{if(!e[a]){e[a]=!0;const b=encodeURI(a);i.push(`${b}.js`),k.push(`
       var decodePathName = decodeURI("${b}")
       __wxRoute = decodePathName
       __wxRouteBegin = true
