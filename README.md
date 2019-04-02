@@ -70,7 +70,7 @@ cd wechat_web_devtools
 ``` bash
 docker run -it \
     -v $(PWD):/projects \
-    $(REPO):$(TAG) \
+    canyoutle/wxdt \
     sh -c "cli -l && cli -p /projects/your-project"
 ```
 
