@@ -24,6 +24,7 @@
     SETTINGS: 'reduxPersist:settings',
     QCLOUD_FILEINFO: 'qcloud:fileinfo',
     FORCE_UPDATE_VERSION: 'forceUpdateVersion',
-    TCB_APPID: 'tcb_'
+    TCB_APPID: 'tcb_',
+    VERSION_UPDATE_HISTORY: 'versionUpdateHistory'
   };
 })();

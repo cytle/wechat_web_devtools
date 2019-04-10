@@ -50,7 +50,11 @@ const initLocale = () => {
   } catch (e) {
     settings = {}
   }
-  sourceLocale = _.get(settings, 'appearance.locale') || systemLocale
+  sourceLocale =
+    _.get(settings, 'general.locale') ||
+    // 兼容 devtools/main#594 之前的情况
+    _.get(settings, 'appearance.locale') ||
+    systemLocale
   locale = toSupportedLocale(sourceLocale)
   setMoment()
 }
@@ -106,7 +110,10 @@ const localeExport = {
   onChangeLocale,
   mixin,
   get config() {
-    return require(`./${locale}/index.js`)
+    if (locale === 'en') {
+      return require('./en/index.js')
+    }
+    return require('./zh/index.js')
   },
   get supportedLanguages() {
     return [

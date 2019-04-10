@@ -1,5 +1,7 @@
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 (function () {
   // 这里不再使用 localStorage 而是存储文件，避免 nw 升级后数据丢失
   var fs = require('fs');
@@ -716,7 +718,39 @@
         this.updateProject(newProjectId, this.projectList[oldProjectid]);
         this.removeProject(oldProjectid);
       } catch (e) {}
-    }
+    },
 
+    getUpdateHistory: function getUpdateHistory() {
+      if (!this._versionUpdateHistory) {
+        try {
+          this._versionUpdateHistory = JSON.parse(getItem(config.VERSION_UPDATE_HISTORY)) || [];
+          return this._versionUpdateHistory;
+        } catch (e) {}
+        this._versionUpdateHistory = [];
+      }
+      return this._versionUpdateHistory;
+    },
+    setUpdateHistory: function setUpdateHistory(history) {
+      if (history === undefined) {
+        this._versionUpdateHistory = [];
+      }
+
+      var type = Object.prototype.toString.call(history);
+      if (type === '[object Array]') {
+        this._versionUpdateHistory = [].concat(_toConsumableArray(history));
+      }
+
+      if (type === '[object String]') {
+        if (!this._versionUpdateHistory) {
+          this.getUpdateHistory();
+        }
+
+        if (this._versionUpdateHistory.indexOf(history) === -1) {
+          this._versionUpdateHistory.push(history);
+        }
+      }
+
+      setItem(config.VERSION_UPDATE_HISTORY, JSON.stringify(this._versionUpdateHistory));
+    }
   };
 })();

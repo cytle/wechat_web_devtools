@@ -1,0 +1,22 @@
+{
+  "version": "1.0.51",
+  "name": "云开发控制台",
+  "manifest_version": "0.0.1",
+  "main": "./index.html",
+  "origin": "https://tcb.cloud.tencent.com",
+  "permission": {
+    "newwindow": [
+      "https://tcb.cloud.tencent.com",
+      "https://developers.weixin.qq.com"
+    ],
+    "download": [
+      "<all_urls>"
+    ],
+    "xmlhttprequest": [
+      "<all_urls>"
+    ],
+    "image": [
+      "<all_urls>"
+    ]
+  }
+}
