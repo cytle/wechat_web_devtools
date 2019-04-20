@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Settings/Tab Icon/Edit</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="3.061617e-15%" id="linearGradient-1">
+            <stop stop-color="#F7F7F7" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-3" x="1" y="1" width="22" height="22" rx="2"></rect>
+        <filter x="-8.0%" y="-5.7%" width="115.9%" height="115.9%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-5.7%" y="-3.4%" width="111.4%" height="111.4%" filterUnits="objectBoundingBox" id="filter-6">
+            <feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.705516582   0 0 0 0 0.705516582   0 0 0 0 0.705516582  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <text id="text-7" font-family=".AppleSystemUIFont" font-size="7" font-weight="normal" fill="#19AB70">
+            <tspan x="9" y="10">&lt;view</tspan>
+        </text>
+        <filter x="-1.2%" y="-2.8%" width="102.4%" height="111.1%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.896484375 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-9" font-family=".AppleSystemUIFont" font-size="7" font-weight="normal" fill="#19AB70">
+            <tspan x="14" y="18">&lt;text</tspan>
+        </text>
+        <filter x="-1.2%" y="-2.8%" width="102.4%" height="111.1%" filterUnits="objectBoundingBox" id="filter-10">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.896484375 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-11" font-family=".AppleSystemUIFont" font-size="7" font-weight="normal" fill="#BABABA">
+            <tspan x="3" y="10">1</tspan>
+        </text>
+        <filter x="-5.0%" y="-2.8%" width="110.0%" height="111.1%" filterUnits="objectBoundingBox" id="filter-12">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.896484375 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-13" font-family=".AppleSystemUIFont" font-size="7" font-weight="normal" fill="#BABABA">
+            <tspan x="3" y="18">2</tspan>
+        </text>
+        <filter x="-5.0%" y="-2.8%" width="110.0%" height="111.1%" filterUnits="objectBoundingBox" id="filter-14">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.896484375 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Settings/Tab-Icon/Edit">
+            <rect id="Bound" x="0" y="0" width="24" height="24"></rect>
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill-opacity="0.05" fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-3"></use>
+            </g>
+            <g id="&lt;view" mask="url(#mask-4)" fill-opacity="1" fill="#19AB70">
+                <use filter="url(#filter-8)" xlink:href="#text-7"></use>
+                <use xlink:href="#text-7"></use>
+            </g>
+            <g id="&lt;text" mask="url(#mask-4)" fill-opacity="1" fill="#19AB70">
+                <use filter="url(#filter-10)" xlink:href="#text-9"></use>
+                <use xlink:href="#text-9"></use>
+            </g>
+            <g id="1" mask="url(#mask-4)" fill-opacity="1" fill="#BABABA">
+                <use filter="url(#filter-12)" xlink:href="#text-11"></use>
+                <use xlink:href="#text-11"></use>
+            </g>
+            <g id="2" mask="url(#mask-4)" fill-opacity="1" fill="#BABABA">
+                <use filter="url(#filter-14)" xlink:href="#text-13"></use>
+                <use xlink:href="#text-13"></use>
+            </g>
+        </g>
+    </g>
+</svg>

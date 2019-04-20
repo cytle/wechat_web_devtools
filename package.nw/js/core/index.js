@@ -295,6 +295,4 @@ if (!global.isDevWindow && !global.online) {
     })
 } else {
   init()
-  const idepluginUpdater = require('../js/8a1cb9f18551c9fced04d3b87ddfa687.js')
-  idepluginUpdater.loop()
 }

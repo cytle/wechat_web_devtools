@@ -1,0 +1,2 @@
+;!function(require, directRequire){;"use strict";const A=require('./0634ee2ebd3e560d9d4804ecc960160f.js'),emitReloadEvent=()=>({type:A.DEVTOOLS_EMIT_RELOAD}),emitReadyEvent=()=>({type:A.DEVTOOLS_EMIT_READY}),restart=()=>({type:A.DEVTOOLS_RESTART}),setWebview=(a)=>({type:A.DEVTOOLS_SET_WEBVIEW,data:a}),setDebugger=(a)=>{return{type:A.DEVTOOLS_SET_DEBUGGER,data:a}};module.exports={setWebview,emitReadyEvent,emitReloadEvent,setDebugger,restart};
+;}(require("lazyload"), require);

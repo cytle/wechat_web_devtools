@@ -1,1 +1,2 @@
-'use strict';!function(require,directRequire){const a=require('events').EventEmitter,b=new a;module.exports={hub:b,EVENT:{STATUS_DISPLAY:'STATUS_DISPLAY'}}}(require('lazyload'),require);
+;!function(require, directRequire){;'use strict';const EventEmitter=require('events').EventEmitter,MessageHub=new EventEmitter;module.exports={hub:MessageHub,EVENT:{STATUS_DISPLAY:'STATUS_DISPLAY'}};
+;}(require("lazyload"), require);

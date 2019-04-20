@@ -64,9 +64,12 @@ function getWinSystemProxySetting(callback) {
 
 function getOsxSystemProxySetting(callback) {
   return new Promise((resolve, reject) => {
-    let shFile = global.appConfig.isDev
-      ? path.join(__dirname, 'getosxproxysetting.sh')
-      : path.join(__dirname, './common/proxy/getosxproxysetting.sh')
+    // dist 所在目录
+    const rootPath = global.appConfig.isDev
+                      ? path.resolve(__dirname, '../../..')     // __dirname == dist/js/common/proxy
+                      : path.resolve(__dirname, '../')          // __dirname == dist/js  // __dirname == dist/core.wxvpkg
+
+    const shFile = path.join(rootPath, './js/common/proxy/getosxproxysetting.sh')
 
     exec(`sh "${shFile}"`, {}, (error, stdout, stderr) => {
       if (!error) {

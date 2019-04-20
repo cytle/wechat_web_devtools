@@ -46,72 +46,71 @@ wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x6
 wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
 
 
-if [ -z "$wechat_v" ]; then
-  fail "下载版本为空"
-  exit 1
-fi
+# if [ -z "$wechat_v" ]; then
+#   fail "下载版本为空"
+#   exit 1
+# fi
 
-echo "最新wechat_v: $wechat_v"
+# echo "最新wechat_v: $wechat_v"
 
-if [ "$wechat_v" = "$cur_wechat_v" ]; then
-  success "当前已经是最新版本"
-  exit 0
-fi
+# if [ "$wechat_v" = "$cur_wechat_v" ]; then
+#   success "当前已经是最新版本"
+#   exit 0
+# fi
 
-# 下载windows版微信开发者工具
-start_step '下载微信web开发者工具'
+# # 下载windows版微信开发者工具
+# start_step '下载微信web开发者工具'
 
-wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
+# wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
 
-mkdir -p $tmp_dir
+# mkdir -p $tmp_dir
 
-# 下载
-if [ ! -f "$wcwd_file" ]; then
-  echo "================================="
-  echo "[注意]需要下载微信开发者工具.请耐心等待下载完成"
-  echo $wcwd_download
-  echo "================================="
-  wget "$wcwd_download" -O $wcwd_file
-fi
+# # 下载
+# if [ ! -f "$wcwd_file" ]; then
+#   echo "================================="
+#   echo "[注意]需要下载微信开发者工具.请耐心等待下载完成"
+#   echo $wcwd_download
+#   echo "================================="
+#   wget "$wcwd_download" -O $wcwd_file
+# fi
 
-# 微信web开发者工具
-start_step '解压微信web开发者工具'
+# # 微信web开发者工具
+# start_step '解压微信web开发者工具'
 
-wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
-wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信web开发者工具/package.nw"
+# wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
+# wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信web开发者工具/package.nw"
 
-7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
+# 7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
 
-# 拷贝微信web开发者工具
-start_step '拷贝微信web开发者工具'
+# # 拷贝微信web开发者工具
+# start_step '拷贝微信web开发者工具'
 
-wcwd_package_dir="$wcwd_file_target/$wcwd_file_package_nw_dir"
+# wcwd_package_dir="$wcwd_file_target/$wcwd_file_package_nw_dir"
 
-rm -rf "$root_dir/package.nw" # 删除旧文件夹
-success '删除旧文件夹'
-cp -r "$wcwd_package_dir" "$root_dir" # 拷贝新的package.nw
-success '拷贝新的package.nw'
+# rm -rf "$root_dir/package.nw" # 删除旧文件夹
+# success '删除旧文件夹'
+# cp -r "$wcwd_package_dir" "$root_dir" # 拷贝新的package.nw
+# success '拷贝新的package.nw'
 
-# cli相关修改
-start_step 'fix: cli相关修改'
-bash "$root_dir/bin/fix_cli.sh"
+# # cli相关修改
+# start_step 'fix: cli相关修改'
+# bash "$root_dir/bin/fix_cli.sh"
 
-# 修改项目名字, 修复标题栏乱码问题
-start_step 'fix: 修改项目名字, 修复标题栏乱码问题'
-bash "$root_dir/bin/fix_package_name.sh"
+# # 修改项目名字, 修复标题栏乱码问题
+# start_step 'fix: 修改项目名字, 修复标题栏乱码问题'
+# bash "$root_dir/bin/fix_package_name.sh"
 
-# 重新编译node-sync-ipc
-start_step 'fix: 重新编译node-sync-ipc'
-bash "$root_dir/bin/fix_node_sync_ipc.sh"
+# # 重新编译node-sync-ipc
+# start_step 'fix: 重新编译node-sync-ipc'
+# bash "$root_dir/bin/fix_node_sync_ipc.sh"
 
 start_step 'doc: 更新文档'
 
 sed -ri \
-    -e "s#\(wechat-devtools v\)[0-9][0-9.]*#\1$wechat_v#g" \
-    -e "s#\(wechat_devtools-\)[0-9][0-9.]*#\1$wechat_v#g" \
+    -e "s#(wx_dev_tools)( v|-)[0-9][0-9.]*#\1\2$wechat_v#g" \
     "$root_dir/README.md"
 
-echo "- $(date +%Y/%m/%d) 更新:微信小程序升级到$wechat_v" >> "$root_dir/CHANGELOG.md"
+# echo "- $(date +%Y/%m/%d) 更新:微信小程序升级到$wechat_v" >> "$root_dir/CHANGELOG.md"
 
 echo $wechat_v > $root_dir/wechat_v
 echo "更新版本为: $(cat $root_dir/wechat_v)"

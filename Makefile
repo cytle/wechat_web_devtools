@@ -36,14 +36,26 @@ shell:
 	docker exec -it wxdt-test bash
 
 
+build-wine: docker/Dockerfile-wine
+	cd docker; \
+	docker build -f Dockerfile-wine -t $(REPO):wine .
+
 build-update: docker/Dockerfile-update
 	cd docker; \
 	docker build -f Dockerfile-update -t $(REPO):update .
 
 update:
-	mkdir -p /tmp/wxdt_xsp; \
 	docker run \
 		-v ${PWD}:/wxdt \
 		-v wxdt-update:/tmp \
 		$(REPO):update \
 		/wxdt/bin/update_package_nw.sh
+
+test:
+	docker run \
+		-v ${PWD}:/wxdt \
+		-v ${WEAPPS}:/projects \
+		-v wxdt-update:/tmp \
+		-p 6080:80 \
+		--name wxdt-test \
+		$(REPO):wine

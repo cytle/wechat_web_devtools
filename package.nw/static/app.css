@@ -1315,9 +1315,42 @@ body {
 .ui-icon-shell {
   display: inline-block;
   vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url("svg/shell.svg") no-repeat 50% 50%;
+          mask: url("svg/shell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-arrow-right-in-circle {
+  display: inline-block;
+  vertical-align: middle;
   width: 22px;
-  height: 26px;
-  background: url("svg/shell.svg") no-repeat 50% 50%;
+  height: 22px;
+  -webkit-mask: url("svg/arrow-right-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-right-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-stop-in-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  -webkit-mask: url("svg/stop-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/stop-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-playing {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 9px;
+  background: url("svg/playing.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-rotation {
@@ -1738,8 +1771,11 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/theme.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/theme.svg") no-repeat 50% 50%;
+          mask: url("svg/theme.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-go-ahead {
   display: inline-block;
@@ -1806,8 +1842,11 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/hot-key.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/hot-key.svg") no-repeat 50% 50%;
+          mask: url("svg/hot-key.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-wetest {
   display: inline-block;
@@ -1877,16 +1916,33 @@ body {
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/globe.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/globe.svg") no-repeat 50% 50%;
+          mask: url("svg/globe.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-general {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url("svg/general.svg") no-repeat 50% 50%;
+          mask: url("svg/general.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-edit {
   display: inline-block;
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/edit.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/edit.svg") no-repeat 50% 50%;
+          mask: url("svg/edit.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-notification {
   display: inline-block;
@@ -7365,6 +7421,9 @@ body.dark .spotlight-result-item:hover {
   max-height: 300px;
   overflow-y: auto;
 }
+.simulator-ext-bar {
+  background-color: #edece8;
+}
 @media screen and (min-width: 1024px) {
   .weui-dialog {
     width: 80%;
@@ -7484,6 +7543,9 @@ body.dark .spotlight-result-item:hover {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+body.dark .simulator-ext-bar {
+  background-color: #232323;
 }
 .workbench {
   display: flex;
@@ -9336,6 +9398,38 @@ body.dark .ide-plugin-tag {
 }
 body.dark .ide-plugin-name {
   color: #d4d4d4;
+}
+.music-player {
+  display: flex;
+  padding: 20px 15px;
+  align-items: center;
+}
+.music-player-thumb img {
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+.music-player-content {
+  flex: 1;
+  min-width: 0;
+}
+.music-player-title {
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.music-player-desc {
+  font-size: 10px;
+  color: #888888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.dark .music-player-icon-area [class^="ui-icon"] {
+  background-color: #8c8c8c;
 }
 
 /*# sourceMappingURL=app.css.map */

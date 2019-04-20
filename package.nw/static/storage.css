@@ -988,9 +988,42 @@
 .ui-icon-shell {
   display: inline-block;
   vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url("svg/shell.svg") no-repeat 50% 50%;
+          mask: url("svg/shell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-arrow-right-in-circle {
+  display: inline-block;
+  vertical-align: middle;
   width: 22px;
-  height: 26px;
-  background: url("svg/shell.svg") no-repeat 50% 50%;
+  height: 22px;
+  -webkit-mask: url("svg/arrow-right-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/arrow-right-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-stop-in-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  -webkit-mask: url("svg/stop-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/stop-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-playing {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 9px;
+  background: url("svg/playing.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-rotation {
@@ -1411,8 +1444,11 @@
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/theme.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/theme.svg") no-repeat 50% 50%;
+          mask: url("svg/theme.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-go-ahead {
   display: inline-block;
@@ -1479,8 +1515,11 @@
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/hot-key.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/hot-key.svg") no-repeat 50% 50%;
+          mask: url("svg/hot-key.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-wetest {
   display: inline-block;
@@ -1550,16 +1589,33 @@
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/globe.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/globe.svg") no-repeat 50% 50%;
+          mask: url("svg/globe.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-general {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url("svg/general.svg") no-repeat 50% 50%;
+          mask: url("svg/general.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-edit {
   display: inline-block;
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background: url("svg/edit.svg") no-repeat 50% 50%;
-  background-size: cover;
+  -webkit-mask: url("svg/edit.svg") no-repeat 50% 50%;
+          mask: url("svg/edit.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
 }
 .ui-icon-notification {
   display: inline-block;
