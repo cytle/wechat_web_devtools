@@ -193,6 +193,10 @@ sudo fc-list|grep Consol
    **开发者工具配置文件, 所有工程和登录信息均会消失**
 3. 删除项目文件夹
 
+### Arch Linux
+
+Arch Linux 及其衍生发行版，如 Manjaro，可以通过 AUR 进行安装：https://aur.archlinux.org/packages/wechat-devtool/
+
 ## 截图
 
 ![截图1](https://github.com/cytle/wechat_web_devtools/raw/fb84550d2d9b9f40f7a80b896066e1933892eff9/images/截图1.png)
