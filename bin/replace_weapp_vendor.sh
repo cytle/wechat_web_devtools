@@ -49,6 +49,11 @@ fi
 
 if [ -d "$dev_tools_config_dir" ]; then
   echo "cp -rf $root_dir/bin/WeappVendor/* $dev_tools_config_dir/WeappVendor/"
+  
+  if [ ! -d "$root_dir/bin/WeappVendor" ]; then #in case directory doesn't exist
+    mkdir $root_dir/bin/WeappVendor
+  fi
+  
   cp -rf $root_dir/bin/WeappVendor/* "$dev_tools_config_dir/WeappVendor/"
   mkdir -p "$dev_tools_config_dir/WeappVendor/s"
   echo cp -rf $vendor_dir/wcc.exe $vendor_dir/wcsc.exe "$dev_tools_config_dir/WeappVendor/s/"
