@@ -32,5 +32,5 @@ elif [ $want = "uninstall" ]; then
   exec "$root_dir/bin/uninstall.sh"
   echo "卸载完成,请在退出开发者工具后手动删除此项目目录"
 else
-  exec ./nw -load-extension=./package.nw/js/ideplugin $@
+  APPDATA="$root_dir" exec ./nw -load-extension=./package.nw/js/ideplugin $@
 fi

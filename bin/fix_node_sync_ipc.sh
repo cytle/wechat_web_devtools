@@ -10,5 +10,5 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 cd $root_dir/package.nw/node_modules/node-sync-ipc
 npm install
 
-# cd $root_dir/package.nw/node_modules/node-sync-ipc-nwjs
-# npm run install
+cd $root_dir/package.nw/node_modules/node-sync-ipc-nwjs
+npm install
