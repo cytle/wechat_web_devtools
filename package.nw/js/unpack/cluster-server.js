@@ -1,0 +1,1 @@
+'use strict';require('../../js/unpack/hackrequire/index.js');const CORE_PATH='../../core.wxvpkg',launcher=require(CORE_PATH + '/0c1540070df20b02b67fb8a0a39603ff.js');launcher();

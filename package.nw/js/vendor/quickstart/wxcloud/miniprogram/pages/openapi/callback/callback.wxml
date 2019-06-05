@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="list">
+    <button open-type="contact" bindcontact="onCustomerServiceButtonClick">
+      进入客服消息
+    </button>
+  </view>
+
+  <view class="guide">
+    <text class="headline">测试须知</text>
+    <text class="p">1. 需在项目根目录创建消息推送配置文件 temp-cloud-callback-config.json</text>
+    <text class="p">2. 填写消息推送配置</text>
+    <text class="p">3. 右键配置文件选择上传配置</text>
+    <text class="p">4. 确认接收消息的云函数已上传</text>
+    <text class="p">5. 在手机上测试</text>
+  </view>
+
+  <view class="guide">
+    <text class="headline">示例客服消息配置</text>
+    <image class="code-image" src="../../../images/code-cloud-callback-config.png" mode="aspectFit"></image>
+  </view>
+</view>

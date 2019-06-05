@@ -93,9 +93,9 @@ void test_config_write__delete_value_at_specific_level(void)
 
 	cl_git_pass(git_config_new(&cfg));
 	cl_git_pass(git_config_add_file_ondisk(cfg, "config9",
-		GIT_CONFIG_LEVEL_LOCAL, 0));
+		GIT_CONFIG_LEVEL_LOCAL, NULL, 0));
 	cl_git_pass(git_config_add_file_ondisk(cfg, "config15",
-		GIT_CONFIG_LEVEL_GLOBAL, 0));
+		GIT_CONFIG_LEVEL_GLOBAL, NULL, 0));
 
 	cl_git_pass(git_config_open_level(&cfg_specific, cfg, GIT_CONFIG_LEVEL_GLOBAL));
 
@@ -368,9 +368,9 @@ void test_config_write__add_value_at_specific_level(void)
 	// open config15 as global level config file
 	cl_git_pass(git_config_new(&cfg));
 	cl_git_pass(git_config_add_file_ondisk(cfg, "config9",
-		GIT_CONFIG_LEVEL_LOCAL, 0));
+		GIT_CONFIG_LEVEL_LOCAL, NULL, 0));
 	cl_git_pass(git_config_add_file_ondisk(cfg, "config15",
-		GIT_CONFIG_LEVEL_GLOBAL, 0));
+		GIT_CONFIG_LEVEL_GLOBAL, NULL, 0));
 
 	cl_git_pass(git_config_open_level(&cfg_specific, cfg, GIT_CONFIG_LEVEL_GLOBAL));
 
@@ -712,6 +712,29 @@ void test_config_write__repeated(void)
 	cl_git_pass(git_config_set_string(cfg, "sample.prefix.setting2", "someValue2"));
 	cl_git_pass(git_config_set_string(cfg, "sample.prefix.setting3", "someValue3"));
 	cl_git_pass(git_config_set_string(cfg, "sample.prefix.setting4", "someValue4"));
+	git_config_free(cfg);
+
+	cl_git_pass(git_config_open_ondisk(&cfg, filename));
+
+	cl_git_pass(git_futils_readbuffer(&result, filename));
+	cl_assert_equal_s(expected, result.ptr);
+	git_buf_free(&result);
+
+	git_config_free(cfg);
+}
+
+void test_config_write__preserve_case(void)
+{
+	const char *filename = "config-preserve-case";
+	git_config *cfg;
+	git_buf result = GIT_BUF_INIT;
+	const char *expected = "[sOMe]\n" \
+		"\tThInG = foo\n" \
+		"\tOtheR = thing\n";
+
+	cl_git_pass(git_config_open_ondisk(&cfg, filename));
+	cl_git_pass(git_config_set_string(cfg, "sOMe.ThInG", "foo"));
+	cl_git_pass(git_config_set_string(cfg, "SomE.OtheR", "thing"));
 	git_config_free(cfg);
 
 	cl_git_pass(git_config_open_ondisk(&cfg, filename));

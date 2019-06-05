@@ -1,2 +1,0 @@
-;!function(require, directRequire){;"use strict";const locales=require('./common/locales/index.js');module.exports=[{get name(){return locales.config.GUANGZHOU},longitude:113.264435,latitude:23.129163},{get name(){return locales.config.SHENZHEN},longitude:114.06108,latitude:22.52857},{get name(){return locales.config.BEIJING},longitude:116.455345,latitude:39.937378},{get name(){return locales.config.SHANGHAI},longitude:121.500958,latitude:31.237904}];
-;}(require("lazyload"), require);

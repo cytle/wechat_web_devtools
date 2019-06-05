@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const{connect}=require('react-redux'),StatusBar=require('./4389a88e405d1d37f36c16fc0ec96540.js'),mapStateToProps=(a)=>{const b=a.toolbar.deviceInfo||{},c=a.simulator.statusbar&&a.simulator.statusbar.color||'white';return{titleStyle:c,backgroundColor:'transparent',height:b.statusbarHeight,networkType:a.toolbar.network.list[a.toolbar.network.current],iphoneX:'iPhone X'===b.model}},mapDispatchToProps=()=>({});module.exports=connect(mapStateToProps,mapDispatchToProps)(StatusBar);
-;}(require("lazyload"), require);

@@ -1,2 +1,0 @@
-;!function(require, directRequire){;"use strict";module.exports=class{constructor(){this.promiseQueue={},this.taskDone={}}clear(){this.promiseQueue={},this.taskDone={}}checkTaskPromise(a,b){return this.taskDone[a]?void b():void(!this.promiseQueue[a]&&(this.promiseQueue[a]=[]),this.promiseQueue[a].push(b))}onTaskDone(a){this.promiseQueue[a]&&(this.promiseQueue[a].forEach((a)=>{a()}),delete this.promiseQueue[a]),this.taskDone[a]=!0}};
-;}(require("lazyload"), require);

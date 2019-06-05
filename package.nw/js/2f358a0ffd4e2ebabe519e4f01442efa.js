@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const _=require('lodash'),{REHYDRATE}=require('redux-persist/constants'),actions=require('./0634ee2ebd3e560d9d4804ecc960160f.js');function getInitialState(){return{panelShow:!1,closeTs:0}}function git(a=getInitialState(),b={}){switch(b.type){case actions.GIT_TOGGLE_PANEL_SHOW:return Object.assign({},a,{panelShow:b.data.panelShow});case actions.GIT_TOGGLE_PANEL_CLOSE_TS:return Object.assign({},a,{closeTs:b.data.ts});case REHYDRATE:return getInitialState();default:return a;}}module.exports=git;
-;}(require("lazyload"), require);

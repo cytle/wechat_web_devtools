@@ -126,7 +126,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 table {
@@ -160,7 +160,7 @@ body {
   background-color: transparent;
 }
 .ui-selectable {
-  user-select: auto;
+  user-select: text;
 }
 .ui-desc {
   color: #888888;
@@ -984,8 +984,8 @@ body {
 .ui-icon-exit {
   display: inline-block;
   vertical-align: middle;
-  width: 17.33333333px;
-  height: 17.33333333px;
+  width: 17px;
+  height: 17px;
   -webkit-mask: url("svg/exit.svg") no-repeat 50% 50%;
           mask: url("svg/exit.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -1777,12 +1777,42 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-bell {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 14px;
+  -webkit-mask: url("svg/bell.svg") no-repeat 50% 50%;
+          mask: url("svg/bell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-exclamation-in-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/exclamation-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/exclamation-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #fa5151;
+}
 .ui-icon-go-ahead {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 14px;
   background: url("svg/go-ahead.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-cross-in-circle-o {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: url("svg/cross-in-circle-o.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-skip {
@@ -2202,17 +2232,24 @@ body.dark .ui-button-default {
 .ui-notice:not(:last-child) {
   margin-bottom: 20px;
 }
-.ui-notice:hover .ui-notice-content-ft a {
-  visibility: visible;
-}
 .ui-notice-bd {
   padding: 12px 22px;
+  position: relative;
+  z-index: 1;
 }
 .ui-notice-icon {
   margin-right: 22px;
 }
 .ui-notice-content {
   display: flex;
+}
+.ui-notice-label {
+  font-size: 10px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  line-height: 1;
+  padding: 2px 5px;
 }
 .ui-notice-content-bd {
   max-width: 400px;
@@ -2232,7 +2269,6 @@ body.dark .ui-button-default {
 }
 .ui-notice-content-ft a {
   margin-left: 5px;
-  visibility: hidden;
 }
 .ui-notice-content-title {
   max-width: 400px;
@@ -2743,6 +2779,9 @@ body.dark .ui-dialog:before {
 }
 body.dark .ui-dialog-ft {
   box-shadow: inset 0 1px 0 0 #434343;
+}
+.upload-dialog .ui-form-label {
+  width: 6em;
 }
 .ui-miniapp {
   position: relative;

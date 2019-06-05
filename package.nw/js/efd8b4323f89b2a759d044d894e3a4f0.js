@@ -1,1 +1,0 @@
-"use strict";!function(require,directRequire){module.exports={wechat:"wechat"}}(require("lazyload"),require);

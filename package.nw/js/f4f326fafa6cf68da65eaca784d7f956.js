@@ -1,2 +1,0 @@
-;!function(require, directRequire){;"use strict";async function checkIsSupportFacialRecognition(a,b){return{errMsg:`${b.api}:fail No necessary model found`,errCode:10002}}async function startFacialRecognitionVerify(a,b){return{errMsg:`${b.api}:fail not support`,errCode:90109}}async function startFacialRecognitionVerifyAndUploadVideo(a,b){return{errMsg:`${b.api}:fail not support`,errCode:90109}}module.exports={checkIsSupportFacialRecognition,startFacialRecognitionVerify,startFacialRecognitionVerifyAndUploadVideo};
-;}(require("lazyload"), require);

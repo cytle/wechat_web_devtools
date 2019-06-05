@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const Toast=require('./2b040e4313b53c2accd81a26f15a352e.js'),{connect}=require('react-redux'),mapStateToProps=(a)=>{const b=a.simulator.currentWebviewID,c=a.simulator.toastInfo,d=c.show&&b===c.showOnWebviewID,e=a.toolbar.deviceInfo;return{show:d,title:c.title,image:c.image,mask:c.mask,icon:c.icon,deviceScale:a.toolbar.deviceScale,screenWidth:e.screenWidth}},mapDispatchToProps=()=>({});module.exports=connect(mapStateToProps,mapDispatchToProps)(Toast);
-;}(require("lazyload"), require);

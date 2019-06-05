@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const{connect}=require('react-redux'),settingsActions=require('./e98c60a262d8d98e69e574a9d12a21df.js'),AppearanceSetting=require('./8dd5f7782d24d3e5f86bdafb3f3012a1.js'),C=require('./56c390e04c10e91a4aa2a2c19d9a885d.js'),mapStateToProps=(a)=>({isWebDebugger:C.MAIN_WINDOW_TYPE.WEB_DEBUGGER===a.window.mainWindow}),mapDispatchToProps=(a)=>({updateIDESetting(){a(settingsActions.updateIDESetting.apply(this,arguments))}});module.exports=connect(mapStateToProps,mapDispatchToProps)(AppearanceSetting);
-;}(require("lazyload"), require);

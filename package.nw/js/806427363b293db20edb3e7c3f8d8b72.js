@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const WorkbenchStatusBar=require('./84048b2cd2f54c7e5b9d7542dcb52920.js'),tools=require('./d3976cc01aeebc5b09e11c4135b6bd8d.js'),windowActions=require('./a8c87029da0fa06e986298d447ab0fe2.js'),{connect}=require('react-redux'),mapStateToProps=(a)=>{return{progressDialogShow:a.window.progressDialog.show}},mapDispatchToProps=(a)=>({setProgressDialog:tools.bindActionCreators(windowActions.setProgressDialog,a)});module.exports=connect(mapStateToProps,mapDispatchToProps)(WorkbenchStatusBar);
-;}(require("lazyload"), require);

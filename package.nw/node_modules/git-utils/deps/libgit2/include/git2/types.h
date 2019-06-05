@@ -104,6 +104,9 @@ typedef struct git_refdb_backend git_refdb_backend;
  */
 typedef struct git_repository git_repository;
 
+/** Representation of a working tree */
+typedef struct git_worktree git_worktree;
+
 /** Representation of a generic object in a repository */
 typedef struct git_object git_object;
 
@@ -156,6 +159,7 @@ typedef struct git_packbuilder git_packbuilder;
 typedef struct git_time {
 	git_time_t time; /**< time in seconds from epoch */
 	int offset; /**< timezone offset, in minutes */
+	char sign; /**< indicator for questionable '-0000' offsets in signature */
 } git_time;
 
 /** An action signature (e.g. for committers, taggers, etc) */

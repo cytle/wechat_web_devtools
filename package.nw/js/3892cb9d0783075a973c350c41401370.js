@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const cp=require('child_process'),isMac='win32'!==process.platform;module.exports=(a,b)=>{const c=a;if(isMac)try{cp.exec('open -a Terminal "`pwd`"',{detached:!0,cwd:c}).unref()}catch(a){console.error(a)}else try{b?cp.exec(`start cmd /k "${b}"`,{detached:!0,cwd:c}).unref():cp.exec('start',{detached:!0,cwd:c}).unref()}catch(a){console.error(a)}};
-;}(require("lazyload"), require);

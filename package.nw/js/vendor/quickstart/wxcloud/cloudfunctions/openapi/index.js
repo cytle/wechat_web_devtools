@@ -5,12 +5,16 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  console.log(event)
   switch (event.action) {
     case 'sendTemplateMessage': {
       return sendTemplateMessage(event)
     }
     case 'getWXACode': {
       return getWXACode(event)
+    }
+    case 'getOpenData': {
+      return getOpenData(event)
     }
     default: {
       return
@@ -78,4 +82,11 @@ async function getWXACode(event) {
   }
 
   return uploadResult.fileID
+}
+
+async function getOpenData(event) {
+  // 需 wx-server-sdk >= 0.5.0
+  return cloud.getOpenData({
+    list: event.openData.list,
+  })
 }

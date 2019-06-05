@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const BaseMessager=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),messageCenter=require('./ff946754202ecf377034d29daac7c8d9.js'),MAINPROTOCAL='WEBDEBUGGER',webdebuggerMessager=new BaseMessager(MAINPROTOCAL);webdebuggerMessager.ready=!0,webdebuggerMessager.send=function(a){this.broadcast(MAINPROTOCAL,a)},webdebuggerMessager.directSend=function(a,b){messageCenter.sendMessage(`${MAINPROTOCAL}_${b}`,JSON.stringify(a))},module.exports=webdebuggerMessager;
-;}(require("lazyload"), require);

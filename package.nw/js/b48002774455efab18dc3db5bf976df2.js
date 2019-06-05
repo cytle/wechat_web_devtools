@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const{connect}=require('react-redux'),Keyboard=require('./1897f0f74f5583c8f7a3d6b5dd3cfdeb.js'),tools=require('./d3976cc01aeebc5b09e11c4135b6bd8d.js'),simulatorActions=require('./ba23d8b47b1f4ea08b9fd49939b9443f.js'),mapStateToProps=(a)=>{const b=a.simulator.keyboard||{};return Object.assign({},b)},mapDispatchToProps=(a)=>({hideKeyboard:tools.bindActionCreators(simulatorActions.hideKeyboard,a)});module.exports=connect(mapStateToProps,mapDispatchToProps)(Keyboard);
-;}(require("lazyload"), require);

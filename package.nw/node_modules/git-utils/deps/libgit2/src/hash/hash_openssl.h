@@ -5,8 +5,8 @@
  * a Linking Exception. For full terms see the included COPYING file.
  */
 
-#ifndef INCLUDE_hash_openssl_h__
-#define INCLUDE_hash_openssl_h__
+#ifndef INCLUDE_hash_hash_openssl_h__
+#define INCLUDE_hash_hash_openssl_h__
 
 #include "hash.h"
 
@@ -23,22 +23,37 @@ struct git_hash_ctx {
 GIT_INLINE(int) git_hash_init(git_hash_ctx *ctx)
 {
 	assert(ctx);
-	SHA1_Init(&ctx->c);
+
+	if (SHA1_Init(&ctx->c) != 1) {
+		giterr_set(GITERR_SHA1, "hash_openssl: failed to initialize hash context");
+		return -1;
+	}
+
 	return 0;
 }
 
 GIT_INLINE(int) git_hash_update(git_hash_ctx *ctx, const void *data, size_t len)
 {
 	assert(ctx);
-	SHA1_Update(&ctx->c, data, len);
+
+	if (SHA1_Update(&ctx->c, data, len) != 1) {
+		giterr_set(GITERR_SHA1, "hash_openssl: failed to update hash");
+		return -1;
+	}
+
 	return 0;
 }
 
 GIT_INLINE(int) git_hash_final(git_oid *out, git_hash_ctx *ctx)
 {
 	assert(ctx);
-	SHA1_Final(out->id, &ctx->c);
+
+	if (SHA1_Final(out->id, &ctx->c) != 1) {
+		giterr_set(GITERR_SHA1, "hash_openssl: failed to finalize hash");
+		return -1;
+	}
+
 	return 0;
 }
 
-#endif /* INCLUDE_hash_openssl_h__ */
+#endif

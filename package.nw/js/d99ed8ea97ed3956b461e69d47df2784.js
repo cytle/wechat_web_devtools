@@ -1,3 +1,0 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('./8a145c66a3f53e0aff94a871ac692d06.js');module.exports=async function(c,d){const e=await b(c);let f=(e[`/${a.posix.join(d,'./app-service.js')}`]||'').toString();if(f=f.replace(/\\/g,'\\\\').replace(/`/g,'\\`'),f)return`var script = document.createElement('script')
-            script.text = \`${f};alert('SUBPACKAGE_READY_${d}')\`
-            document.head.appendChild(script)`}}(require('lazyload'),require);

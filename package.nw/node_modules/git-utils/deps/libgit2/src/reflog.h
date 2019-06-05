@@ -8,6 +8,7 @@
 #define INCLUDE_reflog_h__
 
 #include "common.h"
+
 #include "git2/reflog.h"
 #include "vector.h"
 
@@ -37,4 +38,4 @@ GIT_INLINE(size_t) reflog_inverse_index(size_t idx, size_t total)
 	return (total - 1) - idx;
 }
 
-#endif /* INCLUDE_reflog_h__ */
+#endif

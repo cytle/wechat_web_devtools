@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const BaseMessager=directRequire('./214c25062f31e2cad941b3ec069db1fe.js');class EditorMessager extends BaseMessager{constructor(a){super(a),this.ready=!0}remoteEmit(a,b){this.send({type:'EMIT',eventType:a,payload:b})}callback(a,b,c=''){this.send({type:'CALLBACK',errMsg:c,callback:a,payload:b})}command(a,b){this.send({type:'COMMAND',command:a,data:b})}}module.exports=new EditorMessager('FILEDIFF');
-;}(require("lazyload"), require);

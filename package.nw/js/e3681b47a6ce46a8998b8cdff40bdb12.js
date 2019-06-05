@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const BaseMessager=directRequire('./214c25062f31e2cad941b3ec069db1fe.js'),gameserviceMessager=new BaseMessager('GAMESERVICE');gameserviceMessager.ready=!0,gameserviceMessager.triggerOnEvent=function({eventName:a,data:b,webviewID:c}){this.send({command:'APPSERVICE_ON_EVENT',data:{eventName:a,data:b},webviewID:c})},gameserviceMessager.invokeCallback=function(a,b){this.send({command:'APPSERVICE_INVOKE_CALLBACK',data:{callbackID:a,res:b}})},module.exports=gameserviceMessager;
-;}(require("lazyload"), require);

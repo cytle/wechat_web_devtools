@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const fs=require('fs'),path=require('path'),getFunctionInfo=(a,b)=>{const c=path.posix.relative(a,b).split('/'),d=c.shift();return{filePath:c.join('/'),functionName:d}},checkFunctionDirectory=(a)=>{if(!fs.existsSync(a))throw new Error(`目标目录 ${a} 不存在`);const b=fs.statSync(a);if(!b.isDirectory())throw new Error(`目标 ${a} 需为目录`);const c=fs.readdirSync(a);if(!c||0>=c.length)throw new Error(`目标目录 ${a} 为空目录`)};module.exports={getFunctionInfo,checkFunctionDirectory};
-;}(require("lazyload"), require);

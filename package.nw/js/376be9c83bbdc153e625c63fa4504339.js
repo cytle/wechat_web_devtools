@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const T=directRequire('./8a667b7a4c0cf964060daa2612e47d49.js'),appJSON=directRequire('./445cba00a07f842db3284acee321797b.js'),pageJSON=directRequire('./2bf4b152a123cbd45f6c373678160abb.js');module.exports=new T('object',!1,Object.assign({},appJSON.value,{extEnable:new T('boolean',!1),extAppid:new T('string',!1),directCommit:new T('boolean',!1),ext:new T('object',!1),extPages:new T('object',!1,pageJSON),pages:new T('array',!1,new T('string',!0))}));
-;}(require("lazyload"), require);

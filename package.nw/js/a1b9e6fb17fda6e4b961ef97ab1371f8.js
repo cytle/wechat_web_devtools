@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const Confirm=require('./e87ac24f6c5ae675b8a595866e3f544c.js'),simulatorActions=require('./ba23d8b47b1f4ea08b9fd49939b9443f.js'),tools=require('./d3976cc01aeebc5b09e11c4135b6bd8d.js'),{connect}=require('react-redux'),mapStateToProps=(a)=>{const b=a.simulator.confirm;return Object.assign({},b)},mapDispatchToProps=(a)=>({hideConfirm:tools.bindActionCreators(simulatorActions.hideConfirm,a)});module.exports=connect(mapStateToProps,mapDispatchToProps)(Confirm);
-;}(require("lazyload"), require);

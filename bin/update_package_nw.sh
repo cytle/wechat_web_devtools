@@ -33,7 +33,7 @@ start_step() {
 
 
 # 获取微信开发者工具版本等信息
-start_step '获取最新微信web开发者工具版本'
+start_step '获取最新微信开发者工具版本'
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
@@ -59,7 +59,7 @@ if [ "$wechat_v" = "$cur_wechat_v" ]; then
 fi
 
 # 下载windows版微信开发者工具
-start_step '下载微信web开发者工具'
+start_step '下载微信开发者工具'
 
 wcwd_file="$tmp_dir/wechat_web_devtools_${wechat_v}_x64.exe"
 
@@ -74,16 +74,16 @@ if [ ! -f "$wcwd_file" ]; then
   wget "$wcwd_download" -O $wcwd_file
 fi
 
-# 微信web开发者工具
-start_step '解压微信web开发者工具'
+# 微信开发者工具
+start_step '解压微信开发者工具'
 
 wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
-wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信web开发者工具/package.nw"
+wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信开发者工具/package.nw"
 
 7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
 
-# 拷贝微信web开发者工具
-start_step '拷贝微信web开发者工具'
+# 拷贝微信开发者工具
+start_step '拷贝微信开发者工具'
 
 wcwd_package_dir="$wcwd_file_target/$wcwd_file_package_nw_dir"
 

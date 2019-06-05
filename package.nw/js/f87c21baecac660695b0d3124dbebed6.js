@@ -1,2 +1,0 @@
-;!function(require, directRequire){;"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AbortEvent="abort";class InterruptibleTask{constructor(...a){this._aborted=!1,this._args=a,this._promise=this.run(...a)}then(a,b){return this._promise.then(a,b)}catch(a){return this._promise.catch(a)}abort(){this._aborted||(this._aborted=!0)}}exports.InterruptibleTask=InterruptibleTask;
-;}(require("lazyload"), require);

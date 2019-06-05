@@ -1,2 +1,0 @@
-;!function(require, directRequire){;"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const cookieCache={};exports.setCookie=(a="")=>{const b=a.split(";")[0].split("=");cookieCache[b[0]]=b[1]},exports.getCookie=(a)=>{return cookieCache[a]||""},exports.getCookieHeader=()=>{const a=[];for(const b in cookieCache)a.push(`${b}=${cookieCache[b]}`);return a.join(";")},exports.default={setCookie:exports.setCookie,getCookie:exports.getCookie,getCookieHeader:exports.getCookieHeader};
-;}(require("lazyload"), require);

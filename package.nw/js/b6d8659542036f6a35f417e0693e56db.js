@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const getServiceCode=require('./7a1a812882d405d817d3b8282c76994b.js'),getWebviewCode=require('./26407b6d0ea17270c5f9d72eabdaab4e.js'),getFile=require('./d315ed6e6405f72191ab34500737492d.js'),getPluginSubPackage=require('./9b34bdd781b46a05945cd07487d7c3b6.js'),getPluginJSON=require('./220ea80161dcf916b75385a3c01af21a.js');module.exports={getServiceCode:getServiceCode.getServiceCode,getServiceCodeMap:getServiceCode.getServiceCodeMap,getPluginSubPackage,getWebviewCode,getFile,getPluginJSON};
-;}(require("lazyload"), require);

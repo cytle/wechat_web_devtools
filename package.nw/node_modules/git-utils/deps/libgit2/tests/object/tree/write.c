@@ -495,6 +495,7 @@ static void test_inserting_submodule(void)
 	git_treebuilder *bld;
 	git_oid sm_id;
 
+	cl_git_pass(git_oid_fromstr(&sm_id, "da39a3ee5e6b4b0d3255bfef95601890afd80709"));
 	cl_git_pass(git_treebuilder_new(&bld, g_repo, NULL));
 	cl_git_pass(git_treebuilder_insert(NULL, bld, "sm", &sm_id, GIT_FILEMODE_COMMIT));
 	git_treebuilder_free(bld);
@@ -512,3 +513,14 @@ void test_object_tree_write__object_validity(void)
 	test_inserting_submodule();
 }
 
+void test_object_tree_write__invalid_null_oid(void)
+{
+	git_treebuilder *bld;
+	git_oid null_oid = {{0}};
+
+	cl_git_pass(git_treebuilder_new(&bld, g_repo, NULL));
+	cl_git_fail(git_treebuilder_insert(NULL, bld, "null_oid_file", &null_oid, GIT_FILEMODE_BLOB));
+	cl_assert(giterr_last() && strstr(giterr_last()->message, "null OID") != NULL);
+
+	git_treebuilder_free(bld);
+}

@@ -1,7 +1,0 @@
-;!function(require, directRequire){;"use strict";const path=require("path"),fs=require("fs"),wxappcodePlaceholder="<!-- wxappcode -->",plugincodePlaceholder="<!-- plugincode -->",onDocumentStartPlaceholder="<!-- ondocumentstart -->",jsdebugPlaceholder="<!-- jsdebug -->",vendorListPlaceholder="<!-- vendorlist -->",deviceInfoPlaceholder="<!-- deviceinfo -->",wxmlcodePlaceholder="<!-- wxmlcode -->",wxsscodePlaceholder="<!-- wxsscode -->",errorTpl=`
-  <p>{{error}}</p>
-`,htmlReady=`<script>
-  alert('DOCUMENT_READY')
-</script>
-`,devVendorList=["wx-config.js","wx-console.js","wx-worker.js","reporter-sdk.js","webview-sdk.js","exparser.min.with.precompiler.js","wx-components.js","virtual_dom.js","webview-engine.js","hls.js","wx-components.css","WARemoteDebug.js"],vendorList=["WAWebview.js","hls.js","WARemoteDebug.js"],jsDebugPath=global.appConfig.isDev?path.join(__dirname,"../../../extensions/pageframe/index.js"):path.join(__dirname,"./extensions/pageframe/index.js"),jsDebug=fs.readFileSync(jsDebugPath,"utf8"),htmltplPath=global.appConfig.isDev?path.join(__dirname,"../../../../html/pageframe.html"):path.join(__dirname,"../html/pageframe.html"),htmltpl=fs.readFileSync(htmltplPath,"utf8");module.exports={jsDebug,errorTpl,devVendorList,vendorList,onDocumentStartPlaceholder,wxappcodePlaceholder,plugincodePlaceholder,jsdebugPlaceholder,vendorListPlaceholder,deviceInfoPlaceholder,wxmlcodePlaceholder,wxsscodePlaceholder,htmltpl,htmlReady};
-;}(require("lazyload"), require);

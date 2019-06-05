@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const fs=require('fs'),path=require('path');async function getFile(a){switch(a){case'appservice.js':{const a=global.appConfig.isDev?'./js/ideplugin/audits/inject/appservice.js':path.join(__dirname,'./ideplugin/audits/inject/appservice.js');return`${fs.readFileSync(a,'utf8')}`}case'webview.js':{const a=global.appConfig.isDev?'./js/ideplugin/audits/inject/webview.js':path.join(__dirname,'./ideplugin/audits/inject/webview.js');return`${fs.readFileSync(a,'utf8')}`}}return''}module.exports=getFile;
-;}(require("lazyload"), require);

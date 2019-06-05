@@ -126,7 +126,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 table {
@@ -160,7 +160,7 @@ body {
   background-color: transparent;
 }
 .ui-selectable {
-  user-select: auto;
+  user-select: text;
 }
 .ui-desc {
   color: #888888;
@@ -824,8 +824,8 @@ body {
 .ui-icon-exit {
   display: inline-block;
   vertical-align: middle;
-  width: 17.33333333px;
-  height: 17.33333333px;
+  width: 17px;
+  height: 17px;
   -webkit-mask: url("svg/exit.svg") no-repeat 50% 50%;
           mask: url("svg/exit.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -1617,12 +1617,42 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-bell {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  height: 14px;
+  -webkit-mask: url("svg/bell.svg") no-repeat 50% 50%;
+          mask: url("svg/bell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-exclamation-in-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/exclamation-in-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/exclamation-in-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #fa5151;
+}
 .ui-icon-go-ahead {
   display: inline-block;
   vertical-align: middle;
   width: 16px;
   height: 14px;
   background: url("svg/go-ahead.svg") no-repeat 50% 50%;
+  background-size: cover;
+}
+.ui-icon-cross-in-circle-o {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: url("svg/cross-in-circle-o.svg") no-repeat 50% 50%;
   background-size: cover;
 }
 .ui-icon-skip {

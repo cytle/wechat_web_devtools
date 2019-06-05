@@ -1,2 +1,0 @@
-;!function(require, directRequire){;'use strict';const notify=require('./d3ce001ab1e75959382f6a7e0156dd17.js'),noticeCenterDB=require('./948f9199c1cd0ba6cb9d19ad84972410.js'),store=require('./bc78839ccca8df9e5ceeb7fae11b7be2.js');module.exports=async function(a,b,c){const d=store.getState(),e=d.settings&&d.settings.notification||{};(e.sys||c)&&notify(a),await noticeCenterDB.open(),await noticeCenterDB.insert([b]),noticeCenterDB.close()};
-;}(require("lazyload"), require);
