@@ -69,8 +69,8 @@ cd wechat_web_devtools
 
 ``` bash
 docker run -it \
-    -v $(PWD):/projects \
-    $(REPO):$(TAG) \
+    -v $PWD:/projects \
+    canyoutle/wxdt \
     sh -c "cli -l && cli -p /projects/your-project"
 ```
 
@@ -192,6 +192,10 @@ sudo fc-list|grep Consol
 2. 项目文件夹下运行 `./bin/wxdt uninstall` (删除桌面图标、微信web开发者工具配置目录),
    **开发者工具配置文件, 所有工程和登录信息均会消失**
 3. 删除项目文件夹
+
+### Arch Linux
+
+Arch Linux 及其衍生发行版，如 Manjaro，可以通过 AUR 进行安装：https://aur.archlinux.org/packages/wechat-devtool/
 
 ## 截图
 
