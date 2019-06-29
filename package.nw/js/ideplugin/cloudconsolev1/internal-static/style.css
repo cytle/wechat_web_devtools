@@ -1227,3 +1227,17 @@ label
   font-size: 18px;
   letter-spacing: 1px;
 }
+
+.--flyover-table {
+  width: 100%;
+}
+
+.--flyover-table th {
+  line-height: 25px;
+  color: #808080;
+  text-align: left;
+}
+
+.--flyover-table th:first-child {
+  width: 30%
+}

@@ -538,7 +538,6 @@ body.dark .ui-radio-text {
 }
 .ui-checkbox {
   display: inline-flex;
-  align-items: center;
   margin-right: 25px;
   font-size: 13px;
   -webkit-tap-highlight-color: transparent;
@@ -552,6 +551,7 @@ body.dark .ui-radio-text {
 }
 .ui-checkbox [class^="ui-icon-checkbox"] {
   min-width: 14px;
+  margin-top: 4px;
 }
 .ui-checkbox-text {
   margin-left: 10px;
@@ -1002,7 +1002,7 @@ body.dark .tree-view-hd.tree-view-hd-highlight:before {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
-  height: 12px;
+  height: 14px;
   -webkit-mask: url("svg/refresh.svg") no-repeat 50% 50%;
           mask: url("svg/refresh.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -1085,6 +1085,17 @@ body.dark .tree-view-hd.tree-view-hd-highlight:before {
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
+}
+.ui-icon-refresh-spinner {
+  animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .ui-icon-simulator {
   display: inline-block;

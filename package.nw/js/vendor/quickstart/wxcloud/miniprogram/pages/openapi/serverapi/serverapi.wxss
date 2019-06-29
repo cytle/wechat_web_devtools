@@ -1,7 +1,0 @@
-/* miniprogram/pages/openapi/openapi.wxss */
-
-@import "../../../style/guide.wxss";
-
-.black {
-  color: black;
-}

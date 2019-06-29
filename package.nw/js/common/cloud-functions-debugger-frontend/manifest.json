@@ -1,5 +1,5 @@
 {
-  "version": "0.0.33",
+  "version": "0.0.37",
   "name": "云函数本地调试",
   "manifest_version": "0.0.1",
   "main": "./app.bundle.js",

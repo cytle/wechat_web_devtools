@@ -1,10 +1,11 @@
 {
-  "version": "0.0.30",
+  "version": "0.0.35",
   "manifest_version": "0.0.1",
   "name": "Audits",
   "main": "./index.html",
   "devtools": true,
   "devtools_type": [
-    "miniprogram"
+    "miniprogram",
+    "game"
   ]
 }

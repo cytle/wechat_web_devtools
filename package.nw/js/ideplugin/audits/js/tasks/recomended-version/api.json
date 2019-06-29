@@ -226,7 +226,24 @@
     "1.1.0": []
   },
   "createVideoContext": {
-    "1.0.0": []
+    "1.0.0": [],
+    "1.4.0": [
+      {
+        "return": [
+          "playbackRate",
+          "requestFullScreen",
+          "exitFullScreen"
+        ]
+      }
+    ],
+    "2.1.0": [
+      {
+        "return": [
+          "showStatusBar",
+          "hideStatusBar"
+        ]
+      }
+    ]
   },
   "authorize": {
     "1.2.0": [

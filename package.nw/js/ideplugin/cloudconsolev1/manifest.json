@@ -1,5 +1,5 @@
 {
-  "version": "1.0.72",
+  "version": "1.0.85",
   "name": "云开发控制台",
   "manifest_version": "0.0.1",
   "main": "./index.html",

@@ -6,7 +6,27 @@
   "manifest_version": 2,
   "webview": {
     "partitions": [{
-      "name": "devtools",
+      "name": "devtools_0",
+      "accessible_resources": [
+        "<all_urls>"
+      ]
+    }, {
+      "name": "devtools_1",
+      "accessible_resources": [
+        "<all_urls>"
+      ]
+    }, {
+      "name": "devtools_2",
+      "accessible_resources": [
+        "<all_urls>"
+      ]
+    }, {
+      "name": "devtools_3",
+      "accessible_resources": [
+        "<all_urls>"
+      ]
+    }, {
+      "name": "devtools_4",
       "accessible_resources": [
         "<all_urls>"
       ]

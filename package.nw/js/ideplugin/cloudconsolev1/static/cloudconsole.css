@@ -8808,6 +8808,17 @@ a.ant-btn-sm {
           mask-size: cover;
   background-color: rgba(0, 0, 0, 0.9);
 }
+.ui-icon-sheet {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: url("svg/cloudconsole/sheet.svg") no-repeat 50% 50%;
+          mask: url("svg/cloudconsole/sheet.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: rgba(0, 0, 0, 0.9);
+}
 .ui-icon-function {
   display: inline-block;
   vertical-align: middle;
@@ -9514,8 +9525,14 @@ a.ant-btn-sm {
 }
 .analysis-visit .table-panel,
 .analysis-usage .table-panel {
-  margin: 40px 20px 20px;
   border-bottom: none;
+}
+.analysis__usage-detail {
+  margin: 50px 20px 0;
+}
+.analysis__usage-info {
+  text-align: right;
+  margin-bottom: 10px;
 }
 .analysis-usage {
   padding: 25px 0;
@@ -9526,6 +9543,7 @@ a.ant-btn-sm {
 }
 .analysis-usage-more {
   padding: 0 20px;
+  margin-top: 20px;
   text-align: right;
 }
 .analysis-visit-item {
@@ -10496,7 +10514,7 @@ a.ant-btn-sm {
   margin-right: 5px;
 }
 .header {
-  padding: 13px 30px 5px 84px;
+  padding: 13px 15px 5px 84px;
   align-items: center;
   display: flex;
   background: #f0f0f0 linear-gradient(to bottom, transparent, #f3f3f3);
@@ -10541,7 +10559,6 @@ a.ant-btn-sm {
 .status-bar-item > span {
   font-size: 11px;
   margin-left: 5px;
-  margin-top: 3px;
   color: #8f8f8f;
 }
 .sidebar {
@@ -10809,6 +10826,70 @@ body.dark .loading-ext [class^="ui-icon-arrow"] {
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #888888;
+}
+.work-sheet {
+  width: 370px;
+  position: fixed;
+  right: 0;
+  top: 63px;
+  bottom: 30px;
+  background-color: #fcfcfc;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 6px 10px 0 rgba(0, 0, 0, 0.06);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.work-sheet__tab {
+  line-height: 52px;
+  background-color: #f9f9f9;
+  display: flex;
+  padding: 0 32px;
+}
+.work-sheet__tab-item {
+  margin-right: 32px;
+  cursor: pointer;
+}
+.work-sheet__tab-item:last-child {
+  margin-right: 0;
+}
+.work-sheet__list {
+  flex: 1;
+}
+.work-sheet__tab-item.current {
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+.work-sheet__list {
+  padding: 13px 32px;
+  overflow-y: auto;
+}
+.work-sheet__list-item {
+  display: flex;
+  padding: 12px 0;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.work-sheet__title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.work-sheet__status {
+  margin-left: 15px;
+  color: #808080;
+}
+.work-sheet__status.finish {
+  color: #00b26a;
+}
+.work-sheet__add {
+  cursor: pointer;
+  line-height: 52px;
+  text-align: center;
+  background-color: #efefef;
 }
 .notice-center {
   width: 340px;

@@ -1,7 +1,0 @@
-<phpunit bootstrap="cos-autoloader.php">
-  <testsuites>
-    <testsuite name="cos">
-      <directory>src/Qcloud/Cos/Tests</directory>
-    </testsuite>
-  </testsuites>
-</phpunit>

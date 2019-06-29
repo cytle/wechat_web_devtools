@@ -428,7 +428,7 @@ body {
   display: inline-block;
   vertical-align: middle;
   width: 14px;
-  height: 12px;
+  height: 14px;
   -webkit-mask: url("svg/refresh.svg") no-repeat 50% 50%;
           mask: url("svg/refresh.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -511,6 +511,17 @@ body {
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
+}
+.ui-icon-refresh-spinner {
+  animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .ui-icon-simulator {
   display: inline-block;
@@ -2945,7 +2956,7 @@ body.dark .ui-msg-content > h4 {
   cursor: default;
 }
 .ui-poptips:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -2958,7 +2969,7 @@ body.dark .ui-msg-content > h4 {
   background: linear-gradient(-45deg, #555555 50%, transparent 50%);
 }
 .ui-poptips[data-position="top"]:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 50%;
@@ -2968,6 +2979,20 @@ body.dark .ui-msg-content > h4 {
   margin-left: -4px;
   border-radius: 0 0 2px 0;
   transform: rotate(45deg) skewX(5deg) skewY(5deg);
+  background: linear-gradient(-45deg, #555555 50%, transparent 50%);
+}
+.ui-poptips[data-position="top-right"]:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 15px;
+  left: auto;
+  width: 8px;
+  height: 8px;
+  margin-bottom: -4px;
+  margin-left: -4px;
+  border-radius: 0 0 2px 0;
+  transform: rotate(225deg) skewX(5deg) skewY(5deg);
   background: linear-gradient(-45deg, #555555 50%, transparent 50%);
 }
 .ui-inspect-poptips {
@@ -3158,7 +3183,6 @@ body.dark .ui-radio-text {
 }
 .ui-checkbox {
   display: inline-flex;
-  align-items: center;
   margin-right: 25px;
   font-size: 13px;
   -webkit-tap-highlight-color: transparent;
@@ -3172,6 +3196,7 @@ body.dark .ui-radio-text {
 }
 .ui-checkbox [class^="ui-icon-checkbox"] {
   min-width: 14px;
+  margin-top: 4px;
 }
 .ui-checkbox-text {
   margin-left: 10px;
@@ -5796,6 +5821,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .navigator-white .capsule {
   background: rgba(0, 0, 0, 0.15);
+}
+.navigator-black .capsule {
+  border-color: rgba(0, 0, 0, 0.1);
 }
 .capsule-sep {
   display: inline-block;

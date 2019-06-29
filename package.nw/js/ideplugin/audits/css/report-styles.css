@@ -944,7 +944,11 @@ summary.lh-passed-audits-summary {
   text-overflow: ellipsis;
 }
 
-.lh-text__url:hover {
+.lh-text__url a {
+  cursor: pointer;
+}
+
+.lh-text__url a:hover {
   text-decoration: underline dotted #999;
   text-decoration-skip-ink: auto;
 }

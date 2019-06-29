@@ -101,7 +101,7 @@
   display: inline-block;
   vertical-align: middle;
   width: 14px;
-  height: 12px;
+  height: 14px;
   -webkit-mask: url("svg/refresh.svg") no-repeat 50% 50%;
           mask: url("svg/refresh.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
@@ -184,6 +184,17 @@
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;
+}
+.ui-icon-refresh-spinner {
+  animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .ui-icon-simulator {
   display: inline-block;
