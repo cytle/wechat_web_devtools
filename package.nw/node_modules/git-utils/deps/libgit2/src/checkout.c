@@ -5,9 +5,9 @@
  * a Linking Exception. For full terms see the included COPYING file.
  */
 
-#include <assert.h>
-
 #include "checkout.h"
+
+#include <assert.h>
 
 #include "git2/repository.h"
 #include "git2/refs.h"
@@ -70,6 +70,7 @@ typedef struct {
 	git_buf tmp;
 	unsigned int strategy;
 	int can_symlink;
+	int respect_filemode;
 	bool reload_submodules;
 	size_t total_steps;
 	size_t completed_steps;
@@ -159,6 +160,22 @@ GIT_INLINE(bool) is_workdir_base_or_new(
 		git_oid__cmp(&newitem->id, workdir_id) == 0);
 }
 
+GIT_INLINE(bool) is_filemode_changed(git_filemode_t a, git_filemode_t b, int respect_filemode)
+{
+	/* If core.filemode = false, ignore links in the repository and executable bit changes */
+	if (!respect_filemode) {
+		if (a == S_IFLNK)
+			a = GIT_FILEMODE_BLOB;
+		if (b == S_IFLNK)
+			b = GIT_FILEMODE_BLOB;
+
+		a &= ~0111;
+		b &= ~0111;
+	}
+
+	return (a != b);
+}
+
 static bool checkout_is_workdir_modified(
 	checkout_data *data,
 	const git_diff_file *baseitem,
@@ -192,16 +209,23 @@ static bool checkout_is_workdir_modified(
 		return rval;
 	}
 
-	/* Look at the cache to decide if the workdir is modified.  If not,
-	 * we can simply compare the oid in the cache to the baseitem instead
-	 * of hashing the file.  If so, we allow the checkout to proceed if the
-	 * oid is identical (ie, the staged item is what we're trying to check
-	 * out.)
+	/*
+	 * Look at the cache to decide if the workdir is modified: if the
+	 * cache contents match the workdir contents, then we do not need
+	 * to examine the working directory directly, instead we can
+	 * examine the cache to see if _it_ has been modified.  This allows
+	 * us to avoid touching the disk.
 	 */
-	if ((ie = git_index_get_bypath(data->index, wditem->path, 0)) != NULL) {
-		if (git_index_time_eq(&wditem->mtime, &ie->mtime) &&
-			wditem->file_size == ie->file_size)
-			return !is_workdir_base_or_new(&ie->id, baseitem, newitem);
+	ie = git_index_get_bypath(data->index, wditem->path, 0);
+
+	if (ie != NULL &&
+		git_index_time_eq(&wditem->mtime, &ie->mtime) &&
+		wditem->file_size == ie->file_size &&
+		!is_filemode_changed(wditem->mode, ie->mode, data->respect_filemode)) {
+
+		/* The workdir is modified iff the index entry is modified */
+		return !is_workdir_base_or_new(&ie->id, baseitem, newitem) ||
+			is_filemode_changed(baseitem->mode, ie->mode, data->respect_filemode);
 	}
 
 	/* depending on where base is coming from, we may or may not know
@@ -213,6 +237,9 @@ static bool checkout_is_workdir_modified(
 	/* if the workdir item is a directory, it cannot be a modified file */
 	if (S_ISDIR(wditem->mode))
 		return false;
+
+	if (is_filemode_changed(baseitem->mode, wditem->mode, data->respect_filemode))
+		return true;
 
 	if (git_diff__oid_for_entry(&oid, data->diff, wditem, wditem->mode, NULL) < 0)
 		return false;
@@ -2005,8 +2032,11 @@ static int checkout_write_entry(
 		(error = checkout_safe_for_update_only(data, fullpath->ptr, side->mode)) <= 0)
 		return error;
 
-	return checkout_write_content(data,
-		&side->id, fullpath->ptr, hint_path, side->mode, &st);
+	if (!S_ISGITLINK(side->mode))
+		return checkout_write_content(data,
+					      &side->id, fullpath->ptr, hint_path, side->mode, &st);
+
+	return 0;
 }
 
 static int checkout_write_entries(
@@ -2426,6 +2456,10 @@ static int checkout_data_init(
 
 	if ((error = git_repository__cvar(
 			 &data->can_symlink, repo, GIT_CVAR_SYMLINKS)) < 0)
+		goto cleanup;
+
+	if ((error = git_repository__cvar(
+			 &data->respect_filemode, repo, GIT_CVAR_FILEMODE)) < 0)
 		goto cleanup;
 
 	if (!data->opts.baseline && !data->opts.baseline_index) {

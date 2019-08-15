@@ -1,5 +1,11 @@
 // 获取数据初始化数据
 var search = location.href.split('?')[1] || ''
+var hiddenVideoCenterBtnStyle = document.createElement('style')
+hiddenVideoCenterBtnStyle.innerHTML = `
+wx-video .wx-video-cover {
+  display: none;
+}
+`
 search = search.split('&')
 var query = {}
 for (var i = 0, len = search.length; i < len; i++) {
@@ -24,22 +30,32 @@ var temp = document.getElementById('container')
 
 // 创建容器
 var parent = exparser.createElement('div')
-parent.setAttribute('style', 'height:inherit;')
+parent.setAttribute('style', 'height:100%;')
 exparser.Element.replaceDocumentElement(parent, temp)
 
 // 监听组件更新
 WeixinJSBridge.on('updateNativeView', function(data) {
   if (!dom)return
+
   for (let key in data) {
+    if (key == 'showCenterPlayBtn') {
+      if (data[key]) {
+        hiddenVideoCenterBtnStyle.remove()
+      } else if(!hiddenVideoCenterBtnStyle.parentElement){
+        document.body.appendChild(hiddenVideoCenterBtnStyle)
+      }
+    }
+
     dom[key] = data[key]
+    if (query.data) {
+      query.data[key] = data[key]
+    }
   }
 })
 
 // 监听组件操作
 WeixinJSBridge.on('operateNativeView', function(data) {
   if (!dom)return
-  // TODO
-  console.log(data)
 
   switch(query.name) {
     case 'video':
@@ -50,12 +66,39 @@ WeixinJSBridge.on('operateNativeView', function(data) {
   }
 })
 
+var forcePaused = false
+WeixinJSBridge.on('onAppEnterBackground', function() {
+  if (dom && dom.is == 'wx-video') {
+    if (!dom.paused) {
+      dom.actionChanged({
+        method: 'pause'
+      })
+     forcePaused = true
+    }
+  }
+})
+
+WeixinJSBridge.on('onAppEnterForeground', function() {
+  if (dom && dom.is == 'wx-video') {
+    if (forcePaused) {
+      dom.actionChanged({
+        method: 'play'
+      })
+      forcePaused = false
+    }
+  }
+})
+
+
 if (query.name) {
   // 创建组件
   dom = exparser.createElement('wx-' + query.name)
   dom.$$.setAttribute('style', 'height:100%;width:100%')
   if (query.data) {
     for (let key in query.data) {
+      if (key == 'showCenterPlayBtn' && !query.data[key]) {
+        document.body.appendChild(hiddenVideoCenterBtnStyle)
+      }
       dom[key] = query.data[key]
     }
   }
@@ -69,8 +112,8 @@ if (query.name) {
         eventName: 'onVideoPlay',
         data: {
           timeStamp: e.timeStamp,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     }, { capture: false });
@@ -81,8 +124,8 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoPause',
         data: {
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -92,8 +135,8 @@ if (query.name) {
       WeixinJSBridge.publish('onNativeViewEvent', {
         eventName: 'onVideoEnded',
         data: {
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -105,8 +148,8 @@ if (query.name) {
         data: {
           position: e.detail.currentTime,
           duration: e.detail.duration,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })
@@ -118,8 +161,8 @@ if (query.name) {
         data: {
           fullScreen: e.detail.fullScreen,
           direction: dom.direction,
-          videoPlayerId: dom.videoPlayerId,
-          data: dom.data || ''
+          videoPlayerId: query.videoPlayerId,
+          data: query.data.data || ''
         }
       })
     })

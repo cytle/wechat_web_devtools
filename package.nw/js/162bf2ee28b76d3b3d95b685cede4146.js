@@ -1,1 +1,0 @@
-'use strict';!function(require,directRequire){const a=require('path'),b=require('./60e94018e5c42875e658435ea04a006d.js');module.exports=async function(c){let d=c.miniprogramRoot?a.posix.join(c.projectpath,c.miniprogramRoot):c.projectpath;return await b(c.projectpath,d)}}(require('lazyload'),require);

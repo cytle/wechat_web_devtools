@@ -1,1 +1,0 @@
-"use strict";!function(require,directRequire){module.exports={BROADCAST_CHANNEL_NAME:"SYNC_STORE"}}(require("lazyload"),require);

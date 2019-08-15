@@ -5,7 +5,8 @@
  * a Linking Exception. For full terms see the included COPYING file.
  */
 
-#include "common.h"
+#include "submodule.h"
+
 #include "git2/config.h"
 #include "git2/sys/config.h"
 #include "git2/types.h"
@@ -17,7 +18,6 @@
 #include "config_file.h"
 #include "config.h"
 #include "repository.h"
-#include "submodule.h"
 #include "tree.h"
 #include "iterator.h"
 #include "path.h"
@@ -208,6 +208,11 @@ int git_submodule_lookup(
 	git_submodule *sm;
 
 	assert(repo && name);
+
+	if (repo->is_bare) {
+		giterr_set(GITERR_SUBMODULE, "cannot get submodules without a working tree");
+		return -1;
+	}
 
 	if (repo->submodule_cache != NULL) {
 		khiter_t pos = git_strmap_lookup_index(repo->submodule_cache, name);
@@ -548,6 +553,11 @@ int git_submodule_foreach(
 	git_submodule *sm;
 	int error;
 	size_t i;
+
+	if (repo->is_bare) {
+		giterr_set(GITERR_SUBMODULE, "cannot get submodules without a working tree");
+		return -1;
+	}
 
 	if ((error = git_strmap_alloc(&submodules)) < 0)
 		return error;
@@ -1950,7 +1960,7 @@ static git_config_backend *open_gitmodules(
 			if (git_config_file__ondisk(&mods, path.ptr) < 0)
 				mods = NULL;
 			/* open should only fail here if the file is malformed */
-			else if (git_config_file_open(mods, GIT_CONFIG_LEVEL_LOCAL) < 0) {
+			else if (git_config_file_open(mods, GIT_CONFIG_LEVEL_LOCAL, repo) < 0) {
 				git_config_file_free(mods);
 				mods = NULL;
 			}

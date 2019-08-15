@@ -1,0 +1,67 @@
+"use strict";
+
+var NodeGit = require("../");
+var LookupWrapper = NodeGit.Utils.lookupWrapper;
+
+var Reference = NodeGit.Reference;
+var Branch = NodeGit.Branch;
+
+/**
+* Retrieves the reference by it's short name
+* @async
+* @param {Repository} repo The repo that the reference lives in
+* @param {String|Reference} id The reference to lookup
+* @param {Function} callback
+* @return {Reference}
+*/
+Reference.dwim = LookupWrapper(Reference, Reference.dwim);
+
+/**
+* Retrieves the reference pointed to by the oid
+* @async
+* @param {Repository} repo The repo that the reference lives in
+* @param {String|Reference} id The reference to lookup
+* @param {Function} callback
+* @return {Reference}
+*/
+Reference.lookup = LookupWrapper(Reference);
+
+/**
+ * Returns true if this reference is not symbolic
+ * @return {Boolean}
+ */
+Reference.prototype.isConcrete = function () {
+  return this.type() == Reference.TYPE.OID;
+};
+
+/**
+ * Returns if the ref is pointed at by HEAD
+ * @return {Boolean}
+ */
+Reference.prototype.isHead = function () {
+  return Branch.isHead(this);
+};
+
+/**
+ * Returns true if this reference is symbolic
+ * @return {Boolean}
+ */
+Reference.prototype.isSymbolic = function () {
+  return this.type() == Reference.TYPE.SYMBOLIC;
+};
+
+/**
+ * Returns true if this reference is valid
+ * @return {Boolean}
+ */
+Reference.prototype.isValid = function () {
+  return this.type() != Reference.TYPE.INVALID;
+};
+
+/**
+ * Returns the name of the reference.
+ * @return {String}
+ */
+Reference.prototype.toString = function () {
+  return this.name();
+};
