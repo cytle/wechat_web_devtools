@@ -882,6 +882,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-pen-in-square {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/pen-in-square.svg") no-repeat 50% 50%;
+          mask: url("svg/pen-in-square.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-mini-app {
   display: inline-block;
   vertical-align: middle;
@@ -2443,6 +2454,9 @@ body.dark .ui-notice-msg-ft [class^="ui-icon-arrow"] {
 .ui-dropdown-item.ui-dropdown-item-active a {
   color: #fff;
 }
+.ui-dropdown-item:hover:not(.ui-dropdown-item-simple) {
+  background-color: #00c777;
+}
 .ui-dropdown-item > p {
   white-space: nowrap;
   overflow: hidden;
@@ -2520,6 +2534,28 @@ body.dark .ui-notice-msg-ft [class^="ui-icon-arrow"] {
 .ui-dropdown-status-item a + a {
   margin-left: 10px;
 }
+.ui-dropdown-item-input {
+  padding: 10px 15px;
+  position: relative;
+}
+.ui-dropdown-item-input .ui-icon-magnifier {
+  position: absolute;
+  left: 23px;
+  top: 17px;
+  width: 14px;
+  height: 14px;
+  background-color: #676767;
+}
+.ui-dropdown-input {
+  border: 0;
+  outline: 0;
+  border: 1px solid #d8d8d8;
+  background-color: transparent;
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 5px 5px 30px;
+  border-radius: 2px;
+}
 body.dark .ui-dropdown {
   background-color: #333333;
 }
@@ -2536,8 +2572,21 @@ body.dark .ui-dropdown-item [class^="ui-icon-menu-arrow-right"],
 body.dark .ui-dropdown-item [class^="ui-icon-pencil"] {
   background-color: rgba(255, 255, 255, 0.8);
 }
+body.dark .ui-dropdown-item.ui-dropdown-item-active {
+  background-color: #4c4c4c;
+}
+body.dark .ui-dropdown-item:hover:not(.ui-dropdown-item-simple) {
+  background-color: #3e3e3e;
+}
 body.dark .ui-dropdown-divider {
   background-color: #434343;
+}
+body.dark .ui-dropdown-input {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: #555555;
+}
+body.dark .ui-dropdown-input .ui-icon-magnifier {
+  background-color: #fff;
 }
 .ui-popover {
   position: fixed;

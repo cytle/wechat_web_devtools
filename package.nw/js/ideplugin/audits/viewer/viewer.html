@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+<script type="text/template" id="main_template">
+  <div class="audit-result">
+    <report-viewer v-bind:env-info="envInfo" v-bind:audits-report="resultInfo"></report-viewer>
+  </div>
+</script>
+<div id="main"></div>
+<!--div class="widget vbox panel audits2">
+<div class="toolbar-shadow" style="border-bottom: 1px solid var(--divider-color);">
+  <button id="start" class="toolbar-button toolbar-item toolbar-has-glyph" tabindex="0">
+    <span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-add icon-mask" style="--spritesheet-position: -28px 48px; width: 28px; height: 24px;"></span>
+    <div class="toolbar-text hidden"></div>
+  </button>
+  <button id="clear" class="toolbar-button toolbar-item toolbar-has-glyph" tabindex="0">
+    <span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-clear icon-mask" style="--spritesheet-position:0px 144px; width: 28px; height: 24px;"></span>
+    <div class="toolbar-text hidden"></div>
+  </button>
+  <div class="toolbar-divider toolbar-item"></div>
+  <label is="dt-checkbox" class="toolbar-item checkbox">
+    <input type="checkbox" id="disable-cache">
+    <label class="dt-checkbox-text" for="disable-cache">Disable cache</label>
+  </label>
+</div>
+
+<div id="guild" class="audits2-results-container">
+  <div class="lh-vars lh-root lh-devtools">
+    <div class="lh-container">
+      <div class="lh-report">
+        <div class="lh-categories">
+          <div class="lh-category">
+            <span class="lh-permalink" id="best-practices"></span>
+            <div class="lh-score">
+              <div class="lh-score__header">
+                <div class="lh-score__snippet">
+                  <span class="lh-score__title">
+                    <span>体验评分</span>
+                  </span>
+                </div>
+                <div class="lh-score__description">
+                  <span>我们会在小程序运行过程中实时检查，分析出一些可能导致体验不好的地方，并且定位出哪里有问题，以及给出一些优化建议。请点击 <span id="start2" is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-add icon-mask" style="--spritesheet-position: -30px 43px; width: 24px; height: 12px; cursor: pointer;"></span> 开始检查。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div-->
+
+<!--div id="result" :class="['audits2-results-container']" v-show="!hidden">
+  <div class="lh-vars lh-root lh-devtools">
+    <div class="lh-container">
+      <div class="lh-report">
+        <div class="lh-scores-wrapper">
+          <div class="lh-scores-container">
+            <div class="lh-scores-header">
+              <a href="javascript:;" :class="['lh-gauge__wrapper', getScoringStyle(level)]">
+                <svg viewBox="0 0 120 120" class="lh-gauge" fill="none" stroke-width="2">
+                  <circle class="lh-gauge-base" r="53" cx="60" cy="60"></circle>
+                  <circle class="lh-gauge-arc" transform="rotate(-90 60 60)" stroke-dasharray="0 329" stroke-dashoffset="0"
+                    r="53" cx="60" cy="60" :style="getStrokeStyle(score, 329)"></circle>
+                </svg>
+                <div class="lh-gauge__percentage">{{score}}</div>
+                <div class="lh-gauge__label">总分</div>
+              </a>
+              <a v-for="(item,idx) in categories" :href="'#' + item.type" :class="['lh-gauge__wrapper', getScoringStyle(item.score.level)]">
+                <svg viewBox="0 0 120 120" class="lh-gauge" fill="none" stroke-width="2">
+                  <circle class="lh-gauge-base" r="53" cx="60" cy="60"></circle>
+                  <circle class="lh-gauge-arc" transform="rotate(-90 60 60)" stroke-dasharray="0 329" stroke-dashoffset="0"
+                    r="53" cx="60" cy="60" :style="getStrokeStyle(item.score.num, 329)"></circle>
+                </svg>
+                <div class="lh-gauge__percentage">{{item.score.num}}</div>
+                <div class="lh-gauge__label">{{item.text}}</div>
+              </a>
+            </div>
+            <div class="lh-scorescale" style="opacity: 1; transform: translateY(0px);">
+              <!-- <span class="lh-scorescale-label">Score scale:</span> ->
+              <span class="lh-scorescale-range lh-scorescale-range--pass">90-100</span>
+              <span class="lh-scorescale-range lh-scorescale-range--average">70-89</span>
+              <span class="lh-scorescale-range lh-scorescale-range--fail">0-69</span>
+            </div>
+          </div>
+        </div>
+        <!-- -------------------- main content ----------------------- ->
+        <div class="lh-categories">
+
+          <div v-for="(item,idx) in categories" class="lh-category">
+            <span class="lh-permalink" :id="item.type"></span>
+            <div class="lh-category-header">
+              <div class="lh-score__gauge">
+                <a :href="'#' + item.type" :class="['lh-gauge__wrapper', getScoringStyle(item.score.level)]">
+                  <svg viewBox="0 0 120 120" class="lh-gauge" fill="none" stroke-width="2">
+                    <circle class="lh-gauge-base" r="53" cx="60" cy="60"></circle>
+                    <circle class="lh-gauge-arc" transform="rotate(-90 60 60)" stroke-dasharray="0 329" stroke-dashoffset="0"
+                      r="53" cx="60" cy="60" :style="getStrokeStyle(item.score.num, 329)"></circle>
+                  </svg>
+                  <div class="lh-gauge__percentage">{{item.score.num}}</div>
+                  <div class="lh-gauge__label">{{item.text}}</div>
+                </a>
+              </div>
+              <span class="lh-category-header__title"><span>{{item.text}}</span></span>
+              <div class="lh-category-header__description">{{item.description}}</div>
+            </div>
+            <div class="lh-audit-groups">
+              <div v-if="filterAuditTask(item.type, 'failed').length != 0" class="lh-clump--failed lh-audit-group">
+                <summary>
+                  <div class="lh-audit-group__summary">
+                    <div class="lh-audit-group__header">未通过</div>
+                  </div>
+                </summary>
+                <div v-for="(task,taskIndex) in filterAuditTask(item.type, 'failed')" :key="task.meta.id" :class="['lh-audit', 'lh-audit--binary', getSummaryStyle(task.score.level)]">
+                  <details class="lh-expandable-details">
+                    <summary>
+                      <div class="lh-audit__header lh-expandable-details__summary">
+                        <span class="lh-audit__index">{{taskIndex+1}}</span>
+                        <span class="lh-audit__title"><span>{{task.meta.failedTitle}}</span></span>
+                        <span class="lh-audit__display-text">{{task.failedSummary}}</span>
+                        <div class="lh-audit__score-icon"></div>
+                        <div class="lh-chevron-container"><svg class="lh-chevron" title="See audits"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <g class="lh-chevron__lines">
+                              <path class="lh-chevron__line lh-chevron__line-left" d="M10 50h40" stroke="#707173">
+                              </path>
+                              <path class="lh-chevron__line lh-chevron__line-right" d="M90 50H50" stroke="#707173"></path>
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                    </summary>
+                    <div class="lh-audit__description">
+                      <span>{{task.meta.description}}</span>
+                      <a v-if="task.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(task.meta.document)">更多学习</a></span>
+                    </div>
+                    <table class="lh-table lh-details">
+                      <thead>
+                        <tr>
+                          <th v-for="(head, idx) in task.headings" :key="idx" :class="head.type == 'url' ? 'lh-table-column--url' : 'lh-table-column--text'">
+                            <div class="lh-text">{{head.text}}</div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="row in task.details">
+                          <td v-for="(head, idx) in task.headings" :class="head.type == 'url' ? 'lh-table-column--url' : 'lh-table-column--text'">
+                            <div v-if="head.type == 'url'" class="lh-text__url">
+                              <a class="lh-text" :title="row[head.key]" @click="open(row[head.key])" :style="row._style">{{row[head.key]}}</a>
+                            </div>
+                            <div v-else :title="row[head.key]" class="lh-text">{{row[head.key]}}</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </details>
+                </div>
+              </div>
+              <details v-if="filterAuditTask(item.type, 'passed').length != 0" class="lh-clump lh-audit-group lh-clump--passed">
+                <summary>
+                  <div class="lh-audit-group__summary">
+                    <div class="lh-audit-group__header">体验通过</div>
+                    <div class="lh-audit-group__itemcount">{{filterAuditTask(item.type, 'passed').length}} 项</div>
+                    <div class=""></div>
+                    <svg class="lh-chevron" title="See audits" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                      <g class="lh-chevron__lines">
+                        <path class="lh-chevron__line lh-chevron__line-left" d="M10 50h40" stroke="#707173"></path>
+                        <path class="lh-chevron__line lh-chevron__line-right" d="M90 50H50" stroke="#707173"></path>
+                      </g>
+                    </svg>
+                  </div>
+                </summary>
+                <div v-for="(task,taskIndex) in filterAuditTask(item.type, 'passed')" :key="task.meta.id" class="lh-audit lh-audit--pass lh-audit--binary">
+                  <details class="lh-expandable-details">
+                    <summary>
+                      <div class="lh-audit__header lh-expandable-details__summary">
+                        <span class="lh-audit__index">{{taskIndex+1}}</span>
+                        <span class="lh-audit__title"><span>{{task.meta.passedTitle}}</span></span>
+                        <span class="lh-audit__display-text"></span>
+                        <div class="lh-audit__score-icon"></div>
+                        <div class="lh-chevron-container"><svg class="lh-chevron" title="See audits"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <g class="lh-chevron__lines">
+                              <path class="lh-chevron__line lh-chevron__line-left" d="M10 50h40" stroke="#707173">
+                              </path>
+                              <path class="lh-chevron__line lh-chevron__line-right" d="M90 50H50" stroke="#707173"></path>
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                    </summary>
+                    <div class="lh-audit__description">
+                      <span>{{task.meta.description}}</span>
+                      <a v-if="task.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(task.meta.document)">更多学习</a></span>
+                    </div>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="lh-category">
+            <details v-if="notApplicable.length != 0" class="lh-clump lh-audit-group lh-clump--notapplicable">
+              <summary>
+                <div class="lh-audit-group__summary">
+                  <div class="lh-audit-group__header">不适用当前小程序</div>
+                  <div class="lh-audit-group__itemcount">{{notApplicable.length}} 项</div>
+                  <svg title="See audits" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="lh-chevron"><g class="lh-chevron__lines"><path d="M10 50h40" stroke="#707173" class="lh-chevron__line lh-chevron__line-left"></path><path d="M90 50H50" stroke="#707173" class="lh-chevron__line lh-chevron__line-right"></path></g></svg>
+                </div>
+              </summary>
+              <div v-for="(task,taskIndex) in notApplicable" :key="task.meta.id" class="lh-audit lh-audit--pass lh-audit--binary">
+                <details class="lh-expandable-details">
+                  <summary>
+                    <div class="lh-audit__header lh-expandable-details__summary">
+                      <span class="lh-audit__index">{{taskIndex+1}}</span>
+                      <span class="lh-audit__title"><span>{{task.meta.passedTitle}}</span></span>
+                      <span class="lh-audit__display-text"></span>
+                      <div class="lh-audit__score-icon"></div>
+                    </div>
+                  </summary>
+                  <div class="lh-audit__description">
+                    <span>{{task.meta.description}}</span>
+                    <a v-if="task.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(task.meta.document)">更多学习</a></span>
+                  </div>
+                </details>
+              </div>
+            </details>
+          </div>
+
+          <!-- <div class="lh-category">
+            <span class="lh-permalink" id="best-practices"></span>
+            <div class="lh-audit-group lh-failed-audits">
+              <summary class="lh-audit-group__summary">
+                <div class="lh-audit-group__header">{{failed.length}} Failed Audits</div>
+                <div class="lh-toggle-arrow  lh-toggle-arrow-unexpandable" title="See audits"></div>
+              </summary>
+              <div v-for="item in failed" class="lh-audit">
+                <div class="lh-score">
+                  <!-- <div class="lh-score__value lh-score__value--fail lh-score__value--binary">0</div>
+                  <details class="lh-score__header lh-expandable-details">
+                    <summary class="lh-score__snippet lh-expandable-details__summary" tabindex="0">
+                      <span class="lh-score__title">
+                        <span>{{item.title}}</span>
+                      </span>
+                      <div class="lh-toggle-arrow" title="See audits"></div>
+                      <a v-if="item.showIgnore" href="" @click.prevent="ignore(item.meta.id)">忽略</a>
+                    </summary>
+                    <div class="lh-score__description">
+                      <span>{{item.meta.description}} <a v-if="item.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(item.meta.document)">更多学习</a></span>
+                    </div>
+                    <details v-if="item.details.length" class="lh-details">
+                      <summary tabindex="0">详情</summary>
+                      <table class="lh-table">
+                        <thead>
+                          <tr>
+                            <th v-for="(head, idx) in item.headings" :class="idx ? getColumnClass(head.type) : 'lh-table-column--url'" :style="head.style">
+                              <div class="lh-text__url" :title="head.text">{{head.text}}</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="row in item.details">
+                            <td v-for="(col, idx) in item.headings" :class="idx ? getColumnClass(col.type) : 'lh-table-column--url'" :style="col.style">
+                              <div v-if="col.type === 'stack'" class="lh-text__url" :style="row._style">
+                                <div v-for="(stack, sIdx) in row[col.key]" :key="sIdx">
+                                  at {{stack.func}} (<a href="javascript:;" :title="[stack.file, stack.line, stack.column].join(':')" @click="openEditor(stack.file, stack.line, stack.column)">{{getStackText(stack)}}</a>)
+                                </div>
+                              </div>
+                              <div v-html='row[col.key]' v-else-if="typeof row[col.key] === 'string' && row[col.key].match(/(\<\/div\>|\<br\>)/)" class="lh-text__url" :style="row._style">{{row[col.key]}}</div>
+                              <div v-else class="lh-text__url" :style="row._style">{{row[col.key]}}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </details>
+                  </details>
+                </div>
+              </div>
+            </div>
+            <details class="lh-audit-group lh-passed-audits">
+              <summary class="lh-audit-group__summary" tabindex="0">
+                <div class="lh-audit-group__header">{{passed.length}} Passed Audits</div>
+                <div class="lh-toggle-arrow  " title="See audits"></div>
+              </summary>
+              <div v-for="item in passed" class="lh-audit">
+                <div class="lh-score">
+                  <!-- <div class="lh-score__value lh-score__value--pass lh-score__value--binary">100</div>
+                  <details class="lh-score__header lh-expandable-details">
+                    <summary class="lh-score__snippet lh-expandable-details__summary" tabindex="0">
+                      <span class="lh-score__title">
+                        <span>{{item.title}}</span>
+                      </span>
+                      <div class="lh-toggle-arrow" title="See audits"></div>
+                    </summary>
+                    <div class="lh-score__description">
+                      <span>{{item.meta.description}} <a v-if="item.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(item.meta.document)">更多学习</a></span>
+                    </div>
+                    <details v-if="item.details.length" class="lh-details">
+                      <summary tabindex="0">详情</summary>
+                      <table class="lh-table">
+                        <thead>
+                          <tr>
+                            <th v-for="(head, idx) in item.headings" :class="[head.type === 'none' ? '' : (idx ? 'lh-table-column--text' : 'lh-table-column--url')]" :style="head.style">
+                              <div class="lh-text__url" :title="head.text">{{head.text}}</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="row in item.details">
+                            <td v-for="(col, idx) in item.headings" :class="[col.type === 'none' ? '' : (idx ? 'lh-table-column--text' : 'lh-table-column--url')]" :style="col.style">
+                              <div v-html='row[col.key]' v-if="typeof row[col.key] === 'string' && row[col.key].match(/(\<\/div\>|\<br\>)/)" class="lh-text__url">{{row[col.key]}}</div>
+                              <div v-else class="lh-text__url">{{row[col.key]}}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </details>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="lh-audit-group lh-passed-audits">
+              <summary class="lh-audit-group__summary" tabindex="0">
+                <div class="lh-audit-group__header">{{ignored.length}} Ignored Audits</div>
+                <div class="lh-toggle-arrow  " title="See audits"></div>
+              </summary>
+              <div v-for="item in ignored" class="lh-audit">
+                <div class="lh-score">
+                  <!-- <div class="lh-score__value lh-score__value--pass lh-score__value--binary">100</div>
+                  <details class="lh-score__header lh-expandable-details">
+                    <summary class="lh-score__snippet lh-expandable-details__summary" tabindex="0">
+                      <span class="lh-score__title">
+                        <span>{{item.title}}</span>
+                      </span>
+                      <div class="lh-toggle-arrow" title="See audits"></div>
+                      <a href="" @click.prevent="reset(item.meta.id)">重置</a>
+                    </summary>
+                    <div class="lh-score__description">
+                      <span>{{item.meta.description}} <a v-if="item.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(item.meta.document)">更多学习</a></span></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="lh-audit-group lh-passed-audits">
+              <summary class="lh-audit-group__summary" tabindex="0">
+                <div class="lh-audit-group__header">{{notApplicable.length}} Not Applicable</div>
+                <div class="lh-toggle-arrow  " title="See audits"></div>
+              </summary>
+              <div v-for="item in notApplicable" class="lh-audit">
+                <div class="lh-score">
+                  <!-- <div class="lh-score__value lh-score__value--pass lh-score__value--binary">100</div>
+                  <details class="lh-score__header lh-expandable-details">
+                    <summary class="lh-score__snippet lh-expandable-details__summary" tabindex="0">
+                      <span class="lh-score__title">
+                        <span>{{item.title}}</span>
+                      </span>
+                      <div class="lh-toggle-arrow" title="See audits"></div>
+                    </summary>
+                    <div class="lh-score__description">
+                      <span>{{item.meta.description}} <a v-if="item.meta.document" rel="noopener" target="_blank" href="" @click.prevent="open(item.meta.document)">更多学习</a></span></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div> -->
+        <!-- -------------------- main content ----------------------- -->
+        <!--
+        <style>
+          .lh-footer {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--report-header-bg-color);
+            border-top: 1px solid var(--report-secondary-border-color);
+          }
+
+          .lh-footer span {
+            text-align: center;
+          }
+        </style>
+        <footer class="lh-footer">
+          <span>
+            Generated by <b>Lighthouse</b> <span class="lh-footer__version">2.9.1</span> on
+            <span class="lh-footer__timestamp">Jun 24, 2018, 4:15 PM GMT+8</span> |
+            <a href="https://github.com/GoogleChrome/Lighthouse/issues" target="_blank" rel="noopener" tabindex="0">File an issue</a>
+          </span>
+        </footer>
+        ->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="dialog" v-show="!hidden" class="vbox flex-auto" style="position: absolute !important; top: 0; bottom: 0; left: 0; right: 0; overflow: hidden; contain: strict; background-color: transparent; z-index: 3000;">
+  <div class="widget" tabindex="0" style="width: 500px; max-height: 400px; left: 50%; top: 50%; margin-top: -100px; margin-left: -250px; position: absolute;">
+    <div class="audits2-view vbox" tabindex="0">
+      <div is="dt-close-button" class="dialog-close-button" @click="cancel">
+        <div v-pre class="close-button">
+          <span is="ui-icon" class="default-icon spritesheet-smallicons smallicon-cross" style="--spritesheet-position:-20px 70px; width: 10px; height: 10px;"></span>
+          <span is="ui-icon" class="hover-icon spritesheet-mediumicons mediumicon-red-cross-hover" style="--spritesheet-position:0px 16px; width: 16px; height: 16px;"></span>
+          <span is="ui-icon" class="active-icon spritesheet-mediumicons mediumicon-red-cross-active" style="--spritesheet-position:-48px 32px; width: 16px; height: 16px;"></span>
+        </div>
+      </div>
+      <div class="vbox launcher-container">
+        <header>
+          <p>Running Audits...</p>
+        </header>
+        <div class="audits2-status vbox">
+          <div class="audits2-progress-wrapper hidden">
+            <div class="audits2-progress-bar"></div>
+          </div>
+          <div v-if="status === 'error'" class="audits2-status-text">基础库切换到 2.2.0+ ，才能使用 Audits 功能</div>
+          <div v-else class="audits2-status-text">正在检查体验问题。请自行操作小程序，尽可能覆盖到所有页面，以及触发各个页面的各种交互，让“体验评分”功能可以检查到各个地方。完成后，请点击下方“Stop”按钮。</div>
+        </div>
+        <div v-pre class="audits2-dialog-buttons hbox">
+          <text-button id="stop" type="button" class="primary-button" data-keyboard-focus="true">Stop</text-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div-->
+
+<script type="text/javascript" src="viewer.js"></script></body>
+</html>

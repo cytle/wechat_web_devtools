@@ -1,0 +1,10 @@
+{
+  "nativeSDK.js": "runtime/nativeSDK.637531510fb4ceba3a68.js",
+  "appservice.js": "inject/appservice.e9b296c5e8a66ade58f6.js",
+  "game.js": "inject/game.ded3a8e696b029bf0b08.js",
+  "webview.js": "inject/webview.345c86c89e4c223d763a.js",
+  "index.js": "index.661fbc410bd810a9ec20.js",
+  "viewer.html": "viewer.html",
+  "ae57af19385843f1e02f.worker.js": "ae57af19385843f1e02f.worker.js",
+  "index.html": "index.html"
+}

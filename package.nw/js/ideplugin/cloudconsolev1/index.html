@@ -5,13 +5,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="preload" href="./static/cloudconsole.css" as="style" />
+  <link rel="preload" href="./internal-static/style.css" as="style" />
+  <link rel="preload" href="./js/bundle.js" as="script" />
+  <link rel="preload" href="./internal-static/payment/iframe.html" as="document" />
+  <link rel="preload" href="./manifest.json" as="fetch" />
+  <link rel="preload" href="./static/image/WeChatSansSS-Regular.ttf" as="font" type="font/ttf" />
+  <link rel="preload" href="./static/image/WeChatSansStd-Medium.ttf" as="font" type="font/ttf" />
+  <link rel="preload" href="./static/image/WeChatSansStd-Regular.ttf" as="font" type="font/ttf" />
+  <link rel="dns-prefetch" href="https://api.unipay.qq.com" />
+  <link rel="dns-prefetch" href="https://szmg.qq.com" />
+  <link rel="dns-prefetch" href="https://midas.gtimg.cn" />
+  <link rel="dns-prefetch" href="https://pay.qq.com" />
+
   <link rel="stylesheet" href="./static/cloudconsole.css" type="text/css" />
   <link rel="stylesheet" href="./internal-static/style.css" type="text/css" />
   <title>Console</title>
 </head>
 
 <body>
-
   <div class="--frame" id="--frame-no-env">
     <i class="ui-icon-spinner --frame-spinner"></i>
     <p class="--init-text --init-lazy-area --secondary-text-color"></p>
@@ -24,13 +36,6 @@
           <div class="toolbar">
             <div class="toolbar-items">
               <div class="toolbar-item">
-                <div class="toolbar-action toolbar-action-active">
-                  <div class="toolbar-button"></div>
-                  <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </div>
-              </div>
-              <div class="toolbar-item-divider"></div>
-              <div class="toolbar-item">
                 <div class="toolbar-action">
                   <div class="toolbar-button"></div>
                   <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -48,12 +53,30 @@
                   <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </div>
               </div>
-              <div class="toolbar-item-divider"></div>
               <div class="toolbar-item">
                 <div class="toolbar-action">
                   <div class="toolbar-button"></div>
                   <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </div>
+              </div>
+            </div>
+
+            <div class="toolbar-item">
+              <div class="toolbar-action">
+                <div class="toolbar-button"></div>
+                <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </div>
+            </div>
+            <div class="toolbar-item">
+              <div class="toolbar-action">
+                <div class="toolbar-button"></div>
+                <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </div>
+            </div>
+            <div class="toolbar-item">
+              <div class="toolbar-action">
+                <div class="toolbar-button"></div>
+                <p class="toolbar-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
           </div>
@@ -108,7 +131,25 @@
   </div>
 
   <div id="react-root" class="container"></div>
-  <script src="./js/bundle.js" defer></script>
+  <!-- <script src="./js/bundle.js" defer></script> -->
+  <script type="text/javascript">
+    ;(function(d, s1, lsh) {
+      requestAnimationFrame(function() {
+        if (lsh.indexOf('lasttheme=dark') >= 0) {
+          d.body.classList.add('dark');
+        }
+        if (lsh.indexOf('lasthasenv=yes') >= 0) {
+          d.getElementById('--frame-has-env').classList.remove('--opacity-0');
+          d.getElementById('--frame-no-env').classList.add('--opacity-0');
+        }
+      });
+      var s = d.createElement("script");
+      s.type = "text/javascript";
+      s.defer = true;
+      s.src = "./js/bundle.js";
+      s1.parentNode.insertBefore(s, s1);
+    })(document, document.getElementsByTagName("script")[0], location.search);
+  </script>
 </body>
 
 </html>

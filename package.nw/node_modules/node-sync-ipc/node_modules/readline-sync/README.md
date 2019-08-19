@@ -122,7 +122,7 @@ Exited
 
 ## <a name="installation"></a>Installation
 
-```shell
+```console
 npm install readline-sync
 ```
 
@@ -538,14 +538,14 @@ It just uses a fifo with above sample code that was named `conv.js`.
 
 Another terminal:
 
-```shell
+```console
 mkfifo /tmp/fifo
 cat /tmp/fifo
 ```
 
 My terminal:
 
-```shell
+```console
 node conv.js >/tmp/fifo
 ```
 
@@ -1215,13 +1215,13 @@ This method displays a prompt-sign like:
 
 On Windows:
 
-```shell
+```console
 C:\Users\User\Path\To\Directory>
 ```
 
 On others:
 
-```shell
+```console
 user@host:~/path/to/directory$ 
 ```
 
@@ -1301,7 +1301,7 @@ readlineSync.keyInYN('Do you like me?'); // No colon
 readlineSync.keyInYN('Really? :'); // Colon already exists
 ```
 
-``` console
+```console
 Do you like me? [y/n]: y
 Really? [y/n]: y
 ```
@@ -1333,7 +1333,7 @@ readlineSync.keyInPause([query[, options]])
 
 Display a `query` to the user if it's specified, and then just wait for a key to be pressed by the user.  
 This method works like the `window.alert` method of web browsers. This is used to make the running of script pause and show something to the user, or wait for the user to be ready.  
-By default, any key is accepted. You can change this behavior by specifying [`limit`](#basic_options-limit) option  (e.g. accept only a Space Bar).
+By default, any key is accepted (See: [Note](#utility_methods-keyinpause-note)). You can change this behavior by specifying [`limit`](#basic_options-limit) option  (e.g. accept only a Space Bar).
 
 The `query` is handled the same as that of the [`question`](#basic_methods-question) method.  
 The default value of `query` is `'Continue...'`.
@@ -1386,8 +1386,17 @@ For example:
 readlineSync.keyInPause('It\'s pausing now...');
 ```
 
-``` console
+```console
 It's pausing now... (Hit any key)
+```
+
+#### <a name="utility_methods-keyinpause-note"></a>Note
+
+Control keys including Enter key are not accepted by `keyIn*` methods.  
+If you want to wait until the user presses Enter key, use `question*` methods instead of `keyIn*` methods. For example:
+
+```js
+readlineSync.question('Hit Enter key to continue.', {hideEchoBack: true, mask: ''});
 ```
 
 ### <a name="utility_methods-keyinselect"></a>`keyInSelect`

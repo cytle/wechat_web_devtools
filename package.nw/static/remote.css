@@ -722,6 +722,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-pen-in-square {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-mask: url("svg/pen-in-square.svg") no-repeat 50% 50%;
+          mask: url("svg/pen-in-square.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-mini-app {
   display: inline-block;
   vertical-align: middle;

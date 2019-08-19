@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><link rel="shortcut icon" href="https://mmbiz.qpic.cn/mmbiz_png/icTdbqWNOwNQ1qSjicRG2Sd0tCZsjqmkmpUsZWPQ4YyuRwKibg8FeLE2x9k7OkHgu5uFc5VtcuuODGAQZZxiaR5iaiaQ/0?wx_fmt=png"><style type=text/css>#webview-container{width:100%;height:100%;position:absolute;top:0;left:0}.webview{width:100%;height:100%}</style></head><body><div id=webview-container></div></body><script type=text/javascript>const search = location.search
+  const urip = new URLSearchParams(search)
+  const rkey = urip.get('rkey') || ''
+  const href = global.shareData[rkey]
+  delete global.shareData[rkey]
+  console.log('redirect to', href)
+  const container = document.getElementById('webview-container')
+  const wv = document.createElement('webview')
+  const loadCommit = () => {
+    console.log('load commit')
+    wv.removeEventListener('loadcommit', loadCommit)
+    const oldUa = wv.getUserAgent()
+    const ua = `${oldUa} wechatdevtools/${global.appVersion || '?'}`
+    wv.setUserAgentOverride(ua)
+    console.log('set user agent', ua)
+    wv.src = href
+  }
+  wv.addEventListener('loadcommit', loadCommit)
+  wv.classList.add('webview')
+  container.appendChild(wv)
+
+  const MaxTry = 100
+  let i = 0
+  const delay = ms => new Promise(r => setTimeout(r, ms))
+  ; (async function reloadWebView() {
+    while (i++ < MaxTry) {
+      await delay(100)
+      if (typeof wv.reload === 'function' && typeof wv.getUserAgent === 'function') {
+        // until now, we can safely set the href link
+        await delay(0)
+        wv.src = 'about:blank#'
+        break
+      }
+    }
+    console.log('reload webview after', i, 'tries.')
+  })();</script></html>
