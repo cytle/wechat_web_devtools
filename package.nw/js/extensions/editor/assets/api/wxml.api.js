@@ -4005,5 +4005,23 @@ window.WXMLAPI = {
         "type": "EventHandler"
       }
     }
-  }
+  },
+  "template": {
+    "link": "https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/template.html",
+    "attributes": {
+      "name": {
+        "type": "String",
+        "doc": "组件的唯一标示"
+      },
+      "is": {
+        "type": "String",
+        "doc": "声明需要的使用的模板"
+      },
+      "data": {
+        "type": "Any",
+        "doc": "模板所需要的数据"
+      }
+    }
+  },
+  "block": {}
 }

@@ -1,10 +1,10 @@
 {
-  "nativeSDK.js": "runtime/nativeSDK.637531510fb4ceba3a68.js",
-  "appservice.js": "inject/appservice.e9b296c5e8a66ade58f6.js",
-  "game.js": "inject/game.ded3a8e696b029bf0b08.js",
-  "webview.js": "inject/webview.345c86c89e4c223d763a.js",
-  "index.js": "index.661fbc410bd810a9ec20.js",
+  "nativeSDK.js": "runtime/nativeSDK.6575f9edcba647aa6009.js",
+  "appservice.js": "inject/appservice.3a486abef4c11bd2ea30.js",
+  "game.js": "inject/game.67fef1d402e39854d60f.js",
+  "webview.js": "inject/webview.eb3dd8dd0967ffbe6a8e.js",
+  "index.js": "index.bc8827bcb6f2de9d2663.js",
   "viewer.html": "viewer.html",
-  "ae57af19385843f1e02f.worker.js": "ae57af19385843f1e02f.worker.js",
+  "948b076ddd3afd4d2cf0.worker.js": "948b076ddd3afd4d2cf0.worker.js",
   "index.html": "index.html"
 }

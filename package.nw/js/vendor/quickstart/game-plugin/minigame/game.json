@@ -1,0 +1,9 @@
+{
+    "deviceOrientation": "portrait",
+    "plugins": {
+      "plus": {
+        "version": "dev",
+        "provider": "{{provider}}"
+      }
+    }
+}

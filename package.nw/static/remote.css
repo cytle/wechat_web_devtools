@@ -810,6 +810,17 @@ body {
           mask-size: cover;
   background-color: #000;
 }
+.ui-icon-home-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  -webkit-mask: url("svg/home-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/home-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
 .ui-icon-menu {
   display: inline-block;
   vertical-align: middle;

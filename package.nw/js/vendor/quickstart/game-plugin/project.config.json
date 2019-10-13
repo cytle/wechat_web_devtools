@@ -1,0 +1,5 @@
+{
+	"miniprogramRoot": "minigame/",
+	"pluginRoot": "plugin/",
+	"compileType": "gamePlugin"
+}

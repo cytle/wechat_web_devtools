@@ -101,8 +101,8 @@ start_step 'fix: 修改项目名字, 修复标题栏乱码问题'
 bash "$root_dir/bin/fix_package_name.sh"
 
 # 重新编译node-sync-ipc
-start_step 'fix: 重新编译node-sync-ipc'
-bash "$root_dir/bin/fix_node_sync_ipc.sh"
+# start_step 'fix: 重新编译node-sync-ipc'
+# bash "$root_dir/bin/fix_node_sync_ipc.sh"
 
 start_step 'doc: 更新文档'
 

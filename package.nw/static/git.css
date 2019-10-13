@@ -367,6 +367,7 @@ body {
   }
 }
 .ui-dialog-hd {
+  display: flex;
   padding: 9px 29px;
   margin: 1px 1px 0;
   background-color: #fff;
@@ -377,6 +378,10 @@ body {
   text-align: left;
   font-size: 13px;
   color: #111111;
+  flex: 1;
+}
+.ui-dialog-ext {
+  color: #7f7f7f;
 }
 .ui-dialog-desc {
   font-size: 12px;
@@ -641,6 +646,7 @@ body.dark .ui-selector-dropdown i {
 }
 .ui-form-item-inline > .ui-form-controls {
   flex: 1;
+  min-width: 0;
 }
 .ui-form-item-error .ui-form-label {
   color: #cc463d;
@@ -1540,6 +1546,17 @@ body.dark .tree-view-hd.tree-view-hd-highlight:before {
   height: 20px;
   -webkit-mask: url("svg/home.svg") no-repeat 50% 50%;
           mask: url("svg/home.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  background-color: #000;
+}
+.ui-icon-home-circle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  -webkit-mask: url("svg/home-circle.svg") no-repeat 50% 50%;
+          mask: url("svg/home-circle.svg") no-repeat 50% 50%;
   -webkit-mask-size: cover;
           mask-size: cover;
   background-color: #000;

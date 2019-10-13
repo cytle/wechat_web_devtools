@@ -1460,3 +1460,16 @@ label
 .--content-hero-link {
   font-size: 16px;
 }
+
+.form-label label {
+  word-break: break-word;
+  min-width: 100px;
+  white-space: initial !important;
+  word-wrap: break-word;
+}
+
+.frontpage__banner-desc,
+.frontpage__banner-title,
+.frontpage__content-item-title {
+  color: rgb(0, 0, 0);
+}
