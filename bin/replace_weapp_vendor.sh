@@ -30,6 +30,7 @@ start_step() {
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 dev_tools_config_dir="$HOME/.config/wechat_web_devtools"
+weapp_vendor_dir="$dev_tools_config_dir/WeappVendor"
 vendor_dir="$root_dir/package.nw/js/vendor"
 start_step "生成"$dev_tools_config_dir
 
@@ -48,6 +49,11 @@ if [ ! -d "$dev_tools_config_dir" ]; then
 fi
 
 if [ -d "$dev_tools_config_dir" ]; then
+  if [ ! -d "$weapp_vendor_dir" ]; then
+    echo "mkdir -p $weapp_vendor_dir"
+    mkdir -p $weapp_vendor_dir
+  fi
+
   echo "cp -rf $root_dir/bin/WeappVendor/* $dev_tools_config_dir/WeappVendor/"
   cp -rf $root_dir/bin/WeappVendor/* "$dev_tools_config_dir/WeappVendor/"
   mkdir -p "$dev_tools_config_dir/WeappVendor/s"
