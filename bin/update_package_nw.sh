@@ -31,6 +31,30 @@ start_step() {
     echo -e "\033[34m------------------------------------------------------------------\033[0m"
 }
 
+# 获取指定URL及其版本
+set_download=""
+set_version=""
+set_flag=""
+while getopts 'l:v:' OPT; do
+    case "${OPT}" in
+	l) set_download=$OPTARG;;
+	v) set_version=$OPTARG;;
+    esac
+done
+
+if [ ! -z ${set_download}${set_version} ]; then
+    if [ -z ${set_download} ]; then
+	fail '缺少下载地址  -l <URL> -v <VERSION> 必须同时指定'
+	exit 1
+    fi
+    if [ -z ${set_version} ]; then
+	fail '缺少版本号  -l <URL> -v <VERSION> 必须同时指定'
+	exit 1
+    fi
+    set_flag="1"
+fi
+
+
 
 # 获取微信开发者工具版本等信息
 start_step '获取最新微信开发者工具版本'
@@ -42,8 +66,13 @@ dist_dir="$root_dir/dist"
 cur_wechat_v=`cat $root_dir/wechat_v`
 echo "当前wechat_v: $cur_wechat_v"
 
-wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
-wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
+if [ -z "$set_flag" ]; then
+    wcwd_download='https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki'
+    wechat_v=$(curl -sD - $wcwd_download | grep -oP --color=never '(?<=wechat_devtools_)[\d\.]+(?=_x64\.exe)')
+else
+    wcwd_download=$set_download
+    wechat_v=$set_version
+fi
 
 
 if [ -z "$wechat_v" ]; then
@@ -53,7 +82,8 @@ fi
 
 echo "最新wechat_v: $wechat_v"
 
-if [ "$wechat_v" = "$cur_wechat_v" ]; then
+# 当指定时忽略
+if [ "$wechat_v" = "$cur_wechat_v" ] && [ ! -z "$set_flag" ] ; then
   success "当前已经是最新版本"
   exit 0
 fi
