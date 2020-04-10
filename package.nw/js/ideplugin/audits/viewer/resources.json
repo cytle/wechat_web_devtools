@@ -1,8 +1,0 @@
-{
-  "nativeSDK.js": "runtime/nativeSDK.6575f9edcba647aa6009.js",
-  "appservice.js": "inject/appservice.3a486abef4c11bd2ea30.js",
-  "game.js": "inject/game.67fef1d402e39854d60f.js",
-  "webview.js": "inject/webview.eb3dd8dd0967ffbe6a8e.js",
-  "index.js": "viewer.js",
-  "viewer.html": "viewer.html"
-}

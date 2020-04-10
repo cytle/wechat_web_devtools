@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
-  <g fill="none" fill-rule="evenodd" transform="translate(-2 -2)">
-    <rect width="16" height="16" opacity=".9"/>
-    <path fill="#000" fill-rule="nonzero" d="M2.8,5.7 L13.2,5.7 L13.2,2.8 L2.8,2.8 L2.8,5.7 Z M13.2,6.5 L2.8,6.5 L2.8,9.5 L13.2,9.5 L13.2,6.5 Z M13.2,10.3 L2.8,10.3 L2.8,13.2 L13.2,13.2 L13.2,10.3 Z M2.6,2 L13.4,2 C13.7313708,2 14,2.26862915 14,2.6 L14,13.4 C14,13.7313708 13.7313708,14 13.4,14 L2.6,14 C2.26862915,14 2,13.7313708 2,13.4 L2,2.6 C2,2.26862915 2.26862915,2 2.6,2 Z" opacity=".9"/>
-    <rect width="1" height="1" x="3.8" y="3.8" fill="#000" opacity=".9"/>
-    <rect width="1" height="1" x="3.8" y="7.6" fill="#000" opacity=".9"/>
-    <rect width="1" height="1" x="3.8" y="11.4" fill="#000" opacity=".9"/>
-  </g>
-</svg>
