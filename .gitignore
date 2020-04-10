@@ -6,3 +6,4 @@ npm-debug.log
 *.log
 winehq.key
 *.iml
+/package.nw/**/*
