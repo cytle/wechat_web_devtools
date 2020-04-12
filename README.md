@@ -175,6 +175,15 @@ git pull origin
 ./bin/update_package_nw.sh -l <微信开发工具下载地址> -v <版本号>
 ```
 
+#### 手动更新nwjs至开发者工具对应的版本  
+通过windows版开发者工具安装文件获取对应使用的nwjs版本，并修改nwjs_v中版本号，然后执行：
+
+``` bash
+./bin/update_nwjs.sh
+```
+
+以上更新后，至少可以 **cli upload** 正常使用啦
+
 *Tips*
 
 - 运行没问题，欢迎PR
