@@ -2,8 +2,8 @@
 
 linux 下使用微信web开发者工具.
 
-![wx_dev_tools v1.02.1910121](https://img.shields.io/badge/wx_dev_tools-1.02.1910121-green.svg)
-![nw.js v0.24.4](https://img.shields.io/badge/nw.js-v0.24.4-blue.svg)
+![wx_dev_tools v1.02.2004020](https://img.shields.io/badge/wx_dev_tools-1.02.2004020-green.svg)
+![nw.js v0.38.4](https://img.shields.io/badge/nw.js-v0.38.4-blue.svg)
 
 ## Description
 
@@ -149,9 +149,9 @@ rm -rf /tmp/wxdt_xsp
 1. https://github.com/cytle/wechat_web_devtools/issues/66#issuecomment-368434141
 2. https://github.com/cytle/wechat_web_devtools/issues/56#issuecomment-371999385
 
-### 更新到最新版
+### 更新/升级到最新版（PS：同样适用于在canyoutle/wxdt docker容器中直接操作更新升级）
 
-#### 方案一: 直接从当前项目源码 进行 更新 (稳定, 推荐)
+#### ~~方案一: 直接从当前项目源码 进行 更新 (稳定, 推荐)~~ (源码中版本较旧，已删除，请使用方案二/三更新版本)
 
 ``` bash
 git pull origin
@@ -174,6 +174,15 @@ git pull origin
 ``` bash
 ./bin/update_package_nw.sh -l <微信开发工具下载地址> -v <版本号>
 ```
+
+#### 方案二/三补充：手动更新nwjs至开发者工具对应的版本  
+通过windows版开发者工具安装文件获取对应使用的nwjs版本，并修改nwjs_v中版本号，然后执行：
+
+``` bash
+./bin/update_nwjs.sh
+```
+
+以上更新后，至少可以 **cli upload** 正常使用啦
 
 *Tips*
 
