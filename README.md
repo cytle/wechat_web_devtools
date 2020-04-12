@@ -3,7 +3,7 @@
 linux 下使用微信web开发者工具.
 
 ![wx_dev_tools v1.02.2004020](https://img.shields.io/badge/wx_dev_tools-1.02.2004020-green.svg)
-![nw.js v0.24.4](https://img.shields.io/badge/nw.js-v0.24.4-blue.svg)
+![nw.js v0.38.4](https://img.shields.io/badge/nw.js-v0.38.4-blue.svg)
 
 ## Description
 
@@ -149,9 +149,9 @@ rm -rf /tmp/wxdt_xsp
 1. https://github.com/cytle/wechat_web_devtools/issues/66#issuecomment-368434141
 2. https://github.com/cytle/wechat_web_devtools/issues/56#issuecomment-371999385
 
-### 更新到最新版
+### 更新/升级到最新版（PS：同样适用于在canyoutle/wxdt docker容器中直接操作更新升级）
 
-#### 方案一: 直接从当前项目源码 进行 更新 (稳定, 推荐)
+#### ~~方案一: 直接从当前项目源码 进行 更新 (稳定, 推荐)~~ (源码中版本较旧，已删除，请使用方案二/三更新版本)
 
 ``` bash
 git pull origin
