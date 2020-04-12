@@ -175,7 +175,7 @@ git pull origin
 ./bin/update_package_nw.sh -l <微信开发工具下载地址> -v <版本号>
 ```
 
-#### 手动更新nwjs至开发者工具对应的版本  
+#### 方案二/三补充：手动更新nwjs至开发者工具对应的版本  
 通过windows版开发者工具安装文件获取对应使用的nwjs版本，并修改nwjs_v中版本号，然后执行：
 
 ``` bash
