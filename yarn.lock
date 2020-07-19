@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"7zip-bin@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.npm.taobao.org/7zip-bin/download/7zip-bin-5.0.3.tgz#bc5b5532ecafd923a61f2fb097e3b108c0106a3f"
+  integrity sha1-vFtVMuyv2SOmHy+wl+OxCMAQaj8=
+
+"7zip-min@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/7zip-min/download/7zip-min-1.1.2.tgz#88bd4af166e26372b8ac26ed074a215eba98da1f"
+  integrity sha1-iL1K8WbiY3K4rCbtB0ohXrqY2h8=
+  dependencies:
+    "7zip-bin" "^5.0.3"
+
 "@babel/code-frame@^7.0.0":
   version "7.10.4"
   resolved "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
