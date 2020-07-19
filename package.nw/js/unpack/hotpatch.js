@@ -1,1 +1,0 @@
-'use strict';require('../../js/unpack/hackrequire/index.js');const CORE_PATH='../../core.wxvpkg',hotpatch=require(CORE_PATH + '/cf7d67b3fb34d8276deb78291c77dfff.js');hotpatch();

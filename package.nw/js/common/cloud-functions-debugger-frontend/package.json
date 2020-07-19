@@ -1,8 +1,0 @@
-{
-  "name": "cloud-functions-debugger-frontend",
-  "main": "./index.js",
-  "window": {
-    "width": 800,
-    "height": 600
-  }
-}
