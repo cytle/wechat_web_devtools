@@ -1,0 +1,3 @@
+#! /bin/sh
+
+env LC_ALL=zh_CN.UTF-8 wine "$(dirname $0)/s/wcsc.exe" $@

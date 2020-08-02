@@ -225,3 +225,6 @@ Arch Linux 及其衍生发行版，如 Manjaro，可以通过 AUR 进行安装�
 ## 免责声明
 
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：canyoutle@gmail.com
+
+
+libatomic1
