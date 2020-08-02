@@ -29,9 +29,9 @@ start_step() {
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-dev_tools_config_dir="$HOME/.config/wechat_web_devtools"
+dev_tools_config_dir="$HOME/.config/wechatwebdevtools"
 weapp_vendor_dir="$dev_tools_config_dir/WeappVendor"
-vendor_dir="$root_dir/package.nw/js/vendor"
+vendor_dir="$root_dir/app/package.nw/js/vendor/s"
 start_step "生成"$dev_tools_config_dir
 
 if [ ! -d "$dev_tools_config_dir" ]; then

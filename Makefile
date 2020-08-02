@@ -37,8 +37,7 @@ shell:
 
 
 build-wine: docker/Dockerfile-wine
-	cd docker; \
-	docker build -f Dockerfile-wine -t $(REPO):wine .
+	docker build -f wine.Dockerfile -t $(REPO):wine .
 
 build-update: docker/Dockerfile-update
 	cd docker; \
@@ -57,5 +56,6 @@ test:
 		-v ${WEAPPS}:/projects \
 		-v wxdt-update:/tmp \
 		-p 6080:80 \
+        -p 9222:9222 \
 		--name wxdt-test \
 		$(REPO):wine

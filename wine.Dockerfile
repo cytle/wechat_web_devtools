@@ -25,19 +25,23 @@ ENV PATH="/wxdt/bin:${PATH}"
 RUN echo "Asia/Shanghai" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-# # install wine and config wine
-# RUN dpkg --add-architecture i386 \
-#   && wget -nc https://dl.winehq.org/wine-builds/winehq.key \
-#   && apt-key add winehq.key \
-#   && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' \
-#   && apt-get update \
-#   && apt-get install -y --no-install-recommends --allow-unauthenticated winehq-stable
-
-# # 配置wine
-# RUN env LC_ALL=zh_CN.UTF-8 wine /wxdt/package.nw/js/vendor/wcsc.exe
-
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 RUN apt-get install -y nodejs
+
+RUN apt-get install -y p7zip-full
+
+RUN apt-get install -y pkg-config g++ gcc make python2.7 pkg-config libx11-dev libxkbfile-dev
+
+# install wine and config wine
+RUN dpkg --add-architecture i386 \
+  && wget -nc https://dl.winehq.org/wine-builds/winehq.key \
+  && apt-key add winehq.key \
+  && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' \
+  && apt-get update \
+  && apt-get install -y --install-recommends winehq-stable
+
+# 配置wine
+RUN env LC_ALL=zh_CN.UTF-8 wine /wxdt/package.nw/js/vendor/wcsc.exe
 
 # COPY . /wxdt
 

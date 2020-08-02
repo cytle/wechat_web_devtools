@@ -1,5 +1,3 @@
-
-
 FROM canyoutle/wxdt:latest
 
 # install wine and config wine

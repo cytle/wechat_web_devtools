@@ -66,3 +66,8 @@ export const installWechatDevtoolsTasks = new Listr<DownloadCtx>([
         skip: (ctx) => fs.pathExistsSync(ctx.appHealthFilePath),
     },
     ], { concurrent: false});
+
+// native-keymap
+// vscode-ripgre
+// spdlog
+// npm i native-keymap vscode-ripgrep spdlog
