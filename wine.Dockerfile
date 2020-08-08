@@ -25,12 +25,11 @@ ENV PATH="/wxdt/bin:${PATH}"
 RUN echo "Asia/Shanghai" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-RUN apt-get install -y nodejs
-
 RUN apt-get install -y p7zip-full
-
 RUN apt-get install -y pkg-config g++ gcc make python2.7 pkg-config libx11-dev libxkbfile-dev
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN apt-get install -y nodejs
 
 # install wine and config wine
 RUN dpkg --add-architecture i386 \

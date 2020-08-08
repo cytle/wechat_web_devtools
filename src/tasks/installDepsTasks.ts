@@ -37,3 +37,5 @@ export const installDepsTasks = new Listr<InstallDepsCtx>([
       console.error(e)
     }
   })()
+
+  // extract-file-icon native-keymap native-watchdog node-pty nodegit oniguruma spdlog trash vscode-oniguruma vscode-ripgrep vscode-windows-ca-certs vscode-windows-registry windows-process-tree
