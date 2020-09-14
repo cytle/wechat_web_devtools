@@ -108,7 +108,7 @@ fi
 start_step '解压微信开发者工具'
 
 wcwd_file_target="$tmp_dir/wechat_web_devtools_${wechat_v}_x64"
-wcwd_file_package_nw_dir="\$APPDATA/Tencent/微信开发者工具/package.nw"
+wcwd_file_package_nw_dir="code/package.nw"
 
 7z x $wcwd_file -o$wcwd_file_target -y $wcwd_file_package_nw_dir
 
